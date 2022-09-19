@@ -1,4 +1,4 @@
-import CurrentDialog from './Current-Dialog/Current-Dialog'
+import CurrentDialog from './Chat/Chat-Area/Current-Dialog/Current-Dialog'
 import Dialogs from './Dialogs/Dialogs'
 import style from './Main.module.css'
 import Menu from './Menu/Menu'

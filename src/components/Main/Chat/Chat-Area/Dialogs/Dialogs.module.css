@@ -1,0 +1,13 @@
+.container{
+   display: flex;
+   flex-direction: column;
+
+    
+}
+.dialogs, .groupDialogs{
+    min-height: 45vh;
+}
+.groupDialogs{
+    border-top: solid 0.5px;
+    border-color: rgb(88, 155, 249);
+}
