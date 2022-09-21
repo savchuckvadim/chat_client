@@ -1,4 +1,5 @@
 import axios from "axios";
+import { login } from "../redux/auth-reducer";
 
 const instance = axios.create({
     baseURL: 'http://localhost:8000',
@@ -18,7 +19,7 @@ export const authApi = {
     async getUser() {
         await instance.get('sanctum/csrf-cookie')
         const response = await api.get('user')
-        console.log(response)
+       return response.data
     },
 
     async registration(name, email, password, passwordConfirmation) {
@@ -32,5 +33,10 @@ export const authApi = {
     async logout(){
         const response = await instance.post('logout', { })
         console.log(response)
+    },
+    async login(email, password){
+        await instance.post('login',{
+            email, password
+        })
     },
 }
