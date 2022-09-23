@@ -1,7 +1,6 @@
 import './App.css';
-import Header from './modules/components/Header/Header';
+import HeaderContainer from './modules/components/Header/Header-Container';
 import Main from './modules/components/Main/Main';
-
 import Start from './modules/components/Start/Start';
 
 
@@ -10,7 +9,7 @@ const App = (props) => {
 
   return (
     <div className="App">
-      <Header isAuth={props.isAuth} />
+      <HeaderContainer />
       <div className='page'>
        { props.isAuth
         ? <Main />

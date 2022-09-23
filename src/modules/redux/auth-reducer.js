@@ -12,7 +12,7 @@ const initialState = {
 
 //AC
 const setAuthUser = (user, bool) => ({ type: LOGIN, user, bool })
-
+const deleteAuthUser = () => ({ type: LOGOUT })
 //THUNK
 export const login = (email, password) => async (dispatch) => {
 
@@ -33,7 +33,7 @@ export const me = () => async (dispatch) => {
     try {
         const user = await authApi.getUser()
         if (user) {
-    
+
             dispatch(setAuthUser(user, true))
             dispatch(inProgress(false))
         }
@@ -42,15 +42,24 @@ export const me = () => async (dispatch) => {
         dispatch(setAuthUser(null, false))
         dispatch(inProgress(false))
     }
-  
-    
-}
 
+
+}
+export const logout = () => async (dispatch) => {
+    dispatch(inProgress(true))
+    dispatch(deleteAuthUser())
+    await authApi.logout()
+    dispatch(inProgress(false))
+
+}
 const authReduser = (state = initialState, action) => {
 
     switch (action.type) {
         case LOGIN:
             return { ...state, authUser: action.user, isAuth: action.bool }
+
+        case LOGOUT:
+            return { ...state, authUser: null, isAuth: false }
 
         default:
             return state;
