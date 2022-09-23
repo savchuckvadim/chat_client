@@ -5,7 +5,7 @@
     
 }
 .dialogs, .groupDialogs{
-    min-height: 45vh;
+    min-height: 30vh;
 }
 .groupDialogs{
     border-top: solid 0.5px;

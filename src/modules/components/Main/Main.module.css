@@ -1,6 +1,6 @@
 .container{
-    max-width: 100vw;
-    height: 90vh;
+width: 97vw;
+    height: 85vh;
   
     background-color: #333843;
     display: grid;
@@ -9,6 +9,12 @@
     'a  b  c';
     /* grid-template-rows: 50px 1fr 30px; */
   grid-template-columns: 20% 60% 20%;
+  border-radius: 20px;
+  outline:1px solid  rgb(88, 155, 249);
+    outline-offset:-1px;  
+  border-color: rgb(88, 155, 249);
+  color: rgb(88, 155, 249);
+  
 }
 
 .dialogs{
