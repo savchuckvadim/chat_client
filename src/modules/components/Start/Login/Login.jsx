@@ -1,4 +1,5 @@
 import { Formik } from "formik";
+import { Navigate } from "react-router-dom";
 import style from '../Registration/Registration.module.css'
 
 const Login = (props) => {
@@ -20,9 +21,8 @@ const Login = (props) => {
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                
-                   
                     props.login(values.email, values.password)
+                    
                 }}
             >
                 {({

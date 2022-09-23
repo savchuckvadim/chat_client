@@ -53,6 +53,7 @@ export const logout = () => async (dispatch) => {
     dispatch(deleteAuthUser())
     await authApi.logout()
     dispatch(inProgress(false))
+    
 
 }
 const authReduser = (state = initialState, action) => {

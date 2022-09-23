@@ -2,11 +2,13 @@ import style from './Header.module.css'
 import logo from '../../../logo.svg';
 import { authApi } from '../../services/api';
 import { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 
 
 const Header = (props) => {
   const logout = () => {
     props.logout()
+   
   }
   // useEffect(() => {
   //   logout()

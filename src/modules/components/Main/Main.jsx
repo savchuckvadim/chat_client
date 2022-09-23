@@ -12,6 +12,7 @@ const ChatApp = () => {
     <div className={style.container}>
       <div className={style.left__area}>
         <Routes>
+        <Route path='*' element={<Navigate replace to='../' />} />
           <Route path='chat' element={<Chat />} />
           <Route path='profile' element={<Chat />} />
           <Route path='users' element={<Users />} />
