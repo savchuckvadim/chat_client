@@ -1,13 +1,16 @@
 import style from './Header.module.css'
 import logo from '../../../logo.svg';
 import { authApi } from '../../services/api';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const Header = (props) => {
   const logout = () => {
     props.logout()
   }
+  // useEffect(() => {
+  //   logout()
+  // })
   const [logoStyle, setLogoStyle] = useState(style.App__logo)
 
   const clickBrand = () => {
