@@ -12,7 +12,7 @@ const ChatApp = () => {
     <div className={style.container}>
       <Routes>
         <Route path='/' element={<Chat />} />
-        <Route path='chat' element={<Chat />} />
+        {/* <Route path='chat' element={<Chat />} /> */}
         <Route path='profile' element={<Chat />} />
         <Route path='users' element={<Users />} />
         <Route path='prefences' element={<Chat />} />
@@ -30,8 +30,9 @@ const Main = () => {
     <main>
       {/* {<Navigate replace to='/chat' />} */}
       <Routes>
-        <Route path="?verified=1" element={<Navigate to="/" replace />} />
-        <Route path='/' element={<ChatApp />} />
+        <Route path="?verified" element={<Navigate to="/" replace />} />
+        <Route path='/' element={<Navigate to="/chat" replace />} />
+        <Route path='chat' element={<ChatApp />} />
         {/* <Route path='profile' element={<ChatApp />} />
         <Route path='users' element={<ChatApp />} />
         <Route path='prefences' element={<ChatApp />} /> */}
