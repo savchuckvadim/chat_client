@@ -4,11 +4,7 @@ width: 97vw;
   
     background-color: #333843;
     display: grid;
-    grid-template-areas: 
-    /* 'a' 'b' 'b' 'b' 'b' 'c'; */
-    'a  b  c';
-    /* grid-template-rows: 50px 1fr 30px; */
-  grid-template-columns: 20% 60% 20%;
+  grid-template-columns: 70% 30%;
   border-radius: 20px;
   outline:1px solid  rgb(88, 155, 249);
     outline-offset:-1px;  
@@ -17,10 +13,12 @@ width: 97vw;
   
 }
 
+.left__area{
+
+}
 
 .menu{
  
-    grid-area:  'c';
     border-left: solid 0.5px;
     border-color: rgb(88, 155, 249);
     display: flex;

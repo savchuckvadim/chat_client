@@ -10,13 +10,15 @@ import Users from './Users/Users'
 const ChatApp = () => {
   return (
     <div className={style.container}>
-      <Routes>
-      {/* <Route path='/' element={<Chat />} /> */}
-        <Route path='chat' element={<Chat />} />
-        <Route path='profile' element={<Chat />} />
-        <Route path='users' element={<Users />} />
-        <Route path='prefences' element={<Chat />} />
-      </Routes>
+      <div className={style.left__area}>
+        <Routes>
+          <Route path='chat' element={<Chat />} />
+          <Route path='profile' element={<Chat />} />
+          <Route path='users' element={<Users />} />
+          <Route path='prefences' element={<Chat />} />
+        </Routes>
+      </div>
+
 
       <div className={style.menu}>
         <Menu />
@@ -31,9 +33,9 @@ const Main = () => {
       {/* {<Navigate replace to='/chat' />} */}
       <Routes>
         {/* <Route path="*" element={<Navigate to="chat" replace />} /> */}
-       
-        <Route path='*' element={<ChatApp />}/>
-       
+
+        <Route path='*' element={<ChatApp />} />
+
       </Routes>
 
     </main>
