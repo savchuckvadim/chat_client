@@ -16,17 +16,20 @@ const deleteAuthUser = () => ({ type: LOGOUT })
 //THUNK
 export const login = (email, password) => async (dispatch) => {
 
-    // try {
-    await authApi.login(email, password)
-    const user = await authApi.getUser()
+    try {
+        dispatch(inProgress(true))
+        await authApi.login(email, password)
+        const user = await authApi.getUser()
 
-    if (user) {
+        if (user) {
 
-        dispatch(setAuthUser(user, true))
+            dispatch(setAuthUser(user, true))
+        }
+    } catch (error) {
+        console.log(error)
+        dispatch(inProgress(false))
     }
-    // } catch (error) {
-    //     console.log(error)
-    // }
+    dispatch(inProgress(false))
 }
 export const me = () => async (dispatch) => {
     dispatch(inProgress(true))

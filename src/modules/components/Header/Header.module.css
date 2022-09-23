@@ -55,8 +55,9 @@
     border: 0;
     cursor: pointer;
     background-color: rgb(244, 133, 248);
+    background: linear-gradient(90deg, rgba(198,176,200,1) 0%, rgba(141,85,168,1) 50%, rgba(255,98,213,1) 100%);
     color: rgb(0, 0, 0);
-    transition-property: background-color;
+    transition-property: background-color ;
     transition-duration: 1s;
   }
   .logout:hover{

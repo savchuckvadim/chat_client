@@ -10,7 +10,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 background: rgb(198,176,200);
-background: linear-gradient(90deg, rgba(198,176,200,1) 0%, rgba(141,85,168,1) 50%, rgba(255,98,213,1) 100%);
+background: linear-gradient(90deg, rgba(198,176,200,1) 0%, rgba(138,90,162,1) 50%, rgba(255,98,213,1) 100%);
 
 }
 

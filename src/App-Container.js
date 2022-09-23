@@ -23,15 +23,15 @@ const AppContainer = (props) => {
         }
     }, [])
 
-    if (!props.inProgress) {
+    // if (!props.inProgress) {
         return (
             <App {...props} />
         )
-    } else {
-        return (
-            <Preloader/>
-        )
-    }
+    // } else {
+    //     return (
+    //         <Preloader/>
+    //     )
+    // }
 
 }
 
