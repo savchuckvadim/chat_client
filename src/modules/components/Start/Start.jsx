@@ -35,7 +35,6 @@ const Start = () => {
     <Routes >
       <Route path='/' element={<StartPage />} />
       <Route path='login' element={<LoginContainer />} />
-      <Route path='?verified=1' element={<LoginContainer />} />
       <Route path='registration' element={<Registration />} />
     </Routes>
   )

@@ -8,11 +8,9 @@ import Start from './modules/components/Start/Start';
 
 const App = (props) => {
 
-
-
   return (
     <div className="App">
-      <Header />
+      <Header isAuth={props.isAuth} />
       <div className='page'>
        { props.isAuth
         ? <Main />
