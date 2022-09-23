@@ -10,7 +10,7 @@ import { me } from "./modules/redux/auth-reducer"
 const mapStateToProps = (state) => {
     return {
         isAuth: state.auth.isAuth,
-        preloader:state.preloader.inProgress
+        inProgress:state.preloader.inProgress
 
     }
 }
@@ -23,7 +23,7 @@ const AppContainer = (props) => {
         }
     }, [])
 
-    if (!props.preloader) {
+    if (!props.inProgress) {
         return (
             <App {...props} />
         )
