@@ -18,10 +18,9 @@ export const login = (email, password) => async (dispatch) => {
     // try {
         await authApi.login(email, password)
         const user = await authApi.getUser()
-        debugger
+        
         if (user) {
-            debugger
-            console.log(user)
+       
             dispatch(setAuthUser(user, true))
         }
     // } catch (error) {

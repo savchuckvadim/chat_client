@@ -32,11 +32,13 @@ export const authApi = {
     },
     async logout(){
         const response = await instance.post('logout', { })
-        console.log(response)
+   
     },
     async login(email, password){
-        await instance.post('login',{
+        await instance.get('sanctum/csrf-cookie')
+        let response = await instance.post('login',{
             email, password
         })
+        return response
     },
 }

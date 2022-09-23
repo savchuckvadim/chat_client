@@ -1,10 +1,8 @@
 import { Formik } from "formik";
-import { login } from "../../../redux/auth-reducer";
-import { authApi } from "../../../services/api";
+import style from '../Registration/Registration.module.css'
 
 const Login = (props) => {
-    debugger
-    // authApi.logout()
+
     return (
         <div>
             <h1>Login</h1>
@@ -23,7 +21,7 @@ const Login = (props) => {
                 }}
                 onSubmit={(values, { setSubmitting }) => {
                 
-                    console.log((values.nickname, values.email, values.password, values.passwordRepeat))
+                   
                     props.login(values.email, values.password)
                 }}
             >
@@ -37,7 +35,7 @@ const Login = (props) => {
                     isSubmitting,
                     /* and other goodies */
                 }) => (
-                    <form onSubmit={handleSubmit}>
+                    <form className={style.form} onSubmit={handleSubmit}>
                         
                          <p>Email</p>
                         <input
@@ -58,7 +56,7 @@ const Login = (props) => {
                         />
                         {errors.password && touched.password && errors.password}
                        
-                        <button type="submit" disabled={isSubmitting}>
+                        <button className={style.button} type="submit" disabled={isSubmitting}>
                             Submit
                         </button>
                     </form>

@@ -1,9 +1,27 @@
+
+
 .container{
-    width: 100vw;
-    height: 90vh;
+    width: 40vw;
+    height: 40vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-direction: row;
+  
 }
 
+.button__wrapper{
+    width: 200px;
+    height: 70px;
+    
+    
+}
+.button{
+    min-width: 100%;
+    min-height: 100%;
+    border: none;
+    background-color: #282c34;
+    color: white;
+    border-radius: 16px;
+    cursor: pointer;
+}

@@ -23,13 +23,10 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      {/* <Main /> */}
-      {/* <NavLink to='?verified=1' component={LoginContainer}>  */}
-      {/* <Registration /> */}
-      {/* <LoginContainer /> */}
-      <Start />
+      <div className='page'>
+        <Start />
+      </div>
     </div>
-
   );
 }
 

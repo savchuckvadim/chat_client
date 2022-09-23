@@ -1,5 +1,6 @@
-import { Formik } from "formik";
-import { authApi } from "../../../services/api";
+import { Formik } from "formik"
+import { authApi } from "../../../services/api"
+import style from './Registration.module.css'
 
 const Registration = () => {
     // authApi.logout()
@@ -38,7 +39,7 @@ const Registration = () => {
                     isSubmitting,
                     /* and other goodies */
                 }) => (
-                    <form onSubmit={handleSubmit}>
+                    <form className={style.form} onSubmit={handleSubmit}>
                         <p>Nickname</p>
                         <input
                             type="nickname"
@@ -47,8 +48,8 @@ const Registration = () => {
                             onBlur={handleBlur}
                             value={values.nickname}
                         />
-                         {errors.nickname && touched.nickname && errors.nickname}
-                         <p>Email</p>
+                        {errors.nickname && touched.nickname && errors.nickname}
+                        <p>Email</p>
                         <input
                             type="email"
                             name="email"
@@ -75,7 +76,7 @@ const Registration = () => {
                             value={values.passwordRepeat}
                         />
                         {errors.passwordRepeat && touched.passwordRepeat && errors.passwordRepeat}
-                        <button type="submit" disabled={isSubmitting}>
+                        <button className={style.button} type="submit" disabled={isSubmitting}>
                             Submit
                         </button>
                     </form>
