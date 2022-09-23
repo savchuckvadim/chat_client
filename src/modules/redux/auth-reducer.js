@@ -27,6 +27,14 @@ export const login = (email, password) => async (dispatch) => {
     //     console.log(error)
     // }
 }
+export const me = () => async (dispatch) => {
+    
+    const user = await authApi.getUser()
+        if (user) {
+       
+            dispatch(setAuthUser(user, true))
+        }
+}
 
 const authReduser = (state = initialState, action) => {
 

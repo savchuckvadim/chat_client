@@ -6,7 +6,7 @@ const instance = axios.create({
     headers: {
         'content-type': 'application/json',
         'accept': 'application/json',
-        'Access-Control-Allow-Origin' : '*',
+        'Access-Control-Allow-Origin': '*',
     },
     withCredentials: true
 });
@@ -19,7 +19,7 @@ export const authApi = {
     async getUser() {
         await instance.get('sanctum/csrf-cookie')
         const response = await api.get('user')
-       return response.data
+        return response.data
     },
 
     async registration(name, email, password, passwordConfirmation) {
@@ -28,15 +28,15 @@ export const authApi = {
             name, email, password,
             password_confirmation: passwordConfirmation
         })
-        console.log(response)
+
     },
-    async logout(){
-        const response = await instance.post('logout', { })
-   
+    async logout() {
+        const response = await instance.post('logout', {})
+
     },
-    async login(email, password){
+    async login(email, password) {
         await instance.get('sanctum/csrf-cookie')
-        let response = await instance.post('login',{
+        let response = await instance.post('login', {
             email, password
         })
         return response
