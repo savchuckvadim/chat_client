@@ -17,20 +17,13 @@ width: 97vw;
   
 }
 
-.dialogs{
 
-    grid-area: 'a' ;
-  
-}
-.currentDialog{
-   
-    grid-area: 'b' ;
-    border-left: solid 0.5px;
-    border-color: rgb(88, 155, 249);
-}
 .menu{
  
     grid-area:  'c';
     border-left: solid 0.5px;
     border-color: rgb(88, 155, 249);
+    display: flex;
+    justify-content: center;
+
 }

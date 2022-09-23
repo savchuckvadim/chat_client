@@ -3,16 +3,21 @@ import Dialogs from './Chat/Chat-Area/Dialogs/Dialogs'
 import style from './Main.module.css'
 import Menu from './Chat/Menu/Menu'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import Chat from './Chat/Chat-Area/Chat'
+import Users from './Users/Users'
+
 
 const ChatApp = () => {
   return (
     <div className={style.container}>
-      <div className={style.dialogs}>
-        <Dialogs />
-      </div>
-      <div className={style.currentDialog}>
-        <CurrentDialog />
-      </div>
+      <Routes>
+        <Route path='/' element={<Chat />} />
+        <Route path='chat' element={<Chat />} />
+        <Route path='profile' element={<Chat />} />
+        <Route path='users' element={<Users />} />
+        <Route path='prefences' element={<Chat />} />
+      </Routes>
+
       <div className={style.menu}>
         <Menu />
       </div>
@@ -23,9 +28,13 @@ const Main = () => {
 
   return (
     <main>
+      {/* {<Navigate replace to='/chat' />} */}
       <Routes>
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="?verified=1" element={<Navigate to="/" replace />} />
         <Route path='/' element={<ChatApp />} />
+        {/* <Route path='profile' element={<ChatApp />} />
+        <Route path='users' element={<ChatApp />} />
+        <Route path='prefences' element={<ChatApp />} /> */}
       </Routes>
 
     </main>

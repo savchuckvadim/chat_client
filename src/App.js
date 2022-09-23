@@ -7,9 +7,10 @@ import Start from './modules/components/Start/Start';
 
 
 const App = (props) => {
+  
   let page = <Preloader />
   if (!props.inProgress && props.isAuth) {
-    page = <Main />
+    page =  <Main />
   } else if (!props.inProgress && !props.isAuth) {
     page = <Start />
   }
