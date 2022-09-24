@@ -4,7 +4,7 @@ const UserCard = (props) => {
     return (
         <div className={style.container}>
             <p>{props.name}</p>
-            <button className={style.button}>add contact</button>
+            <button className={style.button}>+add contact</button>
         </div>
     )
 

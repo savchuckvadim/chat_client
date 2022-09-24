@@ -18,8 +18,9 @@
 }
 
 .button{
-    height: 25px;
-border-radius: 12px;
+    height: 35px;
+    width: 100px;
+border-radius: 10px;
 border-color: rgb(255, 255, 255);
 outline:1px solid  rgb(255, 255, 255);
     outline-offset:-1px;
