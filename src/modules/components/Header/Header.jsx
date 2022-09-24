@@ -1,6 +1,6 @@
 import style from './Header.module.css'
 import logo from '../../../logo.svg';
-import { authApi } from '../../services/api';
+import { authApi } from '../../services/auth-api';
 import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 

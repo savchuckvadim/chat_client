@@ -10,7 +10,7 @@ const instance = axios.create({
     },
     withCredentials: true
 });
-const api = axios.create({
+export const api = axios.create({
     baseURL: 'http://localhost:8000/api',
     withCredentials: true
 });

@@ -1,5 +1,5 @@
 import { Formik } from "formik"
-import { authApi } from "../../../services/api"
+import { authApi } from "../../../services/auth-api"
 import style from './Registration.module.css'
 
 const Registration = () => {

@@ -1,10 +1,8 @@
-import CurrentDialog from './Chat/Chat-Area/Current-Dialog/Current-Dialog'
-import Dialogs from './Chat/Chat-Area/Dialogs/Dialogs'
 import style from './Main.module.css'
 import Menu from './Chat/Menu/Menu'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Chat from './Chat/Chat-Area/Chat'
-import Users from './Users/Users'
+import UsersContainer from './Users/Users-Container'
 
 
 const ChatApp = () => {
@@ -15,7 +13,7 @@ const ChatApp = () => {
         <Route path='*' element={<Navigate replace to='../chat' />} />
           <Route path='chat' element={<Chat />} />
           <Route path='profile' element={<Chat />} />
-          <Route path='users' element={<Users />} />
+          <Route path='users' element={<UsersContainer />} />
           <Route path='prefences' element={<Chat />} />
         </Routes>
       </div>
