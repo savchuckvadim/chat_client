@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Preloader from './modules/components/common/Preloader/Preloader';
 import HeaderContainer from './modules/components/Header/Header-Container';
@@ -8,23 +8,26 @@ import Start from './modules/components/Start/Start';
 
 
 const App = (props) => {
-  
+
   let page = <Preloader />
   if (!props.inProgress && props.isAuth) {
-    page =  <Main />
+    page = <Main />
   } else if (!props.inProgress && !props.isAuth) {
     page = <Start />
-  }else{
+  } else {
     // return <Navigate replace to='../' />
   }
 
   return (
-    <div className="App">
-      <HeaderContainer />
-      <div className='page'>
-        {page}
+    <>
+      
+      <div className="App">
+        <HeaderContainer />
+        <div className='page'>
+          {page}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

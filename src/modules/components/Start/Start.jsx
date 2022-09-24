@@ -1,4 +1,4 @@
-import { NavLink, Route, Routes } from 'react-router-dom'
+import { Navigate, NavLink, Route, Routes } from 'react-router-dom'
 import LoginContainer from './Login/Login-Container'
 import Registration from './Registration/Registration'
 import style from './Start.module.css'
@@ -33,6 +33,7 @@ const StartPage = () => {
 const Start = () => {
   return (
     <Routes >
+      <Route path='*' element={<Navigate replace to='../' />} />
       <Route path='/' element={<StartPage />} />
       <Route path='login' element={<LoginContainer />} />
       <Route path='registration' element={<Registration />} />

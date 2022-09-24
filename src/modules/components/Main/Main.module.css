@@ -1,7 +1,7 @@
 .container{
 width: 97vw;
     height: 85vh;
-  
+
     background-color: #333843;
     display: grid;
   grid-template-columns: 70% 30%;
