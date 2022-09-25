@@ -21,17 +21,18 @@ const setNewContact = (contact) => ({ type: NEW_CONTACT, contact })
 export const getUsers = (currentPage, pageSize) => async (dispatch) => {
     dispatch(inProgress(true))
     const users = await usersAPI.getUsers(currentPage, pageSize)
-    dispatch(inProgress(false))
+
     dispatch(setUsers(users))
+    dispatch(inProgress(false))
 
 }
 
 export const addContact = (userId) => async (dispatch) => {
-    debugger
+    
     dispatch(inProgress(true))
     const contact = await usersAPI.addContact(userId)
     dispatch(setNewContact(contact))
-    dispatch(inProgress(true))
+    dispatch(inProgress(false))
 }
 
 //REDUCER
@@ -50,7 +51,7 @@ const usersReducer = (state = initialState, action) => {
             let resultState = { ...state }
             // const isExist = state.contacts.some(contact => contact.id === action.userId)
             // if (!isExist) {
-            
+
             resultState.users = state.users.map(user => {
                 if (user.id === action.userId) {
                     user.isContacted = true

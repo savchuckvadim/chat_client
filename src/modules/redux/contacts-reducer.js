@@ -23,12 +23,12 @@ export const getContacts = () => async (dispatch) => {
 const contactsReducer = (state = initialState, action) => {
 
     switch (action.type) {
+        
         case SET_CONTACTS:
-
             return { ...state, contacts: action.contacts };
 
         default:
-            break;
+            return state;
     }
 }
 
