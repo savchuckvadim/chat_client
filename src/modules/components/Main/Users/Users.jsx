@@ -19,8 +19,10 @@ const Users = (props) => {
           !props.inProgress
             ? props.users.map(user => <UserCard 
               key={user.id} 
+              userId={user.id} 
               name={user.name}
               isContacted={user.isContacted} 
+              addContact={props.addContact}
               />)
             : <Preloader />
         }

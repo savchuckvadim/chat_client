@@ -11,7 +11,10 @@ const AddContact = (props) => {
 
     }
     return (
-        <button className={buttonStyle}>{buttonName}</button>
+        <button
+            className={buttonStyle}
+            onClick={() => { props.addContact(props.userId) }}
+        >{buttonName}</button>
     )
 }
 export default AddContact

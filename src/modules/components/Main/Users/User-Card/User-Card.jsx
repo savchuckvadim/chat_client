@@ -6,9 +6,11 @@ const UserCard = (props) => {
     return (
         <div className={style.container}>
             <p>{props.name}</p>
-           <AddContact
-           isContacted={props.isContacted} 
-           />
+            <AddContact
+                userId={props.userId}
+                isContacted={props.isContacted}
+                addContact={props.addContact}
+            />
         </div>
     )
 
