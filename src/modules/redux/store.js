@@ -3,14 +3,14 @@ import authReduser from './auth-reducer'
 import ThunkMiddleware from 'redux-thunk'
 import preloaderReducer from './preloader-reducer'
 import usersReducer from './users-reducer'
-import { getContacts } from './contacts-reducer'
+import contactsReducer from './contacts-reducer'
 
 
 const rootReducer = combineReducers({
     auth: authReduser,
     preloader: preloaderReducer,
     users: usersReducer,
-    contacts: getContacts
+    contacts: contactsReducer
 })
 
 export const store = createStore(rootReducer, applyMiddleware(ThunkMiddleware))
