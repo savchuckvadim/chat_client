@@ -7,7 +7,7 @@ const NEW_CONTACT = 'NEW_CONTACT'
 
 const initialState = {
     users: [],
-    contacts: [],
+    // contacts: [],
     inProgress: false
 }
 //AC
@@ -48,16 +48,16 @@ const usersReducer = (state = initialState, action) => {
 
         case NEW_CONTACT:
             let resultState = { ...state }
-            const isExist = state.contacts.some(contact => contact.id === action.userId)
-            if (!isExist) {
-                resultState.contacts = [...state, action.contact]
-                resultState.users = state.users.map(user => {
-                    if (user.id === action.userId) {
-                        user.isContacted = true
-                    }
-                    return user
-                })
-            }
+            // const isExist = state.contacts.some(contact => contact.id === action.userId)
+            // if (!isExist) {
+            
+            resultState.users = state.users.map(user => {
+                if (user.id === action.userId) {
+                    user.isContacted = true
+                }
+                return user
+            })
+            // }
             return resultState
         default:
             return state;
