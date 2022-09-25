@@ -1,0 +1,33 @@
+.contact, .nocontact{
+    height: 35px;
+    width: 100px;
+    border-radius: 10px;
+    border-color: rgb(255, 255, 255);
+    outline:1px solid  rgb(255, 255, 255);
+    outline-offset:-1px;
+    cursor: pointer;
+
+}
+.contact{
+    background: rgb(198,176,200);
+    background: linear-gradient(45deg, rgba(198,176,200,1) 0%, rgba(138,90,162,1) 50%, rgba(255,98,213,1) 100%);
+    animation: gradient 17s ease infinite;
+    background-size: 500% 500%;
+    color: rgb(255, 255, 255);
+}
+.nocontact{
+background-color: rgb(48, 35, 42);
+color: white;
+}
+@keyframes gradient{
+ 
+    0%{
+        background-position: 0 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0 50%;
+    }
+}

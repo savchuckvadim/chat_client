@@ -8,6 +8,7 @@ const Menu = () => {
     <div className={style.menu}>
       <h3>Menu</h3>
       <div className={style.container}>
+        <NavLink className={style.link} to='chat'>Чат</NavLink>
         <NavLink className={style.link} to='profile'>Профиль</NavLink>
         <NavLink className={style.link} to='users'>Пользователи</NavLink>
         <NavLink className={style.link} to='prefences'>Настройки</NavLink>

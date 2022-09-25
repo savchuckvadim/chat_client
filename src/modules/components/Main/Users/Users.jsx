@@ -17,7 +17,11 @@ const Users = (props) => {
       <div className={style.users}>
         {
           !props.inProgress
-            ? props.users.map(user => <UserCard key={user.id} name={user.name} />)
+            ? props.users.map(user => <UserCard 
+              key={user.id} 
+              name={user.name}
+              isContacted={user.isContacted} 
+              />)
             : <Preloader />
         }
       </div>
