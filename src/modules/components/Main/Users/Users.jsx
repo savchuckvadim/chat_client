@@ -23,6 +23,7 @@ const Users = (props) => {
               name={user.name}
               isContacted={user.isContacted} 
               addContact={props.addContact}
+              deleteContact={props.deleteContact}
               />)
             : <Preloader />
         }

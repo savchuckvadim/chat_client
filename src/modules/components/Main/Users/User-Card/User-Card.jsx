@@ -10,6 +10,7 @@ const UserCard = (props) => {
                 userId={props.userId}
                 isContacted={props.isContacted}
                 addContact={props.addContact}
+                deleteContact={props.deleteContact}
             />
         </div>
     )

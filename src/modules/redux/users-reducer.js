@@ -28,10 +28,17 @@ export const getUsers = (currentPage, pageSize) => async (dispatch) => {
 }
 
 export const addContact = (userId) => async (dispatch) => {
-    
     dispatch(inProgress(true))
     const contact = await usersAPI.addContact(userId)
     dispatch(setNewContact(contact))
+    dispatch(inProgress(false))
+}
+
+export const deleteContact = (userId) => async (dispatch) => {
+    
+    dispatch(inProgress(true))
+    await usersAPI.deleteContact(userId)
+    // dispatch(setNewContact(contact))
     dispatch(inProgress(false))
 }
 

@@ -12,13 +12,11 @@ export const usersAPI = {
         const response = await api.post('contact', {
             userId
         })
-        
-        
         return response.data
     },
 
     async deleteContact(userId){
-        const response = await api.delete(`contact/${userId}`)
+        const response = await api.get(`contact/${userId}`)
 
         return response.data
     }
