@@ -1,4 +1,5 @@
 import { dialogsAPI } from "../services/dialogs-api"
+import { inProgress } from "./preloader-reducer"
 
 
 const SET_DIALOGS = 'SET_DIALOGS'
@@ -14,6 +15,7 @@ const setDialogs = (dialogs) => ({ type: SET_DIALOGS, dialogs })
 // THUNKS
 
 export const getDialogs = () => async (dispatch) => {
+    //TODO: dispatch(inProgress)
     const response = await dialogsAPI.getDialogs()
 
     dispatch(setDialogs(response.dialogs))
