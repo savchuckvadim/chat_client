@@ -10,7 +10,7 @@ const Dialogs = (props) => {
         <div className={style.container}>
             <h4 className={style.title}>  dialogs</h4>
             <div className={style.dialogs}>
-               {props.dialogs.map(dialog => (dialog.id))}
+               {props.dialogs.map(dialog => (dialog.name))}
             </div>
             <div className={style.groupDialogs}>
                 group dialogs
