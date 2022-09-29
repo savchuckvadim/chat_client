@@ -6,10 +6,10 @@
     justify-content: center;
     align-items: center;
     background: rgb(198,176,200);
-background: linear-gradient(45deg, rgba(198,176,200,1) 0%, rgba(138,90,162,1) 50%, rgba(255,98,213,1) 100%);
+background: linear-gradient(45deg, rgba(198,176,200,1) 0%, rgba(138,90,162,1) 50%, rgb(255, 34, 196) 100%);
     font-size: large;
-    animation: gradient 17s ease infinite;
-    background-size: 500% 500%;
+    animation: gradient 7s ease infinite;
+    background-size: 1500% 1500%;
     color: rgb(255, 255, 255);
 }
 
