@@ -16,7 +16,7 @@ export const usersAPI = {
     },
 
     async deleteContact(userId){
-        const response = await api.get(`contact/${userId}`)
+        const response = await api.delete(`contact/${userId}`)
 
         return response.data
     }

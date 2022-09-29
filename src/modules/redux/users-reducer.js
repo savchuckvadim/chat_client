@@ -3,7 +3,8 @@ import { usersAPI } from "../services/users-api"
 
 const SET_USERS = 'SET_USERS'
 const PRELOADER = 'users/PRELOADER'
-const NEW_CONTACT = 'NEW_CONTACT'
+const NEW_CONTACT = 'users/NEW_CONTACT'
+const DELETE_CONTACT = 'users/DELETE_CONTACT'
 
 const initialState = {
     users: [],
@@ -13,15 +14,14 @@ const initialState = {
 //AC
 const setUsers = (users) => ({ type: SET_USERS, users })
 const inProgress = (bool) => ({ type: PRELOADER, bool })
-const setNewContact = (contact) => ({ type: NEW_CONTACT, contact })
-
+const setNewContact = (newContactId) => ({ type: NEW_CONTACT, newContactId })
+const unContacted = (deletedContactId) => ({ type: DELETE_CONTACT, deletedContactId })
 
 //THUNK
 
 export const getUsers = (currentPage, pageSize) => async (dispatch) => {
     dispatch(inProgress(true))
     const users = await usersAPI.getUsers(currentPage, pageSize)
-
     dispatch(setUsers(users))
     dispatch(inProgress(false))
 
@@ -29,23 +29,23 @@ export const getUsers = (currentPage, pageSize) => async (dispatch) => {
 
 export const addContact = (userId) => async (dispatch) => {
     dispatch(inProgress(true))
-    const contact = await usersAPI.addContact(userId)
-    dispatch(setNewContact(contact))
+    const response = await usersAPI.addContact(userId)
+    dispatch(setNewContact(userId))
     dispatch(inProgress(false))
 }
 
 export const deleteContact = (userId) => async (dispatch) => {
-    
+
     dispatch(inProgress(true))
     await usersAPI.deleteContact(userId)
-    // dispatch(setNewContact(contact))
+    dispatch(unContacted(userId))
     dispatch(inProgress(false))
 }
 
 //REDUCER
 
 const usersReducer = (state = initialState, action) => {
-
+    let resultState = state
     switch (action.type) {
 
         case SET_USERS:
@@ -55,17 +55,29 @@ const usersReducer = (state = initialState, action) => {
             return { ...state, inProgress: action.bool };
 
         case NEW_CONTACT:
-            let resultState = { ...state }
+            resultState = { ...state }
             // const isExist = state.contacts.some(contact => contact.id === action.userId)
             // if (!isExist) {
-
+           
             resultState.users = state.users.map(user => {
-                if (user.id === action.userId) {
+                if (user.id === action.newContactId) {
                     user.isContacted = true
                 }
                 return user
             })
             // }
+            return resultState
+
+        case DELETE_CONTACT:
+            resultState = { ...state }
+           
+            resultState.users = state.users.map(user => {
+                if (user.id === action.deletedContactId) {
+                    user.isContacted = false
+                }
+                return user
+            })
+
             return resultState
         default:
             return state;
