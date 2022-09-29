@@ -1,4 +1,5 @@
-import { contactsAPI } from "../services/contacts-api"
+import { dialogsAPI } from "../services/dialogs-api"
+
 
 const SET_DIALOGS = 'SET_DIALOGS'
 
@@ -13,9 +14,9 @@ const setDialogs = (dialogs) => ({ type: SET_DIALOGS, dialogs })
 // THUNKS
 
 export const getDialogs = () => async (dispatch) => {
-    const response = await contactsAPI.getDialogs()
+    const response = await dialogsAPI.getDialogs()
 
-    dispatch(setDialogs(response))
+    dispatch(setDialogs(response.dialogs))
 
 }
 

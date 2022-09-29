@@ -1,11 +1,16 @@
+import { useEffect } from 'react'
 import style from './Dialogs.module.css'
 
-const Dialogs = () => {
+const Dialogs = (props) => {
 
+    useEffect(() => {
+        props.getDialogs()
+    }, [])
     return (
         <div className={style.container}>
+            <h4 className={style.title}>  dialogs</h4>
             <div className={style.dialogs}>
-                dialogs
+               {props.dialogs.map(dialog => (dialog.id))}
             </div>
             <div className={style.groupDialogs}>
                 group dialogs
