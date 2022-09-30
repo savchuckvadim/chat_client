@@ -1,5 +1,6 @@
 .item{
-    background-color: white;
+    /* background-color: white; */
+    margin-left: 5px;
     min-width:90%;
     height: 60px;
     border-radius: 10px;
@@ -7,6 +8,7 @@
    flex-direction: row;
    cursor: pointer;
    margin-bottom: 2px;
+  
 }
 .text__wrapper{
     margin: 0 0 0 8px;
@@ -55,7 +57,7 @@
     margin: 0;
     /* display: block; */
     text-align: start;
-    color: black;
+    color: rgb(88, 155, 249);
 }
 .name{
     font-size: small;
