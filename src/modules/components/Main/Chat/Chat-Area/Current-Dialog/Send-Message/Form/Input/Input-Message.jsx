@@ -1,14 +1,20 @@
+import React, { useState } from 'react'
 import style from './Input-Message.module.css'
 
 const InputMessage = ({
     field, // { name, value, onChange, onBlur }
     form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
     ...props
-  }) => {
+}) => {
 
-    return(
-        <div className={style.input}>
-Input Message
+    const [value, setValue] = useState('Input Message')
+    const inputRef = React.createRef()
+
+    return (
+        <div className={style.input} ref={inputRef}
+            contentEditable
+        >
+            {value}
         </div>
     )
 }
