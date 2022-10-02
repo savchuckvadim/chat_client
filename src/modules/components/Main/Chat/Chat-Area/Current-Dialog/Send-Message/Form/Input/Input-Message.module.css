@@ -1,0 +1,11 @@
+.input{
+    width: 100%;
+    /* min-height: 100%; */
+    display: block;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    resize: none;
+    border: none;
+    background: none;
+    outline: none;
+    text-align: start;
+    }

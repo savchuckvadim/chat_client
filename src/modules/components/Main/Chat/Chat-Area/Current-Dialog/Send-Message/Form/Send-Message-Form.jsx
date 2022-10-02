@@ -1,4 +1,5 @@
-import { Formik } from 'formik';
+import { Field, Formik } from 'formik';
+import InputMessage from './Input/Input-Message';
 import style from './Send-Message-Form.module.css'
 
 const SendMessageForm = () => {
@@ -31,13 +32,17 @@ const SendMessageForm = () => {
                 }) => (
                     <form className={style.form} onSubmit={handleSubmit}>
                         
-                        <textarea
+                        {/* <textarea
                             type="text"
                             name="message"
                             onChange={handleChange}
                             onBlur={handleBlur}
                             value={values.message}
                             className={style.input}
+                        /> */}
+                        <Field
+                        name="message"
+                        component={InputMessage}
                         />
                         {errors.message && touched.message && errors.message}
                         
