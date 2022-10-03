@@ -1,6 +1,7 @@
 .input{
     width: 100%;
     max-height: 100px;
+    padding: 5px;
     display: block;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     resize: none;
@@ -8,5 +9,6 @@
     background: none;
     outline: none;
     text-align: start;
-    overflow: scroll;
+    overflow: auto;
+
     }
