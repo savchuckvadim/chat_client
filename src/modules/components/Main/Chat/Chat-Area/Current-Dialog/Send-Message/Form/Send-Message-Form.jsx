@@ -41,6 +41,7 @@ const SendMessageForm = () => {
                             className={style.input}
                         /> */}
                         <Field
+                        className={style.field}
                         name="message"
                         component={InputMessage}
                         />
