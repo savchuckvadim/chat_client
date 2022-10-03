@@ -25,8 +25,8 @@ export const getDialogs = () => async (dispatch) => {
 
 export const sendMessage = (dialogId, body) => async (dispatch) => {
     const response = await dialogsAPI.sendMessage(dialogId, body)
-    debugger
 }
+
 
 //REDUCER
 const dialogsReducer = (state = initialState, action) => {
