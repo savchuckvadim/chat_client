@@ -5,7 +5,8 @@ import { inProgress } from "./preloader-reducer"
 const SET_DIALOGS = 'SET_DIALOGS'
 
 const initialState = {
-    dialogs: []
+    dialogs: [],
+    currentMessage: ''
 }
 
 //AC
@@ -17,9 +18,12 @@ const setDialogs = (dialogs) => ({ type: SET_DIALOGS, dialogs })
 export const getDialogs = () => async (dispatch) => {
     //TODO: dispatch(inProgress)
     const response = await dialogsAPI.getDialogs()
-
     dispatch(setDialogs(response.dialogs))
 
+}
+
+export const sendMessage = (message) => async (dispatch) => {
+    
 }
 
 //REDUCER
