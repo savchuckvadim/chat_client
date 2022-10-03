@@ -14,7 +14,7 @@ const InputMessage = ({
         <div className={style.input} ref={inputRef}
             contentEditable
         >
-            {value}
+            value
         </div>
     )
 }

@@ -1,8 +1,10 @@
 .container{
     /* position: relative; */
+    /* min-width: 100%; */
     min-height: 100%;
     display: flex;
     justify-content: center;
     display: grid;
     grid-template-rows: 80% 20%;
+    grid-template-columns: 100%;
 }
