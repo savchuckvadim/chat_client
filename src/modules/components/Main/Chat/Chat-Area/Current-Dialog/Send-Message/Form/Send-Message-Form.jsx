@@ -74,21 +74,25 @@ class SendMessageForm extends React.Component {
         const text = this.ref.innerText;
         console.log(text)
         // this.props.onChange(text);
-        
+
+    };
+    submit() {
+        const text = this.ref.innerText;
+        this.props.sendMessage(1, text);
     };
     updateCaretPosition = () => {
         const { node, cursorPosition } = this.state;
-      
+
         const selection = window.getSelection();
         const newNode = selection.anchorNode;
         const newCursorPosition = selection.anchorOffset;
-      
-        if ( node === newNode && cursorPosition === newCursorPosition) {
-          return;
+
+        if (node === newNode && cursorPosition === newCursorPosition) {
+            return;
         }
-      
+
         this.setState({ node, cursorPosition });
-      }
+    }
     componentDidMount() {
         this.ref.addEventListener('input', this.saveInputValue);
     }
@@ -106,12 +110,14 @@ class SendMessageForm extends React.Component {
                         placeholder="Type a message"
                         contentEditable
                         suppressContentEditableWarning={true}
-                      
+
                     />
 
                 </div>
                 <div className={style.button__wrapper}>
-                    <button className={style.button} type="submit">
+                    <button className={style.button} type="submit"
+                        onClick={() => { this.submit() }}
+                    >
                         Submit
                     </button>
                 </div>
