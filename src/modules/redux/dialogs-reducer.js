@@ -16,7 +16,7 @@ const initialState = {
 //AC
 const setDialogs = (dialogs) => ({ type: SET_DIALOGS, dialogs })
 const setCurrentDialog = (dialogId, messages) => ({ type: SET_CURRENT_DIALOG, dialogId, messages })
-
+const setNewMessage = (message) => ({ type: SET_NEW_MESSAGE, message })
 
 // THUNKS
 
@@ -29,6 +29,7 @@ export const getDialogs = () => async (dispatch) => {
 
 export const sendMessage = (dialogId, body) => async (dispatch) => {
     const response = await dialogsAPI.sendMessage(dialogId, body)
+    dispatch(setNewMessage(response.createdMessage))
 }
 
 export const getMessages = (dialogId) => async (dispatch) => {
