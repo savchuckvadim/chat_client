@@ -1,0 +1,38 @@
+
+.container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.messages{
+    height: 97%;
+    width: 97%;
+    background-color: white;
+    border-radius: 16px;
+    display: grid;
+}
+
+.message, .myMessage{
+    margin: 5px;
+width: 250px;
+max-height: 100%;
+border-radius: 16px;
+
+}
+.message{
+    justify-self: flex-end;
+    background-color: rgb(56, 222, 222);
+}
+.myMessage{
+    width: 250px;
+    /* height: ; */
+    /* max-height: 100px; */
+    background-color: blue;
+    border-radius: 16px;
+    justify-self: flex-start;
+    }
