@@ -4,7 +4,7 @@ import style from './Dialog-Item.module.css'
 const DialogItem = ({ dialog }) => {
 
     return (
-        <NavLink to='1'>
+        <NavLink  to={`${dialog.id}`} >
             <div className={style.item}>
                 <div className={style.avatar}>
                     <p className={style.initials}>CT</p>

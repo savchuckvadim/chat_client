@@ -59,6 +59,7 @@ class CurrentDialogContainer extends React.Component {
 
     }
     render() {
+        
         return (
             <CurrentDialog />
         )
