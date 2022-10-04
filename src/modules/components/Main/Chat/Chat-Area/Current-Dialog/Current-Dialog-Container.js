@@ -1,8 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { useParams } from "react-router-dom"
-import { compose } from "redux"
-import { getDialogs } from "../../../../../redux/dialogs-reducer"
+import { getMessages } from "../../../../../redux/dialogs-reducer"
 import CurrentDialog from "./Current-Dialog"
 
 
@@ -46,6 +45,7 @@ class CurrentDialogContainer extends React.Component {
         // window.scrollTo(0, 0)
         let dialogId = this.getDialogId()
         console.log(dialogId)
+        this.props.getMessages(dialogId)
         //TODO: from reducer get currentsDialogMessages
         // this.getProfileData(userId)
 
@@ -69,7 +69,7 @@ class CurrentDialogContainer extends React.Component {
 export default
     // compose(
     connect(mapStateToProps, {
-        getDialogs
+        getMessages
     })(withRouter(CurrentDialogContainer))
 //     withRouter
 // )

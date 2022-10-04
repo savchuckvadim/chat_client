@@ -16,5 +16,10 @@ export const dialogsAPI = {
         })
         console.log(response)
         return response.data
+    },
+
+    async getMessages(dialogId) {
+        const response = await api.get(`messages/${dialogId}`)
+        return response.data
     }
 }
