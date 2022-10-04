@@ -41,7 +41,7 @@ class CurrentDialogContainer extends React.Component {
 
 
     componentDidMount() {
-
+debugger
         // window.scrollTo(0, 0)
         let dialogId = this.getDialogId()
         console.log(dialogId)
