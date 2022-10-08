@@ -1,4 +1,4 @@
-import { authApi } from "../services/auth-api"
+import { authApi } from "../services/api/auth-api"
 import { inProgress } from "./preloader-reducer"
 
 const LOGIN = 'LOGIN'

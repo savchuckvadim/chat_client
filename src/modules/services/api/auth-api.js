@@ -1,19 +1,7 @@
-import axios from "axios";
-import { login } from "../redux/auth-reducer";
 
-const instance = axios.create({
-    baseURL: 'http://localhost:8000',
-    headers: {
-        'content-type': 'application/json',
-        'accept': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-    },
-    withCredentials: true
-});
-export const api = axios.create({
-    baseURL: 'http://localhost:8000/api',
-    withCredentials: true
-});
+import { api, instance } from "./api";
+
+
 
 export const authApi = {
     async getUser() {

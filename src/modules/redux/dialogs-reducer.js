@@ -1,4 +1,4 @@
-import { dialogsAPI } from "../services/dialogs-api"
+import { dialogsAPI } from "../services/api/dialogs-api"
 import { inProgress } from "./preloader-reducer"
 
 

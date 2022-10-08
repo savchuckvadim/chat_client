@@ -1,4 +1,4 @@
-import { contactsAPI } from "../services/contacts-api"
+import { contactsAPI } from "../services/api/contacts-api"
 
 const SET_CONTACTS = 'SET_CONTACTS'
 
