@@ -1,4 +1,5 @@
 import { authApi } from "../services/api/auth-api"
+import { socket } from "../services/websocket/socket"
 import { inProgress } from "./preloader-reducer"
 
 const LOGIN = 'LOGIN'
@@ -20,7 +21,7 @@ export const login = (email, password) => async (dispatch) => {
         dispatch(inProgress(true))
         await authApi.login(email, password)
         const user = await authApi.getUser()
-
+        
         if (user) {
 
             dispatch(setAuthUser(user, true))
@@ -38,6 +39,7 @@ export const me = () => async (dispatch) => {
         if (user) {
 
             dispatch(setAuthUser(user, true))
+            await socket.connection()
             dispatch(inProgress(false))
         }
         dispatch(inProgress(false))
@@ -53,7 +55,7 @@ export const logout = () => async (dispatch) => {
     dispatch(deleteAuthUser())
     await authApi.logout()
     dispatch(inProgress(false))
-    
+
 
 }
 const authReduser = (state = initialState, action) => {

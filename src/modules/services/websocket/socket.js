@@ -1,5 +1,5 @@
 import Echo from 'laravel-echo'
-import { instance } from '../api/api'
+import { api, instance } from '../api/api'
 
 
 export const socket = {
@@ -8,12 +8,13 @@ export const socket = {
 
     window.Pusher = require('pusher-js')
     await instance.get("/sanctum/csrf-cookie")
-    await instance.get('api/user')
+    await api.get('user')
+    
 
     let echo = new Echo({
 
       broadcaster: 'pusher',
-      key: 'socket_key',
+      key: 's3cr3t',
       cluster: 'mt1',
       forceTLS: false,
       disableStats: true,
@@ -22,10 +23,10 @@ export const socket = {
       authorizer: (channel, options) => {
         console.log('websocket connection is success')
         console.log(options)
-
+console.log(channel.name)
         return {
           authorize: (socketId, callback) => {
-            instance.post('api/broadcasting/auth', {
+            api.post('broadcasting/auth', {
               socket_id: socketId,
               channel_name: channel.name,
             })
@@ -42,14 +43,34 @@ export const socket = {
       }
 
     })
+    // let roomId = 1
+    // echo.join(`chat.${roomId}`)
+    //   .here((users) => {
+    //     alert(users)
+    //     console.log(users)
+    //   })
+    //   .joining((user) => {
+    //     console.log(user.name);
+    //   })
+    //   .leaving((user) => {
+    //     console.log(user.name);
+    //   })
+    //   .error((error) => {
+    //     console.error(error);
+    //   });
+    // echo.private(`chat`)
+    //   .listen('SendPost', (e) => {
+    //     console.log(e)
+    //     alert(e.post.body)
+    //   })
 
-    echo.private(`send-post`)
-      .listen('SendPost', (e) => {
+
+
+    echo.private('new-message')
+      .listen('.SendMessage', (e) => {
+        debugger
         console.log(e)
-        alert(e.post.body)
       })
-
-
     // })
 
 

@@ -7,6 +7,7 @@ export const authApi = {
     async getUser() {
         await instance.get('sanctum/csrf-cookie')
         const response = await api.get('user')
+        // await api.get('/testingevent')
         return response.data
     },
 
@@ -24,6 +25,7 @@ export const authApi = {
     },
     async login(email, password) {
         await instance.get('sanctum/csrf-cookie')
+        
         let response = await instance.post('login', {
             email, password
         })
