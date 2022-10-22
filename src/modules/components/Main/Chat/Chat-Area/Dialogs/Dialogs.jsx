@@ -5,7 +5,7 @@ import style from './Dialogs.module.css'
 const Dialogs = (props) => {
 
     useEffect(() => {
-        props.getDialogs()
+        props.getDialogs(props.authUser)
     }, [])
     return (
         <div className={style.container}>

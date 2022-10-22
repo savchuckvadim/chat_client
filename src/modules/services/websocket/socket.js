@@ -1,7 +1,7 @@
 import Echo from 'laravel-echo'
 import { api, instance } from '../api/api'
 
-
+let echo
 export const socket = {
 
   async connection() {
@@ -9,9 +9,9 @@ export const socket = {
     window.Pusher = require('pusher-js')
     await instance.get("/sanctum/csrf-cookie")
     await api.get('user')
-    
 
-    let echo = new Echo({
+
+    echo = new Echo({
 
       broadcaster: 'pusher',
       key: 's3cr3t',
@@ -23,7 +23,7 @@ export const socket = {
       authorizer: (channel, options) => {
         console.log('websocket connection is success')
         console.log(options)
-console.log(channel.name)
+        console.log(channel.name)
         return {
           authorize: (socketId, callback) => {
             api.post('broadcasting/auth', {
@@ -43,25 +43,25 @@ console.log(channel.name)
       }
 
     })
-    let roomId = 1
-    echo.join(`chat.${roomId}`)
-      .here((users) => {
-        users.forEach(user => {
-          alert(user.name)
-          console.log(user.name)
-        });
-       
-      })
-      .joining((user) => {
-        console.log(user);
-      })
-      .leaving((user) => {
-        console.log(user);
-      })
-      .error((error) => {
-        console.error(error);
-      });
-    
+    // let roomId = 1
+    // echo.join(`chat.${roomId}`)
+    //   .here((users) => {
+    //     users.forEach(user => {
+    //       alert(user.name)
+    //       console.log(user.name)
+    //     });
+
+    //   })
+    //   .joining((user) => {
+    //     console.log(user);
+    //   })
+    //   .leaving((user) => {
+    //     console.log(user);
+    //   })
+    //   .error((error) => {
+    //     console.error(error);
+    //   });
+
 
 
 
@@ -74,5 +74,29 @@ console.log(channel.name)
 
 
   },
+  async subscribeToDialogs(user, dialogs) {
+    dialogs.forEach(dialog => {
+      echo.join(`dialog.${dialog.id}`)
+        .here((users) => {
+          users.forEach(user => {
+            // alert(user.name)
+            console.log(user.name)
+          });
+
+        })
+        .joining((user) => {
+          console.log(user);
+        })
+        .leaving((user) => {
+          console.log(user);
+        })
+        .error((error) => {
+          console.error(error);
+        });
+
+    });
+
+
+  }
 
 }

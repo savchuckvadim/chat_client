@@ -1,4 +1,5 @@
 import { dialogsAPI } from "../services/api/dialogs-api"
+import { socket } from "../services/websocket/socket"
 import { inProgress } from "./preloader-reducer"
 
 
@@ -20,10 +21,11 @@ const setNewMessage = (message) => ({ type: SET_NEW_MESSAGE, message })
 
 // THUNKS
 
-export const getDialogs = () => async (dispatch) => {
+export const getDialogs = (user) => async (dispatch) => {
     //TODO: dispatch(inProgress)
     const response = await dialogsAPI.getDialogs()
     dispatch(setDialogs(response.dialogs))
+    await socket.subscribeToDialogs(user, response.dialogs)
 
 }
 
