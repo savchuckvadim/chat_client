@@ -67,7 +67,7 @@ console.log(channel.name)
 
     echo.private('new-message')
       .listen('.SendMessage', (e) => {
-        debugger
+        alert(e.message.body)
         console.log(e)
       })
     // })
