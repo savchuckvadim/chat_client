@@ -3,7 +3,7 @@ import { api } from "./api"
 
 export const usersAPI = {
     async getUsers(currentPage, pageSize) {
-        const response = await api.get(`users?page=${currentPage}&count=${pageSize}`)
+        const response = await api.get(`users?page=${currentPage}&count=${1000}`)
         
         return response.data.data.users
     },

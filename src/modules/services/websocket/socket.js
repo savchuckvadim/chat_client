@@ -43,26 +43,25 @@ console.log(channel.name)
       }
 
     })
-    // let roomId = 1
-    // echo.join(`chat.${roomId}`)
-    //   .here((users) => {
-    //     alert(users)
-    //     console.log(users)
-    //   })
-    //   .joining((user) => {
-    //     console.log(user.name);
-    //   })
-    //   .leaving((user) => {
-    //     console.log(user.name);
-    //   })
-    //   .error((error) => {
-    //     console.error(error);
-    //   });
-    // echo.private(`chat`)
-    //   .listen('SendPost', (e) => {
-    //     console.log(e)
-    //     alert(e.post.body)
-    //   })
+    let roomId = 1
+    echo.join(`chat.${roomId}`)
+      .here((users) => {
+        users.forEach(user => {
+          alert(user.name)
+          console.log(user.name)
+        });
+       
+      })
+      .joining((user) => {
+        console.log(user);
+      })
+      .leaving((user) => {
+        console.log(user);
+      })
+      .error((error) => {
+        console.error(error);
+      });
+    
 
 
 
