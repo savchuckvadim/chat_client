@@ -7,7 +7,7 @@ const DialogItems = (props) => {
         <div className={style.outer__container}>
             <div className={style.inner__container}>
                 <div className={style.items}>
-                    {props.dialogs.map(dialog => (<DialogItem key={dialog.id} dialog={dialog} />))}
+                    {props.dialogs.map(dialog => (<DialogItem key={dialog.dialogsUser.id} dialog={dialog.dialogsUser} />))}
 
                 </div>
             </div>
