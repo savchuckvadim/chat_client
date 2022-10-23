@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { useParams } from "react-router-dom"
+import { NavLink, useParams } from "react-router-dom"
 import { getMessages } from "../../../../../redux/dialogs-reducer"
 import CurrentDialog from "./Current-Dialog"
 
@@ -17,12 +17,13 @@ const withRouter = (WrappedComponent) => (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        currentDialog: state.dialogs.currentDialog
+        // currentDialog: state.dialogs.currentDialog,
+        currentDialogId: state.dialogs.currentDialogId
     }
 }
 
 class CurrentDialogContainer extends React.Component {
-
+    dialogId;
     getDialogId = () => {
 
         if (this.props.params) {
@@ -41,11 +42,11 @@ class CurrentDialogContainer extends React.Component {
 
 
     componentDidMount() {
-
         // window.scrollTo(0, 0)
         let dialogId = this.getDialogId()
-        console.log(dialogId)
-        this.props.getMessages(dialogId)
+        this.dialogId = dialogId
+        // console.log(dialogId)
+        // this.props.getMessages(dialogId)
         //TODO: from reducer get currentsDialogMessages
         // this.getProfileData(userId)
 
@@ -54,14 +55,15 @@ class CurrentDialogContainer extends React.Component {
     componentDidUpdate() {
 
         let dialogId = this.getDialogId()
-        console.log(dialogId)
+        // this.dialogId = dialogId
+        // console.log(dialogId)
         // this.getProfileData(userId)
 
     }
     render() {
-        
+
         return (
-            <CurrentDialog />
+            <CurrentDialog  {...this.props} />
         )
     }
 }

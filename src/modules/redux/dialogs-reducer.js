@@ -9,7 +9,7 @@ const SET_NEW_MESSAGE = 'dialogs/SET_NEW_MESSAGE'
 
 const initialState = {
     dialogs: [],
-    currentDialogId: null,
+    currentDialogId: undefined,
     messages: [],
     currentMessage: ''
 }
@@ -24,7 +24,7 @@ const setNewMessage = (message) => ({ type: SET_NEW_MESSAGE, message })
 export const getDialogs = (user) => async (dispatch) => {
     //TODO: dispatch(inProgress)
     const response = await dialogsAPI.getDialogs()
-    debugger
+
     dispatch(setDialogs(response.dialogs))
     await socket.subscribeToDialogs(user, response.dialogs)
 
@@ -47,9 +47,11 @@ const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case SET_DIALOGS:
-
-        
-            return { ...state, dialogs: action.dialogs };
+            let lastsDialogsId = undefined
+            if (action.dialogs.length > 0) {
+                lastsDialogsId = action.dialogs[0].dialogId
+            }
+            return { ...state, dialogs: action.dialogs, currentDialogId: lastsDialogsId};
 
         case SET_CURRENT_DIALOG:
             if (state.messages.length !== action.messages.length) {

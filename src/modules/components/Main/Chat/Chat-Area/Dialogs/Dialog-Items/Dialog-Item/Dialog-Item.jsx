@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import style from './Dialog-Item.module.css'
 
 const DialogItem = ({ dialog }) => {
-debugger
+
     return (
         <NavLink  to={`${dialog.dialogsUser.id}`} >
             <div className={style.item}>
