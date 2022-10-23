@@ -9,7 +9,7 @@ const DialogItems = (props) => {
                 <div className={style.items}>
                     {//TODO  from creating validate to uniquie dialog on backend
 }
-                    {props.dialogs.map((dialog, index) => (<DialogItem key={`dialog-${index}`} dialog={dialog.dialogsUser} />))}
+                    {props.dialogs.map((dialog, index) => (<DialogItem key={`dialog-${index}`} dialog={dialog} />))}
 
                 </div>
             </div>
