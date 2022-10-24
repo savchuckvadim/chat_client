@@ -11,7 +11,8 @@ const Dialogs = (props) => {
         <div className={style.container}>
             <h4 className={style.title}>  dialogs</h4>
             <div className={style.dialogs}>
-                <DialogItems dialogs={props.dialogs} />
+                <DialogItems dialogs={props.dialogs} 
+                changeCurrentDialog={props.changeCurrentDialog}/>
             </div>
             <div className={style.groupDialogs}>
                 group dialogs

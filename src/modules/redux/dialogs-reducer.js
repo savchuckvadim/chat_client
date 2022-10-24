@@ -5,6 +5,7 @@ import { inProgress } from "./preloader-reducer"
 
 const SET_DIALOGS = 'dialogs/SET_DIALOGS'
 const SET_CURRENT_DIALOG = 'dialogs/SET_CURRENT_DIALOG'
+const CHANGE_CURRENT_DIALOG = 'dialogs/CHANGE_CURRENT_DIALOG'
 const SET_NEW_MESSAGE = 'dialogs/SET_NEW_MESSAGE'
 
 const initialState = {
@@ -17,6 +18,7 @@ const initialState = {
 //AC
 const setDialogs = (dialogs) => ({ type: SET_DIALOGS, dialogs })
 const setCurrentDialog = (dialogId, messages) => ({ type: SET_CURRENT_DIALOG, dialogId, messages })
+export const changeCurrentDialog = (dialogId) => ({ type: CHANGE_CURRENT_DIALOG, dialogId })
 const setNewMessage = (message) => ({ type: SET_NEW_MESSAGE, message })
 
 // THUNKS
@@ -38,6 +40,7 @@ export const sendMessage = (dialogId, body) => async (dispatch) => {
 export const getMessages = (dialogId) => async (dispatch) => {
     const response = await dialogsAPI.getMessages(dialogId)
     dispatch(setCurrentDialog(dialogId, response.messages))
+    debugger
     console.log(response)
 }
 
@@ -47,19 +50,27 @@ const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case SET_DIALOGS:
-            let lastsDialogsId = undefined
+            let lastDialogsId
+            let currentMessages
             if (action.dialogs.length > 0) {
-                lastsDialogsId = action.dialogs[0].dialogId
+                lastDialogsId = action.dialogs[0].dialogId
+                currentMessages = action.dialogs[0].dialogsMessages
             }
-            return { ...state, dialogs: action.dialogs, currentDialogId: lastsDialogsId};
+            return { ...state, dialogs: action.dialogs, currentDialogId: lastDialogsId, messages: currentMessages };
 
         case SET_CURRENT_DIALOG:
-            if (state.messages.length !== action.messages.length) {
-                return { ...state, currentDialogId: action.dialogId, messages: action.messages }
-            } else {
-                return state
-            }
+            // if (state.messages.length !== action.messages.length) {
+            return { ...state, currentDialogId: action.dialogId, messages: action.messages }
+        // } else {
+        //     return state
+        // }
+        case CHANGE_CURRENT_DIALOG:
+            if (state.currentDialogId !== action.dialogId) {
+                const messages = state.dialogs.filter(dialog => dialog.dialogId === action.dialogId)[0].dialogsMessages
 
+
+                return { ...state, currentDialogId: action.dialogId, messages:messages }
+            }
         case SET_NEW_MESSAGE:
 
             const messages = [...state.messages, action.message]

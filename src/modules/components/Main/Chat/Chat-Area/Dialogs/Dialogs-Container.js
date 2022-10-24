@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { getDialogs } from "../../../../../redux/dialogs-reducer"
+import { changeCurrentDialog, getDialogs } from "../../../../../redux/dialogs-reducer"
 import Dialogs from "./Dialogs"
 
 const maStateToProps = (state) => {
@@ -11,7 +11,8 @@ const maStateToProps = (state) => {
 }
 
 const DialogsContainer = connect(maStateToProps, {
-    getDialogs
+    getDialogs,
+    changeCurrentDialog
 })(Dialogs)
 
 export default DialogsContainer

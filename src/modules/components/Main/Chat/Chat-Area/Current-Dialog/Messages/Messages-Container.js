@@ -3,12 +3,18 @@ import Messages from "./Messages"
 
 
 const mapStateToProps = (state) => {
-
+    let currentDialog = state.dialogs.dialogs.filter(dialog => dialog.dialogId === state.dialogs.currentDialogId)[0]
+    
+    let messages = []
+    if (currentDialog) {
+        messages = currentDialog.messages
+    }
+    
     return {
-        messages: state.dialogs.messages
+        messages
     }
 }
 
-export default connect(mapStateToProps,{
+export default connect(mapStateToProps, {
 
 })(Messages)
