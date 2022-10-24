@@ -10,7 +10,6 @@ const InputMessage = ({
 
     const [value, setValue] = useState(fish)
     const inputRef = React.createRef()
-    console.log(field)
     return (
         <div className={style.input} ref={inputRef}
             contentEditable

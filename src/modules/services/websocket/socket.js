@@ -22,8 +22,7 @@ export const socket = {
       wsPort: 6001,
       authorizer: (channel, options) => {
         console.log('websocket connection is success')
-        console.log(options)
-        console.log(channel.name)
+       
         return {
           authorize: (socketId, callback) => {
             api.post('broadcasting/auth', {
@@ -80,15 +79,12 @@ export const socket = {
         .here((users) => {
           users.forEach(user => {
             // alert(user.name)
-            console.log(user.name)
           });
 
         })
         .joining((user) => {
-          console.log(user);
         })
         .leaving((user) => {
-          console.log(user);
         })
         .error((error) => {
           console.error(error);

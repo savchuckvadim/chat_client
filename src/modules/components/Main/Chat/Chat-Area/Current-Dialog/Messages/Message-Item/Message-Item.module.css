@@ -1,0 +1,13 @@
+
+.message{
+    justify-self: flex-end;
+    background-color: rgb(56, 222, 222);
+}
+.myMessage{
+    width: 250px;
+    /* height: ; */
+    /* max-height: 100px; */
+    background-color: blue;
+    border-radius: 16px;
+    justify-self: flex-start;
+    }

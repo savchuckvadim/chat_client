@@ -25,7 +25,6 @@ const Registration = () => {
                     //     alert(JSON.stringify(values, null, 2));
                     //     setSubmitting(false);
                     // }, 400);
-                    console.log((values.nickname, values.email, values.password, values.passwordRepeat))
                     authApi.registration(values.nickname, values.email, values.password, values.passwordRepeat)
                 }}
             >

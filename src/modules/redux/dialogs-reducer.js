@@ -40,8 +40,7 @@ export const sendMessage = (dialogId, body) => async (dispatch) => {
 export const getMessages = (dialogId) => async (dispatch) => {
     const response = await dialogsAPI.getMessages(dialogId)
     dispatch(setCurrentDialog(dialogId, response.messages))
-    debugger
-    console.log(response)
+    
 }
 
 //REDUCER

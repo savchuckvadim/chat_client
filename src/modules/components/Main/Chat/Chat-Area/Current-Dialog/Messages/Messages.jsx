@@ -1,25 +1,12 @@
+import MessageItem from './Message-Item/Message-Item'
 import style from './Messages.module.css'
 
-const Messages = () => {
-
+const Messages = (props) => {
+    debugger
     return (
         <div className={style.container}>
             <div className={style.messages}>
-                <div className={style.message}>
-                    <p>lknkln</p>
-                    <p>lknkln</p>
-                    <p>lknkln</p>
-                    <p>lknkln</p>
-                    <p>lknkln</p>
-                    <p>lknkln</p>
-                    <p>lknkln</p>
-                    <p>lknkln</p>
-                    
-                    
-                </div>
-                <div className={style.myMessage}>
-                    itsme
-                </div>
+                {props.messages && props.messages.length > 0 && props.messages.map(message => (<MessageItem message={message}/>))}
             </div>
         </div>
     )

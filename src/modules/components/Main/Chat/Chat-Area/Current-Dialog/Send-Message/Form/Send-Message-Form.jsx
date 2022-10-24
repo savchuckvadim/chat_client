@@ -73,7 +73,6 @@ class SendMessageForm extends React.Component {
     };
     saveInputValue = () => {
         const text = this.ref.innerText;
-        console.log(text)
         // this.props.onChange(text);
 
     };
