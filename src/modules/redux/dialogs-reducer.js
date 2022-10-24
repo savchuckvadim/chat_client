@@ -19,7 +19,7 @@ const initialState = {
 const setDialogs = (dialogs) => ({ type: SET_DIALOGS, dialogs })
 const setCurrentDialog = (dialogId, messages) => ({ type: SET_CURRENT_DIALOG, dialogId, messages })
 export const changeCurrentDialog = (dialogId) => ({ type: CHANGE_CURRENT_DIALOG, dialogId })
-const setNewMessage = (message) => ({ type: SET_NEW_MESSAGE, message })
+export const setNewMessage = (message) => ({ type: SET_NEW_MESSAGE, message })
 
 // THUNKS
 
@@ -40,7 +40,7 @@ export const sendMessage = (dialogId, body) => async (dispatch) => {
 export const getMessages = (dialogId) => async (dispatch) => {
     const response = await dialogsAPI.getMessages(dialogId)
     dispatch(setCurrentDialog(dialogId, response.messages))
-    
+
 }
 
 //REDUCER
@@ -68,12 +68,25 @@ const dialogsReducer = (state = initialState, action) => {
                 const messages = state.dialogs.filter(dialog => dialog.dialogId === action.dialogId)[0].dialogsMessages
 
 
-                return { ...state, currentDialogId: action.dialogId, messages:messages }
+                return { ...state, currentDialogId: action.dialogId, messages: messages }
             }
         case SET_NEW_MESSAGE:
+            const dialogs = state.dialogs.map(dialog => {
+                if (dialog.dialogId === state.currentDialogId) {
+                    
+                    let dialogsMessages = [...dialog.dialogsMessages]
+                    const checkExistMessage = dialogsMessages.some(message => message.id === action.message.id)
+                    if (!checkExistMessage) {
+                        dialogsMessages.push(action.message)
+                    }
 
+                    return { ...dialog, dialogsMessages }
+                } else {
+                    return dialog
+                }
+            })
             const messages = [...state.messages, action.message]
-            return { ...state, messages: messages }
+            return { ...state, dialogs, messages }
 
 
         default:

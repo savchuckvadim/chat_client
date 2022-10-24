@@ -1,7 +1,7 @@
 import Echo from 'laravel-echo'
 import { api, instance } from '../api/api'
 
-let echo
+export let echo
 export const socket = {
 
   async connection() {
@@ -22,7 +22,7 @@ export const socket = {
       wsPort: 6001,
       authorizer: (channel, options) => {
         console.log('websocket connection is success')
-       
+
         return {
           authorize: (socketId, callback) => {
             api.post('broadcasting/auth', {
@@ -64,15 +64,24 @@ export const socket = {
 
 
 
+    // echo.private('new-message')
+    //   .listen('.SendMessage', (e) => {
+    //     alert(e.message.body)
+    //     console.log(e)
+    //   })
+
+
+
+  },
+
+  async newMessageConnection() {
     echo.private('new-message')
       .listen('.SendMessage', (e) => {
         alert(e.message.body)
         console.log(e)
       })
-    // })
-
-
   },
+
   async subscribeToDialogs(user, dialogs) {
     dialogs.forEach(dialog => {
       echo.join(`dialog.${dialog.id}`)

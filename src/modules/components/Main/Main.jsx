@@ -1,8 +1,9 @@
 import style from './Main.module.css'
 import Menu from './Chat/Menu/Menu'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import Chat from './Chat/Chat-Area/Chat'
+
 import UsersContainer from './Users/Users-Container'
+import ChatContainer from './Chat/Chat-Area/Chat-Container'
 
 
 const ChatApp = () => {
@@ -11,12 +12,12 @@ const ChatApp = () => {
       <div className={style.left__area}>
         <Routes>
           <Route path='*' element={<Navigate replace to='../chat' />} />
-          <Route path='chat' element={<Chat />}>
-            <Route path=':dialogId' element={<Chat />} />
+          <Route path='chat' element={<ChatContainer />}>
+            <Route path=':dialogId' element={<ChatContainer />} />
           </Route>
-          <Route path='profile' element={<Chat />} />
+          <Route path='profile' element={<ChatContainer />} />
           <Route path='users' element={<UsersContainer />} />
-          <Route path='prefences' element={<Chat />} />
+          <Route path='prefences' element={<ChatContainer />} />
         </Routes>
       </div>
 

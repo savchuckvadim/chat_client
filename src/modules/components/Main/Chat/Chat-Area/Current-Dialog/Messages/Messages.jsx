@@ -2,7 +2,7 @@ import MessageItem from './Message-Item/Message-Item'
 import style from './Messages.module.css'
 
 const Messages = (props) => {
-    debugger
+    
     return (
         <div className={style.container}>
             <div className={style.messages}>

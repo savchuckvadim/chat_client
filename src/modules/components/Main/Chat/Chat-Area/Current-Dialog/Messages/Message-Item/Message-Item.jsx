@@ -1,11 +1,10 @@
 import style from './Message-Item.module.css'
 
-const MessageItem = ({message}) => {
+const MessageItem = ({ message }) => {
 
     if (message.isAuthorIsAuth) {
         return (
             <div className={style.myMessage}>
-                hjvkhvk
                 {message.body}
             </div>
         )

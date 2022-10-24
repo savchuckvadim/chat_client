@@ -7,8 +7,9 @@ import SendMessage from './Send-Message/Send-Message'
 
 const CurrentDialog = (props) => {
     if (props.params.dialogId === undefined) {
+        debugger
         if (props.currentDialogId !== undefined) {
-           debugger 
+            
             return <Navigate replace to={`../chat/${props.currentDialogId}`} />
         }
     }
