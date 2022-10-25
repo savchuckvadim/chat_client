@@ -7,6 +7,7 @@ const Dialogs = (props) => {
     useEffect(() => {
         props.getDialogs(props.authUser)
     }, [])
+    
     return (
         <div className={style.container}>
             <h4 className={style.title}>  dialogs</h4>

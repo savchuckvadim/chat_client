@@ -1,14 +1,21 @@
-
+.message, .myMessage{
+    min-width: 190px;
+    width: 40%;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 16px;
+    display: flex;
+}
 .message{
     justify-self: flex-end;
-    background-color: rgb(219, 152, 84);
+    background-color: rgb(164, 180, 237);
     color: black;
 }
 .myMessage{
-    width: 250px;
+   
     /* height: ; */
     /* max-height: 100px; */
-    background-color: blue;
-    border-radius: 16px;
+    background-color: rgb(77, 70, 94);
+    color: rgb(255, 255, 255);
     justify-self: flex-start;
     }

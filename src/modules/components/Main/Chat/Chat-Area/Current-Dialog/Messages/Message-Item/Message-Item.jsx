@@ -11,8 +11,7 @@ const MessageItem = ({ message }) => {
     }
     return (
         <div className={style.message}>
-            <p>{message.body}</p>
-
+            {message.body}
         </div>
 
     )
