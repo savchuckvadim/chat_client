@@ -19,7 +19,7 @@ const initialState = {
 const setDialogs = (dialogs) => ({ type: SET_DIALOGS, dialogs })
 const setCurrentDialog = (dialogId, messages) => ({ type: SET_CURRENT_DIALOG, dialogId, messages })
 export const changeCurrentDialog = (dialogId) => ({ type: CHANGE_CURRENT_DIALOG, dialogId })
-export const setNewMessage = (message) => ({ type: SET_NEW_MESSAGE, message })
+export const setNewMessage = (message, authUserId) => ({ type: SET_NEW_MESSAGE, message, authUserId })
 
 // THUNKS
 
@@ -71,13 +71,19 @@ const dialogsReducer = (state = initialState, action) => {
                 return { ...state, currentDialogId: action.dialogId, messages: messages }
             }
         case SET_NEW_MESSAGE:
+            let message = action.message
+            if (message.authorId === action.authUserId) {
+                message.isAuthorIsAuth = true
+            } else {
+                message.isAuthorIsAuth = false
+            }
             const dialogs = state.dialogs.map(dialog => {
                 if (dialog.dialogId === state.currentDialogId) {
-                    
+
                     let dialogsMessages = [...dialog.dialogsMessages]
-                    const checkExistMessage = dialogsMessages.some(message => message.id === action.message.id)
+                    const checkExistMessage = dialogsMessages.some(dialogsMessage => dialogsMessage.id === message.id)
                     if (!checkExistMessage) {
-                        dialogsMessages.push(action.message)
+                        dialogsMessages.push(message)
                     }
 
                     return { ...dialog, dialogsMessages }
@@ -85,7 +91,7 @@ const dialogsReducer = (state = initialState, action) => {
                     return dialog
                 }
             })
-            const messages = [...state.messages, action.message]
+            const messages = [...state.messages, message]
             return { ...state, dialogs, messages }
 
 

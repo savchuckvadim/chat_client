@@ -6,7 +6,7 @@ import Chat from "./Chat"
 const mapStatetToProps = (state) => {
 
     return {
-
+        authUserId: state.auth.authUser.id
     }
 }
 

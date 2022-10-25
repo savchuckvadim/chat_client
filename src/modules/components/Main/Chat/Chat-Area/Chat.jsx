@@ -12,7 +12,7 @@ const Chat = (props) => {
             .listen('.SendMessage', (e) => {
                 console.log(e)
                 debugger
-                props.setNewMessage(e.message)
+                props.setNewMessage(e.message, props.authUserId)
                 // alert(e.message.body)
                
             })
