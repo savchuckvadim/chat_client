@@ -75,7 +75,7 @@ const dialogsReducer = (state = initialState, action) => {
                 return { ...state, currentDialogId: action.dialogId, messages: messages }
             }
 
-            
+
         case SET_USER_IN_GROUP_DIALOG:
 
             let checkGroupDialog = 0
@@ -83,7 +83,12 @@ const dialogsReducer = (state = initialState, action) => {
             state.groupDialogs.forEach(dialog => {
                 if (dialog.dialogId === action.dialogId) {
                     let resultDialog = {...dialog}
-                    resultDialog.dialogsUsers = [...dialog.dialogsUsers].push(action.user)
+                    let checkUser = dialog.dialogsUsers.some(user => user.id === action.user.id)
+                    if(!checkUser){
+                        resultDialog.dialogsUsers = [...dialog.dialogsUsers].push(action.user)
+                    }
+                   
+                   
                     resultGroupDialogs.push(resultDialog)
                    
                 }else{
