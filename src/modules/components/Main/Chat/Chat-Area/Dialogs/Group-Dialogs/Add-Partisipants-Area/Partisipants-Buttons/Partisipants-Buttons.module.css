@@ -1,0 +1,17 @@
+.buttons__wrapper{
+    width: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+    .button{
+       
+        width: 220px;
+        height: 30px;
+        margin: 0 5px;
+        border: solid 0.5px;
+        border-radius: 10px;
+        cursor: pointer;
+    }

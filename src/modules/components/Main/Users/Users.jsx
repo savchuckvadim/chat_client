@@ -9,7 +9,7 @@ const Users = (props) => {
   useEffect(() => {
     props.getUsers(1, 10)
   }, [])
-
+if(!props.addingPartisipantsInProgress){
   return (
 
     <div className={style.container}>
@@ -31,6 +31,38 @@ const Users = (props) => {
     </div>
 
   )
+}else{
+  let contacts = []
+  props.users.forEach(user => {
+    if(user.isContacted){
+      contacts.push(user)
+    }
+  });
+  debugger
+  return (
+
+    <div className={style.container}>
+      <h3>Contacts</h3>
+      <div className={style.users}>
+        {
+          !props.inProgress
+            ? contacts.map(user => <UserCard 
+              key={user.id} 
+              userId={user.id} 
+              name={user.name}
+              isContacted={user.isContacted} 
+              addContact={props.addContact}
+              deleteContact={props.deleteContact}
+              addingPartisipantsInProgress={props.addingPartisipantsInProgress}
+              />)
+            : <Preloader />
+        }
+      </div>
+    </div>
+
+  )
+}
+  
 
 
 }

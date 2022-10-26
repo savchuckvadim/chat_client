@@ -2,4 +2,18 @@
     min-height: 100%;
     min-width: 100%;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+.upArea{
+    width: 93%;
+    display: flex;
+    justify-content: space-between;
+}
+.dialogsName{
+    margin-top: 20px;
+    /* margin-left: 20px; */
+    Border: none; outline: none;
 }

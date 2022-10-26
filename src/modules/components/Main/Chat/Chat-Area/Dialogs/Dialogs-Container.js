@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { changeCurrentDialog, getDialogs } from "../../../../../redux/dialogs-reducer"
-import { addPartisipants } from "../../../../../redux/group-reducer"
+import { addPartisipantsInProgress } from "../../../../../redux/group-reducer"
 import Dialogs from "./Dialogs"
 
 const maStateToProps = (state) => {
@@ -15,7 +15,7 @@ const maStateToProps = (state) => {
 const DialogsContainer = connect(maStateToProps, {
     getDialogs,
     changeCurrentDialog,
-    addPartisipants
+    addPartisipantsInProgress
 })(Dialogs)
 
 export default DialogsContainer

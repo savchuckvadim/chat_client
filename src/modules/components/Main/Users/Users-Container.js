@@ -6,7 +6,8 @@ const mapStateToProps = (state) => {
 
     return {
         users: state.users.users,
-        inProgress: state.users.inProgress
+        inProgress: state.users.inProgress,
+        addingPartisipantsInProgress: state.group.addingPartisipantsInProgress
     }
 }
 

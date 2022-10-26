@@ -23,7 +23,7 @@ const App = (props) => {
   let page = <Preloader />
   if (!props.inProgress && props.isAuth) {
     if (props.addingPartisipantsInProgress) {
-      debugger
+      
       page = <AddPartisipantsArea />
     } else {
       page = <Main />
