@@ -7,10 +7,11 @@ const SET_DIALOGS = 'dialogs/SET_DIALOGS'
 const SET_CURRENT_DIALOG = 'dialogs/SET_CURRENT_DIALOG'
 const CHANGE_CURRENT_DIALOG = 'dialogs/CHANGE_CURRENT_DIALOG'
 const SET_NEW_MESSAGE = 'dialogs/SET_NEW_MESSAGE'
+const SET_USER_IN_GROUP_DIALOG = 'dialogs/SET_USER_IN_GROUP_DIALOG'
 
 const initialState = {
     dialogs: [],
-    groupDialogs:[],
+    groupDialogs: [],
     currentDialogId: undefined,
     messages: [],
     currentMessage: ''
@@ -21,6 +22,8 @@ const setDialogs = (dialogs) => ({ type: SET_DIALOGS, dialogs })
 const setCurrentDialog = (dialogId, messages) => ({ type: SET_CURRENT_DIALOG, dialogId, messages })
 export const changeCurrentDialog = (dialogId) => ({ type: CHANGE_CURRENT_DIALOG, dialogId })
 export const setNewMessage = (message, authUserId) => ({ type: SET_NEW_MESSAGE, message, authUserId })
+const setUsersInGroupDialog = (user, dialogId) => ({ type: SET_USER_IN_GROUP_DIALOG, user, dialogId })
+
 
 // THUNKS
 
@@ -71,6 +74,26 @@ const dialogsReducer = (state = initialState, action) => {
 
                 return { ...state, currentDialogId: action.dialogId, messages: messages }
             }
+
+            
+        case SET_USER_IN_GROUP_DIALOG:
+
+            let checkGroupDialog = 0
+            let resultGroupDialogs = []
+            state.groupDialogs.forEach(dialog => {
+                if (dialog.dialogId === action.dialogId) {
+                    let resultDialog = {...dialog}
+                    resultDialog.dialogsUsers = [...dialog.dialogsUsers].push(action.user)
+                    resultGroupDialogs.push(resultDialog)
+                   
+                }else{
+                    resultGroupDialogs.push(dialog)
+                }
+                if(checkGroupDialog){
+
+                }
+            });
+
         case SET_NEW_MESSAGE:
             let message = action.message
             if (message.authorId === action.authUserId) {

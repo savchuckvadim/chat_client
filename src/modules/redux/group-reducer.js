@@ -2,7 +2,7 @@
 const ADD_PARTICIPANTS_IN_PROGRESS = 'ADD_PARTICIPANTS_IN_PROGRESS'
 
 const initialState = {
-    addingPartisipantsInProgress: true
+    addingPartisipantsInProgress: false
 }
 export const addPartisipantsInProgress = (bool) => ({ type: ADD_PARTICIPANTS_IN_PROGRESS, bool })
 

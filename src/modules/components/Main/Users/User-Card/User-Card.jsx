@@ -7,9 +7,16 @@ const UserCard = (props) => {
         isContacted={props.isContacted}
         addContact={props.addContact}
         deleteContact={props.deleteContact}
+        addingPartisipantsInProgress={props.addingPartisipantsInProgress}
     />
     if (props.addingPartisipantsInProgress) {
-        button = <>add to dialog+</>
+        button = <AddContact
+        userId={props.userId}
+        isContacted={props.isContacted}
+        addContact={props.addContact}
+        deleteContact={props.deleteContact}
+        addingPartisipantsInProgress={props.addingPartisipantsInProgress}
+    />
     }
     return (
         <div className={style.container}>

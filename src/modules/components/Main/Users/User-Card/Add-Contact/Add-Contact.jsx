@@ -9,6 +9,10 @@ const AddContact = (props) => {
         buttonStyle = style.nocontact
         buttonName = 'del contact'
         onButtonClick = props.deleteContact
+        if(!props.addingPartisipantsInProgress){
+            buttonName = 'add to group'
+            // onButtonClick
+        }
     } else {
         
     }
