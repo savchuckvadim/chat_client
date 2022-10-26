@@ -16,7 +16,7 @@ const Dialogs = (props) => {
                 changeCurrentDialog={props.changeCurrentDialog}/>
             </div>
             <div className={style.groupDialogs}>
-                group dialogs
+                group dialogs+
             </div>
         </div>
     )

@@ -15,7 +15,7 @@ const DialogItem = ({ dialog, changeCurrentDialog }) => {
                 <div className={style.text__wrapper}>
                     <h3 className={style.name}>{dialog.dialogsUser.name}</h3>
                     <p className={style.message}>{dialog.dialogsMessages.length > 0 && dialog.dialogsMessages[0].body.length > 0 &&
-                        `${dialog.dialogsMessages[0].body.slice(0,3)}...`}</p>
+                        `${dialog.dialogsMessages[0].body.slice(0,2)}...`}</p>
                 </div>
             </div>
         </NavLink>

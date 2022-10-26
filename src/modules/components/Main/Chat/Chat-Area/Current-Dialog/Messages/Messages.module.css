@@ -7,25 +7,29 @@
     justify-content: center;
     align-items: flex-start;
     
+    /* justify-content: start; */
     
 
 }
 
 
 .messages{
-    overflow: auto;
+    
     min-height: 97%;
+    max-height: 100%;
     width: 97%;
     margin: 15px 5px;
     background-color: white;
     border-radius: 16px;
-    display: flex;
+    display: grid;
+    overflow-y: auto;
+    /* display: flex;
     flex-direction: column;
     justify-content: start;
-    align-items: flex-start;
+    align-items: flex-start; */
 }
 
-.message, .myMessage{
+/* .message, .myMessage{
     margin: 5px;
 width: 250px;
 max-height: 100%;
@@ -33,4 +37,4 @@ border-radius: 16px;
 border: solid 1px;
 /* position: absolute; */
 
-}
+

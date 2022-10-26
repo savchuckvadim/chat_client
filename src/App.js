@@ -5,7 +5,17 @@ import HeaderContainer from './modules/components/Header/Header-Container';
 import Main from './modules/components/Main/Main';
 import Start from './modules/components/Start/Start';
 
+//TODO:
+//profile->change nickname
+//dialogs->delete dialog
+//dialogs-> create group dialog
 
+//group dialogs -> add users popup *only from contacts
+             // -> users search 
+
+//messages -> edit and delete
+        // -> forwarding  to contacts only
+        // -> sound notification sound/unsound
 
 const App = (props) => {
 
