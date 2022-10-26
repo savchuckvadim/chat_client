@@ -10,6 +10,7 @@ const SET_NEW_MESSAGE = 'dialogs/SET_NEW_MESSAGE'
 
 const initialState = {
     dialogs: [],
+    groupDialogs:[],
     currentDialogId: undefined,
     messages: [],
     currentMessage: ''

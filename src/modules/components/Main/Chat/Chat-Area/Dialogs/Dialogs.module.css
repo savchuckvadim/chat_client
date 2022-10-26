@@ -10,7 +10,10 @@
     height: 40%;
    
 }
-.groupDialogs{
+/* .groupDialogs{
     border-top: solid 0.5px;
     border-color: rgb(88, 155, 249);
+} */
+.title__group{
+cursor: pointer;
 }

@@ -5,6 +5,7 @@ import preloaderReducer from './preloader-reducer'
 import usersReducer from './users-reducer'
 import contactsReducer from './contacts-reducer'
 import dialogsReducer from './dialogs-reducer'
+import groupReducer from './group-reducer'
 
 
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     preloader: preloaderReducer,
     users: usersReducer,
     contacts: contactsReducer,
-    dialogs: dialogsReducer
+    dialogs: dialogsReducer,
+    group: groupReducer
 })
 
 export const store = createStore(rootReducer, applyMiddleware(ThunkMiddleware))

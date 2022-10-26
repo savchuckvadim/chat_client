@@ -10,7 +10,8 @@ import { me } from "./modules/redux/auth-reducer"
 const mapStateToProps = (state) => {
     return {
         isAuth: state.auth.isAuth,
-        inProgress:state.preloader.inProgress
+        inProgress: state.preloader.inProgress,
+        addingPartisipantsInProgress: state.group.addingPartisipantsInProgress
 
     }
 }
@@ -24,9 +25,9 @@ const AppContainer = (props) => {
     }, [])
 
     // if (!props.inProgress) {
-        return (
-            <App {...props} />
-        )
+    return (
+        <App {...props} />
+    )
     // } else {
     //     return (
     //         <Preloader/>

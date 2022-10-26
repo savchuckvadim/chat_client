@@ -10,7 +10,8 @@ export const usersAPI = {
 
     async addContact(userId){
         const response = await api.post('contact', {
-            userId
+            userId,
+            isGroup:false
         })
         return response.data
     },
