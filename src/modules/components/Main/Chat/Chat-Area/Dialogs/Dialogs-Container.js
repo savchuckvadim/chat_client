@@ -8,7 +8,8 @@ const maStateToProps = (state) => {
     return {
         authUser: state.auth.authUser,
         dialogs: state.dialogs.dialogs,
-        groupDialogs: state.dialogs.groupDialogs
+        groupDialogs: state.dialogs.groupDialogs,
+       
     }
 }
 

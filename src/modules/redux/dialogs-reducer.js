@@ -9,7 +9,10 @@ const CHANGE_CURRENT_DIALOG = 'dialogs/CHANGE_CURRENT_DIALOG'
 const SET_NEW_MESSAGE = 'dialogs/SET_NEW_MESSAGE'
 const SET_USER_IN_GROUP_DIALOG = 'dialogs/SET_USER_IN_GROUP_DIALOG'
 const SET_USER_FOR_NEW_GROUP_DIALOG = 'dialogs/SET_USER_FOR_NEW_GROUP_DIALOG'
-const SET_NEW_GROUP_DIALOG = 'SET_NEW_GROUP_DIALOG'
+const SET_NEW_GROUP_DIALOG = 'dialogs/SET_NEW_GROUP_DIALOG'
+const SET_GROUP_DIALOGS_NAME = 'dialogs/SET_GROUP_DIALOGS_NAME'
+
+
 
 const initialState = {
     dialogs: [],
@@ -29,7 +32,7 @@ export const setNewMessage = (message, authUserId) => ({ type: SET_NEW_MESSAGE, 
 const setUsersInGroupDialog = (user, dialogId) => ({ type: SET_USER_IN_GROUP_DIALOG, user, dialogId })
 export const setUserForNewGroupDialog = (user) => ({ type: SET_USER_FOR_NEW_GROUP_DIALOG, user })
 const setNewGroupDialog = (groupDialog) => ({ type: SET_NEW_GROUP_DIALOG, groupDialog })
-
+export const setGroupDialogsName = (value) => ({ type: SET_GROUP_DIALOGS_NAME, value })
 
 
 // THUNKS
@@ -55,22 +58,22 @@ export const getMessages = (dialogId) => async (dispatch) => {
 }
 
 export const addNewGroupDialog = (users, dialogsName) => async (dispatch) => {
-    if(users.length > 0 && dialogsName !== ''){
+    if (users.length > 0 && dialogsName !== '') {
         const groupDialog = await dialogsAPI.addGroupDialog(users, dialogsName)
         dispatch(setNewGroupDialog(groupDialog))
-    }else{
-        if(users.length === 0){
+    } else {
+        if (users.length === 0) {
             alert('не добавлены пользователи!')
         }
-        if(dialogsName === ''){
+        if (dialogsName === '') {
             alert('не введено имя диалога!')
         }
-        else{
+        else {
             alert('ошибка!')
         }
-       
+
     }
-    
+
 }
 
 //REDUCER
@@ -112,6 +115,8 @@ const dialogsReducer = (state = initialState, action) => {
             }
             return state
 
+        case SET_GROUP_DIALOGS_NAME:
+            return { ...state, newGroupDialogsName: action.value }
         case SET_NEW_GROUP_DIALOG:
             const checkGroupDialog = state.groupDialogs.some(dialog => dialog.id === action.groupDialog.id)
             if (!checkGroupDialog) {
@@ -120,6 +125,7 @@ const dialogsReducer = (state = initialState, action) => {
                 return { ...state, groupDialogs: resultDialogs }
             }
             return state
+
 
         case SET_USER_IN_GROUP_DIALOG:
 

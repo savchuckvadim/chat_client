@@ -14,7 +14,9 @@ const Dialogs = (props) => {
             <h4 className={style.title}>  dialogs</h4>
             <div className={style.dialogs}>
                 <DialogItems dialogs={props.dialogs}
-                    changeCurrentDialog={props.changeCurrentDialog} />
+                    changeCurrentDialog={props.changeCurrentDialog}
+                  />
+
             </div>
 
             <h4 className={style.title__group}
@@ -22,7 +24,7 @@ const Dialogs = (props) => {
             >  group-dialogs+</h4>
             <div className={style.dialogs}>
                 <DialogItems dialogs={props.groupDialogs}
-                    changeCurrentDialog={props.changeCurrentDialog} />
+                    changeCurrentDialog={props.changeCurrentDialog}/>
             </div>
 
         </div>
