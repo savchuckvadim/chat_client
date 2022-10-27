@@ -2,7 +2,7 @@ import DialogItem from './Dialog-Item/Dialog-Item'
 import style from './Dialog-Items.module.css'
 
 const DialogItems = (props) => {
-debugger
+
     return (
         <div className={style.outer__container}>
             <div className={style.inner__container}>

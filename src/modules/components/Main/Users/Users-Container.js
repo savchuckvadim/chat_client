@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { setUserForNewGroupDialog } from "../../../redux/dialogs-reducer";
 import { addContact, deleteContact, getUsers } from "../../../redux/users-reducer";
 import Users from "./Users";
 
@@ -15,5 +16,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     getUsers,
     addContact,
-    deleteContact
+    deleteContact,
+    setUserForNewGroupDialog
 })(Users)

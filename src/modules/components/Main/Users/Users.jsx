@@ -38,7 +38,6 @@ if(!props.addingPartisipantsInProgress){
       contacts.push(user)
     }
   });
-  debugger
   return (
 
     <div className={style.container}>
@@ -48,12 +47,14 @@ if(!props.addingPartisipantsInProgress){
           !props.inProgress
             ? contacts.map(user => <UserCard 
               key={user.id} 
+              user={user}
               userId={user.id} 
               name={user.name}
               isContacted={user.isContacted} 
               addContact={props.addContact}
               deleteContact={props.deleteContact}
               addingPartisipantsInProgress={props.addingPartisipantsInProgress}
+              setUserForNewGroupDialog={props.setUserForNewGroupDialog}
               />)
             : <Preloader />
         }

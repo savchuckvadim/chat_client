@@ -11,7 +11,7 @@ const Chat = (props) => {
         echo.private('new-message')
             .listen('.SendMessage', (e) => {
                 console.log(e)
-                debugger
+                
                 props.setNewMessage(e.message, props.authUserId)
                 // alert(e.message.body)
                
