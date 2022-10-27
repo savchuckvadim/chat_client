@@ -22,5 +22,12 @@ export const dialogsAPI = {
         const response = await api.get(`messages/${dialogId}`)
         return response.data
     },
+    async addGroupDialog(users, dialogsName){
+        const response = await api.post('group-dialog', {
+            users, dialogsName
+        })
+
+        return response.data
+    }
     
 }

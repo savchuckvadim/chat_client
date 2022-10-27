@@ -1,7 +1,7 @@
 import UsersContainer from '../../../../../Users/Users-Container'
 import style from './Add-Partisipants-Area.module.css'
 import PartisipantsButtons from './Partisipants-Buttons/Partisipants-Buttons'
-import PartisipantsButtonsCobtainer from './Partisipants-Buttons/Partisipants-Buttons-Container'
+import PartisipantsButtonsContainer from './Partisipants-Buttons/Partisipants-Buttons-Container'
 
 const AddPartisipantsArea = (props) => {
 
@@ -12,7 +12,7 @@ const AddPartisipantsArea = (props) => {
                     className={style.dialogsName}
                     placeholder='Dialogs Name'
                 ></input>
-                <PartisipantsButtonsCobtainer />
+                <PartisipantsButtonsContainer />
 
             </div>
 
