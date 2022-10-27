@@ -6,7 +6,7 @@ import { api } from "./api";
 export const dialogsAPI = {
     async getDialogs() {
         const response = await api.get('dialogs')
-        
+
         return response.data
     },
 
@@ -14,7 +14,7 @@ export const dialogsAPI = {
         const response = await api.post('message', {
             dialogId, body
         })
-       
+
         return response.data
     },
 
@@ -22,12 +22,17 @@ export const dialogsAPI = {
         const response = await api.get(`messages/${dialogId}`)
         return response.data
     },
-    async addGroupDialog(users, dialogsName){
+    async addGroupDialog(users, dialogsName) {
         const response = await api.post('group-dialog', {
             users, dialogsName
         })
+        if (response.resultCode === 1) {
+            return response.data
+        }
+        else{
+            alert(response.message)
+        }
 
-        return response.data
     }
-    
+
 }
