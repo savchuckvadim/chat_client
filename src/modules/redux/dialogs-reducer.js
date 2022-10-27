@@ -41,7 +41,7 @@ export const getDialogs = (user) => async (dispatch) => {
     //TODO: dispatch(inProgress)
     const response = await dialogsAPI.getDialogs()
 
-    dispatch(setDialogs(response.dialogs))
+    dispatch(setDialogs(response))
     await socket.subscribeToDialogs(user, response.dialogs)
 
 }
@@ -84,11 +84,12 @@ const dialogsReducer = (state = initialState, action) => {
         case SET_DIALOGS:
             let lastDialogsId
             let currentMessages
-            if (action.dialogs.length > 0) {
-                lastDialogsId = action.dialogs[0].dialogId
-                currentMessages = action.dialogs[0].dialogsMessages
+            if (action.dialogs.dialogs.length > 0) {
+                lastDialogsId = action.dialogs.dialogs[0].dialogId
+                currentMessages = action.dialogs.dialogs[0].dialogsMessages
             }
-            return { ...state, dialogs: action.dialogs, currentDialogId: lastDialogsId, messages: currentMessages };
+            
+            return { ...state, dialogs: action.dialogs.dialogs, currentDialogId: lastDialogsId, messages: currentMessages, groupDialogs: action.dialogs.groupDialogs };
 
         case SET_CURRENT_DIALOG:
             // if (state.messages.length !== action.messages.length) {
@@ -107,7 +108,7 @@ const dialogsReducer = (state = initialState, action) => {
         case SET_USER_FOR_NEW_GROUP_DIALOG:
             let resultUsers
             const checkUser = state.usersForNewGroupDialog.some(user => user.id === action.user.id)
-            debugger
+            
             if (!checkUser) {
                 resultUsers = [...state.usersForNewGroupDialog]
                 resultUsers.push(action.user)
