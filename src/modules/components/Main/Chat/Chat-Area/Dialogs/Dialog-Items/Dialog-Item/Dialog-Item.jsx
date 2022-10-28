@@ -5,7 +5,7 @@ const DialogItem = ({ dialog, changeCurrentDialog }) => {
 debugger
     return (
         <NavLink to={`${dialog.dialogId}`}
-            onClick={() => { changeCurrentDialog(dialog.dialogId) }}
+            onClick={() => { changeCurrentDialog(dialog.dialogId, dialog.isGroup) }}
         >
 
             <div className={style.item}>

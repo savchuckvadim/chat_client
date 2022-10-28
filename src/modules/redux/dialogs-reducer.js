@@ -27,8 +27,8 @@ const initialState = {
 //AC
 const setDialogs = (dialogs) => ({ type: SET_DIALOGS, dialogs })
 const setCurrentDialog = (dialogId, messages) => ({ type: SET_CURRENT_DIALOG, dialogId, messages })
-export const changeCurrentDialog = (dialogId) => ({ type: CHANGE_CURRENT_DIALOG, dialogId })
-export const setNewMessage = (message, authUserId) => ({ type: SET_NEW_MESSAGE, message, authUserId })
+export const changeCurrentDialog = (dialogId, isGroup) => ({ type: CHANGE_CURRENT_DIALOG, dialogId, isGroup })
+export const setNewMessage = (message, authUserId, isGroup) => ({ type: SET_NEW_MESSAGE, message, authUserId, isGroup })
 const setUsersInGroupDialog = (user, dialogId) => ({ type: SET_USER_IN_GROUP_DIALOG, user, dialogId })
 export const setUserForNewGroupDialog = (user) => ({ type: SET_USER_FOR_NEW_GROUP_DIALOG, user })
 const setNewGroupDialog = (groupDialog) => ({ type: SET_NEW_GROUP_DIALOG, groupDialog })
@@ -42,7 +42,7 @@ export const getDialogs = (user) => async (dispatch) => {
     const response = await dialogsAPI.getDialogs()
 
     dispatch(setDialogs(response))
-    await socket.subscribeToDialogs(user, response.dialogs)
+    // await socket.subscribeToDialogs(user, response.dialogs)
 
 }
 
@@ -88,7 +88,7 @@ const dialogsReducer = (state = initialState, action) => {
                 lastDialogsId = action.dialogs.dialogs[0].dialogId
                 currentMessages = action.dialogs.dialogs[0].dialogsMessages
             }
-            
+
             return { ...state, dialogs: action.dialogs.dialogs, currentDialogId: lastDialogsId, messages: currentMessages, groupDialogs: action.dialogs.groupDialogs };
 
         case SET_CURRENT_DIALOG:
@@ -98,8 +98,15 @@ const dialogsReducer = (state = initialState, action) => {
         //     return state
         // }
         case CHANGE_CURRENT_DIALOG:
+
             if (state.currentDialogId !== action.dialogId) {
-                const messages = state.dialogs.filter(dialog => dialog.dialogId === action.dialogId)[0].dialogsMessages
+
+                let dialogs = state.dialogs
+                if (action.isGroup) {
+                    dialogs = state.groupDialogs
+                }
+
+                const messages = dialogs.filter(dialog => dialog.dialogId === action.dialogId)[0].dialogsMessages
 
 
                 return { ...state, currentDialogId: action.dialogId, messages: messages }
@@ -108,7 +115,7 @@ const dialogsReducer = (state = initialState, action) => {
         case SET_USER_FOR_NEW_GROUP_DIALOG:
             let resultUsers
             const checkUser = state.usersForNewGroupDialog.some(user => user.id === action.user.id)
-            
+
             if (!checkUser) {
                 resultUsers = [...state.usersForNewGroupDialog]
                 resultUsers.push(action.user)
@@ -156,13 +163,19 @@ const dialogsReducer = (state = initialState, action) => {
             } else {
                 message.isAuthorIsAuth = false
             }
-            const dialogs = state.dialogs.map(dialog => {
+            let currentDialogs = state.dialogs
+            if (action.isGroup) {
+                currentDialogs = state.groupDialogs
+            }
+            let messages = []
+            const dialogs = currentDialogs.map(dialog => {
                 if (dialog.dialogId === state.currentDialogId) {
 
                     let dialogsMessages = [...dialog.dialogsMessages]
                     const checkExistMessage = dialogsMessages.some(dialogsMessage => dialogsMessage.id === message.id)
                     if (!checkExistMessage) {
                         dialogsMessages.push(message)
+                        messages = dialogsMessages
                     }
 
                     return { ...dialog, dialogsMessages }
@@ -170,8 +183,11 @@ const dialogsReducer = (state = initialState, action) => {
                     return dialog
                 }
             })
-            const messages = [...state.messages, message]
-            return { ...state, dialogs, messages }
+            
+            if (action.isGroup) {
+                return { ...state, dialogs, messages }
+            }
+            return { ...state, groupDialogs: dialogs, messages }
 
 
         default:
