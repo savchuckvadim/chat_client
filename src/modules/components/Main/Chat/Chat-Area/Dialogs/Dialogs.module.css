@@ -6,8 +6,8 @@
     
 }
 .dialogs, .groupDialogs{
-    min-height: 40%;
-    height: 40%;
+    /* min-height: 30vh; */
+    height: 30vh;
    
 }
 /* .groupDialogs{

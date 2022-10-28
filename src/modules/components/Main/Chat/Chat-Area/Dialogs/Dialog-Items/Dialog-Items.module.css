@@ -1,13 +1,14 @@
 .items, .outer-container {
     min-width: 100%;
-    height: 280px;
+    /* height: 280px; */
+    height: 45%;
    }
 .outer__container {
     display: flex;
     flex-direction: column;
     position: relative;
     overflow: hidden;   
-    height: 280px;
+    height: 45%;
 }
 .inner__container {
     min-width: 100%;
