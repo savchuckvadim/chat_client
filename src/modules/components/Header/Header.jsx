@@ -7,7 +7,7 @@ import { Navigate } from 'react-router-dom';
 const Header = (props) => {
   const logout = () => {
     props.logout()
-   
+
   }
   // useEffect(() => {
   //   logout()
@@ -29,7 +29,9 @@ const Header = (props) => {
           <img
 
             src={logo} className={logoStyle} alt="logo" />
-          <div className={style.brand}>Chat</div>
+          <div className={style.brand}>
+            <h1 key={'brand'} > Chat</h1>
+          </div>
         </div>
         {props.isAuth && <button className={style.logout} onClick={() => { logout() }}>logout</button>}
 

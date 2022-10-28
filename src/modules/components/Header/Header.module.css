@@ -1,5 +1,5 @@
 .App__logo, .App__logo__stop  {
-    height: 30px;
+    height: 40px;
     pointer-events: none;
     display: block;
    
@@ -33,9 +33,47 @@
   }
   
   .brand{
-    
+    width: 100px;
     margin-left: 10px;
+    height: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
   }
+  h1{
+    display: block;
+    margin: 0 auto;
+    font-size: xx-large;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 600;
+  }
+  .brand:hover{
+    font-weight: 800;
+    /* font-size: x-large; */
+    background: rgb(198,176,200);
+    background: linear-gradient(45deg, rgba(198,176,200,1) 0%, rgba(138,90,162,1) 50%, rgb(255, 34, 196) 100%);
+        /* font-size: large; */
+        animation: gradient 7s ease infinite;
+        background-size: 1500% 1500%;
+        /* color: rgb(255, 255, 255); */
+        border-radius: 12px;
+    }
+    
+    @keyframes gradient{
+     
+        0%{
+            background-position: 0 50%;
+        }
+        50%{
+            background-position: 100% 50%;
+        }
+        100%{
+            background-position: 0 50%;
+        }
+    }
+
   .container{
     min-width: 90%;
     height: 100%;
@@ -47,6 +85,7 @@
   .brand__wrapper{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     align-items: center;
     cursor: pointer;
   }
