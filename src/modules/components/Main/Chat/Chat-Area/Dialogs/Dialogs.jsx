@@ -5,9 +5,9 @@ import GroupDialogs from './Group-Dialogs/Group-Dialogs'
 
 const Dialogs = (props) => {
 
-    useEffect(() => {
-        props.getDialogs(props.authUser)
-    }, [])
+    // useEffect(() => {
+    //     props.getDialogs(props.authUser)
+    // }, [])
     
     return (
         <div className={style.container}>

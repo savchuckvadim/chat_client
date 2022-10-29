@@ -33,13 +33,8 @@ class CurrentDialogContainer extends React.Component {
             if (this.props.params.dialogId !== undefined) {
                 return Number(this.props.params.dialogId)
             }
-            // else {
-            //     if (this.props.auth) {
-            //         return Number(this.props.auth.id)
-            //     }
-            // }
         }
-        //TODO :
+       
         return undefined
     }
 
@@ -49,10 +44,10 @@ class CurrentDialogContainer extends React.Component {
         let dialogId = this.getDialogId()
         this.dialogId = dialogId
         if(dialogId !== this.props.currentDialogId){
-            debugger
+            
             let dialog = searchDialog(dialogId, [this.props.dialogs, this.props.groupDialogs])
             if(dialog){
-                debugger
+                
                 this.props.changeCurrentDialog(dialog, dialog.isGroup)
             }
             
