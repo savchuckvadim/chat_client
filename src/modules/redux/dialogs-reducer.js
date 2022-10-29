@@ -20,6 +20,7 @@ const initialState = {
     newGroupDialogsName: '',
     usersForNewGroupDialog: [],
     currentDialogId: undefined,
+    currentDialog:null,
     messages: [],
     currentMessage: ''
 }
@@ -27,7 +28,7 @@ const initialState = {
 //AC
 const setDialogs = (dialogs) => ({ type: SET_DIALOGS, dialogs })
 const setCurrentDialog = (dialogId, messages) => ({ type: SET_CURRENT_DIALOG, dialogId, messages })
-export const changeCurrentDialog = (dialogId, isGroup) => ({ type: CHANGE_CURRENT_DIALOG, dialogId, isGroup })
+export const changeCurrentDialog = (dialog, isGroup) => ({ type: CHANGE_CURRENT_DIALOG, dialog, isGroup })
 export const setNewMessage = (message, authUserId, isGroup) => ({ type: SET_NEW_MESSAGE, message, authUserId, isGroup })
 const setUsersInGroupDialog = (user, dialogId) => ({ type: SET_USER_IN_GROUP_DIALOG, user, dialogId })
 export const setUserForNewGroupDialog = (user) => ({ type: SET_USER_FOR_NEW_GROUP_DIALOG, user })
@@ -93,23 +94,23 @@ const dialogsReducer = (state = initialState, action) => {
 
         case SET_CURRENT_DIALOG:
             // if (state.messages.length !== action.messages.length) {
-            return { ...state, currentDialogId: action.dialogId, messages: action.messages }
+            return { ...state, currentDialogId: action.dialog.id, currentDialog: action.dialog, messages: action.messages }
         // } else {
         //     return state
         // }
         case CHANGE_CURRENT_DIALOG:
 
-            if (state.currentDialogId !== action.dialogId) {
+            if (state.currentDialogId !== action.dialog.dialogId) {
 
                 let dialogs = state.dialogs
                 if (action.isGroup) {
                     dialogs = state.groupDialogs
                 }
 
-                const messages = dialogs.filter(dialog => dialog.dialogId === action.dialogId)[0].dialogsMessages
+                const messages = dialogs.filter(dialog => dialog.dialogId === action.dialog.dialogId)[0].dialogsMessages
 
 
-                return { ...state, currentDialogId: action.dialogId, messages: messages }
+                return { ...state, currentDialogId: action.dialog.dialogId, messages: messages }
             }
 
         case SET_USER_FOR_NEW_GROUP_DIALOG:
@@ -183,8 +184,8 @@ const dialogsReducer = (state = initialState, action) => {
                     return dialog
                 }
             })
-            
-            if (action.isGroup) {
+            debugger
+            if (!action.isGroup) {
                 return { ...state, dialogs, messages }
             }
             return { ...state, groupDialogs: dialogs, messages }

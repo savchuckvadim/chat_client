@@ -39,8 +39,9 @@ const Registration = () => {
                     /* and other goodies */
                 }) => (
                     <form className={style.form} onSubmit={handleSubmit}>
-                        <p>Nickname</p>
+                        <p className={style.title}>Nickname</p>
                         <input
+                            className={style.input}
                             type="nickname"
                             name="nickname"
                             onChange={handleChange}
@@ -48,8 +49,9 @@ const Registration = () => {
                             value={values.nickname}
                         />
                         {errors.nickname && touched.nickname && errors.nickname}
-                        <p>Email</p>
+                        <p className={style.title}>Email</p>
                         <input
+                            className={style.input}
                             type="email"
                             name="email"
                             onChange={handleChange}
@@ -57,8 +59,9 @@ const Registration = () => {
                             value={values.email}
                         />
                         {errors.email && touched.email && errors.email}
-                        <p>Password</p>
+                        <p className={style.title}>Password</p>
                         <input
+                            className={style.input}
                             type="password"
                             name="password"
                             onChange={handleChange}
@@ -66,8 +69,9 @@ const Registration = () => {
                             value={values.password}
                         />
                         {errors.password && touched.password && errors.password}
-                        <p>Password Repeat</p>
+                        <p className={style.title}>Password Repeat</p>
                         <input
+                            className={style.input}
                             type="password"
                             name="passwordRepeat"
                             onChange={handleChange}

@@ -1,7 +1,7 @@
 
 
 .container{
-    width: 40vw;
+    width: 50%;
     height: 40vh;
   display: flex;
   justify-content: space-around;
@@ -13,12 +13,13 @@
 .button__wrapper{
     width: 200px;
     height: 70px;
-    
+    margin: 0 5px;
     
 }
 .button{
     min-width: 100%;
     min-height: 100%;
+    
     border: none;
     background-color: #282c34;
     color: white;

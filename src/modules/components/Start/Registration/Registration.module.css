@@ -1,17 +1,61 @@
 .form{
     display: flex;
     flex-direction: column;
-    height: 500px;
+    height:60vh;
+    margin-bottom: 150px;
     color: white;
+    align-items: center;
 }
 
 .button{
-    width: 200px;
-    height: 50px;
-    border: none;
-    background-color: #282c34;
-    color: white;
-    border-radius: 16px;
+    width: 217px;
+    height: 40px;
+    /* padding: 0 7px; */
+    border: 2px solid rgb(20, 204, 255);
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border-radius: 8px;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 35px;
+    font-size: large;
+
+}
+.button:hover{
+    background: rgb(131,58,180);
+    background: -moz-linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#833ab4",endColorstr="#fcb045",GradientType=1);
+
+
+
+animation: gradient 7s ease infinite;
+background-size: 1500% 1500%;
+color: rgb(255, 255, 255);
+}
+
+@keyframes gradient{
+
+0%{
+    background-position: 0 50%;
+}
+50%{
+    background-position: 100% 50%;
+}
+100%{
+    background-position: 0 50%;
+}
+}
+.title{
+    margin-bottom: 2px;
+}
+.input{
+    height: 30px;
+    width: 200px;
+    padding: 0 7px;
+    border: none;
+    outline: none;
+    
+    border-radius: 8px;
+  
 }

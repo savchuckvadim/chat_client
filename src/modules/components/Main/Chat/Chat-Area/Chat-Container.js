@@ -4,9 +4,10 @@ import Chat from "./Chat"
 
 
 const mapStatetToProps = (state) => {
-
+    
     return {
-        authUserId: state.auth.authUser.id
+        authUserId: state.auth.authUser.id,
+        currentDialog: state.dialogs.dialogs.currentDialog
     }
 }
 

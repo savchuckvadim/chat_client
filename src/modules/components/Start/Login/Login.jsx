@@ -37,8 +37,9 @@ const Login = (props) => {
                 }) => (
                     <form className={style.form} onSubmit={handleSubmit}>
                         
-                         <p>Email</p>
+                         <p className={style.title}>Email</p>
                         <input
+                        className={style.input}
                             type="email"
                             name="email"
                             onChange={handleChange}
@@ -46,8 +47,9 @@ const Login = (props) => {
                             value={values.email}
                         />
                         {errors.email && touched.email && errors.email}
-                        <p>Password</p>
+                        <p className={style.title}>Password</p>
                         <input
+                        className={style.input}
                             type="password"
                             name="password"
                             onChange={handleChange}
