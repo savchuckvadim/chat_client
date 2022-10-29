@@ -10,8 +10,13 @@ export const searchDialog = (dialogId, groupsOfDialogs) => {
             }
         })
     })
-    const resultCurrentDialog = { ...searchingDialog }
-    resultCurrentDialog.dialogsMessages = searchingDialog.dialogsMessages.map(message => ({ ...message }))
-    return resultCurrentDialog
+    if (searchingDialog) {
+        const resultCurrentDialog = { ...searchingDialog }
+        resultCurrentDialog.dialogsMessages = searchingDialog.dialogsMessages.map(message => ({ ...message }))
+        return resultCurrentDialog
+    } else {
+        return searchingDialog
+    }
+
 
 }
