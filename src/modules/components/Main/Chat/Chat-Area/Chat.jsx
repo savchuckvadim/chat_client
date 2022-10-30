@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import style from './Chat.module.css'
 import CurrentDialog from './Current-Dialog/Current-Dialog'
 import CurrentDialogContainer from './Current-Dialog/Current-Dialog-Container'

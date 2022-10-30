@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { connect } from "react-redux"
-import { useParams } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 import { getDialogs, setNewMessage } from "../../../../redux/dialogs-reducer"
 import Chat from "./Chat"
 import { echo } from '../../../../services/websocket/socket'
+import Preloader from "../../../common/Preloader/Preloader"
 
 
 
@@ -38,26 +39,32 @@ const ChatContainer = (props) => {
     }
 
     let dialogIdFromUrl = getDialogId()
-    const [currentDialog, setCurrentDialog] = useState(props.currentDialog)
-    const [dialogId, setDialogId] = useState(dialogIdFromUrl)
-    const [authUserId, setAuthUserId] = useState(props.authUserId)
-    const [isGroup, setIsGroup] = useState(props.currentDialog && props.currentDialog.isGroup)
 
     useEffect(() => {
         
         props.getDialogs(dialogIdFromUrl)
-        setDialogId(dialogIdFromUrl)
+
 
     }, [])
+    if (dialogIdFromUrl === undefined) { // в url нет параметра dialogId
 
+        if (props.currentDialogId !== undefined) {
+            
+            return <Navigate replace to={`../chat/${props.currentDialogId}`} />
+        }else{
+            return  < Preloader/>
+        }
+         
+    } 
 
-   
+  
     return (
-        <Chat {...props} dialogId={dialogId} />
+        <Chat {...props}  />
     )
 }
 
 export default connect(mapStatetToProps, {
     getDialogs,
-    setNewMessage
+    setNewMessage,
+    
 })(withRouter(ChatContainer))

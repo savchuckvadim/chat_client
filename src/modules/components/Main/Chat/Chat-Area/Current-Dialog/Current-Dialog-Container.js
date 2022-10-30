@@ -40,18 +40,18 @@ class CurrentDialogContainer extends React.Component {
 
 
     componentDidMount() {
-        // window.scrollTo(0, 0)
-        let dialogId = this.getDialogId()
-        this.dialogId = dialogId
-        if(dialogId !== this.props.currentDialogId){
+       
+        // let dialogId = this.getDialogId()
+        // this.dialogId = dialogId
+        // if(dialogId !== this.props.currentDialogId){
             
-            let dialog = searchDialog(dialogId, [this.props.dialogs, this.props.groupDialogs])
-            if(dialog){
+        //     let dialog = searchDialog(dialogId, [this.props.dialogs, this.props.groupDialogs])
+        //     if(dialog){
                 
-                this.props.changeCurrentDialog(dialog, dialog.isGroup)
-            }
+        //         this.props.changeCurrentDialog(dialog, dialog.isGroup)
+        //     }
             
-        }
+        // }
         // console.log(dialogId)
         // this.props.getMessages(dialogId)
         //TODO: from reducer get currentsDialogMessages

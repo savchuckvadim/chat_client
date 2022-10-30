@@ -111,7 +111,12 @@ const dialogsReducer = (state = initialState, action) => {
         case SET_DIALOGS:
             const setingDialogs = action.dialogs.dialogs
             const setingGroupDialogs = action.dialogs.groupDialogs
-            let currentDialog = searchDialog(action.dialogIdFromUrl, [setingDialogs, setingGroupDialogs])
+            
+            let searchingDialogId = action.dialogs.dialogs[0].dialogId
+            if(action.dialogIdFromUrl){
+                searchingDialogId = action.dialogIdFromUrl
+            }
+            let currentDialog = searchDialog(searchingDialogId, [setingDialogs, setingGroupDialogs])
            
             let currentMessages = []
             if (currentDialog) {
@@ -123,7 +128,7 @@ const dialogsReducer = (state = initialState, action) => {
                 ...state,
                 dialogs: setingDialogs,
                 currentDialog,
-                currentDialogId: action.dialogIdFromUrl,
+                currentDialogId: searchingDialogId,
                 messages: currentMessages,
                 groupDialogs: setingGroupDialogs
             };
