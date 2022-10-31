@@ -5,7 +5,7 @@ import style from '../Registration/Registration.module.css'
 const Login = (props) => {
 
     return (
-        <div>
+        <div className={style.container}>
             <h1>Login</h1>
             <Formik
                 initialValues={{ email: '', password: ''}}

@@ -5,7 +5,7 @@ import style from './Registration.module.css'
 const Registration = () => {
     // authApi.logout()
     return (
-        <div>
+        <div className={style.container}>
             <h1>Registration</h1>
             <Formik
                 initialValues={{ nickname: '', email: '', password: '', passwordRepeat: '' }}
@@ -48,7 +48,7 @@ const Registration = () => {
                             onBlur={handleBlur}
                             value={values.nickname}
                         />
-                        {errors.nickname && touched.nickname && errors.nickname}
+                        <p className={style.error}>{errors.nickname && touched.nickname && errors.nickname}</p>
                         <p className={style.title}>Email</p>
                         <input
                             className={style.input}
@@ -58,7 +58,7 @@ const Registration = () => {
                             onBlur={handleBlur}
                             value={values.email}
                         />
-                        {errors.email && touched.email && errors.email}
+                        <p className={style.error}>{errors.email && touched.email && errors.email}</p>
                         <p className={style.title}>Password</p>
                         <input
                             className={style.input}
@@ -68,7 +68,7 @@ const Registration = () => {
                             onBlur={handleBlur}
                             value={values.password}
                         />
-                        {errors.password && touched.password && errors.password}
+                        <p className={style.error}>{errors.password && touched.password && errors.password}</p>
                         <p className={style.title}>Password Repeat</p>
                         <input
                             className={style.input}
@@ -78,7 +78,7 @@ const Registration = () => {
                             onBlur={handleBlur}
                             value={values.passwordRepeat}
                         />
-                        {errors.passwordRepeat && touched.passwordRepeat && errors.passwordRepeat}
+                        <p className={style.error}>{errors.passwordRepeat && touched.passwordRepeat && errors.passwordRepeat}</p>
                         <button className={style.button} type="submit" disabled={isSubmitting}>
                             Submit
                         </button>

@@ -1,8 +1,12 @@
+.container{
+    margin-top: 150px;
+}
 .form{
     display: flex;
     flex-direction: column;
     height:60vh;
     margin-bottom: 150px;
+    
     color: white;
     align-items: center;
 }
@@ -58,4 +62,9 @@ color: rgb(255, 255, 255);
     
     border-radius: 8px;
   
+}
+.error{
+    margin: 0;
+    color: rgb(244, 91, 91);
+    font-weight: 600;
 }

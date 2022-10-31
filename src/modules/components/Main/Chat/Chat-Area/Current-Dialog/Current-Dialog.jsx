@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import { Navigate, NavLink } from 'react-router-dom'
 import style from './Current-Dialog.module.css'
 import MessagesContainer from './Messages/Messages-Container'
 import SendMessage from './Send-Message/Send-Message'
