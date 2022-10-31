@@ -1,4 +1,4 @@
-import style from './Group-Dialogs.module.css'
+// import style from './Group-Dialogs.module.css'
 
 
 const GroupDialogs = () => {

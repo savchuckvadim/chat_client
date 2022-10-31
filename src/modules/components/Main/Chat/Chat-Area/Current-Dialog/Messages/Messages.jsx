@@ -1,20 +1,28 @@
 import React, { useLayoutEffect, useRef } from 'react'
-import { useEffect } from 'react'
 import MessageItem from './Message-Item/Message-Item'
 import style from './Messages.module.css'
+import ScrollIntoView from 'react-scroll-into-view'
+
 
 const Messages = (props) => {
-    let ref  = useRef(null)
+    let ref = useRef(null)
     useLayoutEffect(() => {
-        ref.current.scrollIntoView(0,0);
-      }, []);
+        
+        if (ref.current && props.messages.length > 0) {
+            
+            ref.current.scrollIntoView(0, 0);
+        }
+
+    }, [props.messages]);
     return (
         <div className={style.container}  >
-            <div className={style.messages}
-           ref={ref}
+            {/* <ScrollIntoView selector="#messages"> */}
+            <div className={style.messages }
+                ref={ref}
             >
-                {props.messages && props.messages.length > 0 && props.messages.map(message => (<MessageItem message={message}/>))}
+                {props.messages && props.messages.length > 0 && props.messages.map(message => (<MessageItem key={`message-${message.id}`} message={message} />))}
             </div>
+            {/* </ScrollIntoView> */}
         </div>
     )
 }

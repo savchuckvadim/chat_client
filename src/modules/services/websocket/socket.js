@@ -42,18 +42,19 @@ export const socket = {
       }
 
     })
-    // let roomId = 1
-    // echo.join(`chat.${roomId}`)
-    //   .here((users) => {
-    //     users.forEach(user => {
-    //       alert(user.name)
-    //       console.log(user.name)
-    //     });
 
-    //   })
-    //   .joining((user) => {
-    //     console.log(user);
-    //   })
+    echo.join(`chat.${1}`)
+      .here((users) => {
+        console.log(users)
+        users.forEach(user => {
+          
+          console.log(user.name)
+        });
+
+      })
+      .joining((user) => {
+        alert(user.name);
+      })
     //   .leaving((user) => {
     //     console.log(user);
     //   })

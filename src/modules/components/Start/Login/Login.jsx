@@ -1,5 +1,4 @@
 import { Formik } from "formik";
-import { Navigate } from "react-router-dom";
 import style from '../Registration/Registration.module.css'
 
 const Login = (props) => {

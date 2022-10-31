@@ -1,7 +1,7 @@
 import { dialogsAPI } from "../services/api/dialogs-api"
 import { searchDialog } from "../services/utils/dialog-utils"
-import { echo, socket } from "../services/websocket/socket"
-import { inProgress } from "./preloader-reducer"
+import { echo } from "../services/websocket/socket"
+
 
 
 const SET_DIALOGS = 'dialogs/SET_DIALOGS'
@@ -31,7 +31,7 @@ const setDialogs = (dialogs, dialogIdFromUrl) => ({ type: SET_DIALOGS, dialogs, 
 const setCurrentDialog = (dialogId, messages) => ({ type: SET_CURRENT_DIALOG, dialogId, messages })
 export const changeCurrentDialog = (dialog, isGroup) => ({ type: CHANGE_CURRENT_DIALOG, dialog, isGroup })
 export const setNewMessage = (message, authUserId, isGroup) => ({ type: SET_NEW_MESSAGE, message, authUserId, isGroup })
-const setUsersInGroupDialog = (user, dialogId) => ({ type: SET_USER_IN_GROUP_DIALOG, user, dialogId })
+const setUsersInGroupDialog = (user, dialogId) => ({ type: SET_USER_IN_GROUP_DIALOG, user, dialogId })  //for edit exist group dialog
 export const setUserForNewGroupDialog = (user) => ({ type: SET_USER_FOR_NEW_GROUP_DIALOG, user })
 const setNewGroupDialog = (groupDialog) => ({ type: SET_NEW_GROUP_DIALOG, groupDialog })
 export const setGroupDialogsName = (value) => ({ type: SET_GROUP_DIALOGS_NAME, value })
@@ -54,8 +54,6 @@ export const getDialogs = (dialogIdFromUrl) => async (dispatch, getState) => {
                 if (state.auth.authUser && state.dialogs.currentDialog) {
                     let currentDialog = state.dialogs.currentDialog
                     let authUser = state.auth.authUser
-                    console.log(e)
-                    
                     if (currentDialog) {
                         
                         dispatch(setNewMessage(e.message, authUser.id, currentDialog.isGroup))
@@ -153,6 +151,7 @@ const dialogsReducer = (state = initialState, action) => {
 
                 return { ...state, currentDialogId: action.dialog.dialogId, messages: messages }
             }
+            return state
 
         case SET_USER_FOR_NEW_GROUP_DIALOG:
             let resultUsers
@@ -167,6 +166,7 @@ const dialogsReducer = (state = initialState, action) => {
 
         case SET_GROUP_DIALOGS_NAME:
             return { ...state, newGroupDialogsName: action.value }
+
         case SET_NEW_GROUP_DIALOG:
             const checkGroupDialog = state.groupDialogs.some(dialog => dialog.id === action.groupDialog.id)
             if (!checkGroupDialog) {
@@ -177,15 +177,14 @@ const dialogsReducer = (state = initialState, action) => {
             return state
 
 
-        case SET_USER_IN_GROUP_DIALOG:
-
-
+        case SET_USER_IN_GROUP_DIALOG:  //for edit exist group dialog
             let resultGroupDialogs = []
             state.groupDialogs.forEach(dialog => {
                 if (dialog.dialogId === action.dialogId) {
-                    let resultDialog = { ...dialog }
-                    let checkUser = dialog.dialogsUsers.some(user => user.id === action.user.id)
-                    if (!checkUser) {
+                    const resultDialog = { ...dialog }
+                    const checkUser = dialog.dialogsUsers.some(user => user.id === action.user.id)
+
+                    if (!checkUser) {               //if user is not exist in groupDialog->users
                         resultDialog.dialogsUsers = [...dialog.dialogsUsers].push(action.user)
                     }
 
@@ -197,6 +196,7 @@ const dialogsReducer = (state = initialState, action) => {
                 }
 
             });
+            return {...state, groupDialogs: resultGroupDialogs}
 
         case SET_NEW_MESSAGE:
             let message = action.message

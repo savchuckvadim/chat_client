@@ -1,14 +1,10 @@
-import { useEffect } from 'react'
 import DialogItems from './Dialog-Items/Dialog-Items'
 import style from './Dialogs.module.css'
-import GroupDialogs from './Group-Dialogs/Group-Dialogs'
+
 
 const Dialogs = (props) => {
 
-    // useEffect(() => {
-    //     props.getDialogs(props.authUser)
-    // }, [])
-    
+   
     return (
         <div className={style.container}>
             <h4 className={style.title}>  dialogs</h4>

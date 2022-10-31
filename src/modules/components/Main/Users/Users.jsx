@@ -8,7 +8,7 @@ const Users = (props) => {
 
   useEffect(() => {
     props.getUsers(1, 10)
-  }, [])
+  }, [ ])
 if(!props.addingPartisipantsInProgress){
   return (
 

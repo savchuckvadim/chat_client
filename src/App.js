@@ -1,4 +1,3 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Preloader from './modules/components/common/Preloader/Preloader';
 import HeaderContainer from './modules/components/Header/Header-Container';

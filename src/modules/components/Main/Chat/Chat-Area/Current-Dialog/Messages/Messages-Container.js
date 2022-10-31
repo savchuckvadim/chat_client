@@ -13,15 +13,9 @@ const mapStateToProps = (state) => {
 
     if(dialogs.length > 0){
         let currentDialog = dialogs.filter(dialog => dialog.dialogId === state.dialogs.currentDialogId)[0]
-        
-       console.log('currentDialog')
-       console.log(currentDialog)
        
        if (currentDialog) {
             messages = currentDialog.dialogsMessages
-            console.log('MESSAGES')
-            console.log(messages)
-            
         }
     }
     

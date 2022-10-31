@@ -1,6 +1,5 @@
 import UsersContainer from '../../../../../Users/Users-Container'
 import style from './Add-Partisipants-Area.module.css'
-import PartisipantsButtons from './Partisipants-Buttons/Partisipants-Buttons'
 import PartisipantsButtonsContainer from './Partisipants-Buttons/Partisipants-Buttons-Container'
 
 const AddPartisipantsArea = (props) => {

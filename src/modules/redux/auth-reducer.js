@@ -27,7 +27,6 @@ export const login = (email, password) => async (dispatch) => {
             dispatch(setAuthUser(user, true))
         }
     } catch (error) {
-        console.log(error)
         dispatch(inProgress(false))
     }
     dispatch(inProgress(false))
