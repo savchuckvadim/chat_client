@@ -75,13 +75,13 @@ export const socket = {
 
   },
 
-  async newMessageConnection() {
-    echo.private('new-message')
-      .listen('.SendMessage', (e) => {
-        alert(e.message.body)
-        console.log(e)
-      })
-  },
+  // async newMessageConnection() {
+  //   echo.private('new-message')
+  //     .listen('.SendMessage', (e) => {
+  //       alert(e.message.body)
+  //       console.log(e)
+  //     })
+  // },
 
   async subscribeToDialogs(user, dialogs) {
     dialogs.forEach(dialog => {

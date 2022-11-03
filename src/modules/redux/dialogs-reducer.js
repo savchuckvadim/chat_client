@@ -39,29 +39,36 @@ export const setGroupDialogsName = (value) => ({ type: SET_GROUP_DIALOGS_NAME, v
 
 // THUNKS
 
-export const getDialogs = (dialogIdFromUrl) => async (dispatch, getState) => {
+export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getState) => {
     //TODO: dispatch(inProgress)
     const response = await dialogsAPI.getDialogs()
     dispatch(setDialogs(response, dialogIdFromUrl))
 
 
     if (echo) {
-        
-        echo.private('new-message')
+
+        echo.private(`new-message.${authUserId}`)
 
             .listen('.SendMessage', (e) => {
                 let state = getState()
+                alert(e.message.body)
+                debugger
                 if (state.auth.authUser && state.dialogs.currentDialog) {
                     let currentDialog = state.dialogs.currentDialog
                     let authUser = state.auth.authUser
                     if (currentDialog) {
-                        
+
                         dispatch(setNewMessage(e.message, authUser.id, currentDialog.isGroup))
                     } else {
                         alert('no current dialog  ' + state.dialogs.currentDialogId)
                     }
                 }
+
             })
+            // .notification((notification) => {
+            //     console.log(notification);
+            //     debugger
+            // });
 
     }
 
@@ -109,19 +116,19 @@ const dialogsReducer = (state = initialState, action) => {
         case SET_DIALOGS:
             const setingDialogs = action.dialogs.dialogs
             const setingGroupDialogs = action.dialogs.groupDialogs
-            
+
             let searchingDialogId = action.dialogs.dialogs[0].dialogId
-            if(action.dialogIdFromUrl){
+            if (action.dialogIdFromUrl) {
                 searchingDialogId = action.dialogIdFromUrl
             }
             let currentDialog = searchDialog(searchingDialogId, [setingDialogs, setingGroupDialogs])
-           
+
             let currentMessages = []
             if (currentDialog) {
                 currentMessages = currentDialog.dialogsMessages
             }
 
-            
+
             return {
                 ...state,
                 dialogs: setingDialogs,
@@ -196,7 +203,7 @@ const dialogsReducer = (state = initialState, action) => {
                 }
 
             });
-            return {...state, groupDialogs: resultGroupDialogs}
+            return { ...state, groupDialogs: resultGroupDialogs }
 
         case SET_NEW_MESSAGE:
             let message = action.message
@@ -225,7 +232,7 @@ const dialogsReducer = (state = initialState, action) => {
                     return dialog
                 }
             })
-            
+
             if (!action.isGroup) {
                 return { ...state, dialogs, messages }
             }
