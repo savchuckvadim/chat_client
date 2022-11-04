@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
     return {
         isAuth: state.auth.isAuth,
         inProgress: state.preloader.inProgress,
-        addingPartisipantsInProgress: state.group.addingPartisipantsInProgress
+        addingParticipantsInProgress: state.group.addingParticipantsInProgress
 
     }
 }

@@ -9,7 +9,7 @@ const SET_CURRENT_DIALOG = 'dialogs/SET_CURRENT_DIALOG'
 const CHANGE_CURRENT_DIALOG = 'dialogs/CHANGE_CURRENT_DIALOG'
 const SET_NEW_MESSAGE = 'dialogs/SET_NEW_MESSAGE'
 const SET_USER_IN_GROUP_DIALOG = 'dialogs/SET_USER_IN_GROUP_DIALOG'
-const SET_USER_FOR_NEW_GROUP_DIALOG = 'dialogs/SET_USER_FOR_NEW_GROUP_DIALOG'
+const PARTICIPANTS_NEW_GROUP_DIALOG = 'dialogs/PARTICIPANTS_NEW_GROUP_DIALOG'
 const SET_NEW_GROUP_DIALOG = 'dialogs/SET_NEW_GROUP_DIALOG'
 const SET_GROUP_DIALOGS_NAME = 'dialogs/SET_GROUP_DIALOGS_NAME'
 
@@ -23,12 +23,12 @@ const initialState = {
     currentDialog: null,
     messages: [],
     currentMessage: '',
-   
+
     newGroupDialog: {
         name: '',
         participants: []
     },
- 
+
 }
 
 //AC
@@ -37,7 +37,7 @@ const setCurrentDialog = (dialogId, messages) => ({ type: SET_CURRENT_DIALOG, di
 export const changeCurrentDialog = (dialog) => ({ type: CHANGE_CURRENT_DIALOG, dialog })
 export const setNewMessage = (message, authUserId, isGroup) => ({ type: SET_NEW_MESSAGE, message, authUserId, isGroup })
 const setUsersInGroupDialog = (user, dialogId) => ({ type: SET_USER_IN_GROUP_DIALOG, user, dialogId })  //for edit exist group dialog
-export const setUserForNewGroupDialog = (user) => ({ type: SET_USER_FOR_NEW_GROUP_DIALOG, user })
+export const participantsNewGroupDialog = (participant, bool) => ({ type: PARTICIPANTS_NEW_GROUP_DIALOG, participant, bool })
 const setNewGroupDialog = (groupDialog) => ({ type: SET_NEW_GROUP_DIALOG, groupDialog })
 export const setGroupDialogsName = (value) => ({ type: SET_GROUP_DIALOGS_NAME, value })
 
@@ -151,22 +151,26 @@ const dialogsReducer = (state = initialState, action) => {
 
                 return { ...state, currentDialogId: action.dialog.dialogId, currentDialog: action.dialog, messages: messages }
             }
-            debugger
+
             return state
 
-        case SET_USER_FOR_NEW_GROUP_DIALOG:
+        case PARTICIPANTS_NEW_GROUP_DIALOG:
             let resultUsers
-            const checkUser = state.usersForNewGroupDialog.some(user => user.id === action.user.id)
-
-            if (!checkUser) {
-                resultUsers = [...state.usersForNewGroupDialog]
-                resultUsers.push(action.user)
-                return { ...state, newGroupDialog:{...state.newGroupDialog, participants: resultUsers }}
+            const checkParticipant = state.newGroupDialog.participants.some(p => p.id === action.participant.id)
+            
+            if (!checkParticipant && action.bool) {
+                resultUsers = [...state.newGroupDialog.participants, action.participant]
+                // resultUsers.push(action.user)
+                return { ...state, newGroupDialog: { ...state.newGroupDialog, participants: resultUsers } }
+            } else if (checkParticipant && !action.bool) {
+                let resultParticipants = state.newGroupDialog.participants.filter(p => p.id !== action.participant.id)
+                return { ...state, newGroupDialog: { ...state.newGroupDialog, participants: resultParticipants } }
             }
+            
             return state
 
         case SET_GROUP_DIALOGS_NAME:
-            return { ...state, newGroupDialog:{...state.newGroupDialog, name:action.value} }
+            return { ...state, newGroupDialog: { ...state.newGroupDialog, name: action.value } }
 
         case SET_NEW_GROUP_DIALOG:
             const checkGroupDialog = state.groupDialogs.some(dialog => dialog.id === action.groupDialog.id)

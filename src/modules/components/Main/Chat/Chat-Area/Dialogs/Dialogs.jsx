@@ -17,7 +17,10 @@ const Dialogs = (props) => {
             </div>
 
             <h4 className={style.title__group}
-                onClick={() => { props.addPartisipantsInProgress(true) }}
+                onClick={() => {
+
+                    props.addParticipantsInProgress(true)
+                }}
             >  group-dialogs+</h4>
             <div className={style.dialogs}>
                 <DialogItems

@@ -1,5 +1,6 @@
 import UsersContainer from '../../../../../Users/Users-Container'
 import style from './Add-Partisipants-Area.module.css'
+import Participants from './Participants/Participants'
 import PartisipantsButtonsContainer from './Partisipants-Buttons/Partisipants-Buttons-Container'
 
 const AddPartisipantsArea = (props) => {
@@ -22,7 +23,11 @@ const AddPartisipantsArea = (props) => {
                     <UsersContainer />
                 </div>
                 <div className={style.partisipants__wrapper}>
-
+                    <Participants
+                        participants={props.participants}
+                        addingParticipantsInProgress={props.addingParticipantsInProgress}
+                        participantsNewGroupDialog={props.participantsNewGroupDialog}
+                    />
                 </div>
 
             </div>

@@ -21,7 +21,7 @@ const App = (props) => {
 
   let page = <Preloader />
   if (!props.inProgress && props.isAuth) {
-    if (props.addingPartisipantsInProgress) {
+    if (props.addingParticipantsInProgress) {
       
       page = <AddPartisipantsContainer />
     } else {

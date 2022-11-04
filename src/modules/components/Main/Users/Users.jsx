@@ -9,7 +9,7 @@ const Users = (props) => {
   useEffect(() => {
     props.getUsers(1, 10)
   }, [ ])
-if(!props.addingPartisipantsInProgress){
+if(!props.addingParticipantsInProgress){
   return (
 
     <div className={style.container}>
@@ -24,6 +24,7 @@ if(!props.addingPartisipantsInProgress){
               isContacted={user.isContacted} 
               addContact={props.addContact}
               deleteContact={props.deleteContact}
+              addingParticipantsInProgress={props.addingParticipantsInProgress}
               />)
             : <Preloader />
         }
@@ -54,8 +55,8 @@ if(!props.addingPartisipantsInProgress){
               isContacted={user.isContacted} 
               addContact={props.addContact}
               deleteContact={props.deleteContact}
-              addingPartisipantsInProgress={props.addingPartisipantsInProgress}
-              setUserForNewGroupDialog={props.setUserForNewGroupDialog}
+              addingParticipantsInProgress={props.addingParticipantsInProgress}
+              participantsNewGroupDialog={props.participantsNewGroupDialog}
               />)
             : <Preloader />
         }

@@ -1,17 +1,19 @@
 import { connect } from "react-redux"
-import { setGroupDialogsName } from "../../../../../../../redux/dialogs-reducer"
+import { participantsNewGroupDialog, setGroupDialogsName } from "../../../../../../../redux/dialogs-reducer"
 import AddPartisipantsArea from "./Add-Partisipants-Area"
 
 const mapStateToProps = (state) => {
     return {
         newGroupDialogsName: state.dialogs.newGroupDialogsName,
-        name:state.dialogs.newGroupDialog.name,
-        participants:state.dialogs.newGroupDialog.participants,
+        name: state.dialogs.newGroupDialog.name,
+        participants: state.dialogs.newGroupDialog.participants,
+        addingParticipantsInProgress: state.group.addingParticipantsInProgress,
     }
 }
 
 const AddPartisipantsContainer = connect(mapStateToProps, {
-    setGroupDialogsName
+    setGroupDialogsName,
+    participantsNewGroupDialog
 })(AddPartisipantsArea)
 
 export default AddPartisipantsContainer
