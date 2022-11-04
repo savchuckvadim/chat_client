@@ -5,6 +5,7 @@ const Participants = (props) => {
     
     return (
         <div className={style.container}>
+            <div className={style.cards__wrapper}>
             {props.participants.length > 0 && props.participants.map(participant =>
                 <UserCard
                     key={participant.id}
@@ -16,6 +17,8 @@ const Participants = (props) => {
                     participantsNewGroupDialog={props.participantsNewGroupDialog}
 
                 />)}
+            </div>
+            
         </div>
     )
 }

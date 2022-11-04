@@ -2,10 +2,23 @@
     width: 90%;
     min-height: 88%;
     max-height: 88%;
+    padding: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    border: 1px solid rgb(49, 166, 255);
+    border-radius: 16px;
+}
+
+.cards__wrapper{
+    min-width: 98%;
+    min-height: 100%;
     overflow: auto;
     display: flex;
     flex-direction: row;
+    justify-content: start;
+    align-items: flex-start;
     flex-wrap: wrap;
-    border: 1px solid rgb(49, 166, 255);
-    border-radius: 16px;
+    /* background-color: aqua; */
+   
 }
