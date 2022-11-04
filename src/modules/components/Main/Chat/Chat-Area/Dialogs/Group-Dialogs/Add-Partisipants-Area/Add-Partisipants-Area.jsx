@@ -23,6 +23,7 @@ const AddPartisipantsArea = (props) => {
                     <UsersContainer />
                 </div>
                 <div className={style.partisipants__wrapper}>
+                <h3>Participants</h3>
                     <Participants
                         participants={props.participants}
                         addingParticipantsInProgress={props.addingParticipantsInProgress}

@@ -4,7 +4,7 @@ import UserCard from '../../../../../../Users/User-Card/User-Card'
 const Participants = (props) => {
     
     return (
-        <div>
+        <div className={style.container}>
             {props.participants.length > 0 && props.participants.map(participant =>
                 <UserCard
                     key={participant.id}

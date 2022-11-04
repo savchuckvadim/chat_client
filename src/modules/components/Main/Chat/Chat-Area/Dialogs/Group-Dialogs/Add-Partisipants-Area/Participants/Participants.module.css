@@ -1,0 +1,11 @@
+.container{
+    width: 90%;
+    min-height: 88%;
+    max-height: 88%;
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 1px solid rgb(49, 166, 255);
+    border-radius: 16px;
+}
