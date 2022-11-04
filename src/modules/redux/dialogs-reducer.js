@@ -18,14 +18,17 @@ const SET_GROUP_DIALOGS_NAME = 'dialogs/SET_GROUP_DIALOGS_NAME'
 const initialState = {
     dialogs: [],
     groupDialogs: [],
-   
+
     currentDialogId: undefined,
     currentDialog: null,
     messages: [],
     currentMessage: '',
-    //TODO: creatingNewGroupDialog:
-    newGroupDialogsName: '',
-    usersForNewGroupDialog: [],
+   
+    newGroupDialog: {
+        name: '',
+        participants: []
+    },
+ 
 }
 
 //AC
@@ -131,7 +134,7 @@ const dialogsReducer = (state = initialState, action) => {
             };
 
         case SET_CURRENT_DIALOG:
-           
+
             return { ...state, currentDialogId: action.dialog.id, currentDialog: action.dialog, messages: action.messages }
 
         case CHANGE_CURRENT_DIALOG:
@@ -158,12 +161,12 @@ const dialogsReducer = (state = initialState, action) => {
             if (!checkUser) {
                 resultUsers = [...state.usersForNewGroupDialog]
                 resultUsers.push(action.user)
-                return { ...state, usersForNewGroupDialog: resultUsers }
+                return { ...state, newGroupDialog:{...state.newGroupDialog, participants: resultUsers }}
             }
             return state
 
         case SET_GROUP_DIALOGS_NAME:
-            return { ...state, newGroupDialogsName: action.value }
+            return { ...state, newGroupDialog:{...state.newGroupDialog, name:action.value} }
 
         case SET_NEW_GROUP_DIALOG:
             const checkGroupDialog = state.groupDialogs.some(dialog => dialog.id === action.groupDialog.id)

@@ -8,7 +8,8 @@ const mapStateToProps = (state) => {
     return {
         users: state.users.users,
         inProgress: state.users.inProgress,
-        addingPartisipantsInProgress: state.group.addingPartisipantsInProgress
+        addingPartisipantsInProgress: state.group.addingPartisipantsInProgress,
+        participants:state.dialogs.newGroupDialog.participants,
     }
 }
 

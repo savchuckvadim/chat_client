@@ -34,7 +34,8 @@ if(!props.addingPartisipantsInProgress){
 }else{
   let contacts = []
   props.users.forEach(user => {
-    if(user.isContacted){
+    let isParticipant = props.participants.some(p => p.id === user.id)
+    if(user.isContacted && !isParticipant){
       contacts.push(user)
     }
   });
