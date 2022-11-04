@@ -18,18 +18,20 @@ const SET_GROUP_DIALOGS_NAME = 'dialogs/SET_GROUP_DIALOGS_NAME'
 const initialState = {
     dialogs: [],
     groupDialogs: [],
-    newGroupDialogsName: '',
-    usersForNewGroupDialog: [],
+   
     currentDialogId: undefined,
     currentDialog: null,
     messages: [],
-    currentMessage: ''
+    currentMessage: '',
+    //TODO: creatingNewGroupDialog:
+    newGroupDialogsName: '',
+    usersForNewGroupDialog: [],
 }
 
 //AC
 const setDialogs = (dialogs, dialogIdFromUrl) => ({ type: SET_DIALOGS, dialogs, dialogIdFromUrl })
 const setCurrentDialog = (dialogId, messages) => ({ type: SET_CURRENT_DIALOG, dialogId, messages })
-export const changeCurrentDialog = (dialog, isGroup) => ({ type: CHANGE_CURRENT_DIALOG, dialog, isGroup })
+export const changeCurrentDialog = (dialog) => ({ type: CHANGE_CURRENT_DIALOG, dialog })
 export const setNewMessage = (message, authUserId, isGroup) => ({ type: SET_NEW_MESSAGE, message, authUserId, isGroup })
 const setUsersInGroupDialog = (user, dialogId) => ({ type: SET_USER_IN_GROUP_DIALOG, user, dialogId })  //for edit exist group dialog
 export const setUserForNewGroupDialog = (user) => ({ type: SET_USER_FOR_NEW_GROUP_DIALOG, user })
@@ -52,7 +54,7 @@ export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getS
             .listen('.SendMessage', (e) => {
                 let state = getState()
                 alert(e.message.body)
-                debugger
+
                 if (state.auth.authUser && state.dialogs.currentDialog) {
                     let currentDialog = state.dialogs.currentDialog
                     let authUser = state.auth.authUser
@@ -63,18 +65,8 @@ export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getS
                         alert('no current dialog  ' + state.dialogs.currentDialogId)
                     }
                 }
-
             })
-            // .notification((notification) => {
-            //     console.log(notification);
-            //     debugger
-            // });
-
     }
-
-
-
-    // await socket.subscribeToDialogs(user, response.dialogs)
 
 }
 
@@ -117,7 +109,7 @@ const dialogsReducer = (state = initialState, action) => {
             const setingDialogs = action.dialogs.dialogs
             const setingGroupDialogs = action.dialogs.groupDialogs
 
-            let searchingDialogId = action.dialogs.dialogs[0].dialogId
+            let searchingDialogId = action.dialogs.dialogs[0] && action.dialogs.dialogs[0].dialogId
             if (action.dialogIdFromUrl) {
                 searchingDialogId = action.dialogIdFromUrl
             }
@@ -139,25 +131,24 @@ const dialogsReducer = (state = initialState, action) => {
             };
 
         case SET_CURRENT_DIALOG:
-            // if (state.messages.length !== action.messages.length) {
+           
             return { ...state, currentDialogId: action.dialog.id, currentDialog: action.dialog, messages: action.messages }
-        // } else {
-        //     return state
-        // }
+
         case CHANGE_CURRENT_DIALOG:
 
             if (state.currentDialogId !== action.dialog.dialogId) {
 
                 let dialogs = state.dialogs
-                if (action.isGroup) {
+                if (action.dialog.isGroup) {
                     dialogs = state.groupDialogs
                 }
 
                 const messages = dialogs.filter(dialog => dialog.dialogId === action.dialog.dialogId)[0].dialogsMessages
 
 
-                return { ...state, currentDialogId: action.dialog.dialogId, messages: messages }
+                return { ...state, currentDialogId: action.dialog.dialogId, currentDialog: action.dialog, messages: messages }
             }
+            debugger
             return state
 
         case SET_USER_FOR_NEW_GROUP_DIALOG:

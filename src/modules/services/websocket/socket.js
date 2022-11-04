@@ -43,18 +43,18 @@ export const socket = {
 
     })
 
-    echo.join(`chat.${1}`)
-      .here((users) => {
-        console.log(users)
-        users.forEach(user => {
+    // echo.join(`chat.${1}`)
+    //   .here((users) => {
+    //     console.log(users)
+    //     users.forEach(user => {
           
-          console.log(user.name)
-        });
+    //       console.log(user.name)
+    //     });
 
-      })
-      .joining((user) => {
-        alert(user.name);
-      })
+    //   })
+    //   .joining((user) => {
+    //     alert(user.name);
+    //   })
     //   .leaving((user) => {
     //     console.log(user);
     //   })
@@ -62,14 +62,6 @@ export const socket = {
     //     console.error(error);
     //   });
 
-
-
-
-    // echo.private('new-message')
-    //   .listen('.SendMessage', (e) => {
-    //     alert(e.message.body)
-    //     console.log(e)
-    //   })
 
 
 

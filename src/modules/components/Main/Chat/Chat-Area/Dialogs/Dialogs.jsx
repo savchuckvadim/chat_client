@@ -4,14 +4,15 @@ import style from './Dialogs.module.css'
 
 const Dialogs = (props) => {
 
-   
+
     return (
         <div className={style.container}>
             <h4 className={style.title}>  dialogs</h4>
             <div className={style.dialogs}>
-                <DialogItems dialogs={props.dialogs}
+                <DialogItems
+                    dialogs={props.dialogs}
                     changeCurrentDialog={props.changeCurrentDialog}
-                  />
+                />
 
             </div>
 
@@ -19,8 +20,9 @@ const Dialogs = (props) => {
                 onClick={() => { props.addPartisipantsInProgress(true) }}
             >  group-dialogs+</h4>
             <div className={style.dialogs}>
-                <DialogItems dialogs={props.groupDialogs}
-                    changeCurrentDialog={props.changeCurrentDialog}/>
+                <DialogItems
+                    dialogs={props.groupDialogs}
+                    changeCurrentDialog={props.changeCurrentDialog} />
             </div>
 
         </div>

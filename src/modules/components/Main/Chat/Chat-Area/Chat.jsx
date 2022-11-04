@@ -1,6 +1,5 @@
 import style from './Chat.module.css'
 import CurrentDialog from './Current-Dialog/Current-Dialog'
-import CurrentDialogContainer from './Current-Dialog/Current-Dialog-Container'
 import DialogsContainer from './Dialogs/Dialogs-Container'
 
 const Chat = (props) => {
@@ -13,7 +12,7 @@ const Chat = (props) => {
                 <DialogsContainer />
             </div>
             <div className={style.currentDialog}>
-                <CurrentDialogContainer />
+                <CurrentDialog />
             </div>
         </div >
 
