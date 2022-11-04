@@ -1,13 +1,14 @@
 .container{
    display: flex;
+   padding-left: 5px;
    flex-direction: column;
-   height:100%;
+   min-height:100%;
 
     
 }
 .dialogs, .groupDialogs{
-    /* min-height: 30vh; */
-    height: 30vh;
+    min-height: 30vh;
+    /* height: 37vh; */
    
 }
 /* .groupDialogs{

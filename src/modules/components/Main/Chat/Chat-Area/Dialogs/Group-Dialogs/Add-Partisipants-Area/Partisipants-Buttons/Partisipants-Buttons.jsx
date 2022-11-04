@@ -8,7 +8,7 @@ const PartisipantsButtons = (props) => {
                 cancel
             </button>
             <button className={style.button}
-            onClick={() => {props.addNewGroupDialog(props.usersForNewGroupDialog, props.newGroupDialogsName)}}
+            onClick={() => {props.addNewGroupDialog(props.participants, props.name)}}
             >
                 save
             </button>

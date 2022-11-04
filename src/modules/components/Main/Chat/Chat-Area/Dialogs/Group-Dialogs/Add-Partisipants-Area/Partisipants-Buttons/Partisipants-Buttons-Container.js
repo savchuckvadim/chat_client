@@ -5,8 +5,8 @@ import PartisipantsButtons from "./Partisipants-Buttons"
 
 const mapStateToProps = (state) => {
     return {
-        newGroupDialogsName: state.dialogs.newGroupDialogsName,
-        usersForNewGroupDialog: state.dialogs.usersForNewGroupDialog,
+        name: state.dialogs.newGroupDialog.name,
+        participants: state.dialogs.newGroupDialog.participants,
     }
 }
 
