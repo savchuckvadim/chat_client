@@ -17,6 +17,7 @@ const Messages = (props) => {
         }
 
     }, [props.messages]);
+    
     return (
         <div className={containerClass}  >
             {/* <ScrollIntoView selector="#messages"> */}

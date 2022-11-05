@@ -80,11 +80,11 @@ export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getS
 
 }
 
-export const sendMessage = (dialogId, body) => async (dispatch) => {
+export const sendMessage = (authUserId,  isGroup, dialogId, body) => async (dispatch) => {
     dispatch(setSendingStatus('sending'))
     const response = await dialogsAPI.sendMessage(dialogId, body)
     dispatch(setSendingStatus('sended'))
-    dispatch(setNewMessage(response.createdMessage))
+    dispatch(setNewMessage(response.createdMessage, authUserId,  isGroup))
     dispatch(setSendingStatus(false))
 }
 
