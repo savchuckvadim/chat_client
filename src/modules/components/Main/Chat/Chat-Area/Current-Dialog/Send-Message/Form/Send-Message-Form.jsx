@@ -3,16 +3,17 @@ import style from './Send-Message-Form.module.css'
 
 const InputMessage = (props) => {
     if (props.isSending) {
+       
         return (
             <div
                 ref={props.setRef}
                 className={style.input}
-                value=''
+                
                 placeholder="Type a message"
-                // contentEditable
+                contentEditable
                 suppressContentEditableWarning={true}
 
-            />
+            >{''}</div>
         )
     }
     return (
