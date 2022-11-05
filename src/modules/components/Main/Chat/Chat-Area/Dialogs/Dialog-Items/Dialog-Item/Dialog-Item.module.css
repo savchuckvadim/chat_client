@@ -22,8 +22,8 @@
 .avatar{
     border-radius: 50%;
     background-color: rgb(0, 0, 255);
-    width: 42px;
-    height: 42px;
+    width: 39px;
+    height: 39px;
     margin: 2px 0 0 2px;
     display: flex;
     justify-content: center;
