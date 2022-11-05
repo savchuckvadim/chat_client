@@ -6,8 +6,9 @@ import SendMessageForm from "./Send-Message-Form"
 
 const mapStateToProps = (state) => {
     return {
-        currentMessage: state.dialogs.currentMessage,
-        currentDialogId: state.dialogs.currentDialogId
+        // currentMessageBody: state.dialogs.currentMessage.body,
+        currentDialogId: state.dialogs.currentDialogId,
+        isSending: state.dialogs.currentMessage.isSending
     }
 }
 

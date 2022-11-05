@@ -1,14 +1,19 @@
 
-.container{
+.container, .container__sending{
     height: 100%;
     max-height: 70vh;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    
+  
     /* justify-content: start; */
     
+
+}
+.container__sending{
+
+    opacity: 59%;
 
 }
 

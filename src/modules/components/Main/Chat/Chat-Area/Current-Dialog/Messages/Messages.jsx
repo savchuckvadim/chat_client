@@ -6,6 +6,8 @@ import NoMessages from './NoMessages/NoMessages'
 
 
 const Messages = (props) => {
+    let containerClass = props.isSending === 'sending' ? style.container__sending : style.container
+
     let ref = useRef(null)
     useLayoutEffect(() => {
 
@@ -16,7 +18,7 @@ const Messages = (props) => {
 
     }, [props.messages]);
     return (
-        <div className={style.container}  >
+        <div className={containerClass}  >
             {/* <ScrollIntoView selector="#messages"> */}
             <div className={style.messages}
                 ref={ref}

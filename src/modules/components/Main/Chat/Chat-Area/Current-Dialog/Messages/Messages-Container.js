@@ -21,7 +21,9 @@ const mapStateToProps = (state) => {
     
     
     return {
-        messages
+        messages,
+        //  isSending:  false/sending/sended/
+        isSending: state.dialogs.currentMessage.isSending
     }
 }
 

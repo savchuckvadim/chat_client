@@ -1,9 +1,33 @@
 import React from 'react';
 import style from './Send-Message-Form.module.css'
 
+const InputMessage = (props) => {
+    if (props.isSending) {
+        return (
+            <div
+                ref={props.setRef}
+                className={style.input}
+                value=''
+                placeholder="Type a message"
+                // contentEditable
+                suppressContentEditableWarning={true}
 
+            />
+        )
+    }
+    return (
+        <div
+            className={style.input}
+            ref={props.setRef}
+            placeholder="Type a message"
+            contentEditable
+            suppressContentEditableWarning={true}
+
+        />
+    )
+}
 class SendMessageForm extends React.Component {
-//TODO: props->dialogId
+    //TODO: props->dialogId
 
     setRef = (ref) => {
         this.ref = ref;
@@ -17,7 +41,7 @@ class SendMessageForm extends React.Component {
         const text = `${this.ref.innerText}`;
         this.props.sendMessage(this.props.currentDialogId, text);
     };
-    
+
     componentDidMount() {
         this.ref.addEventListener('input', this.saveInputValue);
     }
@@ -29,14 +53,7 @@ class SendMessageForm extends React.Component {
         return (
             <div className={style.form}>
                 <div className={style.field}>
-                    <div
-                        className={style.input}
-                        ref={this.setRef}
-                        placeholder="Type a message"
-                        contentEditable
-                        suppressContentEditableWarning={true}
-
-                    />
+                    <InputMessage {...this.props} setRef={this.setRef} />
 
                 </div>
                 <div className={style.button__wrapper}>

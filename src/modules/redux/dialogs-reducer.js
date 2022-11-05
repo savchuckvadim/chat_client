@@ -8,6 +8,7 @@ const SET_DIALOGS = 'dialogs/SET_DIALOGS'
 const SET_CURRENT_DIALOG = 'dialogs/SET_CURRENT_DIALOG'
 const CHANGE_CURRENT_DIALOG = 'dialogs/CHANGE_CURRENT_DIALOG'
 const SET_NEW_MESSAGE = 'dialogs/SET_NEW_MESSAGE'
+const SET_SENDING_STATUS = 'dialogs/SET_SENDING_STATUS'
 const SET_USER_IN_GROUP_DIALOG = 'dialogs/SET_USER_IN_GROUP_DIALOG'
 const PARTICIPANTS_NEW_GROUP_DIALOG = 'dialogs/PARTICIPANTS_NEW_GROUP_DIALOG'
 const SET_NEW_GROUP_DIALOG = 'dialogs/SET_NEW_GROUP_DIALOG'
@@ -22,7 +23,12 @@ const initialState = {
     currentDialogId: undefined,
     currentDialog: null,
     messages: [],
-    currentMessage: '',
+
+    currentMessage: {
+
+        //  isSending:  false/sending/sended/
+        isSending: false
+    },
 
     newGroupDialog: {
         name: '',
@@ -36,6 +42,7 @@ const setDialogs = (dialogs, dialogIdFromUrl) => ({ type: SET_DIALOGS, dialogs, 
 const setCurrentDialog = (dialogId, messages) => ({ type: SET_CURRENT_DIALOG, dialogId, messages })
 export const changeCurrentDialog = (dialog) => ({ type: CHANGE_CURRENT_DIALOG, dialog })
 export const setNewMessage = (message, authUserId, isGroup) => ({ type: SET_NEW_MESSAGE, message, authUserId, isGroup })
+const setSendingStatus = (status) => ({ type: SET_SENDING_STATUS, status }) //status:false, sending, sended
 const setUsersInGroupDialog = (user, dialogId) => ({ type: SET_USER_IN_GROUP_DIALOG, user, dialogId })  //for edit exist group dialog
 export const participantsNewGroupDialog = (participant, bool) => ({ type: PARTICIPANTS_NEW_GROUP_DIALOG, participant, bool })
 const setNewGroupDialog = (groupDialog) => ({ type: SET_NEW_GROUP_DIALOG, groupDialog })
@@ -74,8 +81,11 @@ export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getS
 }
 
 export const sendMessage = (dialogId, body) => async (dispatch) => {
+    dispatch(setSendingStatus('sending'))
     const response = await dialogsAPI.sendMessage(dialogId, body)
+    dispatch(setSendingStatus('sended'))
     dispatch(setNewMessage(response.createdMessage))
+    dispatch(setSendingStatus(false))
 }
 
 export const getMessages = (dialogId) => async (dispatch) => {
@@ -157,7 +167,7 @@ const dialogsReducer = (state = initialState, action) => {
         case PARTICIPANTS_NEW_GROUP_DIALOG:
             let resultUsers
             const checkParticipant = state.newGroupDialog.participants.some(p => p.id === action.participant.id)
-            
+
             if (!checkParticipant && action.bool) {
                 resultUsers = [...state.newGroupDialog.participants, action.participant]
                 // resultUsers.push(action.user)
@@ -166,7 +176,7 @@ const dialogsReducer = (state = initialState, action) => {
                 let resultParticipants = state.newGroupDialog.participants.filter(p => p.id !== action.participant.id)
                 return { ...state, newGroupDialog: { ...state.newGroupDialog, participants: resultParticipants } }
             }
-            
+
             return state
 
         case SET_GROUP_DIALOGS_NAME:
@@ -236,6 +246,11 @@ const dialogsReducer = (state = initialState, action) => {
             }
             return { ...state, groupDialogs: dialogs, messages }
 
+        case SET_SENDING_STATUS:
+            if (state.currentMessage.sendingStatus !== action.status) {
+                return { ...state, currentMessage: { ...state.currentMessage, isSending: action.status } }
+            }
+            return state
 
         default:
             return state;
