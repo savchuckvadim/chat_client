@@ -1,6 +1,7 @@
 import { dialogsAPI } from "../services/api/dialogs-api"
 import { searchDialog } from "../services/utils/dialog-utils"
 import { echo } from "../services/websocket/socket"
+import { CANCEL } from "./group-reducer"
 
 
 
@@ -80,11 +81,11 @@ export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getS
 
 }
 
-export const sendMessage = (authUserId,  isGroup, dialogId, body) => async (dispatch) => {
+export const sendMessage = (authUserId, isGroup, dialogId, body) => async (dispatch) => {
     dispatch(setSendingStatus('sending'))
     const response = await dialogsAPI.sendMessage(dialogId, body)
     dispatch(setSendingStatus('sended'))
-    dispatch(setNewMessage(response.createdMessage, authUserId,  isGroup))
+    dispatch(setNewMessage(response.createdMessage, authUserId, isGroup))
     dispatch(setSendingStatus(false))
 }
 
@@ -178,7 +179,7 @@ const dialogsReducer = (state = initialState, action) => {
             }
 
             return state
-
+//ERROR: id of undefined
         case SET_GROUP_DIALOGS_NAME:
             return { ...state, newGroupDialog: { ...state.newGroupDialog, name: action.value } }
 
@@ -252,6 +253,8 @@ const dialogsReducer = (state = initialState, action) => {
             }
             return state
 
+        case CANCEL: //for cancel add new group dialog
+            return { ...state, newGroupDialog: { ...state.newGroupDialog, name: '', participants: [] } }
         default:
             return state;
     }

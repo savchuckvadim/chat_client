@@ -1,5 +1,6 @@
 import { connect } from "react-redux"
 import { addNewGroupDialog } from "../../../../../../../../redux/dialogs-reducer"
+import { addParticipantsCancel } from "../../../../../../../../redux/group-reducer"
 import PartisipantsButtons from "./Partisipants-Buttons"
 
 
@@ -11,7 +12,8 @@ const mapStateToProps = (state) => {
 }
 
 const PartisipantsButtonsContainer = connect(mapStateToProps, {
-    addNewGroupDialog
+    addNewGroupDialog,
+    addParticipantsCancel
 })(PartisipantsButtons)
 
 export default PartisipantsButtonsContainer
