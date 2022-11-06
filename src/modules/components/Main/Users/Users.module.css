@@ -10,6 +10,7 @@
 }
 
 .users{
+    min-height: 28px;
     margin: 5px;
     width: 97%;
     max-height: 100%;
@@ -17,7 +18,7 @@
     justify-content: flex-start;
     align-items: stretch;
     flex-wrap: wrap;
-    border-radius: 20px;
+    border-radius: 14px;
     overflow: auto;
 
 }
