@@ -47,11 +47,7 @@ const Users = (props) => {
 
       <div className={style.container}>
         <h3>Contacts</h3>
-        {/* <Search
-          inProgress={props.inProgress}
-          addingParticipantsInProgress={props.addingParticipantsInProgress}
-          findUser={props.findUser}
-        /> */}
+        <SearchContainer/>
         <div className={style.users}>
           {
             !props.inProgress

@@ -11,7 +11,9 @@
         width: 220px;
         height: 30px;
         margin: 0 5px;
-        border: solid 0.5px;
+        border: solid 0.5px rgb(88, 155, 249);
         border-radius: 10px;
         cursor: pointer;
+        background-color: rgb(255, 255, 255);
+        color: rgb(88, 155, 249);
     }
