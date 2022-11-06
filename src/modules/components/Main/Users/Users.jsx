@@ -1,9 +1,8 @@
 import { useEffect } from 'react'
 import Preloader from '../../common/Preloader/Preloader'
-import Search from './Search/Search'
 import UserCard from './User-Card/User-Card'
 import style from './Users.module.css'
-
+import SearchContainer from './Search/Search-Container'
 
 const Users = (props) => {
 
@@ -18,9 +17,7 @@ const Users = (props) => {
 
 
         <div className={style.users}>
-          <Search inProgress={props.inProgress}
-            addingParticipantsInProgress={props.addingParticipantsInProgress}
-            findUser={props.findUser} />
+          <SearchContainer/>
           {
             !props.inProgress
               ? props.users.map(user => <UserCard
@@ -50,11 +47,11 @@ const Users = (props) => {
 
       <div className={style.container}>
         <h3>Contacts</h3>
-        <Search
+        {/* <Search
           inProgress={props.inProgress}
           addingParticipantsInProgress={props.addingParticipantsInProgress}
           findUser={props.findUser}
-        />
+        /> */}
         <div className={style.users}>
           {
             !props.inProgress

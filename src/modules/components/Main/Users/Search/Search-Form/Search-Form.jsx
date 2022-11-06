@@ -3,47 +3,56 @@ import style from './Search-Form.module.css'
 
 const SearchForm = (props) => {
 
-    
+    const onSearchChange = (e) => {
+       
+        if (e.target.value) {
+            props.findUser(e.target.value)
+        } else {
+            props.getUsers(1, 10)
+        }
+
+
+    }
+
     return (
         // <div className={style.container}>
-       
-            <Formik
-                initialValues={{ search: ''}}
-            
-       
-            >
-                {({
-                    values,
-                    errors,
-                    touched,
-                    handleChange,
-                    handleBlur,
-                    handleSubmit,
-                    isSubmitting,
-                    /* and other goodies */
-                }) => (
-                    <form className={style.form} >
 
-                        <input
-                            className={style.input}
-                            type="search"
-                            name="search"
-                            onChange={(e) => {
-                                handleChange(e);
-                                console.log (e.target.value)
-                                props.findUser(e.target.value)
-                                // console.log (values.search)
-                            }}
-                            onBlur={handleBlur}
-                            value={values.search}
-                        />
-                        {errors.search && touched.search && errors.search}
+        <Formik
+            initialValues={{ search: '' }}
 
 
+        >
+            {({
+                values,
+                errors,
+                touched,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                isSubmitting,
+                /* and other goodies */
+            }) => (
+                <form className={style.form} >
 
-                    </form>
-                )}
-            </Formik>
+                    <input
+                        className={style.input}
+                        type="search"
+                        name="search"
+                        placeholder="search..."
+                        onChange={(e) => {
+                            handleChange(e)
+                            onSearchChange(e)
+                        }}
+                        onBlur={handleBlur}
+                        value={values.search}
+                    />
+                    {/* {errors.search && touched.search && errors.search} */}
+
+
+
+                </form>
+            )}
+        </Formik>
         // </div>
     )
 }

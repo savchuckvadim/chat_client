@@ -11,6 +11,7 @@ const Search = (props) => {
             <div className={style[typeOfUsers]}>
                 <SearchForm
                     findUser={props.findUser}
+                    getUsers={props.getUsers}
                 />
             </div>
         )
