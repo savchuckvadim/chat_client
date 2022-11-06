@@ -31,6 +31,7 @@ const SearchForm = (props) => {
                             onChange={(e) => {
                                 handleChange(e);
                                 console.log (e.target.value)
+                                props.findUser(e.target.value)
                                 // console.log (values.search)
                             }}
                             onBlur={handleBlur}

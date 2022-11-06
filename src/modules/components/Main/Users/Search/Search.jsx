@@ -9,7 +9,9 @@ const Search = (props) => {
     if (!props.inProgress) {
         return (
             <div className={style[typeOfUsers]}>
-                <SearchForm />
+                <SearchForm
+                    findUser={props.findUser}
+                />
             </div>
         )
     } else {
