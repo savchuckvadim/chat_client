@@ -1,13 +1,15 @@
+import SearchForm from './Search-Form/Search-Form'
 import style from './Search.module.css'
 
 const Search = (props) => {
-    let typeOfUsers =  !props.addingParticipantsInProgress 
-    ? 'container-users' 
-    : 'container-participants' 
+    let typeOfUsers = !props.addingParticipantsInProgress
+        ? 'container-users'
+        : 'container-participants'
+
     if (!props.inProgress) {
         return (
-            <div className={style[typeOfUsers] }>
-                Search
+            <div className={style[typeOfUsers]}>
+                <SearchForm />
             </div>
         )
     } else {
