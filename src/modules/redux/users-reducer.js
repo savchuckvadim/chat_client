@@ -29,7 +29,7 @@ export const getUsers = (currentPage, pageSize) => async (dispatch) => {
 export const findUser = (userName) => async (dispatch) => {
     // dispatch(inProgress(true))
     const response = await usersAPI.findUser(userName)
-    debugger
+    
     dispatch(setUsers(response.users))
     // dispatch(inProgress(false))
 }

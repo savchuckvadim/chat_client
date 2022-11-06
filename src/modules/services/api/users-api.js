@@ -10,7 +10,7 @@ export const usersAPI = {
 
     async findUser(userName){
         const response = await api.get(`find-user/${userName}`)
-        debugger
+        
         return response.data.searchingUsers
     },
     
