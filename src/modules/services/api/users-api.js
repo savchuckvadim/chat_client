@@ -8,6 +8,11 @@ export const usersAPI = {
         return response.data.data.users
     },
 
+    async findUser(userName){
+        const response = await api.get(`find-user/${userName}`)
+        debugger
+    },
+    
     async addContact(userId){
         const response = await api.post('contact', {
             userId,
@@ -20,6 +25,7 @@ export const usersAPI = {
         const response = await api.delete(`contact/${userId}`)
 
         return response.data
-    }
+    },
+    
 
 }

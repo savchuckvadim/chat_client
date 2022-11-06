@@ -20,10 +20,11 @@ const AddPartisipantsArea = (props) => {
 
             <div className={style.partisipants__container}>
                 <div className={style.users__wrapper}>
+
                     <UsersContainer />
                 </div>
                 <div className={style.partisipants__wrapper}>
-                <h3>Participants</h3>
+                    <h3>Participants</h3>
                     <Participants
                         participants={props.participants}
                         addingParticipantsInProgress={props.addingParticipantsInProgress}

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import Preloader from '../../common/Preloader/Preloader'
+import Search from './Search/Search'
 import UserCard from './User-Card/User-Card'
 import style from './Users.module.css'
 
@@ -14,7 +15,10 @@ if(!props.addingParticipantsInProgress){
 
     <div className={style.container}>
       <h3>Users</h3>
+      
+
       <div className={style.users}>
+      <Search inProgress={props.inProgress} addingParticipantsInProgress={props.addingParticipantsInProgress}/>
         {
           !props.inProgress
             ? props.users.map(user => <UserCard 
@@ -44,6 +48,7 @@ if(!props.addingParticipantsInProgress){
 
     <div className={style.container}>
       <h3>Contacts</h3>
+      <Search inProgress={props.inProgress} addingParticipantsInProgress={props.addingParticipantsInProgress} />
       <div className={style.users}>
         {
           !props.inProgress
