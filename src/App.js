@@ -20,6 +20,8 @@ import Start from './modules/components/Start/Start';
 // -> forwarding  to contacts only
 // -> sound notification sound/unsound
 
+// -> paginator
+
 const App = (props) => {
 
   let page = <Preloader />

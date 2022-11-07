@@ -1,0 +1,7 @@
+.container{
+    width: 100px;
+    height: 200px;
+    background-color: rgb(178, 138, 216);
+    position: absolute;
+    z-index: 1000;
+}

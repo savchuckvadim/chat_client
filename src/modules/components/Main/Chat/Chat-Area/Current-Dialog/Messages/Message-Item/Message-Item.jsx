@@ -1,19 +1,30 @@
+import ContextMenu from '../../../../../../common/Context-Menu/Context-Menu'
 import style from './Message-Item.module.css'
 
-const MessageItem = ({ message }) => {
+const MessageItem = ({ message, isContextMenuActive, xPos, yPos, currentMenu, contextMenuToggler }) => {
 
     if (message.isAuthorIsAuth) {
         return (
             <div className={style.myMessage}
                 onContextMenu={(e) => {
                     e.preventDefault()
-                    const xPos = e.pageX + "px";
-                    const yPos = e.pageY + "px";
-                    console.log(xPos)
-                    console.log(yPos)
-                    
+                    if (isContextMenuActive) {
+                        contextMenuToggler(false)
+                    } else {
+                        const xPos = e.pageX + "px";
+                        const yPos = e.pageY + "px";
+                        contextMenuToggler(true, 'message', xPos, yPos)
+                    }
                 }}
             >
+                <ContextMenu
+                    typeOfArea={'message'}
+                    isActive={isContextMenuActive}
+                    xPos={xPos}
+                    yPos={yPos}
+                    currentMenu={currentMenu}
+                    contextMenuToggler={contextMenuToggler}
+                />
                 {message.body}
             </div >
         )

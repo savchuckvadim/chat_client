@@ -17,15 +17,30 @@ const Messages = (props) => {
         }
 
     }, [props.messages]);
-    
+
     return (
-        <div className={containerClass}  >
+        <div className={containerClass}
+            onClick={() => {
+                if (props.isContextMenuActive) {
+                    console.log('contextMenuToggler')
+                    props.contextMenuToggler(false)
+                }
+            }}
+        >
             {/* <ScrollIntoView selector="#messages"> */}
             <div className={style.messages}
                 ref={ref}
             >
                 {props.messages && props.messages.length > 0
-                    ? props.messages.map(message => (<MessageItem key={`message-${message.id}`} message={message} />))
+                    ? props.messages.map(message => (<MessageItem
+                        key={`message-${message.id}`}
+                        message={message}
+                        isContextMenuActive={props.isContextMenuActive}
+                        currentMenu={props.currentMenu}
+                        xPos={props.xPos}
+                        yPos={props.yPos}
+                        contextMenuToggler={props.contextMenuToggler}
+                    />))
                     : <NoMessages />
                 }
             </div>
