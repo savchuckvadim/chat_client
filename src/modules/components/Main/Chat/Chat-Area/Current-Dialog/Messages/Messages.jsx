@@ -3,14 +3,25 @@ import MessageItem from './Message-Item/Message-Item'
 import style from './Messages.module.css'
 import ScrollIntoView from 'react-scroll-into-view'
 import NoMessages from './NoMessages/NoMessages'
+import { motion, useScroll, useSpring } from "framer-motion";
 
 
 const Messages = (props) => {
     let containerClass = props.isSending === 'sending' ? style.container__sending : style.container
 
     let ref = useRef(null)
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["end end"],
+        default: ["end end"]
+      })
+      const scaleX = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001
+      });
     useLayoutEffect(() => {
-
+        // scrollYProgress()
         if (ref.current && props.messages.length > 0) {
 
             ref.current.scrollIntoView(0, 0);
@@ -22,15 +33,18 @@ const Messages = (props) => {
         <div className={containerClass}
             onClick={() => {
                 if (props.isContextMenuActive) {
-                    console.log('contextMenuToggler')
+                    // console.log('contextMenuToggler')
                     props.contextMenuToggler(false)
                 }
             }}
         >
             {/* <ScrollIntoView selector="#messages"> */}
+            
             <div className={style.messages}
                 ref={ref}
+                // style={{ scaleX }}
             >
+               <motion.div className="progress" style={{ scaleX }} />
                 {props.messages && props.messages.length > 0
                     ? props.messages.map(message => (<MessageItem
                         key={`message-${message.id}`}
@@ -39,7 +53,10 @@ const Messages = (props) => {
                         currentMenu={props.currentMenu}
                         xPos={props.xPos}
                         yPos={props.yPos}
+                        currentEntityId={props.currentEntityId}
+
                         contextMenuToggler={props.contextMenuToggler}
+                        
                     />))
                     : <NoMessages />
                 }

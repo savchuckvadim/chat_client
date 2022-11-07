@@ -29,6 +29,7 @@ const mapStateToProps = (state) => {
         currentMenu: state.contextMenu.currentMenu,
         xPos: state.contextMenu.xPos,
         yPos: state.contextMenu.yPos,
+        currentEntityId: state.contextMenu.currentEntityId
     }
 }
 

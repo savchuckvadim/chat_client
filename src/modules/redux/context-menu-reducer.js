@@ -8,7 +8,8 @@ const initialState = {
     yPos: 0,
     messageMenu: ['Forward', 'Edit', 'Delete'],
     groupDialogMenu: ['Edit', 'Delete'],
-    currentMenu: []
+    currentMenu: [],
+    currentEntityId: null
 }
 
 
@@ -18,8 +19,16 @@ export const contextMenuToggler = (
     isActive,
     typeOfArea = null,
     xPos = null,
-    yPos = null
-) => ({ type: CONTEXT_TOGGLE, isActive, typeOfArea, xPos, yPos })
+    yPos = null,
+    currentEntityId
+) => ({
+    type: CONTEXT_TOGGLE,
+    isActive,
+    typeOfArea,
+    xPos,
+    yPos,
+    currentEntityId
+})
 
 
 const contextMenuReducer = (state = initialState, action) => {
@@ -28,7 +37,7 @@ const contextMenuReducer = (state = initialState, action) => {
         case CONTEXT_TOGGLE:
             let currentMenu = []
             if (action.isActive) {
-                
+
                 if (action.typeOfArea === 'message') {
                     currentMenu = [...state.messageMenu]
                 } else if (action.typeOfArea === 'dialog') {
@@ -40,7 +49,8 @@ const contextMenuReducer = (state = initialState, action) => {
                     isActive: action.isActive,
                     xPos: action.xPos,
                     yPos: action.yPos,
-                    currentMenu
+                    currentMenu,
+                    currentEntityId: action.currentEntityId
                 }
 
             }

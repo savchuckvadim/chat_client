@@ -27,7 +27,7 @@
     background-color: white;
     border-radius: 16px;
     display: grid;
-    overflow-y: auto;
+    overflow: scroll;
     /* display: flex;
     flex-direction: column;
     justify-content: start;

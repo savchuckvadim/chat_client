@@ -1,7 +1,10 @@
 .container{
-    width: 100px;
-    height: 200px;
+    width: 150px;
+    height: 100px;
     background-color: rgb(178, 138, 216);
+   border-radius: 10px;
+    z-index: 1000 !important;
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    z-index: 1000;
 }
