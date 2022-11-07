@@ -1,7 +1,7 @@
 .container{
-    margin-top: 15px;
+    margin-top: 3px;
     padding-top: 10px;
-    height: calc(100vh - 50px - 15px - 10px);
+    height: calc(100vh - 50px - 5px - 10px);
     width: 100%;
     
     background-color: white;
