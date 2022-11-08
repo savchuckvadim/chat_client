@@ -12,10 +12,9 @@ const maStateToProps = (state) => {
         dialogs: state.dialogs.dialogs,
         groupDialogs: state.dialogs.groupDialogs,
         isContextMenuActive: state.contextMenu.isActive,
-        xPos: state.contextMenu.xPos,
-        yPos: state.contextMenu.yPos,
         currentMenu: state.contextMenu.currentMenu,
         currentEntityId: state.contextMenu.currentEntityId,
+        currentTypeOfArea:  state.contextMenu.typeOfArea
 
     }
 }

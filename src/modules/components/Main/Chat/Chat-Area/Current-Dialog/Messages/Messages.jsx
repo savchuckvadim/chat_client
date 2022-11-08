@@ -44,17 +44,15 @@ const Messages = (props) => {
                 ref={ref}
                 // style={{ scaleX }}
             >
-               <motion.div className="progress" style={{ scaleX }} />
+              
                 {props.messages && props.messages.length > 0
                     ? props.messages.map(message => (<MessageItem
                         key={`message-${message.id}`}
                         message={message}
                         isContextMenuActive={props.isContextMenuActive}
+                        currentTypeOfArea={props.currentTypeOfArea}
                         currentMenu={props.currentMenu}
-                        xPos={props.xPos}
-                        yPos={props.yPos}
                         currentEntityId={props.currentEntityId}
-
                         contextMenuToggler={props.contextMenuToggler}
                         
                     />))

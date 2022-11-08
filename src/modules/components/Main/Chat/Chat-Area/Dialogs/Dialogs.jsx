@@ -12,12 +12,12 @@ const Dialogs = (props) => {
                 <DialogItems
                     dialogs={props.dialogs}
                     isContextMenuActive={props.isContextMenuActive}
-                    xPos={props.xPos}
-                    yPos={props.yPos}
+                    currentTypeOfArea={props.currentTypeOfArea}
                     currentMenu={props.currentMenu}
                     currentEntityId={props.currentEntityId}
-                    changeCurrentDialog={props.changeCurrentDialog}
+        
                     contextMenuToggler={props.contextMenuToggler}
+                    changeCurrentDialog={props.changeCurrentDialog}
                 />
 
             </div>
@@ -34,12 +34,12 @@ const Dialogs = (props) => {
                 <DialogItems
                     dialogs={props.groupDialogs}
                     isContextMenuActive={props.isContextMenuActive}
-                    xPos={props.xPos}
-                    yPos={props.yPos}
+                    currentTypeOfArea={props.currentTypeOfArea}
                     currentMenu={props.currentMenu}
                     currentEntityId={props.currentEntityId}
-                    changeCurrentDialog={props.changeCurrentDialog}
+        
                     contextMenuToggler={props.contextMenuToggler}
+                    changeCurrentDialog={props.changeCurrentDialog}
                 />
 
             </div>

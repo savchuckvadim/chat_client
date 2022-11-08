@@ -18,15 +18,15 @@ const initialState = {
 export const contextMenuToggler = (
     isActive,
     typeOfArea = null,
-    xPos = null,
-    yPos = null,
+    // xPos = null,
+    // yPos = null,
     currentEntityId
 ) => ({
     type: CONTEXT_TOGGLE,
     isActive,
     typeOfArea,
-    xPos,
-    yPos,
+    // xPos,
+    // yPos,
     currentEntityId
 })
 
@@ -48,8 +48,6 @@ const contextMenuReducer = (state = initialState, action) => {
                     ...state,
                     typeOfArea: action.typeOfArea,
                     isActive: action.isActive,
-                    xPos: action.xPos,
-                    yPos: action.yPos,
                     currentMenu,
                     currentEntityId: action.currentEntityId
                 }

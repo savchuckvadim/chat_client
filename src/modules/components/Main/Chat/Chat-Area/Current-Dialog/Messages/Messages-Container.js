@@ -27,9 +27,8 @@ const mapStateToProps = (state) => {
         isSending: state.dialogs.currentMessage.isSending,
         isContextMenuActive: state.contextMenu.isActive,
         currentMenu: state.contextMenu.currentMenu,
-        xPos: state.contextMenu.xPos,
-        yPos: state.contextMenu.yPos,
-        currentEntityId: state.contextMenu.currentEntityId
+        currentEntityId: state.contextMenu.currentEntityId,
+        currentTypeOfArea:  state.contextMenu.typeOfArea
     }
 }
 

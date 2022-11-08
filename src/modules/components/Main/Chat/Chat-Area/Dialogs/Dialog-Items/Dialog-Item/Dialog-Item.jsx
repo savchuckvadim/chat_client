@@ -3,15 +3,14 @@ import { onRightClick } from '../../../../../../../utils/context-menu-utils'
 import ContextMenu from '../../../../../../common/Context-Menu/Context-Menu'
 import style from './Dialog-Item.module.css'
 
-const DialogItem = ({ 
+const DialogItem = ({
     dialog,
-     isContextMenuActive, 
-     xPos, 
-     yPos, 
-     currentMenu, 
-     currentEntityId, 
-     changeCurrentDialog, 
-     contextMenuToggler }) => {
+    isContextMenuActive,
+    currentTypeOfArea,
+    currentMenu,
+    currentEntityId,
+    contextMenuToggler,
+    changeCurrentDialog }) => {
 
 
     let contextMenu = null
@@ -22,20 +21,19 @@ const DialogItem = ({
             name = dialog.dialogName
             contextMenu = <ContextMenu
                 entityId={dialog.dialogId}
-                typeOfArea={'dialog'}
-                isActive={isContextMenuActive}
-                xPos={xPos}
-                yPos={yPos}
-                currentMenu={currentMenu}
                 currentEntityId={currentEntityId}
-                contextMenuToggler={contextMenuToggler}
+                entityTypeOfArea={'dialog'}
+                currentTypeOfArea={currentTypeOfArea}
+                isActive={isContextMenuActive}
+                currentMenu={currentMenu}
+               
             />
 
         }
         let initials = `${name[0]}${name[name.length - 1]}`.toUpperCase()
         let title = <h3 className={style.name}>{name}</h3>
 
-
+        
         return (
             <NavLink to={`${dialog.dialogId}`}
                 onClick={() => {

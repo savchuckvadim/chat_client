@@ -2,7 +2,14 @@ import { onRightClick } from '../../../../../../../utils/context-menu-utils'
 import ContextMenu from '../../../../../../common/Context-Menu/Context-Menu'
 import style from './Message-Item.module.css'
 
-const MessageItem = ({ message, isContextMenuActive, xPos, yPos, currentMenu, currentEntityId, contextMenuToggler }) => {
+const MessageItem = ({ 
+    message, 
+    isContextMenuActive,
+    currentTypeOfArea, 
+    currentEntityId,  
+    currentMenu, 
+    contextMenuToggler 
+}) => {
 
     let messageClass = style.myMessage
     if (!message.isAuthorIsAuth) {
@@ -15,13 +22,11 @@ const MessageItem = ({ message, isContextMenuActive, xPos, yPos, currentMenu, cu
         >
             <ContextMenu
                 entityId={message.id}
-                typeOfArea={'message'}
-                isActive={isContextMenuActive}
-                xPos={xPos}
-                yPos={yPos}
-                currentMenu={currentMenu}
                 currentEntityId={currentEntityId}
-                contextMenuToggler={contextMenuToggler}
+                entityTypeOfArea={'message'}
+                currentTypeOfArea={currentTypeOfArea}
+                isActive={isContextMenuActive}
+                currentMenu={currentMenu} 
             />
             <div className={style.body}>{message.body}</div>
         </div >

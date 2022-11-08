@@ -8,6 +8,7 @@
    flex-direction: row;
    cursor: pointer;
    margin-bottom: 2px;
+   position: relative;
   
 }
 .text__wrapper{

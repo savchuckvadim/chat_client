@@ -6,21 +6,24 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 
 const ContextMenu = ({
-    typeOfArea,
-    isActive,
-    xPos,
-    yPos,
-    currentMenu,
     entityId,
     currentEntityId,
-    contextMenuToggler
+    entityTypeOfArea,
+    currentTypeOfArea,
+    isActive,
+    currentMenu,
+
 }) => {
     const dinamicStyle = {
-        display: isActive && entityId === currentEntityId ? 'flex' : 'none',
+        display: isActive &&
+            entityTypeOfArea === currentTypeOfArea &&
+            entityId === currentEntityId
+            ? 'flex'
+            : 'none',
         top: 20,
         left: 20,
     }
-    
+
     return (
         <div style={dinamicStyle} className={style.container}>
             <Paper >
