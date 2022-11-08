@@ -17,19 +17,17 @@ const ContextMenu = ({
 }) => {
     const dinamicStyle = {
         display: isActive && entityId === currentEntityId ? 'flex' : 'none',
-        top: 0,
-        left: `calc(${xPos} - 42vw)`,
+        top: 20,
+        left: 20,
     }
+    
     return (
         <div style={dinamicStyle} className={style.container}>
-            <Paper 
-            // sx={{ width: 320, maxWidth: '100%' }}
-
-            >
+            <Paper >
                 <MenuList>
-                    {currentMenu.map(item => (
-                        <MenuItem>
-                            <ListItemText>{item}</ListItemText>
+                    {currentMenu.map((item, index) => (
+                        <MenuItem key={`menu-item-${index}`}>
+                            <ListItemText key={`List-Item-Text-${index}`}>{item}</ListItemText>
                         </MenuItem>
 
                     ))}

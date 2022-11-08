@@ -5,10 +5,11 @@ const MessageItem = ({ message, isContextMenuActive, xPos, yPos, currentMenu, cu
 
     const onRightClick = (e) => {
         if (e) {
+            
             e.preventDefault()
-
             const xPos = e.pageX + "px";
             const yPos = e.pageY + "px";
+            debugger
             contextMenuToggler(true, 'message', xPos, yPos, message.id)
 
         }
@@ -17,7 +18,7 @@ const MessageItem = ({ message, isContextMenuActive, xPos, yPos, currentMenu, cu
     if (!message.isAuthorIsAuth) {
         messageClass = style.message
     }
-
+    
     return (
         <div className={messageClass}
             onContextMenu={(e) => { onRightClick(e) }}
