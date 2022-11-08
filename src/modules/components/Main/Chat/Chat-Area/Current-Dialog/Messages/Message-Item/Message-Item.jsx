@@ -6,13 +6,11 @@ const MessageItem = ({ message, isContextMenuActive, xPos, yPos, currentMenu, cu
     const onRightClick = (e) => {
         if (e) {
             e.preventDefault()
-            if (isContextMenuActive) {
-                contextMenuToggler(true, 'message', xPos, yPos, message.id)
-            } else {
-                const xPos = e.pageX + "px";
-                const yPos = e.pageY + "px";
-                contextMenuToggler(true, 'message', xPos, yPos, message.id)
-            }
+
+            const xPos = e.pageX + "px";
+            const yPos = e.pageY + "px";
+            contextMenuToggler(true, 'message', xPos, yPos, message.id)
+
         }
     }
     let messageClass = style.myMessage

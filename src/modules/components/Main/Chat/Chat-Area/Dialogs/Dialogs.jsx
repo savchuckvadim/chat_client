@@ -4,32 +4,58 @@ import style from './Dialogs.module.css'
 
 const Dialogs = (props) => {
 
+    const allDialogs = [
+        {
+            title: <h4 className={style.title}>  dialogs</h4>,
 
-    return (
-        <div className={style.container}>
-            <h4 className={style.title}>  dialogs</h4>
-            <div className={style.dialogs}>
+            dialogs: < div className={style.dialogs} >
                 <DialogItems
                     dialogs={props.dialogs}
+                    isContextMenuActive={props.isContextMenuActive}
+                    xPos={props.xPos}
+                    yPos={props.yPos}
+                    currentMenu={props.currentMenu}
+                    currentEntityId={props.currentEntityId}
                     changeCurrentDialog={props.changeCurrentDialog}
+                    contextMenuToggler={props.contextMenuToggler}
                 />
 
             </div>
-
-            <h4 className={style.title__group}
+        },
+        {
+            title: <h4 className={style.title__group}
                 onClick={() => {
 
                     props.addParticipantsInProgress(true)
                 }}
-            >  group-dialogs+</h4>
-            <div className={style.dialogs}>
+            >  group-dialogs+</h4>,
+
+            dialogs: < div className={style.dialogs} >
                 <DialogItems
                     dialogs={props.groupDialogs}
-                    changeCurrentDialog={props.changeCurrentDialog} />
+                    isContextMenuActive={props.isContextMenuActive}
+                    xPos={props.xPos}
+                    yPos={props.yPos}
+                    currentMenu={props.currentMenu}
+                    currentEntityId={props.currentEntityId}
+                    changeCurrentDialog={props.changeCurrentDialog}
+                    contextMenuToggler={props.contextMenuToggler}
+                />
+
             </div>
+        },
+
+    ]
+
+    return (
+        <div className={style.container}>
+
+            {allDialogs[0].title}
+            {allDialogs[0].dialogs}
+            {allDialogs[1].title}
+            {allDialogs[1].dialogs}
 
         </div>
     )
 }
-
 export default Dialogs

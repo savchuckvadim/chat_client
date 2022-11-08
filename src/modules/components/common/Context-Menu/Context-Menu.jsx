@@ -5,26 +5,6 @@ import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 
-// const ContextMenu = ({ typeOfArea, isActive, xPos, yPos, currentMenu, contextMenuToggler }) => {
-
-//     let dinamicStyle = {
-//         display: isActive ? 'flex' : 'none',
-//         top: xPos,
-//         left: yPos,
-//     }
-//     return (
-//         <div style={dinamicStyle} className={style.container}>
-//             {currentMenu.map(item => (<div>{item}</div>))}
-//         </div>
-//     )
-// }
-
-// export default ContextMenu
-
-
-
-
-
 const ContextMenu = ({
     typeOfArea,
     isActive,
@@ -38,7 +18,7 @@ const ContextMenu = ({
     const dinamicStyle = {
         display: isActive && entityId === currentEntityId ? 'flex' : 'none',
         top: 0,
-        left: `calc(${xPos} - 250px)`,
+        left: `calc(${xPos} - 42vw)`,
     }
     return (
         <div style={dinamicStyle} className={style.container}>
