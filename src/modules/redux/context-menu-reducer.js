@@ -43,7 +43,7 @@ const contextMenuReducer = (state = initialState, action) => {
                 } else if (action.typeOfArea === 'dialog') {
                     currentMenu = [...state.groupDialogMenu]
                 }
-                debugger
+                
                 return {
                     ...state,
                     typeOfArea: action.typeOfArea,
@@ -55,7 +55,7 @@ const contextMenuReducer = (state = initialState, action) => {
                 }
 
             }
-            debugger
+            
             return { ...state, typeOfArea: null, isActive: false, xPos: 0, yPos: 0, currentMenu }
 
         default:

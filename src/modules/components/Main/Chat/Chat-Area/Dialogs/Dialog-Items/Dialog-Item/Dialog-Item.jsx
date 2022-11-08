@@ -1,18 +1,18 @@
 import { NavLink } from 'react-router-dom'
+import { onRightClick } from '../../../../../../../utils/context-menu-utils'
 import ContextMenu from '../../../../../../common/Context-Menu/Context-Menu'
 import style from './Dialog-Item.module.css'
 
-const DialogItem = ({ dialog, changeCurrentDialog, isContextMenuActive, xPos, yPos, currentMenu, currentEntityId,  contextMenuToggler }) => {
-    const onRightClick = (e) => {
-        if (e) {
-            e.preventDefault()
+const DialogItem = ({ 
+    dialog,
+     isContextMenuActive, 
+     xPos, 
+     yPos, 
+     currentMenu, 
+     currentEntityId, 
+     changeCurrentDialog, 
+     contextMenuToggler }) => {
 
-            const xPos = e.pageX + "px";
-            const yPos = e.pageY + "px";
-            contextMenuToggler(true, 'dialog', xPos, yPos, dialog.id)
-
-        }
-    }
 
     let contextMenu = null
     if (dialog.dialogsUsers[0]) {
@@ -21,7 +21,7 @@ const DialogItem = ({ dialog, changeCurrentDialog, isContextMenuActive, xPos, yP
         if (dialog.isGroup) {
             name = dialog.dialogName
             contextMenu = <ContextMenu
-                entityId={dialog.id}
+                entityId={dialog.dialogId}
                 typeOfArea={'dialog'}
                 isActive={isContextMenuActive}
                 xPos={xPos}
@@ -42,6 +42,7 @@ const DialogItem = ({ dialog, changeCurrentDialog, isContextMenuActive, xPos, yP
 
                     changeCurrentDialog(dialog)
                 }}
+                onContextMenu={(e) => { onRightClick(e, true, 'dialog', dialog.dialogId, contextMenuToggler) }}
             >
 
                 <div className={style.item}>
@@ -55,7 +56,7 @@ const DialogItem = ({ dialog, changeCurrentDialog, isContextMenuActive, xPos, yP
                     </div>
 
 
-
+                    {contextMenu}
                 </div>
             </NavLink>
         )
