@@ -22,6 +22,7 @@ const unContacted = (deletedContactId) => ({ type: DELETE_CONTACT, deletedContac
 export const getUsers = (currentPage, pageSize) => async (dispatch) => {
     dispatch(inProgress(true))
     const users = await usersAPI.getUsers(currentPage, pageSize)
+    
     dispatch(setUsers(users))
     dispatch(inProgress(false))
 

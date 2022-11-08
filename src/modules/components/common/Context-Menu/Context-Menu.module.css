@@ -1,8 +1,8 @@
 .container{
     width: 150px;
-    height: 100px;
-    background-color: rgb(178, 138, 216);
-   border-radius: 10px;
+    /* height: 100px; */
+    /* background-color: rgb(178, 138, 216); */
+   border-radius: 10px !important;
     z-index: 1000 !important;
     display: flex;
     flex-direction: column;

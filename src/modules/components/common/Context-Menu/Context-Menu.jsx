@@ -25,8 +25,8 @@ const ContextMenu = ({
     }
 
     return (
-        <div style={dinamicStyle} className={style.container}>
-            <Paper >
+        // <div  className={style.container}>
+            <Paper style={dinamicStyle} className={style.container}>
                 <MenuList>
                     {currentMenu.map((item, index) => (
                         <MenuItem key={`menu-item-${index}`}>
@@ -37,7 +37,7 @@ const ContextMenu = ({
 
                 </MenuList>
             </Paper>
-        </div>
+        // </div>
     );
 }
 
