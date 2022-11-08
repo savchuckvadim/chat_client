@@ -1,10 +1,12 @@
 .container{
     margin-top: 150px;
+    /* width: 234px; */
 }
 .form{
     display: flex;
     flex-direction: column;
     height:60vh;
+    margin-top: 30px;
     margin-bottom: 150px;
     
     color: white;
@@ -12,7 +14,8 @@
 }
 
 .button{
-    width: 217px;
+    /* padding: 0 7px; */
+    width: 220px;
     height: 35px;
     /* padding: 0 7px; */
     border: 2px solid rgb(20, 204, 255);
@@ -26,7 +29,7 @@
 }
 .button:hover{
     background: rgb(131,58,180);
-    background: -moz-linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+    background: -moz-linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgb(69, 252, 246) 100%);
     background: -webkit-linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
     background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#833ab4",endColorstr="#fcb045",GradientType=1);
@@ -55,7 +58,7 @@ color: rgb(255, 255, 255);
 }
 .input{
     height: 30px;
-    width: 200px;
+    width: 203px;
     padding: 0 7px;
     border: none;
     outline: none;

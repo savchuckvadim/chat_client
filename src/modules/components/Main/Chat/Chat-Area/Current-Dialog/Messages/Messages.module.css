@@ -27,11 +27,8 @@
     background-color: white;
     border-radius: 16px;
     display: grid;
-    overflow: scroll;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: flex-start; */
+    overflow-y: auto;
+
 }
 
 /* .message, .myMessage{
