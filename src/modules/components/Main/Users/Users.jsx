@@ -10,31 +10,60 @@ const Users = (props) => {
     props.getUsers(1, 10)
   }, [])
   if (!props.addingParticipantsInProgress) {
-    return (
+    if (!props.isMessageForwarding) {
+      return (
 
-      <div className={style.container}>
-        <h3>Users</h3>
+        <div className={style.container}>
+          <h3>Users</h3>
 
 
+          <div className={style.users}>
+            <SearchContainer />
+            {
+              !props.inProgress
+                ? props.users.map(user => <UserCard
+                  key={user.id}
+                  user={user}
+                  addingParticipantsInProgress={props.addingParticipantsInProgress}
+                  participant={props.participant}
+                  addDeleteContact={props.addDeleteContact}
+                  setParticipant={props.setParticipant}
+                  isMessageForwarding={props.isMessageForwarding}
+                />)
+                : <Preloader />
+            }
+          </div>
+        </div>
+
+      )
+    } else {
+      return (
         <div className={style.users}>
-          <SearchContainer/>
+          <SearchContainer />
           {
             !props.inProgress
-              ? props.users.map(user => <UserCard
-                key={user.id}
-                user={user}
-                // name={user.name}
-                // isContacted={user.isContacted}
-                addDeleteContact={props.addDeleteContact}
-                // deleteContact={props.deleteContact}
+              ? props.dialogs.map(dialog => <UserCard
+                key={dialog.id}
+                user={dialog.dialogsUsers[0]}
+                dialog={dialog}
                 addingParticipantsInProgress={props.addingParticipantsInProgress}
+                participant={props.participant}
+                addDeleteContact={props.addDeleteContact}
+                setParticipant={props.setParticipant}
+                isMessageForwarding={props.isMessageForwarding}
               />)
               : <Preloader />
           }
         </div>
-      </div>
+      )
 
-    )
+
+
+
+
+
+    }
+
   } else {
     let contacts = []
     props.users.forEach(user => {
@@ -47,7 +76,7 @@ const Users = (props) => {
 
       <div className={style.container}>
         <h3>Contacts</h3>
-        <SearchContainer/>
+        <SearchContainer />
         <div className={style.users}>
           {
             !props.inProgress

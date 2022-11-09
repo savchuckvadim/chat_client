@@ -1,7 +1,7 @@
 .container{
     margin: 6px;
     padding: 15px;
-    height: 200px;
+    
     width: 109px;
     display: flex;
     flex-direction: column;
@@ -13,7 +13,7 @@
     border-radius: 16px;
     outline:1px solid  rgb(88, 155, 249);
     outline-offset:-1px; 
-  color: rgb(44, 90, 155);
+    color: rgb(44, 90, 155);
 
 }
 

@@ -6,9 +6,10 @@ const UserButton = ({
     user,
     addingParticipantsInProgress,
     participant = false, // participant={true} in create groupe dialog
+    isMessageForwarding,
     addDeleteContact = null, // if addingParticipantsInProgress === false,
     setParticipant = null, // add/delete participants of creating groupe chat, if addingParticipantsInProgress === false,
-   
+
 
 }) => {
 
@@ -16,17 +17,22 @@ const UserButton = ({
     let buttonStyle = style.contact
     let buttonName = '+add contact'
     let onButtonClick = addDeleteContact
-  
 
+    
     if (!participant) {
         if (user.isContacted) {
+          
             buttonStyle = style.nocontact
             buttonName = 'del contact'
-            
+
 
             if (addingParticipantsInProgress) {
                 buttonName = 'add to group'
                 onButtonClick = () => { setParticipant(user, true) }
+            }
+
+            if (isMessageForwarding) {
+                buttonName = 'send'
             }
         } else {
 
@@ -35,7 +41,16 @@ const UserButton = ({
         buttonName = 'delete'
         onButtonClick = () => { setParticipant(user, false) }
     }
-
+    if (isMessageForwarding) {
+        buttonName = 'send'
+        // onButtonClick = sendMessage(
+        //     authUserId, 
+        //     isGroup, 
+        //     dialogId, 
+        //     body, 
+        //     isForwarded
+        //     )
+    }
 
     return (<button
         className={buttonStyle}

@@ -10,7 +10,8 @@ const mapStateToProps = (state) => {
         inProgress: state.users.inProgress,
         addingParticipantsInProgress: state.group.addingParticipantsInProgress,
         participants: state.dialogs.newGroupDialog.participants,
-        isMessageForwarding: state.dialogs.isMessageForwarding
+        isMessageForwarding: state.dialogs.isMessageForwarding,
+        dialogs:  state.dialogs.dialogs
     }
 }
 

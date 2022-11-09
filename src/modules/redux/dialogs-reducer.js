@@ -15,6 +15,8 @@ const SET_GROUP_DIALOGS_NAME = 'dialogs/SET_GROUP_DIALOGS_NAME'
 const FORWARDING_MESSAGE = 'dialogs/FORWARDING_MESSAGE'
 const FORWARD_MESSAGE = 'dialogs/FORWARD_MESSAGE'
 
+
+
 const initialState = {
     dialogs: [],
     groupDialogs: [],
@@ -51,7 +53,9 @@ export const setGroupDialogsName = (value) => ({ type: SET_GROUP_DIALOGS_NAME, v
 //AC for context-menu
 
 export const changeForwardingMessageStatus = (bool) => ({ type: FORWARDING_MESSAGE, bool })
+// export forwardMessage = ()
 
+ 
 // THUNKS
 
 export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getState) => {
@@ -83,9 +87,9 @@ export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getS
 
 }
 
-export const sendMessage = (authUserId, isGroup, dialogId, body) => async (dispatch) => {
+export const sendMessage = (authUserId, isGroup, dialogId, body, isForwarded) => async (dispatch) => {
     dispatch(setSendingStatus('sending'))
-    const response = await dialogsAPI.sendMessage(dialogId, body)
+    const response = await dialogsAPI.sendMessage(dialogId, body, isForwarded)
     dispatch(setSendingStatus('sended'))
     dispatch(setNewMessage(response.createdMessage, authUserId, isGroup))
     dispatch(setSendingStatus(false))
