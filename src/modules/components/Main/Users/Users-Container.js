@@ -18,7 +18,6 @@ const mapStateToProps = (state) => {
 const UsersContainer = connect(mapStateToProps, {
     getUsers,
     addDeleteContact,
-    
     setParticipant,
     findUser
 })(Users)

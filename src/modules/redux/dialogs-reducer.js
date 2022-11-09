@@ -3,8 +3,6 @@ import { searchDialog } from "../services/utils/dialog-utils"
 import { echo } from "../services/websocket/socket"
 import { CANCEL } from "./group-reducer"
 
-
-
 const SET_DIALOGS = 'dialogs/SET_DIALOGS'
 const SET_CURRENT_DIALOG = 'dialogs/SET_CURRENT_DIALOG'
 const CHANGE_CURRENT_DIALOG = 'dialogs/CHANGE_CURRENT_DIALOG'
