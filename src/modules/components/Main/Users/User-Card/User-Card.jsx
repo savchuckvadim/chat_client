@@ -11,7 +11,7 @@ const UserCard = (props) => {
     return (
         <div
             style={{
-                height: 200
+                height: props.isMessageForwarding ? 120 :200
             }} className={style.container}>
             <p>{props.user.name}</p>
             <UserButton
