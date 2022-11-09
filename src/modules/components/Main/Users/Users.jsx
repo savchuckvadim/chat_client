@@ -45,12 +45,17 @@ const Users = (props) => {
               ? props.dialogs.map(dialog => <UserCard
                 key={dialog.id}
                 user={dialog.dialogsUsers[0]}
-                dialog={dialog}
                 addingParticipantsInProgress={props.addingParticipantsInProgress}
                 participant={props.participant}
+                isMessageForwarding={props.isMessageForwarding}
+
+                authUser={props.authUser}
+                dialog={dialog}
+                forwardingBody={props.forwardingBody}
                 addDeleteContact={props.addDeleteContact}
                 setParticipant={props.setParticipant}
-                isMessageForwarding={props.isMessageForwarding}
+                sendMessage={props.sendMessage}
+               
               />)
               : <Preloader />
           }

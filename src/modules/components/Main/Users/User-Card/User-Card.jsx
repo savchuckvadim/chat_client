@@ -11,16 +11,20 @@ const UserCard = (props) => {
     return (
         <div
             style={{
-                height: props.isMessageForwarding ? 120 :200
+                height: props.isMessageForwarding ? 120 : 200
             }} className={style.container}>
             <p>{props.user.name}</p>
             <UserButton
+                authUser={props.authUser}
                 user={props.user}
                 addingParticipantsInProgress={props.addingParticipantsInProgress}
                 participant={props.participant}
                 addDeleteContact={props.addDeleteContact}
                 setParticipant={props.setParticipant}
                 isMessageForwarding={props.isMessageForwarding}
+                forwardingBody={props.forwardingBody}
+                dialog={props.dialog} //dialog or undefined
+                sendMessage={props.sendMessage}
             />
         </div>
     )

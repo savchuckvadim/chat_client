@@ -6,6 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 
 const ContextMenu = ({
+    message = null,
     entityId,
     currentEntityId,
     entityTypeOfArea,
@@ -28,17 +29,20 @@ const ContextMenu = ({
 
 
     const contextAction = (
-        currentTypeOfArea, currentEntityId, 
+        currentTypeOfArea, currentEntityId,
         nameOfAction
-        ) => {
+    ) => {
         if (currentTypeOfArea === 'message') {
 
-            if(nameOfAction === 'Forward'){
-                changeForwardingMessageStatus(true)
-            }else if(nameOfAction === 'Edit'){
+            if (nameOfAction === 'Forward') {
+                if(message && message.body){
+                    changeForwardingMessageStatus(true,  message.body)
+                }
                 
-            }else if(nameOfAction === 'Forward'){
-                
+            } else if (nameOfAction === 'Edit') {
+
+            } else if (nameOfAction === 'Forward') {
+
             }
         }
 

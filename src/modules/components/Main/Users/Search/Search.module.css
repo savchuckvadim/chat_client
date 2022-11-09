@@ -1,6 +1,6 @@
 .container-users, .container-participants{
     padding-left: 10px;
-    margin:  0 2px 0 2px ;
+    margin:  2px 0 20px  2px ;
     height: 28px;
     display: flex;
     justify-content: start;

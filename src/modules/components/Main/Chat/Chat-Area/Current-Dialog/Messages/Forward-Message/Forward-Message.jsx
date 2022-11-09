@@ -7,11 +7,11 @@ const ForwardMessage = (props) => {
     return (props.isMessageForwarding && <>
         <div className={style.container}
             onClick={() =>
-                {props.changeForwardingMessageStatus(false)}
+                props.changeForwardingMessageStatus(false, '')
             }
             onContextMenu={(e) => {
                 e.preventDefault()
-                props.changeForwardingMessageStatus(false)
+                props.changeForwardingMessageStatus(false, '')
             }}
         >
 

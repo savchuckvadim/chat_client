@@ -3,13 +3,16 @@ import style from './User-Button.module.css'
 
 // const UserButton = (props) => {
 const UserButton = ({
+    authUser,
     user,
+    dialog = null,
     addingParticipantsInProgress,
     participant = false, // participant={true} in create groupe dialog
     isMessageForwarding,
+    forwardingBody,
     addDeleteContact = null, // if addingParticipantsInProgress === false,
     setParticipant = null, // add/delete participants of creating groupe chat, if addingParticipantsInProgress === false,
-
+    sendMessage
 
 }) => {
 
@@ -18,10 +21,10 @@ const UserButton = ({
     let buttonName = '+add contact'
     let onButtonClick = addDeleteContact
 
-    
+
     if (!participant) {
         if (user.isContacted) {
-          
+
             buttonStyle = style.nocontact
             buttonName = 'del contact'
 
@@ -43,13 +46,16 @@ const UserButton = ({
     }
     if (isMessageForwarding) {
         buttonName = 'send'
-        // onButtonClick = sendMessage(
-        //     authUserId, 
-        //     isGroup, 
-        //     dialogId, 
-        //     body, 
-        //     isForwarded
-        //     )
+        onButtonClick = () => {
+            
+            sendMessage(
+                authUser.id,
+                dialog.isGroup,
+                dialog.dialogId,
+                forwardingBody,
+                true  //isForwarded
+            )
+        }
     }
 
     return (<button

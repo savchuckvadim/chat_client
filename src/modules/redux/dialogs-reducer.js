@@ -35,7 +35,11 @@ const initialState = {
         name: '',
         participants: []
     },
-    isMessageForwarding: false,
+    forwardingMessage: {
+        inProgress: false,
+        body: ''
+    }
+
 
 }
 
@@ -52,10 +56,10 @@ export const setGroupDialogsName = (value) => ({ type: SET_GROUP_DIALOGS_NAME, v
 
 //AC for context-menu
 
-export const changeForwardingMessageStatus = (bool) => ({ type: FORWARDING_MESSAGE, bool })
+export const changeForwardingMessageStatus = (bool, messageBody) => ({ type: FORWARDING_MESSAGE, bool, messageBody })
 // export forwardMessage = ()
 
- 
+
 // THUNKS
 
 export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getState) => {
@@ -262,8 +266,11 @@ const dialogsReducer = (state = initialState, action) => {
 
         //context-menu
         case FORWARDING_MESSAGE:
+            
             if (state.isMessageForwarding !== action.bool) {
-                return { ...state, isMessageForwarding: action.bool }
+
+                let updatingForwardingMessage = { ...state.forwardingMessage, inProgress: action.bool, body: action.messageBody }
+                return { ...state, forwardingMessage: updatingForwardingMessage }
             }
             return state
 
