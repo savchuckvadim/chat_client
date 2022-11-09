@@ -14,10 +14,12 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {
+ const UsersContainer = connect(mapStateToProps, {
     getUsers,
     addContact,
     deleteContact,
     participantsNewGroupDialog,
     findUser
 })(Users)
+
+export default UsersContainer

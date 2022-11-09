@@ -13,6 +13,8 @@ const ContextMenu = ({
     isActive,
     currentMenu,
 
+    changeForwardingMessageStatus,
+
 }) => {
     const dinamicStyle = {
         display: isActive &&
@@ -24,19 +26,41 @@ const ContextMenu = ({
         left: 20,
     }
 
+
+    const contextAction = (
+        currentTypeOfArea, currentEntityId, 
+        nameOfAction
+        ) => {
+        if (currentTypeOfArea === 'message') {
+
+            if(nameOfAction === 'Forward'){
+                changeForwardingMessageStatus(true)
+            }else if(nameOfAction === 'Edit'){
+                
+            }else if(nameOfAction === 'Forward'){
+                
+            }
+        }
+
+    }
     return (
         // <div  className={style.container}>
-            <Paper style={dinamicStyle} className={style.container}>
-                <MenuList>
-                    {currentMenu.map((item, index) => (
-                        <MenuItem key={`menu-item-${index}`}>
-                            <ListItemText key={`List-Item-Text-${index}`}>{item}</ListItemText>
-                        </MenuItem>
+        <Paper style={dinamicStyle} className={style.container}>
+            <MenuList>
+                {currentMenu.map((item, index) => (
+                    <MenuItem key={`menu-item-${index}`}
+                        onClick={() => {
+                            contextAction(
+                                currentTypeOfArea, currentEntityId, item)
+                        }}
+                    >
+                        <ListItemText key={`List-Item-Text-${index}`}>{item}</ListItemText>
+                    </MenuItem>
 
-                    ))}
+                ))}
 
-                </MenuList>
-            </Paper>
+            </MenuList>
+        </Paper>
         // </div>
     );
 }

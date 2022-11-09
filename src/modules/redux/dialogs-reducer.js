@@ -14,8 +14,8 @@ const SET_USER_IN_GROUP_DIALOG = 'dialogs/SET_USER_IN_GROUP_DIALOG'
 const PARTICIPANTS_NEW_GROUP_DIALOG = 'dialogs/PARTICIPANTS_NEW_GROUP_DIALOG'
 const SET_NEW_GROUP_DIALOG = 'dialogs/SET_NEW_GROUP_DIALOG'
 const SET_GROUP_DIALOGS_NAME = 'dialogs/SET_GROUP_DIALOGS_NAME'
-
-
+const FORWARDING_MESSAGE = 'dialogs/FORWARDING_MESSAGE'
+const FORWARD_MESSAGE = 'dialogs/FORWARD_MESSAGE'
 
 const initialState = {
     dialogs: [],
@@ -35,6 +35,7 @@ const initialState = {
         name: '',
         participants: []
     },
+    isForwardedMessage: false,
 
 }
 
@@ -49,6 +50,9 @@ export const participantsNewGroupDialog = (participant, bool) => ({ type: PARTIC
 const setNewGroupDialog = (groupDialog) => ({ type: SET_NEW_GROUP_DIALOG, groupDialog })
 export const setGroupDialogsName = (value) => ({ type: SET_GROUP_DIALOGS_NAME, value })
 
+//AC for context-menu
+
+export const changeForwardingMessageStatus = (bool) => ({ type: FORWARDING_MESSAGE, bool })
 
 // THUNKS
 
@@ -179,7 +183,7 @@ const dialogsReducer = (state = initialState, action) => {
             }
 
             return state
-//ERROR: id of undefined
+        //ERROR: id of undefined
         case SET_GROUP_DIALOGS_NAME:
             return { ...state, newGroupDialog: { ...state.newGroupDialog, name: action.value } }
 
@@ -252,6 +256,18 @@ const dialogsReducer = (state = initialState, action) => {
                 return { ...state, currentMessage: { ...state.currentMessage, isSending: action.status } }
             }
             return state
+
+
+        //context-menu
+        case FORWARDING_MESSAGE:
+            if (state.isForwardedMessage !== action.bool) {
+                return { ...state, isForwardedMessage: action.bool }
+            }
+            return state
+
+        case FORWARD_MESSAGE:
+
+
 
         case CANCEL: //for cancel add new group dialog
             return { ...state, newGroupDialog: { ...state.newGroupDialog, name: '', participants: [] } }
