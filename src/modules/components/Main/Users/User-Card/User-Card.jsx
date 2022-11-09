@@ -3,13 +3,11 @@ import style from './User-Card.module.css'
 
 const UserCard = (props) => {
     
-
+//TODO:
     if (props.isMessageForwarding) {
-        button = <UserButton
-            user={props.user}
-
-        />
     }
+
+
     return (
         <div className={style.container}>
             <p>{props.user.name}</p>
