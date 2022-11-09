@@ -22,11 +22,11 @@ const Users = (props) => {
             !props.inProgress
               ? props.users.map(user => <UserCard
                 key={user.id}
-                userId={user.id}
-                name={user.name}
-                isContacted={user.isContacted}
-                addContact={props.addContact}
-                deleteContact={props.deleteContact}
+                user={user}
+                // name={user.name}
+                // isContacted={user.isContacted}
+                addDeleteContact={props.addDeleteContact}
+                // deleteContact={props.deleteContact}
                 addingParticipantsInProgress={props.addingParticipantsInProgress}
               />)
               : <Preloader />
@@ -57,10 +57,10 @@ const Users = (props) => {
                 userId={user.id}
                 name={user.name}
                 isContacted={user.isContacted}
-                addContact={props.addContact}
-                deleteContact={props.deleteContact}
+                addDeleteContact={props.addDeleteContact}
+                // deleteContact={props.deleteContact}
                 addingParticipantsInProgress={props.addingParticipantsInProgress}
-                participantsNewGroupDialog={props.participantsNewGroupDialog}
+                setParticipant={props.setParticipant}
               />)
               : <Preloader />
           }

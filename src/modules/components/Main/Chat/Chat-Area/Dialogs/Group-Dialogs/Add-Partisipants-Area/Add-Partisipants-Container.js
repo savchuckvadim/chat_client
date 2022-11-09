@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { participantsNewGroupDialog, setGroupDialogsName } from "../../../../../../../redux/dialogs-reducer"
+import { setParticipant, setGroupDialogsName } from "../../../../../../../redux/dialogs-reducer"
 import AddPartisipantsArea from "./Add-Partisipants-Area"
 
 const mapStateToProps = (state) => {
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 
 const AddPartisipantsContainer = connect(mapStateToProps, {
     setGroupDialogsName,
-    participantsNewGroupDialog,
+    setParticipant,
 })(AddPartisipantsArea)
 
 export default AddPartisipantsContainer

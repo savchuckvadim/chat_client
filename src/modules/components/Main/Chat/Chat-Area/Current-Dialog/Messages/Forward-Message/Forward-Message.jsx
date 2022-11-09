@@ -4,7 +4,7 @@ import style from './Forward-Message.module.css'
 
 const ForwardMessage = (props) => {
 
-    return (props.isForwardedMessage && <>
+    return (props.isMessageForwarding && <>
         <div className={style.container}
             onClick={() =>
                 {props.changeForwardingMessageStatus(false)}

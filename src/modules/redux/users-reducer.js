@@ -34,20 +34,19 @@ export const findUser = (userName) => async (dispatch) => {
     dispatch(setUsers(response.users))
     // dispatch(inProgress(false))
 }
-export const addContact = (userId) => async (dispatch) => {
+export const addDeleteContact = (user, bool) => async (dispatch) => {
     dispatch(inProgress(true))
-    const response = await usersAPI.addContact(userId)
-    dispatch(setNewContact(userId))
+    if(bool){
+        await usersAPI.addDeleteContact(user.id)
+        dispatch(setNewContact(user.id))
+    }else{
+        await usersAPI.deleteContact(user.id)
+        dispatch(unContacted(user.id))
+    }
+    
     dispatch(inProgress(false))
 }
 
-export const deleteContact = (userId) => async (dispatch) => {
-
-    dispatch(inProgress(true))
-    await usersAPI.deleteContact(userId)
-    dispatch(unContacted(userId))
-    dispatch(inProgress(false))
-}
 
 //REDUCER
 

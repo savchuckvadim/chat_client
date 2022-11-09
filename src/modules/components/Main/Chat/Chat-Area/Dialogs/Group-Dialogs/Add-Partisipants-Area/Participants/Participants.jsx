@@ -10,11 +10,10 @@ const Participants = (props) => {
                 <UserCard
                     key={participant.id}
                     user={participant}
-                    name={participant.name}
-                    userId={participant.id}
+                    
                     participant={true}
                     addingParticipantsInProgress={props.addingParticipantsInProgress}
-                    participantsNewGroupDialog={props.participantsNewGroupDialog}
+                    setParticipant={props.setParticipant}
 
                 />)}
             </div>

@@ -5,7 +5,7 @@ import ForwardMessage from "./Forward-Message"
 
 const mapStateToProps = (state) => {
     return {
-        isForwardedMessage: state.dialogs.isForwardedMessage
+        isMessageForwarding: state.dialogs.isMessageForwarding
     }
 }
 

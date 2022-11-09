@@ -14,7 +14,7 @@ export const usersAPI = {
         return response.data.searchingUsers
     },
     
-    async addContact(userId){
+    async addDeleteContact(userId){
         const response = await api.post('contact', {
             userId,
             isGroup:false

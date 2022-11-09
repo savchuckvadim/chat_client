@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { participantsNewGroupDialog } from "../../../redux/dialogs-reducer";
-import { addContact, deleteContact, findUser, getUsers } from "../../../redux/users-reducer";
+import { setParticipant } from "../../../redux/dialogs-reducer";
+import { addDeleteContact, findUser, getUsers } from "../../../redux/users-reducer";
 import Users from "./Users";
 
 const mapStateToProps = (state) => {
@@ -9,16 +9,17 @@ const mapStateToProps = (state) => {
         users: state.users.users,
         inProgress: state.users.inProgress,
         addingParticipantsInProgress: state.group.addingParticipantsInProgress,
-        participants:state.dialogs.newGroupDialog.participants,
+        participants: state.dialogs.newGroupDialog.participants,
+        isMessageForwarding: state.dialogs.isMessageForwarding
     }
 }
 
 
- const UsersContainer = connect(mapStateToProps, {
+const UsersContainer = connect(mapStateToProps, {
     getUsers,
-    addContact,
-    deleteContact,
-    participantsNewGroupDialog,
+    addDeleteContact,
+    
+    setParticipant,
     findUser
 })(Users)
 

@@ -35,7 +35,7 @@ const initialState = {
         name: '',
         participants: []
     },
-    isForwardedMessage: false,
+    isMessageForwarding: false,
 
 }
 
@@ -46,7 +46,7 @@ export const changeCurrentDialog = (dialog) => ({ type: CHANGE_CURRENT_DIALOG, d
 export const setNewMessage = (message, authUserId, isGroup) => ({ type: SET_NEW_MESSAGE, message, authUserId, isGroup })
 const setSendingStatus = (status) => ({ type: SET_SENDING_STATUS, status }) //status:false, sending, sended
 const setUsersInGroupDialog = (user, dialogId) => ({ type: SET_USER_IN_GROUP_DIALOG, user, dialogId })  //for edit exist group dialog
-export const participantsNewGroupDialog = (participant, bool) => ({ type: PARTICIPANTS_NEW_GROUP_DIALOG, participant, bool })
+export const setParticipant = (participant, bool) => ({ type: PARTICIPANTS_NEW_GROUP_DIALOG, participant, bool })
 const setNewGroupDialog = (groupDialog) => ({ type: SET_NEW_GROUP_DIALOG, groupDialog })
 export const setGroupDialogsName = (value) => ({ type: SET_GROUP_DIALOGS_NAME, value })
 
@@ -260,8 +260,8 @@ const dialogsReducer = (state = initialState, action) => {
 
         //context-menu
         case FORWARDING_MESSAGE:
-            if (state.isForwardedMessage !== action.bool) {
-                return { ...state, isForwardedMessage: action.bool }
+            if (state.isMessageForwarding !== action.bool) {
+                return { ...state, isMessageForwarding: action.bool }
             }
             return state
 

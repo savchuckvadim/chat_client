@@ -3,27 +3,11 @@
     height: 100vh;
     background-color: rgb(39, 37, 47);
     opacity: 80%;
+    filter: contrast(50);
     position: absolute;
     z-index: 1100 !important;
-    background: rgb(55, 54, 54);
-    background: linear-gradient(45deg, rgb(94, 99, 122) 0%, rgb(49, 52, 53) 50%, rgb(80, 72, 101) 100%);
-        font-size: large;
-        animation: gradient 10s ease infinite;
-        background-size: 5000% 5000%;
-        color: rgb(255, 255, 255);
-    }
+    background-color: rgb(0, 0, 0);
     
-    @keyframes gradient{
-     
-        0%{
-            background-position: 0 50%;
-        }
-        50%{
-            background-position: 100% 50%;
-        }
-        100%{
-            background-position: 0 50%;
-        }
     }
 
 .users__card{

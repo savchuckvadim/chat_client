@@ -28,7 +28,7 @@ const AddPartisipantsArea = (props) => {
                     <Participants
                         participants={props.participants}
                         addingParticipantsInProgress={props.addingParticipantsInProgress}
-                        participantsNewGroupDialog={props.participantsNewGroupDialog}
+                        setParticipant={props.setParticipant}
                     />
                 </div>
 
