@@ -13,7 +13,7 @@ const initialState = {
 }
 //AC
 const setUsers = (users) => ({ type: SET_USERS, users })
-export const inProgress = (bool) => ({ type: PRELOADER, bool })
+const inProgress = (bool) => ({ type: PRELOADER, bool })
 const setNewContact = (newContactId) => ({ type: NEW_CONTACT, newContactId })
 const unContacted = (deletedContactId) => ({ type: DELETE_CONTACT, deletedContactId })
 

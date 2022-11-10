@@ -1,7 +1,7 @@
 
 
 export const searchDialog = (dialogId, groupsOfDialogs) => {
-    //dialogs = [[dialogs][groupDialogs]]
+    //groupsOfDialogs = [[dialogs][groupDialogs]]
     let searchingDialog = null
     groupsOfDialogs.forEach(group => {
         group.forEach(dialog => {

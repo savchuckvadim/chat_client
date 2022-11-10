@@ -1,6 +1,7 @@
 .menu{
     margin-top: 25px;
-    height: 80%;
+    /* height: 80%; */
+    height: 420px;
     width: 80%;
     border-radius: 16px;
     background-color: white;

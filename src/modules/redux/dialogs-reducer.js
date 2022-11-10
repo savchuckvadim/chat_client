@@ -4,6 +4,7 @@ import { echo } from "../services/websocket/socket"
 import { CANCEL } from "./group-reducer"
 
 const SET_DIALOGS = 'dialogs/SET_DIALOGS'
+const SET_DIALOG = 'dialogs/SET_DIALOG'
 const SET_CURRENT_DIALOG = 'dialogs/SET_CURRENT_DIALOG'
 const CHANGE_CURRENT_DIALOG = 'dialogs/CHANGE_CURRENT_DIALOG'
 const SET_NEW_MESSAGE = 'dialogs/SET_NEW_MESSAGE'
@@ -45,6 +46,7 @@ const initialState = {
 
 //AC
 const setDialogs = (dialogs, dialogIdFromUrl) => ({ type: SET_DIALOGS, dialogs, dialogIdFromUrl })
+const setDialog = (dialog) => ({ type: SET_DIALOG, dialog })
 const setCurrentDialog = (dialogId, messages) => ({ type: SET_CURRENT_DIALOG, dialogId, messages })
 export const changeCurrentDialog = (dialog) => ({ type: CHANGE_CURRENT_DIALOG, dialog })
 export const setNewMessage = (message, authUserId, isGroup) => ({ type: SET_NEW_MESSAGE, message, authUserId, isGroup })
@@ -65,6 +67,7 @@ export const changeForwardingMessageStatus = (bool, messageBody) => ({ type: FOR
 export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getState) => {
     //TODO: dispatch(inProgress)
     const response = await dialogsAPI.getDialogs()
+    
     dispatch(setDialogs(response, dialogIdFromUrl))
 
 
@@ -91,11 +94,34 @@ export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getS
 
 }
 
-export const sendMessage = (authUserId, isGroup, dialogId, body, isForwarded) => async (dispatch) => {
+export const sendMessage = (authUserId, isGroup, dialogId, body, isForwarded) => async (dispatch, getState) => {
     dispatch(setSendingStatus('sending'))
-    const response = await dialogsAPI.sendMessage(dialogId, body, isForwarded)
+    
+    const messageResponse = await dialogsAPI.sendMessage(dialogId, body, isForwarded)
+
     dispatch(setSendingStatus('sended'))
-    dispatch(setNewMessage(response.createdMessage, authUserId, isGroup))
+    // setCurrentDialog (dialogId, messages)
+
+    let dialogs = [
+        getState().dialogs.dialogs,
+        getState().dialogs.groupDialogs,
+    ]
+    let isDialogExistInState = searchDialog(dialogId, dialogs)
+    if (!isDialogExistInState) { //если диалог, в который пересылают отсутствует в стэйте, запрашивает его на сервере и вставляет в стэйт
+        const dialogResponse = await dialogsAPI.getDialog(dialogId)
+        if (dialogResponse && dialogResponse.resultCode) {
+            if (dialogResponse.dialog) {
+                dispatch(setDialog(dialogResponse.dialog))
+            }
+        }
+        if (dialogResponse.resultCode === 0) {
+            alert(dialogResponse.message)
+        }
+    }
+    //После того, как диалог есть в стэйте точно, вставлеят в него и вmessages новое сообщение
+    dispatch(setNewMessage(messageResponse.createdMessage, authUserId, isGroup))
+    const messages = getState().dialogs.messages
+    dispatch(setCurrentDialog(dialogId, messages)) //   вставляет текущий диалог
     dispatch(setSendingStatus(false))
 }
 
@@ -128,9 +154,9 @@ export const addNewGroupDialog = (users, dialogsName) => async (dispatch) => {
 const dialogsReducer = (state = initialState, action) => {
 
     switch (action.type) {
-
+        ///////////////////////////
         case SET_DIALOGS:
-            const setingDialogs = action.dialogs.dialogs
+            const setingDialogs = action.dialogs.dialogs.slice(2, 4)
             const setingGroupDialogs = action.dialogs.groupDialogs
 
             let searchingDialogId = action.dialogs.dialogs[0] && action.dialogs.dialogs[0].dialogId
@@ -153,6 +179,24 @@ const dialogsReducer = (state = initialState, action) => {
                 messages: currentMessages,
                 groupDialogs: setingGroupDialogs
             };
+
+        case SET_DIALOG:
+            let resultDialogs = []
+            let checkExistDialog = searchDialog(action.dialog.dialogId, [state.dialogs, state.groupDialogs])
+            
+            if (!checkExistDialog) {
+                if (action.dialog.isGroup) {
+                    resultDialogs = [...state.groupDialogs]
+                    resultDialogs.unshift(action.dialog)
+                    return { ...state, groupDialogs: resultDialogs }
+                } else {
+                    resultDialogs = [...state.dialogs]
+                    resultDialogs.unshift(action.dialog)
+                    return { ...state, dialogs: resultDialogs }
+                }
+            }
+
+            return state
 
         case SET_CURRENT_DIALOG:
 
@@ -225,6 +269,7 @@ const dialogsReducer = (state = initialState, action) => {
             return { ...state, groupDialogs: resultGroupDialogs }
 
         case SET_NEW_MESSAGE:
+
             let message = action.message
             if (message.authorId === action.authUserId) {
                 message.isAuthorIsAuth = true
@@ -266,7 +311,7 @@ const dialogsReducer = (state = initialState, action) => {
 
         //context-menu
         case FORWARDING_MESSAGE:
-            
+
             if (state.isMessageForwarding !== action.bool) {
 
                 let updatingForwardingMessage = { ...state.forwardingMessage, inProgress: action.bool, body: action.messageBody }

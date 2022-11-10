@@ -9,6 +9,11 @@ export const dialogsAPI = {
 
         return response.data
     },
+    async getDialog(dialogId) {
+        const response = await api.get(`dialog/${dialogId}`)
+        
+        return response.data
+    },
 
     async sendMessage(dialogId, body, isForwarded) {
         const response = await api.post('message', {
