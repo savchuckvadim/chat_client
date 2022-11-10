@@ -22,7 +22,7 @@
     top: 20vh;
     left: calc(50vw - 235px);
     border-radius: 13px;
-    border-left: solid 0.5px;
-    border-color: rgb(88, 155, 249);
+    border: solid 2px rgb(88, 155, 249);
+   
 
 }

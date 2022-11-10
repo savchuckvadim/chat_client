@@ -34,9 +34,10 @@ const UserButton = ({
                 onButtonClick = () => { setParticipant(user, true) }
             }
 
-            if (isMessageForwarding) {
-                buttonName = 'send'
-            }
+            // if (isMessageForwarding) {
+            //     buttonStyle = style.contact
+            //     buttonName = 'send'
+            // }
         } else {
 
         }
@@ -44,10 +45,14 @@ const UserButton = ({
         buttonName = 'delete'
         onButtonClick = () => { setParticipant(user, false) }
     }
-    if (isMessageForwarding) {
+    if (isMessageForwarding && user.isContacted) {
         buttonName = 'send'
+        buttonStyle = style.contact
         onButtonClick = () => {
+
             
+//TODO redirect and open target dialog
+//fixed dialogId
             sendMessage(
                 authUser.id,
                 dialog.isGroup,

@@ -1,4 +1,4 @@
-import UserButton from './Add-Contact/User-Button'
+import UserButton from './User-Button/User-Button'
 import style from './User-Card.module.css'
 
 const UserCard = (props) => {
