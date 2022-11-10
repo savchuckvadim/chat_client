@@ -156,7 +156,7 @@ const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         ///////////////////////////
         case SET_DIALOGS:
-            const setingDialogs = action.dialogs.dialogs.slice(2, 4)
+            const setingDialogs = action.dialogs.dialogs
             const setingGroupDialogs = action.dialogs.groupDialogs
 
             let searchingDialogId = action.dialogs.dialogs[0] && action.dialogs.dialogs[0].dialogId
