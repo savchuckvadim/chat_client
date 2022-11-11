@@ -4,7 +4,9 @@ import style from '../Registration/Registration.module.css'
 const Login = (props) => {
 
     return (
+        <div className={style.form__wrapper}>
         <div className={style.container}>
+            
             <h1>Login</h1>
             <Formik
                 initialValues={{ email: '', password: ''}}
@@ -63,6 +65,8 @@ const Login = (props) => {
                     </form>
                 )}
             </Formik>
+            </div>
+            
         </div>
     )
 }

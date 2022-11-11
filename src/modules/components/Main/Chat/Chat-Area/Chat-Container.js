@@ -41,16 +41,17 @@ const ChatContainer = (props) => {
     let dialogIdFromUrl = getDialogId()
 
     useEffect(() => {
-        if(props.authUserId){
+        debugger
+        if(props.authUserId && !props.currentDialogId){
             props.getDialogs(props.authUserId, dialogIdFromUrl)
         }
         
 
 
-    }, [])
+    }, [props.currentDialogId])
     if (dialogIdFromUrl === undefined) { // в url нет параметра dialogId
 
-        if (props.currentDialogId !== undefined) {
+        if (props.currentDialogId !== undefined && dialogIdFromUrl !== props.currentDialogId) {
             
             return <Navigate replace to={`../chat/${props.currentDialogId}`} />
         }else{

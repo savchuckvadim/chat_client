@@ -50,7 +50,7 @@ const DialogItem = ({
                     <div className={style.text__wrapper}>
                         {title}
                         <p className={style.message}>{dialog.dialogsMessages.length > 0 && dialog.dialogsMessages[0].body.length > 0 &&
-                            `${dialog.dialogsMessages[0].body.slice(0, 2)}...`}</p>
+                            `${dialog.dialogsMessages[dialog.dialogsMessages.length - 1].body.slice(0, 2)}...`}</p>
                     </div>
 
 

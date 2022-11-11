@@ -1,6 +1,14 @@
 .container{
-    margin-top: 150px;
+    margin-top: 10vh;
+    height: calc(100vh - 50px - 150px);
     /* width: 234px; */
+}
+.form__wrapper{
+    height: calc(100vh - 50px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 .form{
     display: flex;

@@ -1,3 +1,4 @@
+import { Navigate, NavLink } from 'react-router-dom'
 import style from './User-Button.module.css'
 
 
@@ -50,9 +51,9 @@ const UserButton = ({
         buttonStyle = style.contact
         onButtonClick = () => {
 
-            
-//TODO redirect and open target dialog
-//fixed dialogId
+
+            //TODO redirect and open target dialog
+            //fixed dialogId
             sendMessage(
                 authUser.id,
                 dialog.isGroup,
@@ -60,7 +61,23 @@ const UserButton = ({
                 forwardingBody,
                 true  //isForwarded
             )
+            // debugger
+            // return(
+            //     <Navigate replace to={`${dialog.dialogId}`}/>
+            // )
         }
+        return (<NavLink to={`chat/${dialog.dialogId}`}
+            onClick={() => { 
+                debugger
+                onButtonClick(user, !user.isContacted) }}
+        >
+            <button
+                className={buttonStyle}
+
+            >{buttonName}
+            </button>
+        </NavLink>
+        )
     }
 
     return (<button
