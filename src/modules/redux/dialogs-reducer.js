@@ -96,7 +96,7 @@ export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getS
 
 export const sendMessage = (authUserId, isGroup, dialogId, body, isForwarded) => async (dispatch, getState) => {
     dispatch(setSendingStatus('sending'))
-    debugger
+    
     const messageResponse = await dialogsAPI.sendMessage(dialogId, body, isForwarded)
 
     dispatch(setSendingStatus('sended'))

@@ -48,19 +48,21 @@ const ChatContainer = (props) => {
         
 
 
-    }, [props.currentDialogId])
+    }, [])
     if (dialogIdFromUrl === undefined) { // в url нет параметра dialogId
 
         if (props.currentDialogId !== undefined && dialogIdFromUrl !== props.currentDialogId) {
             
             return <Navigate replace to={`../chat/${props.currentDialogId}`} />
-        }else{
-            return  < Preloader/>
         }
+        // else{
+        //     debugger
+        //     return <Navigate replace to={`../chat/`} />
+        // }
          
     } 
 
-  
+  debugger
     return (
         <Chat {...props}  />
     )
