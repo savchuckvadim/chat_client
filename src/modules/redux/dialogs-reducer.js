@@ -78,7 +78,7 @@ export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getS
             .listen('.SendMessage', (e) => {
                 let state = getState()
                 alert(e.message.body)
-
+                debugger
                 if (state.auth.authUser && state.dialogs.currentDialog) {
                     let currentDialog = state.dialogs.currentDialog
                     let authUser = state.auth.authUser
@@ -96,7 +96,7 @@ export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getS
 
 export const sendMessage = (authUserId, isGroup, dialogId, body, isForwarded) => async (dispatch, getState) => {
     dispatch(setSendingStatus('sending'))
-    
+
     const messageResponse = await dialogsAPI.sendMessage(dialogId, body, isForwarded)
 
     dispatch(setSendingStatus('sended'))
@@ -293,36 +293,73 @@ const dialogsReducer = (state = initialState, action) => {
         case SET_NEW_MESSAGE:
 
             let message = action.message
+            let isGroup = state.groupDialogs.some(groupDialog => groupDialog.dialogId === action.message.dialogId)
             if (message.authorId === action.authUserId) {
                 message.isAuthorIsAuth = true
             } else {
                 message.isAuthorIsAuth = false
             }
             let currentDialogs = state.dialogs
-            if (action.isGroup) {
+            if (isGroup) {
                 currentDialogs = state.groupDialogs
+            } else {
+                if (state.dialogs.some(dialog => dialog.dialogId === action.message.dialogId)) {
+                    currentDialogs = state.dialogs
+
+
+                } else {
+
+
+                    //TODO Запросить не найденный в стэйте диалог если такого нет - ошибка
+                    return state
+                }
             }
+            let mayBeCurrentMessages = []
             let messages = []
+            let mayBeCurrentDialog = null
+            let upgradingCrrentDialog = null
+
+
             const dialogs = currentDialogs.map(dialog => {
-                if (dialog.dialogId === state.currentDialogId) {
+                if (dialog.dialogId === action.message.dialogId) {
 
                     let dialogsMessages = [...dialog.dialogsMessages]
                     const checkExistMessage = dialogsMessages.some(dialogsMessage => dialogsMessage.id === message.id)
                     if (!checkExistMessage) {
                         dialogsMessages.push(message)
-                        messages = dialogsMessages
+                        mayBeCurrentMessages = dialogsMessages
+                        mayBeCurrentDialog = { ...dialog, dialogsMessages }
                     }
 
-                    return { ...dialog, dialogsMessages: messages }
+                    return { ...dialog, dialogsMessages }
                 } else {
                     return dialog
                 }
             })
-            debugger
-            if (!action.isGroup) {
-                return { ...state, dialogs, messages }
+            if (action.message.dialogId === state.currentDialogId) {
+                if (!isGroup) {
+                    return {
+                        ...state,
+                        currentDialog: upgradingCrrentDialog,
+                        
+                        dialogs,
+                        messages
+                    }
+                }
+                return {
+                    ...state,
+                    currentDialog: upgradingCrrentDialog,
+                    
+                    groupDialogs: dialogs,
+                    messages
+                }
+            } else {
+                if (!isGroup) {
+                    return { ...state, dialogs }
+                }
+                return { ...state, groupDialogs: dialogs }
             }
-            return { ...state, groupDialogs: dialogs, messages }
+
 
         case SET_SENDING_STATUS:
             if (state.currentMessage.sendingStatus !== action.status) {

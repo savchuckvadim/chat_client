@@ -3,7 +3,7 @@ import { socket } from "../services/websocket/socket"
 import { inProgress } from "./preloader-reducer"
 
 const LOGIN = 'LOGIN'
-const REGISTRATION = 'REGISTRATION'
+// const REGISTRATION = 'REGISTRATION'
 const LOGOUT = 'LOGOUT'
 const SET_REGISTRATION_STATUS = 'SET_REGISTRATION_STATUS'
 // const SET_REGISTRATION_URL = 'SET_REGISTRATION_URL'

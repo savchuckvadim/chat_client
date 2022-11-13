@@ -41,35 +41,37 @@ const ChatContainer = (props) => {
     let dialogIdFromUrl = getDialogId()
 
     useEffect(() => {
-        
-        if(props.authUserId && !props.currentDialogId){
+
+        if (props.authUserId
+            // && !props.currentDialogId
+        ) {
             props.getDialogs(props.authUserId, dialogIdFromUrl)
         }
-        
+
 
 
     }, [])
     if (dialogIdFromUrl === undefined) { // в url нет параметра dialogId
 
         if (props.currentDialogId !== undefined && dialogIdFromUrl !== props.currentDialogId) {
-            
+
             return <Navigate replace to={`../chat/${props.currentDialogId}`} />
         }
         // else{
         //     debugger
         //     return <Navigate replace to={`../chat/`} />
         // }
-         
-    } 
 
-  debugger
+    }
+
+    debugger
     return (
-        <Chat {...props}  />
+        <Chat {...props} />
     )
 }
 
 export default connect(mapStatetToProps, {
     getDialogs,
     setNewMessage,
-    
+
 })(withRouter(ChatContainer))

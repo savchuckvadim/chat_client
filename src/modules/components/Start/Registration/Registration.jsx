@@ -1,7 +1,7 @@
 import { Formik } from "formik"
-import { useState } from "react"
-import { Navigate, NavLink } from "react-router-dom"
-import { authApi } from "../../../services/api/auth-api"
+// import { useState } from "react"
+// import { Navigate, NavLink } from "react-router-dom"
+// import { authApi } from "../../../services/api/auth-api"
 import style from './Registration.module.css'
 
 const Registration = (props) => {
