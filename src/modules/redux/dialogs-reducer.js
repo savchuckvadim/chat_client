@@ -77,17 +77,10 @@ export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getS
 
             .listen('.SendMessage', (e) => {
                 let state = getState()
-                alert(e.message.body)
-                debugger
-                if (state.auth.authUser && state.dialogs.currentDialog) {
-                    let currentDialog = state.dialogs.currentDialog
-                    let authUser = state.auth.authUser
-                    if (currentDialog) {
 
-                        dispatch(setNewMessage(e.message, authUser.id, currentDialog.isGroup))
-                    } else {
-                        alert('no current dialog  ' + state.dialogs.currentDialogId)
-                    }
+                if (state.auth.authUser) {
+                    let authUser = state.auth.authUser
+                    dispatch(setNewMessage(e.message, authUser.id))
                 }
             })
     }
@@ -341,7 +334,7 @@ const dialogsReducer = (state = initialState, action) => {
                     return {
                         ...state,
                         currentDialog: upgradingCrrentDialog,
-                        
+
                         dialogs,
                         messages
                     }
@@ -349,7 +342,7 @@ const dialogsReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     currentDialog: upgradingCrrentDialog,
-                    
+
                     groupDialogs: dialogs,
                     messages
                 }
