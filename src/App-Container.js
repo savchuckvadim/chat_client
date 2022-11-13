@@ -10,6 +10,8 @@ import { me } from "./modules/redux/auth-reducer"
 const mapStateToProps = (state) => {
     return {
         isAuth: state.auth.isAuth,
+        registrationStatus: state.auth.registration.status,
+        registrationUrl: state.auth.registration.url,
         inProgress: state.preloader.inProgress,
         addingParticipantsInProgress: state.group.addingParticipantsInProgress
 

@@ -1,10 +1,18 @@
 import { Formik } from "formik"
+import { useState } from "react"
+import { Navigate, NavLink } from "react-router-dom"
 import { authApi } from "../../../services/api/auth-api"
 import style from './Registration.module.css'
 
-const Registration = () => {
+const Registration = (props) => {
     // authApi.logout()
+    // let url = `http://localhost:3000`
+    // const [url, setUrl] = useState('')
+    // const [registrationStatus, setRegistrationStatus] = useState(false)
+
+
     return (
+
         <div className={style.form__wrapper}>
             <div className={style.container}>
                 <h1>Registration</h1>
@@ -19,14 +27,12 @@ const Registration = () => {
                         ) {
                             errors.email = 'Invalid email address';
                         }
+
+
                         return errors;
                     }}
                     onSubmit={(values, { setSubmitting }) => {
-                        // setTimeout(() => {
-                        //     alert(JSON.stringify(values, null, 2));
-                        //     setSubmitting(false);
-                        // }, 400);
-                        authApi.registration(values.nickname, values.email, values.password, values.passwordRepeat)
+                        props.registration(values.nickname, values.email, values.password, values.passwordRepeat)
                     }}
                 >
                     {({
@@ -55,7 +61,15 @@ const Registration = () => {
                                 className={style.input}
                                 type="email"
                                 name="email"
-                                onChange={handleChange}
+                                onChange={(e) => {
+
+                                    handleChange(e)
+
+                                    // const emailDomen = values.email.split('@').pop()
+
+                                    // props.setRegistrationUrl(`https://www.${emailDomen}`)
+
+                                }}
                                 onBlur={handleBlur}
                                 value={values.email}
                             />
@@ -80,15 +94,19 @@ const Registration = () => {
                                 value={values.passwordRepeat}
                             />
                             <p className={style.error}>{errors.passwordRepeat && touched.passwordRepeat && errors.passwordRepeat}</p>
+
                             <button className={style.button} type="submit" disabled={isSubmitting}>
                                 Submit
                             </button>
+
                         </form>
                     )}
                 </Formik>
             </div>
         </div>
     )
+
+
 }
 
 export default Registration

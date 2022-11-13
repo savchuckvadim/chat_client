@@ -1,6 +1,6 @@
 import { Navigate, NavLink, Route, Routes } from 'react-router-dom'
 import LoginContainer from './Login/Login-Container'
-import Registration from './Registration/Registration'
+import RegistrationContainer from './Registration/Registration-Container'
 import style from './Start.module.css'
 
 const StartPage = () => {
@@ -30,15 +30,22 @@ const StartPage = () => {
   )
 }
 
-const Start = () => {
-  return (
-    <Routes >
-      <Route path='*' element={<Navigate replace to='../' />} />
-      <Route path='/' element={<StartPage />} />
-      <Route path='login' element={<LoginContainer />} />
-      <Route path='registration' element={<Registration />} />
-    </Routes>
-  )
+const Start = (props) => {
+  debugger
+  if (props.registrationStatus) {
+    debugger
+    return <Navigate replace to={`../chat`} />
+  } else {
+    return (
+      <Routes >
+        <Route path='*' element={<Navigate replace to='../' />} />
+        <Route path='/' element={<StartPage />} />
+        <Route path='login' element={<LoginContainer />} />
+        <Route path='registration' element={<RegistrationContainer />} />
+      </Routes>
+    )
+  }
+
 }
 
 

@@ -17,6 +17,7 @@ export const authApi = {
             name, email, password,
             password_confirmation: passwordConfirmation
         })
+        return response
 
     },
     async logout() {

@@ -36,7 +36,10 @@ const App = (props) => {
     }
 
   } else if (!props.inProgress && !props.isAuth) {
-    page = <Start />
+    page = <Start
+      registrationStatus={props.registrationStatus}
+      registrationUrl={props.registrationUrl}
+    />
   } else {
     // return <Navigate replace to='../' />
   }
