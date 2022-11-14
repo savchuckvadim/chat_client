@@ -1,0 +1,27 @@
+.container{
+    min-width: 100%;
+    min-height: 100%;
+    /* margin: 25px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(212, 115, 220);
+background: linear-gradient(45deg, rgb(244, 128, 255) 0%, rgba(138,90,162,1) 50%, rgb(255, 34, 196) 100%);
+    font-size: large;
+    animation: gradient 7s ease infinite;
+    background-size: 5000% 5000%;
+    color: rgb(255, 255, 255);
+}
+
+@keyframes gradient{
+ 
+    0%{
+        background-position: 0 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0 50%;
+    }
+}

@@ -71,7 +71,6 @@ const ChatContainer = (props) => {
 }
 
 export default connect(mapStatetToProps, {
-    getDialogs,
-    setNewMessage,
+    getDialogs
 
 })(withRouter(ChatContainer))

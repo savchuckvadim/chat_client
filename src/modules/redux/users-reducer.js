@@ -3,7 +3,7 @@ import { usersAPI } from "../services/api/users-api"
 
 const SET_USERS = 'SET_USERS'
 const PRELOADER = 'users/PRELOADER'
-const NEW_CONTACT = 'users/NEW_CONTACT'
+export const NEW_CONTACT = 'users/dialogs/NEW_CONTACT'
 const DELETE_CONTACT = 'users/DELETE_CONTACT'
 
 const initialState = {

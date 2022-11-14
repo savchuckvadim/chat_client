@@ -1,4 +1,5 @@
 import './App.css';
+import EmailVerification from './modules/components/common/Email-Verification/Email-Verification';
 import Preloader from './modules/components/common/Preloader/Preloader';
 import HeaderContainer from './modules/components/Header/Header-Container';
 import ForwardMessage from './modules/components/Main/Chat/Chat-Area/Current-Dialog/Messages/Forward-Message/Forward-Message';
@@ -32,7 +33,12 @@ const App = (props) => {
 
       page = <AddPartisipantsContainer />
     } else {
-      page = <Main />
+      // if (props.authUser.email_verified_at) {
+        page = <Main />
+      // } else {
+      //   page = <EmailVerification />
+      // }
+
     }
 
   } else if (!props.inProgress && !props.isAuth) {

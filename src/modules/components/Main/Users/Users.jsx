@@ -15,8 +15,6 @@ const Users = (props) => {
 
         <div className={style.container}>
           <h3>Users</h3>
-
-
           <div className={style.users}>
             <SearchContainer />
             {

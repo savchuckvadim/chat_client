@@ -55,8 +55,6 @@ const UserButton = ({
             //TODO redirect and open target dialog
             //fixed dialogId
             sendMessage(
-                authUser.id,
-                dialog.isGroup,
                 dialog.dialogId,
                 forwardingBody,
                 true  //isForwarded
@@ -79,7 +77,7 @@ const UserButton = ({
         </NavLink>
         )
     }
-
+debugger
     return (<button
         className={buttonStyle}
         onClick={() => { onButtonClick(user, !user.isContacted) }}

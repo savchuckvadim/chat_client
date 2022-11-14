@@ -42,7 +42,7 @@ class SendMessageForm extends React.Component {
         const text = `${this.ref.innerText}`;
         // authUserId, isGroup, dialogId, body, isForwarded, ?isEditing from dialogs-reducer
 
-        this.props.sendMessage(this.props.authUserId,  this.props.isGroup, this.props.currentDialogId, text, false);
+        this.props.sendMessage(this.props.currentDialogId, text, false);
     };
 
     componentDidMount() {
