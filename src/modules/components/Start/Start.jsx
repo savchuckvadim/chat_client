@@ -31,9 +31,9 @@ const StartPage = () => {
 }
 
 const Start = (props) => {
-  debugger
+  
   if (props.registrationStatus) {
-    debugger
+    
     return <Navigate replace to={`../chat`} />
   } else {
     return (

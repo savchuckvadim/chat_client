@@ -66,7 +66,7 @@ const UserButton = ({
         }
         return (<NavLink to={`chat/${dialog.dialogId}`}
             onClick={() => { 
-                debugger
+                
                 onButtonClick(user, !user.isContacted) }}
         >
             <button

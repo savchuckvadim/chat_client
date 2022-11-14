@@ -9,6 +9,7 @@ const Users = (props) => {
   useEffect(() => {
     props.getUsers(1, 10)
   }, [])
+  
   if (!props.addingParticipantsInProgress) {
     if (!props.isMessageForwarding) {
       return (

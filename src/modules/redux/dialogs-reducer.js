@@ -181,7 +181,7 @@ const dialogsReducer = (state = initialState, action) => {
                 currentMessages = currentDialog.dialogsMessages
             }
 
-            debugger
+            
             return {
                 ...state,
                 dialogs: setingDialogs,
@@ -365,15 +365,25 @@ const dialogsReducer = (state = initialState, action) => {
         case NEW_CONTACT:
             // newContactId
             let isDialogsLikeUser = false
+
             let dialogs = state.dialogs.map(dialog => {
-                dialog.dialogUsers = dialog.dialogUsers.map(user => {
+
+                dialog.dialogsUsers = dialog.dialogsUsers.map(user => {
                     isDialogsLikeUser = true
-                    return user.id === action.newContactId ? { ...user, isContacted: true } : user
+                    
+                    if (user.id === action.newContactId) {
+                        return { ...user, isContacted: true }
+                    } else {
+                        return user
+                    }
+
                 })
+                return {...dialog}
             })
+        
             let isCurrentDialogLikeUser = false
 
-            let currentDialogUsers = state.currentDialog.dialogUsers.map(user => {
+            let currentDialogUsers = state.currentDialog.dialogsUsers.map(user => {
                 if (user.id === action.newContactId) {
                     isCurrentDialogLikeUser = true
                     isDialogsLikeUser = true
@@ -382,10 +392,11 @@ const dialogsReducer = (state = initialState, action) => {
                     return user
                 }
             })
-
-            let resultCurrentDialog = isCurrentDialogLikeUser ? { ...state.currentDialog, dialogUsers: currentDialogUsers } : state.currentDialog
-
-            return isDialogsLikeUser ? { ...state, currentDialog: resultCurrentDialog, dialogs } : state
+            
+            let resultCurrentDialog = isCurrentDialogLikeUser ? { ...state.currentDialog, dialogsUsers: currentDialogUsers } : state.currentDialog
+            let result = isDialogsLikeUser ? { ...state, currentDialog: resultCurrentDialog, dialogs } : state
+            
+            return result
 
         case CANCEL: //for cancel add new group dialog
             return { ...state, newGroupDialog: { ...state.newGroupDialog, name: '', participants: [] } }

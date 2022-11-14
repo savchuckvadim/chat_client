@@ -57,14 +57,8 @@ const ChatContainer = (props) => {
 
             return <Navigate replace to={`../chat/${props.currentDialogId}`} />
         }
-        // else{
-        //     debugger
-        //     return <Navigate replace to={`../chat/`} />
-        // }
-
     }
 
-    debugger
     return (
         <Chat {...props} />
     )

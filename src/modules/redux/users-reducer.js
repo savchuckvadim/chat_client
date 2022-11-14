@@ -22,7 +22,7 @@ const unContacted = (deletedContactId) => ({ type: DELETE_CONTACT, deletedContac
 export const getUsers = (currentPage, pageSize) => async (dispatch) => {
     dispatch(inProgress(true))
     const users = await usersAPI.getUsers(currentPage, pageSize)
-    
+
     dispatch(setUsers(users))
     dispatch(inProgress(false))
 
@@ -30,20 +30,20 @@ export const getUsers = (currentPage, pageSize) => async (dispatch) => {
 export const findUser = (userName) => async (dispatch) => {
     // dispatch(inProgress(true))
     const response = await usersAPI.findUser(userName)
-    
+
     dispatch(setUsers(response.users))
     // dispatch(inProgress(false))
 }
 export const addDeleteContact = (user, bool) => async (dispatch) => {
     dispatch(inProgress(true))
-    if(bool){
+    if (bool) {
         await usersAPI.addDeleteContact(user.id)
         dispatch(setNewContact(user.id))
-    }else{
+    } else {
         await usersAPI.deleteContact(user.id)
         dispatch(unContacted(user.id))
     }
-    
+
     dispatch(inProgress(false))
 }
 
@@ -64,19 +64,22 @@ const usersReducer = (state = initialState, action) => {
             resultState = { ...state }
             // const isExist = state.contacts.some(contact => contact.id === action.userId)
             // if (!isExist) {
-           
+
             resultState.users = state.users.map(user => {
                 if (user.id === action.newContactId) {
-                    user.isContacted = true
+                    
+                    return { ...user, isContacted: true }
                 }
+                
                 return user
             })
             // }
+            
             return resultState
 
         case DELETE_CONTACT:
             resultState = { ...state }
-           
+
             resultState.users = state.users.map(user => {
                 if (user.id === action.deletedContactId) {
                     user.isContacted = false
