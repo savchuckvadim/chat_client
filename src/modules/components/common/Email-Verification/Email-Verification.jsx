@@ -5,9 +5,9 @@ const EmailVerification = () => {
 
     return (
         <div className={style.container}>
-            <Link reloadDocument relative={'path'} replace to={'../https://gmail.com/'}>
+            <a  href={'https://gmail.com/'} >
                 Подтведите адрес электронной почты
-            </Link>
+            </a>
         </div>
     )
 }

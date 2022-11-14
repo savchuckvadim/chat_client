@@ -33,11 +33,11 @@ const App = (props) => {
 
       page = <AddPartisipantsContainer />
     } else {
-      // if (props.authUser.email_verified_at) {
+      if (props.authUser.email_verified_at) {
         page = <Main />
-      // } else {
-      //   page = <EmailVerification />
-      // }
+      } else {
+        page = <EmailVerification />
+      }
 
     }
 
