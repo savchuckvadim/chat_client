@@ -17,7 +17,7 @@ const SET_GROUP_DIALOGS_NAME = 'dialogs/SET_GROUP_DIALOGS_NAME'
 const FORWARDING_MESSAGE = 'dialogs/FORWARDING_MESSAGE'
 const FORWARD_MESSAGE = 'dialogs/FORWARD_MESSAGE'
 const SET_EDITING_STATUS = 'dialogs/SET_EDITING_STATUS'
-
+const DELETE_MESSAGE = 'dialogs/DELETE_MESSAGE'
 
 
 const initialState = {
@@ -70,7 +70,9 @@ export const setGroupDialogsName = (value) => ({ type: SET_GROUP_DIALOGS_NAME, v
 
 export const changeForwardingMessageStatus = (bool, messageBody) => ({ type: FORWARDING_MESSAGE, bool, messageBody })
 export const setEditingStatus = (status = null, message = null) => ({ type: SET_EDITING_STATUS, status, message }) //status:false, true
+const setDeleteMessage = (messageId) => ({ type: DELETE_MESSAGE, messageId })
 
+//DELETE_MESSAGE
 
 
 // THUNKS
@@ -151,14 +153,21 @@ export const sendEditMessage = (messageId, body) => async (dispatch) => {
     dispatch(setSendingStatus('sending'))
     const response = await dialogsAPI.editMessage(messageId, body)
     if (response.resultCode) {
-        
+
         dispatch(setNewMessage(response.editedMessage))
     } else {
         alert(response.message)
     }
     // dispatch(setNewMessage(message))
-    
-    
+
+
+    dispatch(setSendingStatus(false))
+}
+export const deleteMessage = (messageId) => async (dispatch) => {
+
+    dispatch(setSendingStatus('sending'))
+    await dialogsAPI.deleteMessage(messageId)
+    dispatch(setDeleteMessage(messageId))
     dispatch(setSendingStatus(false))
 }
 export const getMessages = (dialogId) => async (dispatch) => {
@@ -313,7 +322,7 @@ const dialogsReducer = (state = initialState, action) => {
             //TODO isEdited
             let message = action.message
             let currentDialogs = !message.isGroup ? state.dialogs : state.groupDialogs
-            
+
 
             if (message.isGroup && !state.groupDialogs.some(dialog => dialog.dialogId === message.dialogId) && action.message.dialogId !== state.currentDialogId) {
                 return state
@@ -331,17 +340,17 @@ const dialogsReducer = (state = initialState, action) => {
 
                         let dialogsMessages = [...dialog.dialogsMessages]
                         const checkExistMessage = dialogsMessages.some(dialogsMessage => dialogsMessage.id === message.id)
-                        
+
                         if (!checkExistMessage && !action.message.isEdited) {
                             dialogsMessages.push(message)
                             messages = dialogsMessages
                             upgradingCrrentDialog = { ...dialog, dialogsMessages }
                         }
                         if (checkExistMessage && action.message.isEdited) {
-                            
+
                             dialogsMessages.forEach((m, i) => {
                                 if (m.id === action.message.id) {
-                                    
+
                                     dialogsMessages.splice(i, 1, action.message)
                                 }
                             });
@@ -422,6 +431,54 @@ const dialogsReducer = (state = initialState, action) => {
                     }
                 }
             }
+        case DELETE_MESSAGE:
+            //action: messageId
+
+            let resultDeleteMessageDialogs = []
+            let resultDeleteMessageGroupDialogs = []
+            let upgraidDialog = null
+            let upgraidingMessages = []
+            let allDialogs = [state.dialogs, state.groupDialogs]
+            allDialogs.forEach((dialogs, i) =>
+                dialogs.forEach(dialog => {
+                    let isDialog = false
+
+                    dialog.dialogsMessages.forEach((message, index) => {
+                        if (message.id === action.messageId) {
+                            isDialog = true
+                            upgraidingMessages = [...dialog.dialogsMessages]
+                            upgraidingMessages.slice(index, 1)
+                            upgraidDialog = { ...dialog, dialogsMessages: upgraidingMessages }
+                            // messageIndex = index
+
+                        }
+                    })
+                    if (i === 0) { //!isGroup
+                        !isDialog
+                            ? resultDeleteMessageDialogs.push(dialog)
+                            : resultDeleteMessageDialogs.push(upgraidDialog)
+                    } else {
+                        !isDialog
+                            ? resultDeleteMessageGroupDialogs.push(dialog)
+                            : resultDeleteMessageGroupDialogs.push(upgraidDialog)
+
+                    }
+                    debugger
+                }))
+            if (upgraidDialog) {
+                return {
+                    ...state,
+                    dialogs: resultDeleteMessageDialogs,
+                    groupDialog: resultDeleteMessageGroupDialogs,
+                    currentDialog: upgraidDialog,
+                    currentDialogId: upgraidDialog.dialogId,
+                    messages: upgraidingMessages,
+
+                }
+            } else {
+                return state
+            }
+
 
         //users-reducer
         case NEW_CONTACT:

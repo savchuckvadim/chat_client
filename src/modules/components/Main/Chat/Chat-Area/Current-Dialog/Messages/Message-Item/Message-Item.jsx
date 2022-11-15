@@ -10,7 +10,8 @@ const MessageItem = ({
     currentMenu,
     contextMenuToggler,
     changeForwardingMessageStatus,
-    setEditingStatus
+    setEditingStatus,
+    deleteMessage
 }) => {
 
     let messageClass = style.myMessage
@@ -32,6 +33,7 @@ const MessageItem = ({
                 currentMenu={currentMenu}
                 changeForwardingMessageStatus={changeForwardingMessageStatus}
                 setEditingStatus={setEditingStatus}
+                deleteMessage={deleteMessage}
             />
             <div className={style.body}>{message.body}</div>
         </div >

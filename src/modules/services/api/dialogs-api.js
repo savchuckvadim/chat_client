@@ -36,6 +36,10 @@ export const dialogsAPI = {
 
     },
 
+    async deleteMessage(messageId) {
+        const response = await api.delete(`message/${messageId}`)
+        return response.data
+    },
     async getMessages(dialogId) {
         const response = await api.get(`messages/${dialogId}`)
         return response.data

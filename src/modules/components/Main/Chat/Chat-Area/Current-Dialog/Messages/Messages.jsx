@@ -57,6 +57,7 @@ const Messages = (props) => {
                         contextMenuToggler={props.contextMenuToggler}
                         changeForwardingMessageStatus={props.changeForwardingMessageStatus}
                         setEditingStatus={props.setEditingStatus}
+                        deleteMessage={props.deleteMessage}
 
                     />))
                     : <NoMessages />

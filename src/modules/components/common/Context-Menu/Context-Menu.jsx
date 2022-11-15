@@ -16,7 +16,8 @@ const ContextMenu = ({
 
     changeForwardingMessageStatus,
 
-    setEditingStatus
+    setEditingStatus,
+    deleteMessage
 
 }) => {
     const dinamicStyle = {
@@ -50,8 +51,8 @@ const ContextMenu = ({
             } else if (nameOfAction === 'Edit') {
 
                 setEditingStatus(true, message)
-            } else if (nameOfAction === 'Forward') {
-
+            } else if (nameOfAction === 'Delete') {
+                deleteMessage(currentEntityId)
             }
         }
 
