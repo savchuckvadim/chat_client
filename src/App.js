@@ -20,7 +20,7 @@ import Start from './modules/components/Start/Start';
 // + users search 
 
 //messages -> edit and delete
-// -> forwarding  to contacts only
+// + forwarding  to contacts only
 // -> sound notification sound/unsound
 
 // -> paginator

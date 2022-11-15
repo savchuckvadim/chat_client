@@ -1,5 +1,5 @@
 import { dialogsAPI } from "../services/api/dialogs-api"
-import { searchDialog } from "../services/utils/dialog-utils"
+import { searchDialog } from "../utils/dialog-utils"
 import { echo } from "../services/websocket/socket"
 import { CANCEL } from "./group-reducer"
 import { NEW_CONTACT } from "./users-reducer"
@@ -38,6 +38,10 @@ const initialState = {
         participants: []
     },
     forwardingMessage: {
+        inProgress: false,
+        body: ''
+    },
+    editingMessage: { //sendMessage(dialogId, body, isForwarded, isEdited)
         inProgress: false,
         body: ''
     }
