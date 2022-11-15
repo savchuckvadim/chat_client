@@ -13,7 +13,10 @@ const mapStateToProps = (state) => {
         authUserId,
         isGroup,
         currentDialogId: state.dialogs.currentDialogId,
-        isSending: state.dialogs.currentMessage.isSending
+        isSending: state.dialogs.currentMessage.isSending,
+        isEditingInProgress: state.dialogs.editingMessage.inProgress,
+        editedBody: state.dialogs.editingMessage.body,
+
     }
 }
 

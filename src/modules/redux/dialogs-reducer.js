@@ -16,6 +16,7 @@ const SET_NEW_GROUP_DIALOG = 'dialogs/SET_NEW_GROUP_DIALOG'
 const SET_GROUP_DIALOGS_NAME = 'dialogs/SET_GROUP_DIALOGS_NAME'
 const FORWARDING_MESSAGE = 'dialogs/FORWARDING_MESSAGE'
 const FORWARD_MESSAGE = 'dialogs/FORWARD_MESSAGE'
+const SET_EDITING_STATUS = 'dialogs/SET_EDITING_STATUS'
 
 
 
@@ -42,7 +43,7 @@ const initialState = {
         body: ''
     },
     editingMessage: { //sendMessage(dialogId, body, isForwarded, isEdited)
-        inProgress: false,
+        inProgress: true,
         body: ''
     }
 
@@ -56,15 +57,18 @@ const setCurrentDialog = (dialog) => ({ type: SET_CURRENT_DIALOG, dialog })
 export const changeCurrentDialog = (dialog) => ({ type: CHANGE_CURRENT_DIALOG, dialog })
 export const setNewMessage = (message) => ({ type: SET_NEW_MESSAGE, message })
 const setSendingStatus = (status) => ({ type: SET_SENDING_STATUS, status }) //status:false, sending, sended
-const setUsersInGroupDialog = (user, dialogId) => ({ type: SET_USER_IN_GROUP_DIALOG, user, dialogId })  //for edit exist group dialog
+// const setUsersInGroupDialog = (user, dialogId) => ({ type: SET_USER_IN_GROUP_DIALOG, user, dialogId })  //for edit exist group dialog
 export const setParticipant = (participant, bool) => ({ type: PARTICIPANTS_NEW_GROUP_DIALOG, participant, bool })
 const setNewGroupDialog = (groupDialog) => ({ type: SET_NEW_GROUP_DIALOG, groupDialog })
 export const setGroupDialogsName = (value) => ({ type: SET_GROUP_DIALOGS_NAME, value })
 
+
+
 //AC for context-menu
 
 export const changeForwardingMessageStatus = (bool, messageBody) => ({ type: FORWARDING_MESSAGE, bool, messageBody })
-// export forwardMessage = ()
+export const setEditingStatus = (status, message) => ({ type: SET_EDITING_STATUS, status, message }) //status:false, true
+
 
 
 // THUNKS
@@ -86,16 +90,17 @@ export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getS
                 if (state.auth.authUser) {
                     let authUser = state.auth.authUser
                     dispatch(setNewMessage(e.message, authUser.id))
+                    alert(e.message)
                 }
             })
     }
 
 }
 
-export const sendMessage = (dialogId, body, isForwarded) => async (dispatch, getState) => {
+export const sendMessage = (dialogId, body, isForwarded, isEdited) => async (dispatch, getState) => {
     dispatch(setSendingStatus('sending'))
 
-    const messageResponse = await dialogsAPI.sendMessage(dialogId, body, isForwarded)
+    const messageResponse = await dialogsAPI.sendMessage(dialogId, body, isForwarded, isEdited)
 
     dispatch(setSendingStatus('sended'))
     // setCurrentDialog (dialogId, messages)
@@ -139,7 +144,11 @@ export const sendMessage = (dialogId, body, isForwarded) => async (dispatch, get
     dispatch(changeForwardingMessageStatus(false, '')) //dispatchим status чтобы убрать окно выбора диалогов(юзеров)
     dispatch(setSendingStatus(false))
 }
+export const editMessage = (messageId, body) => async (dispatch) => {
 
+    const editingMessageResponse = await dialogsAPI.editMessage(messageId, body)
+
+}
 export const getMessages = (dialogId) => async (dispatch) => {
     const response = await dialogsAPI.getMessages(dialogId)
     dispatch(setCurrentDialog(dialogId, response.messages))
@@ -289,13 +298,12 @@ const dialogsReducer = (state = initialState, action) => {
             return { ...state, groupDialogs: resultGroupDialogs }
 
         case SET_NEW_MESSAGE:
-
+            //TODO isEdited
             let message = action.message
             let currentDialogs = !message.isGroup ? state.dialogs : state.groupDialogs
-            if (message.isGroup && !state.groupDialogs.some(dialog => dialog.dialogId === message.dialogId) && action.message.dialogId !== state.currentDialogId ||
-                !message.isGroup && !state.dialogs.some(dialog => dialog.dialogId === message.dialogId) && action.message.dialogId !== state.currentDialogId
-
-            ) {
+            if (message.isGroup && !state.groupDialogs.some(dialog => dialog.dialogId === message.dialogId) && action.message.dialogId !== state.currentDialogId) {
+                return state
+            } else if (!message.isGroup && !state.dialogs.some(dialog => dialog.dialogId === message.dialogId) && action.message.dialogId !== state.currentDialogId) {
                 return state
             } else {
 
@@ -309,9 +317,18 @@ const dialogsReducer = (state = initialState, action) => {
 
                         let dialogsMessages = [...dialog.dialogsMessages]
                         const checkExistMessage = dialogsMessages.some(dialogsMessage => dialogsMessage.id === message.id)
-                        if (!checkExistMessage) {
+                        if (!checkExistMessage && !action.message.isEditing) {
                             dialogsMessages.push(message)
                             messages = dialogsMessages
+                            upgradingCrrentDialog = { ...dialog, dialogsMessages }
+                        }
+                        if (checkExistMessage && action.message.isEditing) {
+                            dialogsMessages.forEach((m, i) => {
+                                if (m.id === action.message) {
+                                    dialogsMessages.splice(i, 1, action.message)
+                                }
+                            });
+                            
                             upgradingCrrentDialog = { ...dialog, dialogsMessages }
                         }
 
@@ -392,17 +409,17 @@ const dialogsReducer = (state = initialState, action) => {
 
             let isCurrentDialogLikeUser = false
 
-            let currentDialogUsers = state.currentDialog 
-            ? state.currentDialog.dialogsUsers.map(user => {
-                if (user.id === action.newContactId) {
-                    isCurrentDialogLikeUser = true
-                    isDialogsLikeUser = true
-                    return { ...user, isContacted: true }
-                } else {
-                    return user
-                }
-            })
-            : []
+            let currentDialogUsers = state.currentDialog
+                ? state.currentDialog.dialogsUsers.map(user => {
+                    if (user.id === action.newContactId) {
+                        isCurrentDialogLikeUser = true
+                        isDialogsLikeUser = true
+                        return { ...user, isContacted: true }
+                    } else {
+                        return user
+                    }
+                })
+                : []
 
             let resultCurrentDialog = isCurrentDialogLikeUser ? { ...state.currentDialog, dialogsUsers: currentDialogUsers } : state.currentDialog
             let result = isDialogsLikeUser ? { ...state, currentDialog: resultCurrentDialog, dialogs } : state

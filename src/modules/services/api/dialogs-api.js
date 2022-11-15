@@ -11,15 +11,23 @@ export const dialogsAPI = {
     },
     async getDialog(dialogId) {
         const response = await api.get(`dialog/${dialogId}`)
-        
+
+        return response.data
+    },
+    //TODO isEdited
+    async sendMessage(dialogId, body, isForwarded = false, isEdited = false) {
+        const response = await api.post('message', {
+            dialogId, body, isForwarded, isEdited
+        })
+
         return response.data
     },
 
-    async sendMessage(dialogId, body, isForwarded) {
-        const response = await api.post('message', {
-            dialogId, body, isForwarded
+    async editMessage(messageId, body) {
+        const response = await api.put('message', {
+            messageId, body
         })
-
+        debugger
         return response.data
     },
 
@@ -34,7 +42,7 @@ export const dialogsAPI = {
         if (response.resultCode === 1) {
             return response.data
         }
-        else{
+        else {
             alert(response.message)
         }
 

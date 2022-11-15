@@ -48,7 +48,8 @@ const UserButton = ({
             sendMessage(
                 dialog.dialogId,
                 forwardingBody,
-                true  //isForwarded
+                true,  //isForwarded
+                false //isEdited
             )
 
         }

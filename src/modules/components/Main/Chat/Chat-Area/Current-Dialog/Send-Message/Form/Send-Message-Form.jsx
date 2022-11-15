@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './Send-Message-Form.module.css'
 
 const InputMessage = (props) => {
     if (props.isSending) {
-       
+
         return (
             <div
                 ref={props.setRef}
                 className={style.input}
-                
+
                 placeholder="Type a message"
                 contentEditable
                 suppressContentEditableWarning={true}
@@ -27,6 +27,27 @@ const InputMessage = (props) => {
         />
     )
 }
+
+const InputEdit = (props) => {
+
+    const [value, setValue] = useState('props.value')
+debugger
+    return (
+        <div
+            className={style.input}
+            ref={props.setRef}
+            placeholder="Type a message"
+            contentEditable
+            suppressContentEditableWarning={true}
+            onChange={(e) => {
+                console.log(e.current)
+                debugger
+                setValue(e.current)
+            }}
+        >{value}</div>
+    )
+
+}
 class SendMessageForm extends React.Component {
     //TODO: props->dialogId
 
@@ -44,7 +65,7 @@ class SendMessageForm extends React.Component {
 
         this.props.sendMessage(this.props.currentDialogId, text, false);
     };
-
+//TODO removeEventListener
     componentDidMount() {
         this.ref.addEventListener('input', this.saveInputValue);
     }
@@ -56,7 +77,9 @@ class SendMessageForm extends React.Component {
         return (
             <div className={style.form}>
                 <div className={style.field}>
-                    <InputMessage {...this.props} setRef={this.setRef} />
+                    {this.props.isEditingInProgress 
+                    ? <InputEdit {...this.props} setRef={this.setRef}/>
+                    : <InputMessage {...this.props} setRef={this.setRef} />}
 
                 </div>
                 <div className={style.button__wrapper}>
