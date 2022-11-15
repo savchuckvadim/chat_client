@@ -9,7 +9,8 @@ const MessageItem = ({
     currentEntityId,
     currentMenu,
     contextMenuToggler,
-    changeForwardingMessageStatus
+    changeForwardingMessageStatus,
+    setEditingStatus
 }) => {
 
     let messageClass = style.myMessage
@@ -30,6 +31,7 @@ const MessageItem = ({
                 isActive={isContextMenuActive}
                 currentMenu={currentMenu}
                 changeForwardingMessageStatus={changeForwardingMessageStatus}
+                setEditingStatus={setEditingStatus}
             />
             <div className={style.body}>{message.body}</div>
         </div >

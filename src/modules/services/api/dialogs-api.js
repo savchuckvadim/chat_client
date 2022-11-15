@@ -24,11 +24,16 @@ export const dialogsAPI = {
     },
 
     async editMessage(messageId, body) {
-        const response = await api.put('message', {
-            messageId, body
-        })
-        debugger
-        return response.data
+        try {
+            const response = await api.put('message', {
+                messageId, body
+            })
+            
+            return response.data
+        } catch (error) {
+            alert(error)
+        }
+
     },
 
     async getMessages(dialogId) {

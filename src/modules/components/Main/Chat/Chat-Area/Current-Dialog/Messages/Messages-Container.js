@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { contextMenuToggler } from "../../../../../../redux/context-menu-reducer"
-import { changeForwardingMessageStatus } from "../../../../../../redux/dialogs-reducer"
+import { changeForwardingMessageStatus, setEditingStatus } from "../../../../../../redux/dialogs-reducer"
 import Messages from "./Messages"
 
 
@@ -35,5 +35,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     contextMenuToggler,
-    changeForwardingMessageStatus
+    changeForwardingMessageStatus,
+    setEditingStatus
 })(Messages)

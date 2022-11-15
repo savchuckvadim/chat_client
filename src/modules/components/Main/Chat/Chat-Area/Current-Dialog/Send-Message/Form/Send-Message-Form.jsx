@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './Send-Message-Form.module.css'
 
 const InputMessage = (props) => {
@@ -28,10 +28,26 @@ const InputMessage = (props) => {
     )
 }
 
-const InputEdit = (props) => {
+const InputEditMessage = (props) => {
 
-    const [value, setValue] = useState('props.value')
-debugger
+    const [value, setValue] = useState(props.editingBody)
+
+    useEffect(() => {
+        debugger
+        if (props.isSended && !props.editingBody) {
+            
+            setValue(null)
+            props.setIsSeneded(false)
+        }
+    }, [props.isSended])
+    useEffect(() => {
+        if (props.isEditingInProgress) {
+            debugger
+            setValue(props.editingBody)
+
+        }
+    }, [props.isEditingInProgress])
+
     return (
         <div
             className={style.input}
@@ -40,8 +56,6 @@ debugger
             contentEditable
             suppressContentEditableWarning={true}
             onChange={(e) => {
-                console.log(e.current)
-                debugger
                 setValue(e.current)
             }}
         >{value}</div>
@@ -50,6 +64,15 @@ debugger
 }
 class SendMessageForm extends React.Component {
     //TODO: props->dialogId
+    constructor(props) {
+        super(props);
+        this.state = { isSended: false };
+    }
+    setIsSeneded = (bool) => {
+        this.setState({
+            isSended: bool
+        });
+    }
 
     setRef = (ref) => {
         this.ref = ref;
@@ -62,10 +85,11 @@ class SendMessageForm extends React.Component {
     submit() {
         const text = `${this.ref.innerText}`;
         // authUserId, isGroup, dialogId, body, isForwarded, ?isEditing from dialogs-reducer
-
-        this.props.sendMessage(this.props.currentDialogId, text, false);
+        !this.props.isEditingInProgress
+            ? this.props.sendMessage(this.props.currentDialogId, text, false)
+            : this.props.sendEditMessage(this.props.editingMessageId, text)
     };
-//TODO removeEventListener
+
     componentDidMount() {
         this.ref.addEventListener('input', this.saveInputValue);
     }
@@ -77,14 +101,22 @@ class SendMessageForm extends React.Component {
         return (
             <div className={style.form}>
                 <div className={style.field}>
-                    {this.props.isEditingInProgress 
-                    ? <InputEdit {...this.props} setRef={this.setRef}/>
-                    : <InputMessage {...this.props} setRef={this.setRef} />}
+                    {this.props.isEditingInProgress
+                        ? <InputEditMessage {...this.props} setRef={this.setRef}
+                            isSended={this.state.isSended}
+                            setIsSeneded={this.setIsSeneded}
+                        />
+                        : <InputMessage {...this.props} setRef={this.setRef} />}
 
                 </div>
                 <div className={style.button__wrapper}>
                     <button className={style.button} type="submit"
-                        onClick={() => { this.submit() }}
+                        onClick={() => {
+                            this.setState({
+                                isSended: true
+                            });
+                            this.submit()
+                        }}
                     >
                         Submit
                     </button>

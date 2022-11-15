@@ -40,10 +40,12 @@ const initialState = {
     },
     forwardingMessage: {
         inProgress: false,
+
         body: ''
     },
     editingMessage: { //sendMessage(dialogId, body, isForwarded, isEdited)
-        inProgress: true,
+        inProgress: false,
+        id: null,
         body: ''
     }
 
@@ -67,7 +69,7 @@ export const setGroupDialogsName = (value) => ({ type: SET_GROUP_DIALOGS_NAME, v
 //AC for context-menu
 
 export const changeForwardingMessageStatus = (bool, messageBody) => ({ type: FORWARDING_MESSAGE, bool, messageBody })
-export const setEditingStatus = (status, message) => ({ type: SET_EDITING_STATUS, status, message }) //status:false, true
+export const setEditingStatus = (status = null, message = null) => ({ type: SET_EDITING_STATUS, status, message }) //status:false, true
 
 
 
@@ -144,10 +146,20 @@ export const sendMessage = (dialogId, body, isForwarded, isEdited) => async (dis
     dispatch(changeForwardingMessageStatus(false, '')) //dispatchим status чтобы убрать окно выбора диалогов(юзеров)
     dispatch(setSendingStatus(false))
 }
-export const editMessage = (messageId, body) => async (dispatch) => {
-
-    const editingMessageResponse = await dialogsAPI.editMessage(messageId, body)
-
+export const sendEditMessage = (messageId, body) => async (dispatch) => {
+    dispatch(setEditingStatus()) //set editing status - false and clear editing message state
+    dispatch(setSendingStatus('sending'))
+    const response = await dialogsAPI.editMessage(messageId, body)
+    if (response.resultCode) {
+        
+        dispatch(setNewMessage(response.editedMessage))
+    } else {
+        alert(response.message)
+    }
+    // dispatch(setNewMessage(message))
+    
+    
+    dispatch(setSendingStatus(false))
 }
 export const getMessages = (dialogId) => async (dispatch) => {
     const response = await dialogsAPI.getMessages(dialogId)
@@ -301,6 +313,8 @@ const dialogsReducer = (state = initialState, action) => {
             //TODO isEdited
             let message = action.message
             let currentDialogs = !message.isGroup ? state.dialogs : state.groupDialogs
+            
+
             if (message.isGroup && !state.groupDialogs.some(dialog => dialog.dialogId === message.dialogId) && action.message.dialogId !== state.currentDialogId) {
                 return state
             } else if (!message.isGroup && !state.dialogs.some(dialog => dialog.dialogId === message.dialogId) && action.message.dialogId !== state.currentDialogId) {
@@ -317,18 +331,21 @@ const dialogsReducer = (state = initialState, action) => {
 
                         let dialogsMessages = [...dialog.dialogsMessages]
                         const checkExistMessage = dialogsMessages.some(dialogsMessage => dialogsMessage.id === message.id)
-                        if (!checkExistMessage && !action.message.isEditing) {
+                        
+                        if (!checkExistMessage && !action.message.isEdited) {
                             dialogsMessages.push(message)
                             messages = dialogsMessages
                             upgradingCrrentDialog = { ...dialog, dialogsMessages }
                         }
-                        if (checkExistMessage && action.message.isEditing) {
+                        if (checkExistMessage && action.message.isEdited) {
+                            
                             dialogsMessages.forEach((m, i) => {
-                                if (m.id === action.message) {
+                                if (m.id === action.message.id) {
+                                    
                                     dialogsMessages.splice(i, 1, action.message)
                                 }
                             });
-                            
+
                             upgradingCrrentDialog = { ...dialog, dialogsMessages }
                         }
 
@@ -383,6 +400,30 @@ const dialogsReducer = (state = initialState, action) => {
         case FORWARD_MESSAGE:
 
             return state
+
+        case SET_EDITING_STATUS:
+
+            if (action.status) {
+                return {
+                    ...state, editingMessage: {
+                        ...state.editingMessage,
+                        inProgress: action.status,
+                        id: action.message.id,
+                        body: action.message.body,
+                    }
+                }
+            } else {
+                return {
+                    ...state, editingMessage: {
+                        ...state.editingMessage,
+                        inProgress: false,
+                        id: null,
+                        body: '',
+                    }
+                }
+            }
+
+        //users-reducer
         case NEW_CONTACT:
             // newContactId
             let isDialogsLikeUser = false

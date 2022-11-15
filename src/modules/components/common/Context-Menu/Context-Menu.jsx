@@ -16,6 +16,8 @@ const ContextMenu = ({
 
     changeForwardingMessageStatus,
 
+    setEditingStatus
+
 }) => {
     const dinamicStyle = {
         display: isActive &&
@@ -26,22 +28,28 @@ const ContextMenu = ({
         top: 20,
         left: 20,
     }
+    let menuItems = currentMenu
+    
+    if(message && !message.isAuthorIsAuth ){
+        menuItems = currentMenu.slice(0, 1)
+    }
 
-
+    
     const contextAction = (
         currentTypeOfArea, currentEntityId,
         nameOfAction
     ) => {
+        
         if (currentTypeOfArea === 'message') {
 
             if (nameOfAction === 'Forward') {
-                if(message && message.body){
-                    changeForwardingMessageStatus(true,  message.body)
+                if (message && message.body) {
+                    changeForwardingMessageStatus(true, message.body)
                 }
-                
+
             } else if (nameOfAction === 'Edit') {
 
-                //TODO THUNK-API method upadate message
+                setEditingStatus(true, message)
             } else if (nameOfAction === 'Forward') {
 
             }
@@ -52,7 +60,7 @@ const ContextMenu = ({
         // <div  className={style.container}>
         <Paper style={dinamicStyle} className={style.container}>
             <MenuList>
-                {currentMenu.map((item, index) => (
+                {menuItems.map((item, index) => (
                     <MenuItem key={`menu-item-${index}`}
                         onClick={() => {
                             contextAction(

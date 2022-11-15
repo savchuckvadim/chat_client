@@ -1,4 +1,5 @@
 import { Formik } from "formik"
+import { Navigate } from "react-router-dom";
 // import { useState } from "react"
 // import { Navigate, NavLink } from "react-router-dom"
 // import { authApi } from "../../../services/api/auth-api"
@@ -33,6 +34,7 @@ const Registration = (props) => {
                     }}
                     onSubmit={(values, { setSubmitting }) => {
                         props.registration(values.nickname, values.email, values.password, values.passwordRepeat)
+                        // return <Navigate replace to='../'/>
                     }}
                 >
                     {({

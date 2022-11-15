@@ -38,7 +38,7 @@ export const registration = (name, email, password, passwordConfirmation) =>
             dispatch(inProgress(false))
         }
 
-        dispatch(inProgress(false))
+        // dispatch(inProgress(false))
         // dispatch(inProgress(false))
         // dispatch(setRegistrationStatus(true))
         // await authApi.registration(name, email, password, passwordConfirmation)

@@ -56,6 +56,7 @@ const Messages = (props) => {
                         currentEntityId={props.currentEntityId}
                         contextMenuToggler={props.contextMenuToggler}
                         changeForwardingMessageStatus={props.changeForwardingMessageStatus}
+                        setEditingStatus={props.setEditingStatus}
 
                     />))
                     : <NoMessages />

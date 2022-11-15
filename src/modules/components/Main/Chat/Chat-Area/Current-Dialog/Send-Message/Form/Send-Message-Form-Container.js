@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { sendMessage } from "../../../../../../../redux/dialogs-reducer"
+import { sendEditMessage, sendMessage } from "../../../../../../../redux/dialogs-reducer"
 import SendMessageForm from "./Send-Message-Form"
 
 
@@ -15,14 +15,16 @@ const mapStateToProps = (state) => {
         currentDialogId: state.dialogs.currentDialogId,
         isSending: state.dialogs.currentMessage.isSending,
         isEditingInProgress: state.dialogs.editingMessage.inProgress,
-        editedBody: state.dialogs.editingMessage.body,
+        editingBody: state.dialogs.editingMessage.body,
+        editingMessageId: state.dialogs.editingMessage.id,
 
     }
 }
 
 
 const SendMessageFormContainer = connect(mapStateToProps, {
-    sendMessage
+    sendMessage,
+    sendEditMessage
 })(SendMessageForm)
 
 export default SendMessageFormContainer
