@@ -53,7 +53,14 @@ const App = (props) => {
   return (
     <>
       <ForwardMessageContainer />
-      <div className="App">
+      <div className="App"
+       onClick={() => {
+        if (props.isContextMenuActive) {
+            // console.log('contextMenuToggler')
+            props.contextMenuToggler(false)
+        }
+    }}
+      >
         <HeaderContainer />
         <div className='page'>
           {page}

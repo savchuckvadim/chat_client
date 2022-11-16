@@ -26,7 +26,7 @@ const MessageItem = ({
         >
             <ContextMenu
                 message={message}
-                //dialog=null
+                dialog={null}
                 entityId={message.id}
                 currentEntityId={currentEntityId} //state.contextMenu.currentEntityId,
                 entityTypeOfArea={'message'}
@@ -37,6 +37,8 @@ const MessageItem = ({
                 setEditingStatus={setEditingStatus}
                 deleteMessage={deleteMessage}
                 deleteDialog={null}
+                setEditingGroupDialog={null}
+                addParticipantsInProgress={null}
             />
             <div className={style.body}>{message.body}</div>
         </div >

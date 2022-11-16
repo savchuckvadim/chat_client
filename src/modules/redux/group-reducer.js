@@ -1,9 +1,12 @@
 
 const ADD_PARTICIPANTS_IN_PROGRESS = 'ADD_PARTICIPANTS_IN_PROGRESS'
+
 export const CANCEL = 'CANCEL'
 
 const initialState = {
-    addingParticipantsInProgress: false
+    addingParticipantsInProgress: false,
+    // isEditing: false,
+    // editingGroupDialog: null
 }
 export const addParticipantsInProgress = (bool) => ({ type: ADD_PARTICIPANTS_IN_PROGRESS, bool })
 export const addParticipantsCancel = () => ({ type: CANCEL })

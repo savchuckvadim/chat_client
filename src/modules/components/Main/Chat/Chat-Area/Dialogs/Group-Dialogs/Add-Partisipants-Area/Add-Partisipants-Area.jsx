@@ -12,7 +12,7 @@ const AddPartisipantsArea = (props) => {
                     className={style.dialogsName}
                     placeholder='Dialogs Name'
                     onChange={(e) => { props.setGroupDialogsName(e.target.value) }}
-                    value={props.newGroupDialogsName}
+                    value={props.name}
                 ></input>
                 <PartisipantsButtonsContainer />
 

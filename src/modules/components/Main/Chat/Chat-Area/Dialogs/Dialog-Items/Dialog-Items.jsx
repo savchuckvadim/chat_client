@@ -18,6 +18,8 @@ const DialogItems = (props) => {
                             contextMenuToggler={props.contextMenuToggler}
                             changeCurrentDialog={props.changeCurrentDialog}
                             deleteDialog={props.deleteDialog}
+                            setEditingGroupDialog={props.setEditingGroupDialog}
+                            addParticipantsInProgress={props.addParticipantsInProgress}
                         />))}
 
                 </div>

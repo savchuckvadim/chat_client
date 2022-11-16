@@ -11,7 +11,9 @@ const DialogItem = ({
     currentEntityId,
     contextMenuToggler,
     changeCurrentDialog,
-    deleteDialog
+    deleteDialog,
+    setEditingGroupDialog,
+    addParticipantsInProgress
 }) => {
 
 
@@ -38,6 +40,8 @@ const DialogItem = ({
                 setEditingStatus={null}        // = null
                 deleteMessage={null}        // = null
                 deleteDialog={deleteDialog}
+                setEditingGroupDialog={setEditingGroupDialog}
+                addParticipantsInProgress={addParticipantsInProgress}
 
             />
 

@@ -10,7 +10,6 @@ const SET_CURRENT_DIALOG = 'dialogs/SET_CURRENT_DIALOG'
 const CHANGE_CURRENT_DIALOG = 'dialogs/CHANGE_CURRENT_DIALOG'
 const SET_NEW_MESSAGE = 'dialogs/SET_NEW_MESSAGE'
 const SET_SENDING_STATUS = 'dialogs/SET_SENDING_STATUS'
-const SET_USER_IN_GROUP_DIALOG = 'dialogs/SET_USER_IN_GROUP_DIALOG'
 const PARTICIPANTS_NEW_GROUP_DIALOG = 'dialogs/PARTICIPANTS_NEW_GROUP_DIALOG'
 const SET_NEW_GROUP_DIALOG = 'dialogs/SET_NEW_GROUP_DIALOG'
 const SET_GROUP_DIALOGS_NAME = 'dialogs/SET_GROUP_DIALOGS_NAME'
@@ -19,6 +18,9 @@ const FORWARD_MESSAGE = 'dialogs/FORWARD_MESSAGE'
 const SET_EDITING_STATUS = 'dialogs/SET_EDITING_STATUS'
 const DELETE_MESSAGE = 'dialogs/DELETE_MESSAGE'
 const DELETE_DIALOG = 'dialogs/DELETE_DIALOG'
+const SET_EDITING_GROUP_DIALOG = 'dialogs/SET_EDITING_GROUP_DIALOG'
+const SET_EDITED_GROUP_DIALOG = 'dialogs/SET_EDITED_GROUP_DIALOG'
+
 
 const initialState = {
     dialogs: [],
@@ -29,12 +31,12 @@ const initialState = {
     messages: [],
 
     currentMessage: {
-
         //  isSending:  false/sending/sended/
         isSending: false
     },
 
     newGroupDialog: {
+        dialogId: null,
         name: '',
         participants: []
     },
@@ -59,7 +61,6 @@ const setCurrentDialog = (dialog) => ({ type: SET_CURRENT_DIALOG, dialog })
 export const changeCurrentDialog = (dialog) => ({ type: CHANGE_CURRENT_DIALOG, dialog })
 export const setNewMessage = (message) => ({ type: SET_NEW_MESSAGE, message })
 const setSendingStatus = (status) => ({ type: SET_SENDING_STATUS, status }) //status:false, sending, sended
-// const setUsersInGroupDialog = (user, dialogId) => ({ type: SET_USER_IN_GROUP_DIALOG, user, dialogId })  //for edit exist group dialog
 export const setParticipant = (participant, bool) => ({ type: PARTICIPANTS_NEW_GROUP_DIALOG, participant, bool })
 const setNewGroupDialog = (groupDialog) => ({ type: SET_NEW_GROUP_DIALOG, groupDialog })
 export const setGroupDialogsName = (value) => ({ type: SET_GROUP_DIALOGS_NAME, value })
@@ -72,6 +73,9 @@ export const changeForwardingMessageStatus = (bool, messageBody) => ({ type: FOR
 export const setEditingStatus = (status = null, message = null) => ({ type: SET_EDITING_STATUS, status, message }) //status:false, true
 const setDeleteMessage = (messageId) => ({ type: DELETE_MESSAGE, messageId })
 const setDeleteDialog = (dialogId) => ({ type: DELETE_DIALOG, dialogId })
+export const setEditingGroupDialog = (dialog) => ({ type: SET_EDITING_GROUP_DIALOG, dialog })  //for edit exist group dialog
+const setEditedGroupDialog = (dialog) => ({ type: SET_EDITED_GROUP_DIALOG, dialog })  //for edit exist group dialog
+
 //DELETE_MESSAGE
 
 
@@ -176,15 +180,15 @@ export const getMessages = (dialogId) => async (dispatch) => {
 
 }
 
-export const addNewGroupDialog = (users, dialogsName) => async (dispatch) => {
-    
+export const addNewGroupDialog = (users, dialogsName, id = null) => async (dispatch) => {
+
     if (users.length > 0 && dialogsName !== '') {
         const groupDialog = await dialogsAPI.addGroupDialog(users, dialogsName)
         debugger
-        if(groupDialog.createdDialog){
+        if (groupDialog.createdDialog) {
             dispatch(setNewGroupDialog(groupDialog.createdDialog))
         }
-       
+
     } else {
         if (users.length === 0) {
             alert('не добавлены пользователи!')
@@ -204,11 +208,13 @@ export const addNewGroupDialog = (users, dialogsName) => async (dispatch) => {
 export const deleteDialog = (dialogId) => async (dispatch) => {
 
     await dialogsAPI.deleteDialog(dialogId)
-    
+
     dispatch(setDeleteDialog(dialogId))
     //TODO delete AC
 
 }
+
+//TODO sendEditGroupDialog
 //REDUCER
 const dialogsReducer = (state = initialState, action) => {
 
@@ -269,7 +275,7 @@ const dialogsReducer = (state = initialState, action) => {
             let checkExistDeletingDialog = searchDialog(action.dialogId, [state.dialogs, state.groupDialogs])
 
             if (checkExistDeletingDialog) {
-        
+
 
                 if (checkExistDeletingDialog.isGroup) {
                     resultDeletingDialogs = state.dialogs
@@ -291,20 +297,20 @@ const dialogsReducer = (state = initialState, action) => {
                     })
 
                 }
-                
+
                 let resultDeletingCurrentDialogId = state.currentDialogId
                 let resultDeletingCurrentDialog = state.currentDialog
                 let resultDeletingCurrentMessages = state.messages
 
                 if (state.currentDialogId === action.dialogId) {
                     let index = state.dialogs[0].dialogId != action.dialogId ? 0 : 1
-                    resultDeletingCurrentDialogId =  state.dialogs[index].dialogId
+                    resultDeletingCurrentDialogId = state.dialogs[index].dialogId
                     resultDeletingCurrentDialog = state.dialogs[index]
                     resultDeletingCurrentMessages = state.dialogs[index].dialogsMessages
                 }
                 return {
                     ...state, dialogs: resultDeletingDialogs,
-                    groupDialogs:resultDeletingGroupDialogs,
+                    groupDialogs: resultDeletingGroupDialogs,
                     currentDialogId: resultDeletingCurrentDialogId,
                     currentDialog: resultDeletingCurrentDialog,
                     messages: resultDeletingCurrentMessages
@@ -361,8 +367,19 @@ const dialogsReducer = (state = initialState, action) => {
             }
             return state
 
+        case SET_EDITING_GROUP_DIALOG:
+            //action dialog
+            debugger
+            return {
+                ...state, newGroupDialog: {
+                    ...state.newGroupDialog, 
+                    dialogId: action.dialog.dialogId,
+                    name: action.dialog.dialogName,
+                    participants: action.dialog.dialogsUsers
+                }
+            }
 
-        case SET_USER_IN_GROUP_DIALOG:  //for edit exist group dialog
+        case SET_EDITED_GROUP_DIALOG:  //for edit exist group dialog
             let resultGroupDialogs = []
             state.groupDialogs.forEach(dialog => {
                 if (dialog.dialogId === action.dialogId) {

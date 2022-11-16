@@ -7,6 +7,7 @@ import ListItemText from '@mui/material/ListItemText';
 
 const ContextMenu = ({
     message = null,
+    dialog = null,
     entityId, //this dialog
     currentEntityId,  //current Dialog From State
     entityTypeOfArea,
@@ -17,6 +18,9 @@ const ContextMenu = ({
     setEditingStatus = null,
     deleteMessage = null,
     deleteDialog = null,
+    setEditingGroupDialog = null,
+    addParticipantsInProgress = null
+
 
 }) => {
     const dinamicStyle = {
@@ -29,17 +33,17 @@ const ContextMenu = ({
         left: 20,
     }
     let menuItems = currentMenu
-    
-    if(message && !message.isAuthorIsAuth ){
+
+    if (message && !message.isAuthorIsAuth) {
         menuItems = currentMenu.slice(0, 1)
     }
 
-    
+
     const contextAction = (
         currentTypeOfArea, currentEntityId,
         nameOfAction
     ) => {
-        
+
         if (currentTypeOfArea === 'message') {
 
             if (nameOfAction === 'Forward') {
@@ -53,15 +57,15 @@ const ContextMenu = ({
             } else if (nameOfAction === 'Delete') {
                 deleteMessage(currentEntityId)
             }
-        }else if(currentTypeOfArea === 'dialog' || currentTypeOfArea === 'group-dialog'){
-            
-             if (nameOfAction === 'Edit') {
+        } else if (currentTypeOfArea === 'dialog' || currentTypeOfArea === 'group-dialog') {
 
-                //TODO edit group dialog
-                
+            if (nameOfAction === 'Edit') {
+
+                setEditingGroupDialog(dialog)
+                addParticipantsInProgress(true)
+
             } else if (nameOfAction === 'Delete') {
-                //TODO delete dialog and Group Dialog
-                
+
                 deleteDialog(entityId)
             }
         }

@@ -4,6 +4,7 @@ import App from "./App"
 import Preloader from "./modules/components/common/Preloader/Preloader"
 import Start from "./modules/components/Start/Start"
 import { me } from "./modules/redux/auth-reducer"
+import { contextMenuToggler } from "./modules/redux/context-menu-reducer"
 
 
 
@@ -14,7 +15,8 @@ const mapStateToProps = (state) => {
         registrationStatus: state.auth.registration.status,
         registrationUrl: state.auth.registration.url,
         inProgress: state.preloader.inProgress,
-        addingParticipantsInProgress: state.group.addingParticipantsInProgress
+        addingParticipantsInProgress: state.group.addingParticipantsInProgress,
+        isContextMenuActive: state.contextMenu.isActive,
 
     }
 }
@@ -40,5 +42,6 @@ const AppContainer = (props) => {
 }
 
 export default connect(mapStateToProps, {
-    me
+    me,
+    contextMenuToggler
 })(AppContainer)
