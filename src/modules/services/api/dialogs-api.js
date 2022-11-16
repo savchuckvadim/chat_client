@@ -44,11 +44,11 @@ export const dialogsAPI = {
         const response = await api.get(`messages/${dialogId}`)
         return response.data
     },
-    async addGroupDialog(users, dialogsName) {
+    async addGroupDialog(users, dialogsName, dialogId = null) {
         const response = await api.post('group-dialog', {
-            users, dialogsName
+            users, dialogsName, dialogId
         })
-        debugger
+        
         if (response.data.resultCode === 1) {
             return response.data
         }

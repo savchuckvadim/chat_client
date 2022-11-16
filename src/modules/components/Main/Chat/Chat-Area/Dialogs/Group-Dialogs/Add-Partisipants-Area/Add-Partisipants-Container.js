@@ -8,6 +8,7 @@ const mapStateToProps = (state) => {
         name: state.dialogs.newGroupDialog.name,
         participants: state.dialogs.newGroupDialog.participants,
         addingParticipantsInProgress: state.group.addingParticipantsInProgress,
+        inProgress: state.preloader.inProgress
     }
 }
 

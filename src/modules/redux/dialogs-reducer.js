@@ -1,8 +1,10 @@
 import { dialogsAPI } from "../services/api/dialogs-api"
 import { searchDialog } from "../utils/dialog-utils"
 import { echo } from "../services/websocket/socket"
-import { CANCEL } from "./group-reducer"
+import { addParticipantsInProgress, CANCEL } from "./group-reducer"
 import { NEW_CONTACT } from "./users-reducer"
+import { inProgress } from './preloader-reducer'
+
 
 const SET_DIALOGS = 'dialogs/SET_DIALOGS'
 const SET_DIALOG = 'dialogs/SET_DIALOG'
@@ -74,7 +76,7 @@ export const setEditingStatus = (status = null, message = null) => ({ type: SET_
 const setDeleteMessage = (messageId) => ({ type: DELETE_MESSAGE, messageId })
 const setDeleteDialog = (dialogId) => ({ type: DELETE_DIALOG, dialogId })
 export const setEditingGroupDialog = (dialog) => ({ type: SET_EDITING_GROUP_DIALOG, dialog })  //for edit exist group dialog
-const setEditedGroupDialog = (dialog) => ({ type: SET_EDITED_GROUP_DIALOG, dialog })  //for edit exist group dialog
+// const setEditedGroupDialog = (dialog) => ({ type: SET_EDITED_GROUP_DIALOG, dialog })  //for edit exist group dialog
 
 //DELETE_MESSAGE
 
@@ -180,15 +182,21 @@ export const getMessages = (dialogId) => async (dispatch) => {
 
 }
 
-export const addNewGroupDialog = (users, dialogsName, id = null) => async (dispatch) => {
+export const addNewGroupDialog = (users, dialogsName, dialogId = null) => async (dispatch) => {
 
     if (users.length > 0 && dialogsName !== '') {
-        const groupDialog = await dialogsAPI.addGroupDialog(users, dialogsName)
+        dispatch(addParticipantsInProgress(false))
+        dispatch(inProgress(true))
+        const groupDialog = await dialogsAPI.addGroupDialog(users, dialogsName, dialogId)
         debugger
         if (groupDialog.createdDialog) {
             dispatch(setNewGroupDialog(groupDialog.createdDialog))
         }
-
+        if (groupDialog.editedDialog) {
+            dispatch(setNewGroupDialog(groupDialog.editedDialog))
+        }
+        
+        dispatch(inProgress(false))
     } else {
         if (users.length === 0) {
             alert('не добавлены пользователи!')
@@ -303,7 +311,7 @@ const dialogsReducer = (state = initialState, action) => {
                 let resultDeletingCurrentMessages = state.messages
 
                 if (state.currentDialogId === action.dialogId) {
-                    let index = state.dialogs[0].dialogId != action.dialogId ? 0 : 1
+                    let index = state.dialogs[0].dialogId !== action.dialogId ? 0 : 1
                     resultDeletingCurrentDialogId = state.dialogs[index].dialogId
                     resultDeletingCurrentDialog = state.dialogs[index]
                     resultDeletingCurrentMessages = state.dialogs[index].dialogsMessages
@@ -372,7 +380,7 @@ const dialogsReducer = (state = initialState, action) => {
             debugger
             return {
                 ...state, newGroupDialog: {
-                    ...state.newGroupDialog, 
+                    ...state.newGroupDialog,
                     dialogId: action.dialog.dialogId,
                     name: action.dialog.dialogName,
                     participants: action.dialog.dialogsUsers
