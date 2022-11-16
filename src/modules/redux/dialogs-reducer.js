@@ -291,6 +291,7 @@ const dialogsReducer = (state = initialState, action) => {
                     })
 
                 }
+                
                 let resultDeletingCurrentDialogId = state.currentDialogId
                 let resultDeletingCurrentDialog = state.currentDialog
                 let resultDeletingCurrentMessages = state.messages

@@ -10,7 +10,7 @@ const DialogItem = ({
     currentMenu,
     currentEntityId,
     contextMenuToggler,
-    changeCurrentDialog, 
+    changeCurrentDialog,
     deleteDialog
 }) => {
 
@@ -22,7 +22,7 @@ const DialogItem = ({
         if (dialog.isGroup) {
             name = dialog.dialogName
             contextMenu = <ContextMenu
-                message = {null}
+                message={null}
                 dialog={dialog}
                 entityId={dialog.dialogId}
                 currentEntityId={currentEntityId} //state.contextMenu.currentEntityId,
@@ -43,15 +43,17 @@ const DialogItem = ({
 
 
         return (
-            <NavLink to={`${dialog.dialogId}`}
-                onClick={() => {
 
-                    changeCurrentDialog(dialog)
-                }}
-                onContextMenu={(e) => { onRightClick(e, true, 'dialog', dialog.dialogId, contextMenuToggler) }}
-            >
 
-                <div className={style.item}>
+            <div >
+                <NavLink to={`${dialog.dialogId}`}
+                    onClick={() => {
+
+                        changeCurrentDialog(dialog)
+                    }}
+                    onContextMenu={(e) => { onRightClick(e, true, 'dialog', dialog.dialogId, contextMenuToggler) }}
+                    className={style.item}
+                >
                     <div className={style.avatar}>
                         <p className={style.initials}>{initials}</p>
                     </div>
@@ -61,10 +63,11 @@ const DialogItem = ({
                             `${dialog.dialogsMessages[dialog.dialogsMessages.length - 1].body.slice(0, 2)}...`}</p>
                     </div>
 
+                </NavLink>
+                {contextMenu}
 
-                    {contextMenu}
-                </div>
-            </NavLink>
+            </div >
+
         )
     } else {
         return null
