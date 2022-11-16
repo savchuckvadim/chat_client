@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { contextMenuToggler } from "../../../../../redux/context-menu-reducer"
-import { changeCurrentDialog } from "../../../../../redux/dialogs-reducer"
+import { changeCurrentDialog, deleteDialog } from "../../../../../redux/dialogs-reducer"
 import { addParticipantsInProgress } from "../../../../../redux/group-reducer"
 
 import Dialogs from "./Dialogs"
@@ -23,7 +23,8 @@ const DialogsContainer = connect(maStateToProps, {
 
     changeCurrentDialog,
     addParticipantsInProgress,
-    contextMenuToggler
+    contextMenuToggler,
+    deleteDialog
 
 })(Dialogs)
 

@@ -18,6 +18,7 @@ const Dialogs = (props) => {
         
                     contextMenuToggler={props.contextMenuToggler}
                     changeCurrentDialog={props.changeCurrentDialog}
+                    deleteDialog={props.deleteDialog}
                 />
 
             </div>
@@ -40,6 +41,7 @@ const Dialogs = (props) => {
         
                     contextMenuToggler={props.contextMenuToggler}
                     changeCurrentDialog={props.changeCurrentDialog}
+                    deleteDialog={props.deleteDialog}
                 />
 
             </div>

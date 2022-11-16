@@ -18,7 +18,7 @@ const FORWARDING_MESSAGE = 'dialogs/FORWARDING_MESSAGE'
 const FORWARD_MESSAGE = 'dialogs/FORWARD_MESSAGE'
 const SET_EDITING_STATUS = 'dialogs/SET_EDITING_STATUS'
 const DELETE_MESSAGE = 'dialogs/DELETE_MESSAGE'
-
+const DELETE_DIALOG = 'dialogs/DELETE_DIALOG'
 
 const initialState = {
     dialogs: [],
@@ -71,7 +71,7 @@ export const setGroupDialogsName = (value) => ({ type: SET_GROUP_DIALOGS_NAME, v
 export const changeForwardingMessageStatus = (bool, messageBody) => ({ type: FORWARDING_MESSAGE, bool, messageBody })
 export const setEditingStatus = (status = null, message = null) => ({ type: SET_EDITING_STATUS, status, message }) //status:false, true
 const setDeleteMessage = (messageId) => ({ type: DELETE_MESSAGE, messageId })
-
+const setDeleteDialog = (dialogId) => ({ type: DELETE_DIALOG, dialogId })
 //DELETE_MESSAGE
 
 
@@ -177,9 +177,14 @@ export const getMessages = (dialogId) => async (dispatch) => {
 }
 
 export const addNewGroupDialog = (users, dialogsName) => async (dispatch) => {
+    
     if (users.length > 0 && dialogsName !== '') {
         const groupDialog = await dialogsAPI.addGroupDialog(users, dialogsName)
-        dispatch(setNewGroupDialog(groupDialog))
+        debugger
+        if(groupDialog.createdDialog){
+            dispatch(setNewGroupDialog(groupDialog.createdDialog))
+        }
+       
     } else {
         if (users.length === 0) {
             alert('не добавлены пользователи!')
@@ -195,6 +200,15 @@ export const addNewGroupDialog = (users, dialogsName) => async (dispatch) => {
 
 }
 
+//for context-menu
+export const deleteDialog = (dialogId) => async (dispatch) => {
+
+    await dialogsAPI.deleteDialog(dialogId)
+    
+    dispatch(setDeleteDialog(dialogId))
+    //TODO delete AC
+
+}
 //REDUCER
 const dialogsReducer = (state = initialState, action) => {
 
@@ -248,6 +262,54 @@ const dialogsReducer = (state = initialState, action) => {
             }
             return state
 
+
+        case DELETE_DIALOG:
+            let resultDeletingDialogs = []
+            let resultDeletingGroupDialogs = []
+            let checkExistDeletingDialog = searchDialog(action.dialogId, [state.dialogs, state.groupDialogs])
+
+            if (checkExistDeletingDialog) {
+        
+
+                if (checkExistDeletingDialog.isGroup) {
+                    resultDeletingDialogs = state.dialogs
+
+                    state.groupDialogs.forEach(dialog => {
+                        if (dialog.dialogId !== action.dialogId) {
+                            resultDeletingGroupDialogs.push(dialog)
+                        }
+                    })
+
+
+                } else {
+
+                    resultDeletingGroupDialogs = state.groupDialogs
+                    state.groupDialogs.forEach(dialog => {
+                        if (dialog.dialogId !== action.dialogId) {
+                            resultDeletingDialogs.push(dialog)
+                        }
+                    })
+
+                }
+                let resultDeletingCurrentDialogId = state.currentDialogId
+                let resultDeletingCurrentDialog = state.currentDialog
+                let resultDeletingCurrentMessages = state.messages
+
+                if (state.currentDialogId === action.dialogId) {
+                    resultDeletingCurrentDialogId = state.dialogs[0].dialogId
+                    resultDeletingCurrentDialog = state.dialogs[0]
+                    resultDeletingCurrentMessages = state.dialogs[0].dialogsMessages
+                }
+                return {
+                    ...state, dialogs: resultDeletingDialogs,
+                    groupDialogs:resultDeletingGroupDialogs,
+                    currentDialogId: resultDeletingCurrentDialogId,
+                    currentDialog: resultDeletingCurrentDialog,
+                    messages: resultDeletingCurrentMessages
+                }
+            }
+            return state
+
         case SET_CURRENT_DIALOG:
 
             return { ...state, currentDialogId: action.dialog.dialogId, currentDialog: action.dialog, messages: action.dialog.dialogsMessages }
@@ -288,7 +350,8 @@ const dialogsReducer = (state = initialState, action) => {
             return { ...state, newGroupDialog: { ...state.newGroupDialog, name: action.value } }
 
         case SET_NEW_GROUP_DIALOG:
-            const checkGroupDialog = state.groupDialogs.some(dialog => dialog.dialogId === action.groupDialog.dialogId)
+            debugger
+            const checkGroupDialog = state.groupDialogs.length > 0 && state.groupDialogs.some(dialog => dialog.dialogId === action.groupDialog.dialogId)
             if (!checkGroupDialog) {
                 let resultDialogs = [...state.groupDialogs]
                 resultDialogs.unshift(action.groupDialog)

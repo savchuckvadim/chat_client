@@ -7,17 +7,16 @@ import ListItemText from '@mui/material/ListItemText';
 
 const ContextMenu = ({
     message = null,
-    entityId,
-    currentEntityId,
+    entityId, //this dialog
+    currentEntityId,  //current Dialog From State
     entityTypeOfArea,
     currentTypeOfArea,
     isActive,
     currentMenu,
-
-    changeForwardingMessageStatus,
-
-    setEditingStatus,
-    deleteMessage
+    changeForwardingMessageStatus = null,
+    setEditingStatus = null,
+    deleteMessage = null,
+    deleteDialog = null,
 
 }) => {
     const dinamicStyle = {
@@ -53,6 +52,17 @@ const ContextMenu = ({
                 setEditingStatus(true, message)
             } else if (nameOfAction === 'Delete') {
                 deleteMessage(currentEntityId)
+            }
+        }else if(currentTypeOfArea === 'dialog'){
+            
+             if (nameOfAction === 'Edit') {
+
+                //TODO edit group dialog
+                
+            } else if (nameOfAction === 'Delete') {
+                //TODO delete dialog and Group Dialog
+                
+                deleteDialog(entityId)
             }
         }
 

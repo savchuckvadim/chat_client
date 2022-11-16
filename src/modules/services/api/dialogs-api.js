@@ -48,13 +48,20 @@ export const dialogsAPI = {
         const response = await api.post('group-dialog', {
             users, dialogsName
         })
-        if (response.resultCode === 1) {
+        debugger
+        if (response.data.resultCode === 1) {
             return response.data
         }
         else {
-            alert(response.message)
+            alert(response.data.message)
         }
 
+    },
+
+    async deleteDialog (dialogId){
+        const response = await api.delete(`dialog/${dialogId}`)
+        debugger
+        return response.data
     }
 
 }

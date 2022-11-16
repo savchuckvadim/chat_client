@@ -6,12 +6,13 @@ const MessageItem = ({
     message,
     isContextMenuActive,
     currentTypeOfArea,
-    currentEntityId,
-    currentMenu,
+    currentEntityId, //state.contextMenu.currentEntityId,
+    currentMenu,    //state.contextMenu.typeOfArea
     contextMenuToggler,
     changeForwardingMessageStatus,
     setEditingStatus,
-    deleteMessage
+    deleteMessage,
+
 }) => {
 
     let messageClass = style.myMessage
@@ -25,15 +26,17 @@ const MessageItem = ({
         >
             <ContextMenu
                 message={message}
+                //dialog=null
                 entityId={message.id}
-                currentEntityId={currentEntityId}
+                currentEntityId={currentEntityId} //state.contextMenu.currentEntityId,
                 entityTypeOfArea={'message'}
-                currentTypeOfArea={currentTypeOfArea}
-                isActive={isContextMenuActive}
-                currentMenu={currentMenu}
+                currentTypeOfArea={currentTypeOfArea} //state.contextMenu.typeOfArea
+                isActive={isContextMenuActive} //state.contextMenu.isActive,
+                currentMenu={currentMenu} //state.contextMenu.currentMenu
                 changeForwardingMessageStatus={changeForwardingMessageStatus}
                 setEditingStatus={setEditingStatus}
                 deleteMessage={deleteMessage}
+                deleteDialog={null}
             />
             <div className={style.body}>{message.body}</div>
         </div >

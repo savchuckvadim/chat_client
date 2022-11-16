@@ -10,7 +10,9 @@ const DialogItem = ({
     currentMenu,
     currentEntityId,
     contextMenuToggler,
-    changeCurrentDialog }) => {
+    changeCurrentDialog, 
+    deleteDialog
+}) => {
 
 
     let contextMenu = null
@@ -20,20 +22,26 @@ const DialogItem = ({
         if (dialog.isGroup) {
             name = dialog.dialogName
             contextMenu = <ContextMenu
+                message = {null}
+                dialog={dialog}
                 entityId={dialog.dialogId}
-                currentEntityId={currentEntityId}
+                currentEntityId={currentEntityId} //state.contextMenu.currentEntityId,
                 entityTypeOfArea={'dialog'}
-                currentTypeOfArea={currentTypeOfArea}
-                isActive={isContextMenuActive}
-                currentMenu={currentMenu}
-               
+                currentTypeOfArea={currentTypeOfArea} //state.contextMenu.typeOfArea
+                isActive={isContextMenuActive} //state.contextMenu.isActive,
+                currentMenu={currentMenu} //state.contextMenu.currentMenu
+                changeForwardingMessageStatus={null}        // = null
+                setEditingStatus={null}        // = null
+                deleteMessage={null}        // = null
+                deleteDialog={deleteDialog}
+
             />
 
         }
         let initials = `${name[0]}${name[name.length - 1]}`.toUpperCase()
         let title = <h3 className={style.name}>{name}</h3>
 
-        
+
         return (
             <NavLink to={`${dialog.dialogId}`}
                 onClick={() => {

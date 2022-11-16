@@ -17,6 +17,7 @@ const DialogItems = (props) => {
                             currentEntityId={props.currentEntityId}
                             contextMenuToggler={props.contextMenuToggler}
                             changeCurrentDialog={props.changeCurrentDialog}
+                            deleteDialog={props.deleteDialog}
                         />))}
 
                 </div>
