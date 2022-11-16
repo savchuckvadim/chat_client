@@ -53,7 +53,7 @@ const ContextMenu = ({
             } else if (nameOfAction === 'Delete') {
                 deleteMessage(currentEntityId)
             }
-        }else if(currentTypeOfArea === 'dialog'){
+        }else if(currentTypeOfArea === 'dialog' || currentTypeOfArea === 'group-dialog'){
             
              if (nameOfAction === 'Edit') {
 

@@ -2,7 +2,7 @@
 const CONTEXT_TOGGLE = 'contextMenu/CONTEXT_TOGGLE'
 
 const initialState = {
-    typeOfArea: null, //message, dialog 
+    typeOfArea: null, //message, dialog , group-dialog 
     isActive: false,
     xPos: 0,
     yPos: 0,
@@ -38,6 +38,8 @@ const contextMenuReducer = (state = initialState, action) => {
                 if (action.typeOfArea === 'message') {
                     currentMenu = [...state.messageMenu]
                 } else if (action.typeOfArea === 'dialog') {
+                    currentMenu = [...state.dialogMenu]
+                }else if (action.typeOfArea === 'group-dialog') {
                     currentMenu = [...state.groupDialogMenu]
                 }
                 

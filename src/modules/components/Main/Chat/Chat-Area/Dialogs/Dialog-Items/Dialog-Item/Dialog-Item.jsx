@@ -16,17 +16,21 @@ const DialogItem = ({
 
 
     let contextMenu = null
+    let entityTypeOfArea = 'dialog'
     if (dialog.dialogsUsers[0]) {
         let name = dialog.dialogsUsers[0].name
 
         if (dialog.isGroup) {
+            entityTypeOfArea = 'group-dialog'
             name = dialog.dialogName
+        }
+            
             contextMenu = <ContextMenu
                 message={null}
                 dialog={dialog}
                 entityId={dialog.dialogId}
                 currentEntityId={currentEntityId} //state.contextMenu.currentEntityId,
-                entityTypeOfArea={'dialog'}
+                entityTypeOfArea={entityTypeOfArea}
                 currentTypeOfArea={currentTypeOfArea} //state.contextMenu.typeOfArea
                 isActive={isContextMenuActive} //state.contextMenu.isActive,
                 currentMenu={currentMenu} //state.contextMenu.currentMenu
@@ -37,7 +41,7 @@ const DialogItem = ({
 
             />
 
-        }
+        
         let initials = `${name[0]}${name[name.length - 1]}`.toUpperCase()
         let title = <h3 className={style.name}>{name}</h3>
 
@@ -51,7 +55,7 @@ const DialogItem = ({
 
                         changeCurrentDialog(dialog)
                     }}
-                    onContextMenu={(e) => { onRightClick(e, true, 'dialog', dialog.dialogId, contextMenuToggler) }}
+                    onContextMenu={(e) => { onRightClick(e, true, entityTypeOfArea, dialog.dialogId, contextMenuToggler) }}
                     className={style.item}
                 >
                     <div className={style.avatar}>

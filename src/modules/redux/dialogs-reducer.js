@@ -284,7 +284,7 @@ const dialogsReducer = (state = initialState, action) => {
                 } else {
 
                     resultDeletingGroupDialogs = state.groupDialogs
-                    state.groupDialogs.forEach(dialog => {
+                    state.dialogs.forEach(dialog => {
                         if (dialog.dialogId !== action.dialogId) {
                             resultDeletingDialogs.push(dialog)
                         }
@@ -297,9 +297,10 @@ const dialogsReducer = (state = initialState, action) => {
                 let resultDeletingCurrentMessages = state.messages
 
                 if (state.currentDialogId === action.dialogId) {
-                    resultDeletingCurrentDialogId = state.dialogs[0].dialogId
-                    resultDeletingCurrentDialog = state.dialogs[0]
-                    resultDeletingCurrentMessages = state.dialogs[0].dialogsMessages
+                    let index = state.dialogs[0].dialogId != action.dialogId ? 0 : 1
+                    resultDeletingCurrentDialogId =  state.dialogs[index].dialogId
+                    resultDeletingCurrentDialog = state.dialogs[index]
+                    resultDeletingCurrentMessages = state.dialogs[index].dialogsMessages
                 }
                 return {
                     ...state, dialogs: resultDeletingDialogs,
