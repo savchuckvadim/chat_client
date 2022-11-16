@@ -447,7 +447,7 @@ const dialogsReducer = (state = initialState, action) => {
                         if (message.id === action.messageId) {
                             isDialog = true
                             upgraidingMessages = [...dialog.dialogsMessages]
-                            upgraidingMessages.slice(index, 1)
+                            upgraidingMessages.splice(index, 1)
                             upgraidDialog = { ...dialog, dialogsMessages: upgraidingMessages }
                             // messageIndex = index
 
@@ -461,9 +461,7 @@ const dialogsReducer = (state = initialState, action) => {
                         !isDialog
                             ? resultDeleteMessageGroupDialogs.push(dialog)
                             : resultDeleteMessageGroupDialogs.push(upgraidDialog)
-
                     }
-                    debugger
                 }))
             if (upgraidDialog) {
                 return {

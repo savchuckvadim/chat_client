@@ -33,7 +33,7 @@ const InputEditMessage = (props) => {
     const [value, setValue] = useState(props.editingBody)
 
     useEffect(() => {
-        debugger
+        
         if (props.isSended && !props.editingBody) {
             
             setValue(null)
@@ -42,7 +42,7 @@ const InputEditMessage = (props) => {
     }, [props.isSended])
     useEffect(() => {
         if (props.isEditingInProgress) {
-            debugger
+            
             setValue(props.editingBody)
 
         }
