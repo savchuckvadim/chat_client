@@ -8,7 +8,7 @@ width: 97vw;
     min-height: 28vh;
     background-color: #333843;
     display: grid;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 85% 15%;
   grid-template-rows: 1fr;
   border-radius: 20px;
   outline:1px solid  rgb(88, 155, 249);
@@ -32,4 +32,16 @@ width: 97vw;
     display: flex;
     justify-content: center;
 
+}
+@media screen and (max-width: 902px) {
+  .menu {
+    display: none;
+  }
+  .container{
+    width: 97vw;
+
+        background-color: #3d424d;
+        display: grid;
+      grid-template-columns: 99% 1%;
+  }
 }

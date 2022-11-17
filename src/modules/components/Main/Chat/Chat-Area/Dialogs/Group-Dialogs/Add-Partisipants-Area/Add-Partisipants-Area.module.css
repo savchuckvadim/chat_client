@@ -7,11 +7,11 @@
     background-color: white;
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: center;
     align-items: flex-start;
 }
 .upArea{
-    width: 85%;
+    min-width: 100%;
     margin-left: 29px;
     display: flex;
     justify-content: space-between;
