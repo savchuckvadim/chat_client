@@ -1,9 +1,13 @@
 import style from './Preloader.module.css'
 
-const Preloader = () => {
-
+const Preloader = (props) => {
+    let styleFromArea = props.isForwarding
+        ? {
+            'borderRadius': '12px'
+        }
+        : {}
     return (
-        <div className={style.container}>
+        <div style={styleFromArea} className={style.container}>
             Loading...
         </div>
     )

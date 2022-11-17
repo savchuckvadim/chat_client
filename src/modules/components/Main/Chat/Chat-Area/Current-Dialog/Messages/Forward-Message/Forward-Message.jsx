@@ -1,3 +1,4 @@
+import Preloader from '../../../../../../common/Preloader/Preloader'
 import UsersContainer from '../../../../../Users/Users-Container'
 import style from './Forward-Message.module.css'
 
@@ -17,7 +18,10 @@ const ForwardMessage = (props) => {
 
         </div>
         <div className={style.users__card}>
-            <UsersContainer />
+            {!props.isSending
+                ? <UsersContainer />
+                : <Preloader isForwarding={true} />
+            }
         </div>
     </>
     )
