@@ -1,7 +1,7 @@
 .menu{
-    margin-top: 25px;
+    margin-top: 13px;
     /* height: 80%; */
-    height: 420px;
+    height: 77%;
     width: 80%;
     border-radius: 16px;
     background-color: white;
@@ -11,10 +11,13 @@
     justify-content:start;
     align-items: center;
 }
+h3{
+    margin: 10px 0px ;
+}
 .title__wrapper{
-    width: 100%;
+    width: 80%;
     display: flex;
-    justify-content: center;
+    justify-content: end;
 }
 .items{
     width: 80%;

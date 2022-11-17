@@ -24,7 +24,7 @@ const Header = (props) => {
 
   return (
     <header className={style.header}>
-      <div className={style.container}>
+      <div className={style.frame}>
         <div className={style.brand__wrapper} onClick={() => { clickBrand() }}>
           <img
 
@@ -34,7 +34,7 @@ const Header = (props) => {
           </div>
         </div>
         {props.isAuth && <button className={style.logout} onClick={() => { logout() }}>logout</button>}
-
+        {props.isAuth && <button className={style.burger__button} onClick={() => { logout() }}>###</button>}
       </div>
 
     </header>

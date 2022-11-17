@@ -24,6 +24,13 @@ background: linear-gradient(45deg, rgba(198,176,200,1) 0%, rgba(138,90,162,1) 50
   /* max-width: 991px;
    */
    
-   height: calc(100vh - 50px);
+   height: calc(100vh - 70px);
+ 
+}
+[class*=frame]{
+  /* max-width: 991px;
+   */
+   
+   max-width: 1350px;
  
 }

@@ -8,7 +8,7 @@ const AddPartisipantsArea = (props) => {
 
     return !props.inProgress
         ? (
-            <div className={style.container}>
+            <div className={style.frame}>
                 <div className={style.uparea__wrapper}>
                 <div className={style.upArea}>
                     <input

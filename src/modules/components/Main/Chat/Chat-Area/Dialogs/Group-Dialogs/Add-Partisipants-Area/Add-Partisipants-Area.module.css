@@ -1,7 +1,8 @@
-.container{
+.frame{
     margin-top: 3px;
     padding-top: 10px;
-    height: calc(100vh - 50px - 5px - 10px);
+    /* height: calc(100vh - 50px - 5px - 10px - 1vh); */
+    height: 85vh;
     width: 100%;
     
     background-color: white;
@@ -9,19 +10,21 @@
     flex-direction: column;
     justify-content: start;
     align-items: flex-start;
+    border-radius: 16px;
+    border: solid 2px rgb(88, 155, 249);
 }
 .uparea__wrapper{
     min-width: 100%;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: start;
+    justify-content: center;
 }
 .upArea{
     /* margin-top: 3px; */
-    min-width: calc(96%);
+    width: calc(98%);
     height: 20px;
-    margin-left: 1%;
+    /* margin-left: 1%; */
     /* padding-right: 200px; */
     display: flex;
     justify-content: space-between;

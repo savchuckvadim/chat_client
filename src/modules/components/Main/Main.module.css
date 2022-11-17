@@ -1,11 +1,12 @@
 main{
-  max-height: 90vh;
+  max-height: 100vh;
   margin-top: 10px;
 }
-.container{
+.frame{
 width: 97vw;
     max-height: 88vh;
-    min-height: 28vh;
+    /* min-height: 28vh; */
+    /* max-width:1322px; */
     background-color: #333843;
     display: grid;
   grid-template-columns: 85% 15%;
@@ -31,17 +32,18 @@ width: 97vw;
     border-color: rgb(88, 155, 249);
     display: flex;
     justify-content: center;
+    align-items: flex-start;
 
 }
 @media screen and (max-width: 902px) {
   .menu {
     display: none;
   }
-  .container{
+  .frame{
     width: 97vw;
 
         background-color: #3d424d;
         display: grid;
-      grid-template-columns: 99% 1%;
+      grid-template-columns: 100%;
   }
 }

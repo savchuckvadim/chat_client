@@ -8,7 +8,7 @@ import ChatContainer from './Chat/Chat-Area/Chat-Container'
 
 const ChatApp = () => {
   return (
-    <div className={style.container}>
+    <div className={style.frame}>
       <div className={style.left__area}>
         <Routes>
           <Route path='*' element={<Navigate replace to='../chat' />} />

@@ -54,7 +54,7 @@ const MessageItem = ({
             <div className={style.messageFooter}>
                 <div className={infoWrapperClass} >
                     {message.isForwarded ? <p className={infoItemClass}>{'=>'}</p> : null}
-                    {message.isEdited ? <p className={infoItemClass}>{'..#'}</p> : null}
+                    {message.isEdited ? <p className={infoItemClass}>{'~#'}</p> : null}
                 </div>
             </div>
         </div >
