@@ -16,8 +16,13 @@ const MessageItem = ({
 }) => {
 
     let messageClass = style.myMessage
+    let infoWrapperClass = style.myInfo__wrapper
+    let infoItemClass = style.myInfoItem
     if (!message.isAuthorIsAuth) {
         messageClass = style.message
+        infoWrapperClass = style.info__wrapper
+        infoItemClass = style.infoItem
+
     }
 
     return (
@@ -40,7 +45,18 @@ const MessageItem = ({
                 setEditingGroupDialog={null}
                 addParticipantsInProgress={null}
             />
-            <div className={style.body}>{message.body}</div>
+            <div className={style.messageHeader}>
+                <p className={style.author}>{message.author ? message.author.name : null}</p>
+            </div>
+            <div className={style.body}>
+                <p className={style.body__text}>{message.body}</p>
+            </div>
+            <div className={style.messageFooter}>
+                <div className={infoWrapperClass} >
+                    {message.isForwarded ? <p className={infoItemClass}>{'=>'}</p> : null}
+                    {message.isEdited ? <p className={infoItemClass}>{'..#'}</p> : null}
+                </div>
+            </div>
         </div >
     )
 

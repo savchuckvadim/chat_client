@@ -6,12 +6,22 @@
     border-radius: 16px;
     background-color: white;
     color: rgb(88, 155, 249);
+    display: flex;
+    flex-direction: column;
+    justify-content:start;
+    align-items: center;
 }
-.container{
+.title__wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.items{
+    width: 80%;
     height: 20%;
    display: flex;
    flex-direction: column;
-   align-items: center;
+   align-items: flex-end;
    justify-content: space-between;
     background-color: white;
     

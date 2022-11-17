@@ -195,7 +195,7 @@ export const addNewGroupDialog = (users, dialogsName, dialogId = null) => async 
         if (groupDialog.editedDialog) {
             dispatch(setNewGroupDialog(groupDialog.editedDialog))
         }
-        
+
         dispatch(inProgress(false))
     } else {
         if (users.length === 0) {
@@ -371,7 +371,14 @@ const dialogsReducer = (state = initialState, action) => {
             if (!checkGroupDialog) {
                 let resultDialogs = [...state.groupDialogs]
                 resultDialogs.unshift(action.groupDialog)
-                return { ...state, groupDialogs: resultDialogs }
+                return {
+                    ...state, groupDialogs: resultDialogs, newGroupDialog: {
+                        ...state.newGroupDialog,
+                        dialogId: null,
+                        name: '',
+                        participants: []
+                    }
+                }
             }
             return state
 
@@ -406,7 +413,14 @@ const dialogsReducer = (state = initialState, action) => {
                 }
 
             });
-            return { ...state, groupDialogs: resultGroupDialogs }
+            return {
+                ...state, groupDialogs: resultGroupDialogs, newGroupDialog: {
+                    ...state.newGroupDialog,
+                    dialogId: null,
+                    name: '',
+                    participants: []
+                }
+            }
 
         case SET_NEW_MESSAGE:
             //TODO isEdited

@@ -9,6 +9,7 @@ const AddPartisipantsArea = (props) => {
     return !props.inProgress
         ? (
             <div className={style.container}>
+                <div className={style.uparea__wrapper}>
                 <div className={style.upArea}>
                     <input
                         className={style.dialogsName}
@@ -19,6 +20,8 @@ const AddPartisipantsArea = (props) => {
                     <PartisipantsButtonsContainer />
 
                 </div>
+                </div>
+               
 
                 <div className={style.partisipants__container}>
                     <div className={style.users__wrapper}>

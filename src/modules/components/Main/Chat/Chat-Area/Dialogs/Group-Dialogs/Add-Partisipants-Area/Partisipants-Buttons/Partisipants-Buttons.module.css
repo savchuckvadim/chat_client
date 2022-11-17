@@ -1,5 +1,5 @@
 .buttons__wrapper{
-    width: 10%;
+    /* width: 10px; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -8,12 +8,13 @@
 
     .button{
        
-        width: 220px;
-        height: 30px;
+        width: 50px;
+        height: 22px;
         margin: 0 5px;
         border: solid 0.5px rgb(88, 155, 249);
-        border-radius: 10px;
+        border-radius: 7px;
         cursor: pointer;
         background-color: rgb(255, 255, 255);
         color: rgb(88, 155, 249);
+        text-align: center;
     }
