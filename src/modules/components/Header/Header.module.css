@@ -20,7 +20,7 @@
   }
   
 .header {
-  --header-height:70px;
+  --header-height:60px;
     background-color: #282c34;
     height: var(--header-height);
     display: flex;

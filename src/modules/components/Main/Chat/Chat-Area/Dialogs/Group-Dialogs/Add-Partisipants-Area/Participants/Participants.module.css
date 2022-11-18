@@ -12,12 +12,12 @@
 }
 
 .cards__wrapper{
-    min-width: 98%;
+    min-width: 100%;
     min-height: 100%;
     overflow: auto;
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
     /* background-color: aqua; */

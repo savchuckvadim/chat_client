@@ -1,5 +1,7 @@
 import './App.css';
 import EmailVerification from './modules/components/common/Email-Verification/Email-Verification';
+import Modal from './modules/components/common/Modal/Modal';
+import ModalContainer from './modules/components/common/Modal/Modal-Container';
 import Preloader from './modules/components/common/Preloader/Preloader';
 import HeaderContainer from './modules/components/Header/Header-Container';
 import ForwardMessage from './modules/components/Main/Chat/Chat-Area/Current-Dialog/Messages/Forward-Message/Forward-Message';
@@ -52,14 +54,17 @@ const App = (props) => {
 
   return (
     <>
-      <ForwardMessageContainer />
+      <ModalContainer >
+        <ForwardMessageContainer />
+      </ModalContainer>
+
       <div className="App"
-       onClick={() => {
-        if (props.isContextMenuActive) {
+        onClick={() => {
+          if (props.isContextMenuActive) {
             // console.log('contextMenuToggler')
             props.contextMenuToggler(false)
-        }
-    }}
+          }
+        }}
       >
         <HeaderContainer />
         <div className='page'>
