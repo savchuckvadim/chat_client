@@ -1,11 +1,11 @@
 import { Link, NavLink } from 'react-router-dom'
 import style from './Email-Verification.module.css'
 
-const EmailVerification = () => {
-
+const EmailVerification = (props) => {
+let domen = props.authUser && props.authUser.email.split('@').pop()
     return (
         <div className={style.container}>
-            <a  href={'https://gmail.com/'} >
+            <a  href={`https://www.${domen}`} >
                 Подтведите адрес электронной почты
             </a>
         </div>

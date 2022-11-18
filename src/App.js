@@ -39,7 +39,7 @@ const App = (props) => {
       if (props.authUser.email_verified_at) {
         page = <Main />
       } else {
-        page = <EmailVerification />
+        page = <EmailVerification authUser={props.authUser} />
       }
 
     }
