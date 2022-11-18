@@ -11,8 +11,11 @@ const UserCard = (props) => {
     return (
         <div
             style={{
-                height: props.isMessageForwarding ? 120 : 200
-            }} className={style.container}>
+                height: props.isMessageForwarding ? 120 : 200,
+                margin: props.isMessageForwarding ?  7 : 2
+            }} className={style.container}
+            key={`user-card=container-${props.user.id}`}
+            >
             <p>{props.user.name}</p>
             <UserButton
                 authUser={props.authUser}

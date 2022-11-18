@@ -1,8 +1,8 @@
 .container{
-    margin: 2px;
+    margin: 25px 25px 0 25px;
     padding: 15px;
-    
-    width: 119px;
+    min-width: 50px;
+    max-width: 119px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -14,6 +14,9 @@
     outline:1px solid  rgb(88, 155, 249);
     outline-offset:-1px; 
     color: rgb(44, 90, 155);
+  
 
 }
+
+
 

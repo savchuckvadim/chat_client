@@ -15,7 +15,10 @@ const Users = (props) => {
       return (
 
         <div className={style.container}>
-          <h3>Users</h3>
+          <div className={style.title__wrapper}>
+          <h3 className={style.title}>Users</h3>
+          </div>
+          
           <div className={style.users}>
             <SearchContainer />
             {
@@ -79,7 +82,7 @@ const Users = (props) => {
     return (
 
       <div className={style.container}>
-        <h3>Contacts</h3>
+        <h3 className={style.title}>Contacts</h3>
         <SearchContainer />
         <div className={style.users}>
           {

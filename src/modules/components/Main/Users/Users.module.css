@@ -1,14 +1,26 @@
 .container{
-    width: 100%;
+    /* padding: 0 15px; */
+    min-width: 100%;
     height: 100%;
     /* padding: 25px; */
     display: flex;
     /* justify-content: center; */
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
+    /* border: 0.5px solid rgb(88, 155, 249); */
   
 }
-
+.title__wrapper{
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.title{
+    display: inline-block;
+    min-width: 100%;
+    text-align: center;
+}
 .users{
     min-height: 28px;
     margin: 5px;
@@ -22,7 +34,9 @@
     overflow: auto;
 
 }
-
+/* .users:nth-child(3n+2) {
+    margin: 25px 25px 0 25px;
+} */
 @keyframes gradient{
  
     0%{

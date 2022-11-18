@@ -1,7 +1,8 @@
 .container{
+    margin: 0;
     width: 90%;
     min-height: 88%;
-    max-height: 88%;
+    max-height:600px;
     padding: 3px;
     display: flex;
     justify-content: center;
