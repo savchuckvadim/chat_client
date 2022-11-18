@@ -4,6 +4,7 @@ import { echo } from "../services/websocket/socket"
 import { addParticipantsInProgress, CANCEL } from "./group-reducer"
 import { NEW_CONTACT } from "./users-reducer"
 import { inProgress } from './preloader-reducer'
+import { changeModalStatus } from "./modal-reducer"
 
 
 const SET_DIALOGS = 'dialogs/SET_DIALOGS'
@@ -15,7 +16,7 @@ const SET_SENDING_STATUS = 'dialogs/SET_SENDING_STATUS'
 const PARTICIPANTS_NEW_GROUP_DIALOG = 'dialogs/PARTICIPANTS_NEW_GROUP_DIALOG'
 const SET_NEW_GROUP_DIALOG = 'dialogs/SET_NEW_GROUP_DIALOG'
 const SET_GROUP_DIALOGS_NAME = 'dialogs/SET_GROUP_DIALOGS_NAME'
-const FORWARDING_MESSAGE = 'dialogs/FORWARDING_MESSAGE'
+export const FORWARDING_MESSAGE = 'dialogs/FORWARDING_MESSAGE'
 const FORWARD_MESSAGE = 'dialogs/FORWARD_MESSAGE'
 const SET_EDITING_STATUS = 'dialogs/SET_EDITING_STATUS'
 const DELETE_MESSAGE = 'dialogs/DELETE_MESSAGE'
@@ -71,7 +72,12 @@ export const setGroupDialogsName = (value) => ({ type: SET_GROUP_DIALOGS_NAME, v
 
 //AC for context-menu
 
-export const changeForwardingMessageStatus = (bool, messageBody) => ({ type: FORWARDING_MESSAGE, bool, messageBody })
+export const changeForwardingMessageStatus = (bool, messageBody) => (dispatch) => {
+
+    dispatch(changeModalStatus(bool, false))
+    dispatch({ type: FORWARDING_MESSAGE, bool, messageBody })
+
+}
 export const setEditingStatus = (status = null, message = null) => ({ type: SET_EDITING_STATUS, status, message }) //status:false, true
 const setDeleteMessage = (messageId) => ({ type: DELETE_MESSAGE, messageId })
 const setDeleteDialog = (dialogId) => ({ type: DELETE_DIALOG, dialogId })
@@ -188,7 +194,7 @@ export const addNewGroupDialog = (users, dialogsName, dialogId = null) => async 
         dispatch(addParticipantsInProgress(false))
         dispatch(inProgress(true))
         const groupDialog = await dialogsAPI.addGroupDialog(users, dialogsName, dialogId)
-        debugger
+        
         if (groupDialog.createdDialog) {
             dispatch(setNewGroupDialog(groupDialog.createdDialog))
         }
@@ -366,7 +372,7 @@ const dialogsReducer = (state = initialState, action) => {
             return { ...state, newGroupDialog: { ...state.newGroupDialog, name: action.value } }
 
         case SET_NEW_GROUP_DIALOG:
-            debugger
+            
             const checkGroupDialog = state.groupDialogs.length > 0 && state.groupDialogs.some(dialog => dialog.dialogId === action.groupDialog.dialogId)
             if (!checkGroupDialog) {
                 let resultDialogs = [...state.groupDialogs]
@@ -384,7 +390,7 @@ const dialogsReducer = (state = initialState, action) => {
 
         case SET_EDITING_GROUP_DIALOG:
             //action dialog
-            debugger
+            
             return {
                 ...state, newGroupDialog: {
                     ...state.newGroupDialog,

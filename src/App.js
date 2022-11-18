@@ -55,10 +55,10 @@ const App = (props) => {
 
   return (
     <>
-      <ModalContainer >
+      <ModalContainer />
         {/* <ForwardMessageContainer /> */}
-        <Menu isModal={true} />
-      </ModalContainer>
+        {/* <Menu isModal={true} /> */}
+   
 
       <div className="App"
         onClick={() => {

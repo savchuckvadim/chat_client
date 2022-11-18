@@ -1,31 +1,31 @@
 
+import ForwardMessageContainer from '../../Main/Chat/Chat-Area/Current-Dialog/Messages/Forward-Message/Forward-Message-Container'
+import Menu from '../../Main/Chat/Menu/Menu'
 import style from './Modal.module.css'
 
 
 const Modal = (props) => {
 
-    return (props.isMessageForwarding && <>
+    return (props.isModalActive && <>
         <div className={style.container}
             onClick={() =>
                 props.changeForwardingMessageStatus(false, '')
+               
             }
             onContextMenu={(e) => {
                 e.preventDefault()
                 props.changeForwardingMessageStatus(false, '')
+                
             }}
         >
 
         </div>
         <div className={style.menu}>
-        {props.children}
+            {!props.isMessageForwarding ? <Menu isModal={true} /> : <ForwardMessageContainer/>}
+          
         </div>
-        {/* <div className={style.users__card}>
-            {!props.isSending
-                ? <UsersContainer />
-                : <Preloader isForwarding={true} />
-            }
-        </div> */}
-        
+
+
     </>
     )
 }

@@ -60,7 +60,7 @@ export const dialogsAPI = {
 
     async deleteDialog (dialogId){
         const response = await api.delete(`dialog/${dialogId}`)
-        debugger
+        
         return response.data
     }
 

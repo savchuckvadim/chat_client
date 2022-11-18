@@ -11,27 +11,11 @@
    
     }
 
-/* .users__card{
-    padding: 4px;
-    opacity: 100% !important;
-    z-index: 1300 !important;
-    background-color: rgb(255, 255, 255);
-    width: 520px;
-    height: 55vh;
-    position: absolute;
-    top: 20vh;
-    left: calc(50vw - 235px - 20px);
-    border-radius: 13px;
-    border: solid 2px rgb(88, 155, 249);
-   
 
-} */
 
 .menu{
     margin-top: 13px;
-    /* height: 80%; */
     width: 524px;
-    /* width: 34vw; */
     height: 55vh;
     position: absolute;
     top: 20vh;
@@ -51,8 +35,7 @@
 @media screen and (max-width: 900px) {
     .menu{
         margin-top: 13px;
-        /* height: 80%; */
-        /* max-width: 524px; */
+    
         width: 60vw;
         height: 55vh;
         position: absolute;
@@ -64,8 +47,7 @@
 @media screen and (max-width: 550px) {
     .menu{
         margin-top: 13px;
-        /* height: 80%; */
-        /* max-width: 524px; */
+        
         width: 70vw;
         height: 55vh;
         position: absolute;

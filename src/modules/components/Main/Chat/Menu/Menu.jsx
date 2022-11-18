@@ -6,7 +6,7 @@ const Menu = (props) => {
 
   let style = !props.isModal ? styleMenu : styleModalMenu
 
-
+  
     return (
 
       <div className={style.menu}>

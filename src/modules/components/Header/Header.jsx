@@ -1,17 +1,11 @@
 import style from './Header.module.css'
 import logo from '../../../logo.svg';
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
 
 const Header = (props) => {
-  const logout = () => {
-    props.logout()
 
-  }
-  // useEffect(() => {
-  //   logout()
-  // })
   const [logoStyle, setLogoStyle] = useState(style.App__logo)
 
   const clickBrand = () => {
@@ -33,8 +27,8 @@ const Header = (props) => {
             <h1 key={'brand'} > Chat</h1>
           </div>
         </div>
-        {props.isAuth && <button className={style.logout} onClick={() => { logout() }}>logout</button>}
-        {props.isAuth && <button className={style.burger__button} onClick={() => { logout() }}>###</button>}
+        {props.isAuth && <button className={style.logout} onClick={() => { props.logout() }}>logout</button>}
+        {props.isAuth && <button className={style.burger__button} onClick={() => { props.changeModalStatus(true,true) }}>###</button>}
       </div>
 
     </header>
