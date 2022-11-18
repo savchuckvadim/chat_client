@@ -21,7 +21,7 @@ const Modal = (props) => {
 
         </div>
         <div className={style.menu}>
-            {!props.isMessageForwarding ? <Menu isModal={true} /> : <ForwardMessageContainer/>}
+            {!props.isMessageForwarding ? <Menu isModal={true}  changeForwardingMessageStatus={props.changeForwardingMessageStatus} /> : <ForwardMessageContainer/>}
           
         </div>
 

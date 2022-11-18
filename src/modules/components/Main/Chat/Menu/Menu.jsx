@@ -6,25 +6,28 @@ const Menu = (props) => {
 
   let style = !props.isModal ? styleMenu : styleModalMenu
 
-  
-    return (
 
-      <div className={style.menu}>
-        <div className={style.title__wrapper}>
-          <h3>Menu</h3>
-        </div>
+  return (
 
-        <div className={style.items}>
-          <NavLink className={style.link} to='chat'>Чат</NavLink>
-          <NavLink className={style.link} to='profile'>Профиль</NavLink>
-          <NavLink className={style.link} to='users'>Пользователи</NavLink>
-          <NavLink className={style.link} to='prefences'>Настройки</NavLink>
-        </div>
-
+    <div className={style.menu}>
+      <div className={style.title__wrapper}>
+        <h3>Menu</h3>
       </div>
 
-    )
-  
+      <div className={style.items}>
+        <NavLink className={style.link} to='chat'>Чат</NavLink>
+        <NavLink className={style.link} to='profile'>Профиль</NavLink>
+        <NavLink className={style.link} to='users'>Пользователи</NavLink>
+        <NavLink className={style.link} to='prefences'>Настройки</NavLink>
+        {props.isModal && <p className={style.link}
+          onClick={() => { props.logout() }}
+        >Выйти</p>}
+      </div>
+
+    </div>
+
+  )
+
 
 }
 
