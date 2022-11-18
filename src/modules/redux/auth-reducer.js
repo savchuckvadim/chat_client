@@ -82,7 +82,7 @@ export const me = () => async (dispatch) => {
 
 }
 export const logout = () => async (dispatch) => {
-    debugger
+    
     dispatch(inProgress(true))
     dispatch(deleteAuthUser())
     await authApi.logout()

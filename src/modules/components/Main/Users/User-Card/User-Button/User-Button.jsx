@@ -19,7 +19,7 @@ const UserButton = ({
 
 
     let buttonStyle = style.contact
-    let buttonName = '+add contact'
+    let buttonName = '+contact'
     let onButtonClick = addDeleteContact
 
 
@@ -29,7 +29,7 @@ const UserButton = ({
             buttonName = 'del contact'
 
             if (addingParticipantsInProgress) {
-                buttonName = 'add to group'
+                buttonName = '+add'
                 onButtonClick = () => { setParticipant(user, true) }
             }
         } else {

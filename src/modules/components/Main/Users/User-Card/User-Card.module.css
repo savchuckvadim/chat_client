@@ -18,6 +18,33 @@
   
 
 }
+@media screen and (max-width: 500px) {
+    .container{
+      
+        min-width: 90%;
+       
+      
+    
+    }
+  }
 
+  @media screen and (max-width: 700px) {
+    .container{
+      
+        min-width: 44%;
+       
+      
+    
+    }
+  }
+  @media screen and (max-width: 900px) {
+    .container{
+      
+        min-width: 28%;
+       
+      
+    
+    }
+  }
 
 

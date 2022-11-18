@@ -3,7 +3,7 @@
     padding-top: 10px;
     /* height: calc(100vh - 50px - 5px - 10px - 1vh); */
     min-height: 85vh;
-    
+    max-height:88vh;
     width: 100%;
     
     background-color: white;
@@ -13,6 +13,7 @@
     align-items: center;
     border-radius: 16px;
     border: solid 2px rgb(88, 155, 249);
+    overflow: auto;
 }
 .uparea__wrapper{
     min-width: 100%;
