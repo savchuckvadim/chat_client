@@ -1,5 +1,5 @@
 .frame{
-    margin-top: 3px;
+    margin-top: 2px;
     padding-top: 10px;
     /* height: calc(100vh - 50px - 5px - 10px - 1vh); */
     min-height: 85vh;
@@ -22,16 +22,16 @@
     justify-content: center;
 }
 .upArea{
-    /* margin-top: 3px; */
+   
+    margin-top: 2px;
     padding: 0 15px;
     width: calc(95%);
     height: 20px;
-    /* margin-left: 1%; */
-    /* padding-right: 200px; */
+
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    border: 0.5px solid grey;
+    border: 1px solid rgb(255, 0, 93);
     border-radius: 10px;
     padding: 10px 3px;
    

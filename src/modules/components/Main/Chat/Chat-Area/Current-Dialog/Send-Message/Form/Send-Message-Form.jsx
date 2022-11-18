@@ -118,7 +118,7 @@ class SendMessageForm extends React.Component {
                             this.submit()
                         }}
                     >
-                        Submit
+                        =>
                     </button>
                 </div>
             </div>

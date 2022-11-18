@@ -1,13 +1,14 @@
 .container{
-    /* padding: 0 15px; */
+  
     min-width: 100%;
+    width: 100%;
     height: 100%;
-    /* padding: 25px; */
+   
     display: flex;
-    /* justify-content: center; */
+   
     align-items: flex-start;
     flex-direction: column;
-    /* border: 0.5px solid rgb(88, 155, 249); */
+   
   
 }
 .title__wrapper{
@@ -23,7 +24,9 @@
 }
 .users{
     min-height: 28px;
-    margin: 5px;
+    margin-left: 7px;
+    /* margin-right: 2px; */
+    /* padding-right: 5; */
     width: 97%;
     max-height: 100%;
     display: flex;

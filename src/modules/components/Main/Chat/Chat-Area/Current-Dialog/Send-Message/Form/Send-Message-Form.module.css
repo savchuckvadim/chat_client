@@ -1,9 +1,9 @@
 .form{
-    min-width: 98%;
+    min-width: 97%;
     max-height: 80%;
     margin: 5px 3px;
     background-color: white;
-    border-radius: 16px;
+    border-radius: 12px;
     /* display: flex;
     flex-direction: row;
     justify-content: center;
@@ -34,10 +34,38 @@
     }
 .button__wrapper{
     display: flex;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
 }
 .button{
 /* margin-left: 5px; */
+margin: 2px;
+margin-right: 3px;
+width: 60px;
+height: 30px;
+border-radius: 12px;
+border: 1.5px solid  rgb(0, 195, 255);
 }
-
+.button:hover{
+    border: 2px solid  rgb(0, 225, 255);
+    background:  rgb(0, 195, 255);
+    background: linear-gradient(45deg, rgba(138,90,162,1) 10%, rgb(0, 195, 255) 50%, rgb(102, 0, 255) 80%,  rgb(255, 34, 196) 100%);
+    font-size: large;
+    animation: gradient 7s ease infinite;
+    background-size: 5000% 5000%;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+    
+    @keyframes gradient{
+     
+        0%{
+            background-position: 0 50%;
+        }
+        50%{
+            background-position: 100% 50%;
+        }
+        100%{
+            background-position: 0 50%;
+        }
+    }
