@@ -5,8 +5,7 @@ main{
 .frame{
 width: 97vw;
     max-height: 88vh;
-    /* min-height: 28vh; */
-    /* max-width:1322px; */
+
     background-color: #333843;
     display: grid;
   grid-template-columns: 85% 15%;

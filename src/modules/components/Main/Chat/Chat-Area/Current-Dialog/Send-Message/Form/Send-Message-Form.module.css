@@ -10,7 +10,9 @@
     align-items: center; */
     display: grid;
     grid-template-columns: 80% 20%;
-    /* grid-template-rows: 100%; */
+    outline:1px solid  rgb(88, 155, 249);
+    outline-offset:-1px;  
+  border-color: rgb(88, 155, 249);
 }
 
 
@@ -40,17 +42,17 @@
 .button{
 /* margin-left: 5px; */
 margin: 2px;
-margin-right: 3px;
-width: 60px;
-height: 30px;
-border-radius: 12px;
+margin-right: 7px;
+width: 50px;
+height: 20px;
+border-radius: 7px;
 border: 1.5px solid  rgb(0, 195, 255);
 }
 .button:hover{
-    border: 2px solid  rgb(0, 225, 255);
+    
     background:  rgb(0, 195, 255);
     background: linear-gradient(45deg, rgba(138,90,162,1) 10%, rgb(0, 195, 255) 50%, rgb(102, 0, 255) 80%,  rgb(255, 34, 196) 100%);
-    font-size: large;
+  
     animation: gradient 7s ease infinite;
     background-size: 5000% 5000%;
     color: rgb(255, 255, 255);

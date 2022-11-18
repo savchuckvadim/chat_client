@@ -2,10 +2,14 @@ import { NavLink } from 'react-router-dom'
 import styleMenu from './Menu.module.css'
 import styleModalMenu from './Modal-Menu.module.css'
 
-const Menu = (props) => {
+const Menu = ({ isModal, logout = null, changeForwardingMessageStatus }) => {
 
-  let style = !props.isModal ? styleMenu : styleModalMenu
+  let style = !isModal ? styleMenu : styleModalMenu
 
+  const logoutAction = () => {
+    changeForwardingMessageStatus(false, '')
+    logout()
+  }
 
   return (
 
@@ -15,12 +19,12 @@ const Menu = (props) => {
       </div>
 
       <div className={style.items}>
-        <NavLink className={style.link} to='chat'>Чат</NavLink>
-        <NavLink className={style.link} to='profile'>Профиль</NavLink>
-        <NavLink className={style.link} to='users'>Пользователи</NavLink>
-        <NavLink className={style.link} to='prefences'>Настройки</NavLink>
-        {props.isModal && <p className={style.link}
-          onClick={() => { props.logout() }}
+        <NavLink onClick={() => { changeForwardingMessageStatus(false, '') }} className={style.link} to='chat'>Чат</NavLink>
+        <NavLink onClick={() => { changeForwardingMessageStatus(false, '') }} className={style.link} to='profile'>Профиль</NavLink>
+        <NavLink onClick={() => { changeForwardingMessageStatus(false, '') }} className={style.link} to='users'>Пользователи</NavLink>
+        <NavLink onClick={() => { changeForwardingMessageStatus(false, '') }} className={style.link} to='prefences'>Настройки</NavLink>
+        {isModal && <p className={style.link}
+          onClick={() => { logoutAction() }}
         >Выйти</p>}
       </div>
 
