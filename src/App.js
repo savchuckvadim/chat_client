@@ -7,6 +7,7 @@ import HeaderContainer from './modules/components/Header/Header-Container';
 import ForwardMessage from './modules/components/Main/Chat/Chat-Area/Current-Dialog/Messages/Forward-Message/Forward-Message';
 import ForwardMessageContainer from './modules/components/Main/Chat/Chat-Area/Current-Dialog/Messages/Forward-Message/Forward-Message-Container';
 import AddPartisipantsContainer from './modules/components/Main/Chat/Chat-Area/Dialogs/Group-Dialogs/Add-Partisipants-Area/Add-Partisipants-Container';
+import Menu from './modules/components/Main/Chat/Menu/Menu';
 import Main from './modules/components/Main/Main';
 import Start from './modules/components/Start/Start';
 
@@ -55,7 +56,8 @@ const App = (props) => {
   return (
     <>
       <ModalContainer >
-        <ForwardMessageContainer />
+        {/* <ForwardMessageContainer /> */}
+        <Menu isModal={true} />
       </ModalContainer>
 
       <div className="App"

@@ -6,7 +6,7 @@
     justify-content: center;
     align-items: center;
     background: rgb(212, 115, 220);
-background: linear-gradient(45deg, rgba(138,90,162,1) 0%, rgb(155, 64, 200) 50%, rgb(102, 0, 255) 100%,  rgb(255, 34, 196) 100%);
+    background: linear-gradient(45deg, rgba(138,90,162,1) 0%, rgb(155, 64, 200) 50%, rgb(102, 0, 255) 100%,  rgb(255, 34, 196) 100%);
     font-size: large;
     animation: gradient 7s ease infinite;
     background-size: 5000% 5000%;

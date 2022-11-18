@@ -16,13 +16,16 @@ const Modal = (props) => {
         >
 
         </div>
+        <div className={style.menu}>
+        {props.children}
+        </div>
         {/* <div className={style.users__card}>
             {!props.isSending
                 ? <UsersContainer />
                 : <Preloader isForwarding={true} />
             }
         </div> */}
-        {props.children}
+        
     </>
     )
 }
