@@ -5,7 +5,8 @@ import { addParticipantsInProgress, CANCEL } from "./group-reducer"
 import { NEW_CONTACT } from "./users-reducer"
 import { inProgress } from './preloader-reducer'
 import { changeModalStatus } from "./modal-reducer"
-
+import { setNotification } from "./notifications-reducer"
+import {socket} from '../services/websocket/socket'
 
 const SET_DIALOGS = 'dialogs/SET_DIALOGS'
 const SET_DIALOG = 'dialogs/SET_DIALOG'
@@ -95,21 +96,30 @@ export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getS
 
     dispatch(setDialogs(response, dialogIdFromUrl))
 
+    let activateNewMessageListener = async () => {
+        if (echo) {
 
-    if (echo) {
-
-        echo.private(`new-message.${authUserId}`)
-
-            .listen('.SendMessage', (e) => {
-                let state = getState()
-
-                if (state.auth.authUser) {
-                    let authUser = state.auth.authUser
-                    dispatch(setNewMessage(e.message, authUser.id))
-                    alert(e.message)
-                }
-            })
+            echo.private(`new-message.${authUserId}`)
+    
+                .listen('.SendMessage', (e) => {
+                    let state = getState()
+    
+                    if (state.auth.authUser) {
+                        let authUser = state.auth.authUser
+                        dispatch(setNewMessage(e.message, authUser.id))
+                        debugger
+                        dispatch(setNotification(e.message))
+                        // alert(e.message.body)
+                    }
+                })
+        }else{
+            await socket.connection()
+            await activateNewMessageListener()
+    
+        }
     }
+
+    await activateNewMessageListener()
 
 }
 

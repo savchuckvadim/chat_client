@@ -8,12 +8,14 @@ import dialogsReducer from './dialogs-reducer'
 import groupReducer from './group-reducer'
 import contextMenuReducer from './context-menu-reducer'
 import modalReducer from './modal-reducer'
+import notifications from './notifications-reducer'
 
 
 const rootReducer = combineReducers({
     auth: authReduser,
     preloader: preloaderReducer,
     modal:modalReducer,
+    notifications,
     users: usersReducer,
     contacts: contactsReducer,
     dialogs: dialogsReducer,

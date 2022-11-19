@@ -12,9 +12,10 @@ const MessageItem = ({
     changeForwardingMessageStatus,
     setEditingStatus,
     deleteMessage,
+    isNotification = undefined
 
 }) => {
-
+    let body = message.body
     let messageClass = style.myMessage
     let infoWrapperClass = style.myInfo__wrapper
     let infoItemClass = style.myInfoItem
@@ -22,6 +23,13 @@ const MessageItem = ({
         messageClass = style.message
         infoWrapperClass = style.info__wrapper
         infoItemClass = style.infoItem
+
+    }
+    if (isNotification) {
+        messageClass = style.notification
+        infoWrapperClass = style.info__wrapper
+        infoItemClass = style.infoItem
+        body = `${message.body.slice(0, 7)}...`
 
     }
 
@@ -49,14 +57,20 @@ const MessageItem = ({
                 <p className={style.author}>{message.author ? message.author.name : null}</p>
             </div>
             <div className={style.body}>
-                <p className={style.body__text}>{message.body}</p>
+                <p className={style.body__text}>{
+                    body
+                }</p>
             </div>
-            <div className={style.messageFooter}>
-                <div className={infoWrapperClass} >
-                    {message.isForwarded ? <p className={infoItemClass}>{'=>'}</p> : null}
-                    {message.isEdited ? <p className={infoItemClass}>{'~#'}</p> : null}
+            {!isNotification
+                ? <div className={style.messageFooter}>
+                    <div className={infoWrapperClass} >
+                        {message.isForwarded ? <p className={infoItemClass}>{'=>'}</p> : null}
+                        {message.isEdited ? <p className={infoItemClass}>{'~#'}</p> : null}
+                    </div>
                 </div>
-            </div>
+                : null
+            }
+
         </div >
     )
 

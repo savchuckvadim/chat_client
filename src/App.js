@@ -9,12 +9,17 @@ import ForwardMessageContainer from './modules/components/Main/Chat/Chat-Area/Cu
 import AddPartisipantsContainer from './modules/components/Main/Chat/Chat-Area/Dialogs/Group-Dialogs/Add-Partisipants-Area/Add-Partisipants-Container';
 import Menu from './modules/components/Main/Chat/Menu/Menu';
 import Main from './modules/components/Main/Main';
+import NotificationsContainer from './modules/components/Notifications/Notifications-Container';
 import Start from './modules/components/Start/Start';
 
 //TODO:
-// react context-menu for mouse right click
+
+
+// ->prefensec - отключить/включить все уведомления
+
+// +react context-menu for mouse right click
 //profile->change nickname
-//dialogs->delete dialog
+//+dialogs->delete dialog
 
 //dialogs + create group dialog
 
@@ -56,9 +61,10 @@ const App = (props) => {
   return (
     <>
       <ModalContainer />
-        {/* <ForwardMessageContainer /> */}
-        {/* <Menu isModal={true} /> */}
-   
+      <NotificationsContainer />
+      {/* <ForwardMessageContainer /> */}
+      {/* <Menu isModal={true} /> */}
+
 
       <div className="App"
         onClick={() => {

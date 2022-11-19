@@ -1,0 +1,38 @@
+.container, .header, .notifications, .notification{
+    margin: 0;
+
+}
+.container{
+    position: absolute;
+    width: 400px;
+    max-height: 80%;
+    min-height: 0;
+    /* opacity: 50%; */
+    right: 1%;
+    bottom: 2%;
+    /* background-color: rgb(175, 182, 210); */
+    z-index: 2000;
+}
+.header{
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.notifications{
+    padding: 1px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-end;
+}
+.notification{
+    margin: 0;
+    padding: 0;
+    /* width: 99%; */
+    height: 70px;
+}
+
+.reset{
+    cursor: pointer;
+}

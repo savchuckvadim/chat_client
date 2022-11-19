@@ -10,6 +10,9 @@ const Menu = ({ isModal, logout = null, changeForwardingMessageStatus }) => {
     changeForwardingMessageStatus(false, '')
     logout()
   }
+  const forwardingMessage = () => {
+    return  isModal &&  changeForwardingMessageStatus(false, '')
+  }
 
   return (
 
@@ -19,10 +22,10 @@ const Menu = ({ isModal, logout = null, changeForwardingMessageStatus }) => {
       </div>
 
       <div className={style.items}>
-        <NavLink onClick={() => { changeForwardingMessageStatus(false, '') }} className={style.link} to='chat'>Чат</NavLink>
-        <NavLink onClick={() => { changeForwardingMessageStatus(false, '') }} className={style.link} to='profile'>Профиль</NavLink>
-        <NavLink onClick={() => { changeForwardingMessageStatus(false, '') }} className={style.link} to='users'>Пользователи</NavLink>
-        <NavLink onClick={() => { changeForwardingMessageStatus(false, '') }} className={style.link} to='prefences'>Настройки</NavLink>
+        <NavLink onClick={() => { }} className={style.link} to='chat'>Чат</NavLink>
+        <NavLink onClick={() => { forwardingMessage() }} className={style.link} to='profile'>Профиль</NavLink>
+        <NavLink onClick={() => { forwardingMessage() }} className={style.link} to='users'>Пользователи</NavLink>
+        <NavLink onClick={() => { forwardingMessage() }} className={style.link} to='prefences'>Настройки</NavLink>
         {isModal && <p className={style.link}
           onClick={() => { logoutAction() }}
         >Выйти</p>}
