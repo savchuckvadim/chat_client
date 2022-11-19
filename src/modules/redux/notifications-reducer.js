@@ -3,47 +3,119 @@ const NOTIFICATIONS_STATUS = 'notifications/NOTIFICATIONS_STATUS'
 const SET_NOTIFICATION = 'notifications/SET_NOTIFICATION'
 const DELETE_NOTIFICATION = 'notifications/DELETE_NOTIFICATION'
 const NOTIFICATIONS_RESET = 'notifications/NOTIFICATIONS_RESET'
-
+const SOUND = 'notifications/SOUND'
 const initialState = {
     isActive: true,
     notifications: [
 
-        {
-            author: {
-                email: "savchuckvadim@gmail.com",
-                id: 1,
-                isContacted: false,
-                name: "vadim",
-            },
-            authorId: 1,
-            body: "1 2 3 4 5 6 7 8 9",
-            created: "2022-11-18T15:16:39.000000Z",
-            dialogId: 51,
-            id: 68,
-            isAuthorIsAuth: true,
-            isEdited: 0,
-            isForwarded: 1,
-            isGroup: 0,
-            recipients: []
-        },
-        {
-            author: {
-                email: "savchuckvadim@gmail.com",
-                id: 1,
-                isContacted: false,
-                name: "chuvak!",
-            },
-            authorId: 1,
-            body: '123213 qdewdqw ewf qew',
-            created: "2022-11-18T15:16:39.000000Z",
-            dialogId: 51,
-            id: 68,
-            isAuthorIsAuth: true,
-            isEdited: 0,
-            isForwarded: 1,
-            isGroup: 0,
-            recipients: []
-        },
+        // {
+        //     author: {
+        //         email: "savchuckvadim@gmail.com",
+        //         id: 1,
+        //         isContacted: false,
+        //         name: "vadim",
+        //     },
+        //     authorId: 1,
+        //     body: "7 ",
+        //     created: "2022-11-18T15:16:39.000000Z",
+        //     dialogId: 51,
+        //     id: 68,
+        //     isAuthorIsAuth: true,
+        //     isEdited: 0,
+        //     isForwarded: 1,
+        //     isGroup: 0,
+        //     recipients: []
+        // },
+        // {
+        //     author: {
+        //         email: "savchuckvadim@gmail.com",
+        //         id: 1,
+        //         isContacted: false,
+        //         name: "chuvak!",
+        //     },
+        //     authorId: 1,
+        //     body: '6',
+        //     created: "2022-11-18T15:16:39.000000Z",
+        //     dialogId: 51,
+        //     id: 68,
+        //     isAuthorIsAuth: true,
+        //     isEdited: 0,
+        //     isForwarded: 1,
+        //     isGroup: 0,
+        //     recipients: []
+        // },
+        // {
+        //     author: {
+        //         email: "savchuckvadim@gmail.com",
+        //         id: 1,
+        //         isContacted: false,
+        //         name: "el chuvachino",
+        //     },
+        //     authorId: 1,
+        //     body: "5",
+        //     created: "2022-11-18T15:16:39.000000Z",
+        //     dialogId: 51,
+        //     id: 68,
+        //     isAuthorIsAuth: true,
+        //     isEdited: 0,
+        //     isForwarded: 1,
+        //     isGroup: 0,
+        //     recipients: []
+        // },
+        // {
+        //     author: {
+        //         email: "savchuckvadim@gmail.com",
+        //         id: 1,
+        //         isContacted: false,
+        //         name: "chuvak!",
+        //     },
+        //     authorId: 1,
+        //     body: '4',
+        //     created: "2022-11-18T15:16:39.000000Z",
+        //     dialogId: 51,
+        //     id: 68,
+        //     isAuthorIsAuth: true,
+        //     isEdited: 0,
+        //     isForwarded: 1,
+        //     isGroup: 0,
+        //     recipients: []
+        // },
+        // {
+        //     author: {
+        //         email: "savchuckvadim@gmail.com",
+        //         id: 1,
+        //         isContacted: false,
+        //         name: "el chuvachino",
+        //     },
+        //     authorId: 1,
+        //     body: "3",
+        //     created: "2022-11-18T15:16:39.000000Z",
+        //     dialogId: 51,
+        //     id: 68,
+        //     isAuthorIsAuth: true,
+        //     isEdited: 0,
+        //     isForwarded: 1,
+        //     isGroup: 0,
+        //     recipients: []
+        // },
+        // {
+        //     author: {
+        //         email: "savchuckvadim@gmail.com",
+        //         id: 1,
+        //         isContacted: false,
+        //         name: "chuvak!",
+        //     },
+        //     authorId: 1,
+        //     body: '2',
+        //     created: "2022-11-18T15:16:39.000000Z",
+        //     dialogId: 51,
+        //     id: 68,
+        //     isAuthorIsAuth: true,
+        //     isEdited: 0,
+        //     isForwarded: 1,
+        //     isGroup: 0,
+        //     recipients: []
+        // },
         {
             author: {
                 email: "savchuckvadim@gmail.com",
@@ -52,79 +124,7 @@ const initialState = {
                 name: "el chuvachino",
             },
             authorId: 1,
-            body: "1 2 3 4 5 6 7 8 9",
-            created: "2022-11-18T15:16:39.000000Z",
-            dialogId: 51,
-            id: 68,
-            isAuthorIsAuth: true,
-            isEdited: 0,
-            isForwarded: 1,
-            isGroup: 0,
-            recipients: []
-        },
-        {
-            author: {
-                email: "savchuckvadim@gmail.com",
-                id: 1,
-                isContacted: false,
-                name: "chuvak!",
-            },
-            authorId: 1,
-            body: '123213 qdewdqw ewf qew',
-            created: "2022-11-18T15:16:39.000000Z",
-            dialogId: 51,
-            id: 68,
-            isAuthorIsAuth: true,
-            isEdited: 0,
-            isForwarded: 1,
-            isGroup: 0,
-            recipients: []
-        },
-        {
-            author: {
-                email: "savchuckvadim@gmail.com",
-                id: 1,
-                isContacted: false,
-                name: "el chuvachino",
-            },
-            authorId: 1,
-            body: "1 2 3 4 5 6 7 8 9",
-            created: "2022-11-18T15:16:39.000000Z",
-            dialogId: 51,
-            id: 68,
-            isAuthorIsAuth: true,
-            isEdited: 0,
-            isForwarded: 1,
-            isGroup: 0,
-            recipients: []
-        },
-        {
-            author: {
-                email: "savchuckvadim@gmail.com",
-                id: 1,
-                isContacted: false,
-                name: "chuvak!",
-            },
-            authorId: 1,
-            body: '123213 qdewdqw ewf qew',
-            created: "2022-11-18T15:16:39.000000Z",
-            dialogId: 51,
-            id: 68,
-            isAuthorIsAuth: true,
-            isEdited: 0,
-            isForwarded: 1,
-            isGroup: 0,
-            recipients: []
-        },
-        {
-            author: {
-                email: "savchuckvadim@gmail.com",
-                id: 1,
-                isContacted: false,
-                name: "el chuvachino",
-            },
-            authorId: 1,
-            body: "1 2 3 4 5 6 7 8 9",
+            body: "1 ",
             created: "2022-11-18T15:16:39.000000Z",
             dialogId: 51,
             id: 68,
@@ -135,7 +135,8 @@ const initialState = {
             recipients: []
         },
 
-    ]
+    ],
+    sound: true,
 }
 
 
@@ -146,6 +147,8 @@ export const setNotification = (message) => ({ type: SET_NOTIFICATION, message }
 export const deleteNotification = (notificationId) => ({ type: DELETE_NOTIFICATION, notificationId })
 
 export const resetNotifications = () => ({ type: NOTIFICATIONS_RESET })
+export const sound = (status) => ({ type: SOUND, status })
+
 
 
 //REDUCER
@@ -170,10 +173,10 @@ const notifications = (state = initialState, action) => {
                 let resultNotifications = [...state.notifications]
                 if (state.notifications.length < 7) {
 
-                    resultNotifications.push(action.message)
+                    resultNotifications.unshift(action.message)
                 } else {
-                    resultNotifications.splice(0, 1)
-                    resultNotifications.push(action.message)
+                    resultNotifications.splice(state.notifications.length-1, 1)
+                    resultNotifications.unshift(action.message)
                 }
                 return { ...state, notifications: resultNotifications };
             }
@@ -184,10 +187,16 @@ const notifications = (state = initialState, action) => {
             return { ...state, notifications: [] };
 
         case DELETE_NOTIFICATION:
-
             let resultNotification = state.notifications.filter(n => n.id !== action.notificationId)
-
             return { ...state, notifications: resultNotification }
+
+        case SOUND:
+            if (state.sound !== action.status) {
+                return { ...state, sound: action.status }
+            }
+            return state
+
+
         default:
             return state;
     }

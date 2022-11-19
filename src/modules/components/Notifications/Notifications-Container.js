@@ -6,7 +6,9 @@ import Notifications from "./Notifications"
 const mapState = (state) => {
     return{
         notificationStatus: state.notifications.isActive,
-        notifications: state.notifications.notifications
+        notifications: state.notifications.notifications,
+        sound: state.notifications.sound,
+
     }
 }
 

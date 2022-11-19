@@ -6,7 +6,7 @@ import { NEW_CONTACT } from "./users-reducer"
 import { inProgress } from './preloader-reducer'
 import { changeModalStatus } from "./modal-reducer"
 import { setNotification } from "./notifications-reducer"
-import {socket} from '../services/websocket/socket'
+import { socket } from '../services/websocket/socket'
 
 const SET_DIALOGS = 'dialogs/SET_DIALOGS'
 const SET_DIALOG = 'dialogs/SET_DIALOG'
@@ -100,10 +100,10 @@ export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getS
         if (echo) {
 
             echo.private(`new-message.${authUserId}`)
-    
+
                 .listen('.SendMessage', (e) => {
                     let state = getState()
-    
+
                     if (state.auth.authUser) {
                         let authUser = state.auth.authUser
                         dispatch(setNewMessage(e.message, authUser.id))
@@ -112,10 +112,14 @@ export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getS
                         // alert(e.message.body)
                     }
                 })
-        }else{
-            await socket.connection()
-            await activateNewMessageListener()
-    
+        } else {
+
+            setTimeout(async () => {
+                await socket.connection()
+                await activateNewMessageListener()
+            }, 20000)
+
+
         }
     }
 
@@ -204,7 +208,7 @@ export const addNewGroupDialog = (users, dialogsName, dialogId = null) => async 
         dispatch(addParticipantsInProgress(false))
         dispatch(inProgress(true))
         const groupDialog = await dialogsAPI.addGroupDialog(users, dialogsName, dialogId)
-        
+
         if (groupDialog.createdDialog) {
             dispatch(setNewGroupDialog(groupDialog.createdDialog))
         }
@@ -382,7 +386,7 @@ const dialogsReducer = (state = initialState, action) => {
             return { ...state, newGroupDialog: { ...state.newGroupDialog, name: action.value } }
 
         case SET_NEW_GROUP_DIALOG:
-            
+
             const checkGroupDialog = state.groupDialogs.length > 0 && state.groupDialogs.some(dialog => dialog.dialogId === action.groupDialog.dialogId)
             if (!checkGroupDialog) {
                 let resultDialogs = [...state.groupDialogs]
@@ -400,7 +404,7 @@ const dialogsReducer = (state = initialState, action) => {
 
         case SET_EDITING_GROUP_DIALOG:
             //action dialog
-            
+
             return {
                 ...state, newGroupDialog: {
                     ...state.newGroupDialog,

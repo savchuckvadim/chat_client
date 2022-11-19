@@ -5,11 +5,11 @@
 .container{
     position: absolute;
     width: 400px;
-    max-height: 80%;
+    max-height: 70%;
     min-height: 0;
     /* opacity: 50%; */
     right: 1%;
-    bottom: 2%;
+    bottom: 1%;
     /* background-color: rgb(175, 182, 210); */
     z-index: 2000;
 }
@@ -22,7 +22,7 @@
 .notifications{
     padding: 1px;
 display: flex;
-flex-direction: column;
+flex-direction: column-reverse;
 justify-content: center;
 align-items: flex-end;
 }
@@ -30,7 +30,7 @@ align-items: flex-end;
     margin: 0;
     padding: 0;
     /* width: 99%; */
-    height: 70px;
+    height: 60px;
 }
 
 .reset{

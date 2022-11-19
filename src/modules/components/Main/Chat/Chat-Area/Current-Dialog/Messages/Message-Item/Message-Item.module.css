@@ -20,6 +20,9 @@ p{
     /* display: grid; */
     /* overflow: auto; */
 }
+.notification{
+    margin: 2px 0 ;
+}
 .message{
     justify-self: flex-end;
     background-color: rgb(164, 180, 237);
