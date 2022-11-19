@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 
 import UsersContainer from './Users/Users-Container'
 import ChatContainer from './Chat/Chat-Area/Chat-Container'
+import Prefences from '../Prefences/Prefences'
 
 
 const ChatApp = () => {
@@ -17,7 +18,7 @@ const ChatApp = () => {
           </Route>
           <Route path='profile' element={<ChatContainer />} />
           <Route path='users' element={<UsersContainer />} />
-          <Route path='prefences' element={<ChatContainer />} />
+          <Route path='prefences' element={<Prefences />} />
         </Routes>
       </div>
 

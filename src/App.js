@@ -15,7 +15,7 @@ import Start from './modules/components/Start/Start';
 //TODO:
 
 
-// ->prefensec - отключить/включить все уведомления
+// ->prefences - отключить/включить все уведомления
 
 // +react context-menu for mouse right click
 //profile->change nickname

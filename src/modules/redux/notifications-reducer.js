@@ -116,24 +116,24 @@ const initialState = {
         //     isGroup: 0,
         //     recipients: []
         // },
-        {
-            author: {
-                email: "savchuckvadim@gmail.com",
-                id: 1,
-                isContacted: false,
-                name: "el chuvachino",
-            },
-            authorId: 1,
-            body: "1 ",
-            created: "2022-11-18T15:16:39.000000Z",
-            dialogId: 51,
-            id: 68,
-            isAuthorIsAuth: true,
-            isEdited: 0,
-            isForwarded: 1,
-            isGroup: 0,
-            recipients: []
-        },
+        // {
+        //     author: {
+        //         email: "savchuckvadim@gmail.com",
+        //         id: 1,
+        //         isContacted: false,
+        //         name: "el chuvachino",
+        //     },
+        //     authorId: 1,
+        //     body: "1 ",
+        //     created: "2022-11-18T15:16:39.000000Z",
+        //     dialogId: 51,
+        //     id: 68,
+        //     isAuthorIsAuth: true,
+        //     isEdited: 0,
+        //     isForwarded: 1,
+        //     isGroup: 0,
+        //     recipients: []
+        // },
 
     ],
     sound: true,
