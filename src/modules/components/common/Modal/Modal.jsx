@@ -1,6 +1,6 @@
 
-import ForwardMessageContainer from '../../Main/Chat/Chat-Area/Current-Dialog/Messages/Forward-Message/Forward-Message-Container'
-import Menu from '../../Main/Chat/Menu/Menu'
+import ForwardMessageContainer from '../../Main/Chat/Current-Dialog/Messages/Forward-Message/Forward-Message-Container'
+import Menu from '../../Main/Menu/Menu'
 import style from './Modal.module.css'
 
 

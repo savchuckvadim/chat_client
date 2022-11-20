@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
-import { contextMenuToggler } from "../../../../../../redux/context-menu-reducer"
-import { changeForwardingMessageStatus, setEditingStatus, deleteMessage } from "../../../../../../redux/dialogs-reducer"
+import { contextMenuToggler } from "../../../../../redux/context-menu-reducer"
+import { changeForwardingMessageStatus, setEditingStatus, deleteMessage } from "../../../../../redux/dialogs-reducer"
 import Messages from "./Messages"
 
 

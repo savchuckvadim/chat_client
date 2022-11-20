@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { changeForwardingMessageStatus } from "../../../../../../../redux/dialogs-reducer"
+import { changeForwardingMessageStatus } from "../../../../../../redux/dialogs-reducer"
 import ForwardMessage from "./Forward-Message"
 
 

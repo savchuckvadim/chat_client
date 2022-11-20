@@ -1,5 +1,5 @@
-import Preloader from '../../../../../../common/Preloader/Preloader'
-import UsersContainer from '../../../../../Users/Users-Container'
+import Preloader from '../../../../../common/Preloader/Preloader'
+import UsersContainer from '../../../../Users/Users-Container'
 import style from './Forward-Message.module.css'
 
 

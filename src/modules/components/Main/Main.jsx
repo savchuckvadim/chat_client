@@ -1,8 +1,8 @@
 import style from './Main.module.css'
-import Menu from './Chat/Menu/Menu'
+import Menu from './Menu/Menu'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import UsersContainer from './Users/Users-Container'
-import ChatContainer from './Chat/Chat-Area/Chat-Container'
+import ChatContainer from './Chat/Chat-Container'
 import ProfileComtainer from './Profile/Profile-Container'
 import PrefencesContainer from './Prefences/Prefences-Container'
 

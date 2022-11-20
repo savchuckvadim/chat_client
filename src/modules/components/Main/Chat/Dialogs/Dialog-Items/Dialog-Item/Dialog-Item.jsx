@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
-import { onRightClick } from '../../../../../../../utils/context-menu-utils'
-import ContextMenu from '../../../../../../common/Context-Menu/Context-Menu'
+import { onRightClick } from '../../../../../../utils/context-menu-utils'
+import ContextMenu from '../../../../../common/Context-Menu/Context-Menu'
 import style from './Dialog-Item.module.css'
 
 const DialogItem = ({

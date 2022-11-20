@@ -1,5 +1,5 @@
-import { onRightClick } from '../../../../../../../utils/context-menu-utils'
-import ContextMenu from '../../../../../../common/Context-Menu/Context-Menu'
+import { onRightClick } from '../../../../../../utils/context-menu-utils'
+import ContextMenu from '../../../../../common/Context-Menu/Context-Menu'
 import style from './Message-Item.module.css'
 
 const MessageItem = ({

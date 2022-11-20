@@ -1,5 +1,5 @@
 import style from './Participants.module.css'
-import UserCard from '../../../../../../Users/User-Card/User-Card'
+import UserCard from '../../../../../Users/User-Card/User-Card'
 
 const Participants = (props) => {
     

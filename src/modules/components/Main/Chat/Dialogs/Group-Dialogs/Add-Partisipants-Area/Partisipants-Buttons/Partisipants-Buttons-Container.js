@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
-import { addNewGroupDialog } from "../../../../../../../../redux/dialogs-reducer"
-import { addParticipantsCancel } from "../../../../../../../../redux/group-reducer"
+import { addNewGroupDialog } from "../../../../../../../redux/dialogs-reducer"
+import { addParticipantsCancel } from "../../../../../../../redux/group-reducer"
 import PartisipantsButtons from "./Partisipants-Buttons"
 
 

@@ -4,12 +4,25 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background: rgb(33, 0, 36);
-    background: linear-gradient(45deg, rgb(177, 139, 195) 0%, rgb(200, 178, 200) 50%, rgb(161, 114, 232) 100%,  rgb(255, 34, 196) 100%);
+    background: rgb(53, 50, 61);
+    background: linear-gradient(45deg, rgb(65, 65, 80) 0%, rgb(36, 39, 53) 50%, rgb(135, 83, 134) 100%,  rgb(235, 93, 192) 100%);
     font-size: large;
-    animation: gradient 7s ease infinite;
-    background-size: 5000% 5000%;
+    animation: gradient 60s ease infinite;
+    background-size: 15000% 15000%;
     /* color: rgb(255, 255, 255); */
+}
+
+@keyframes gradient{
+ 
+    0%{
+        background-position: 0 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0 50%;
+    }
 }
 
 .items{

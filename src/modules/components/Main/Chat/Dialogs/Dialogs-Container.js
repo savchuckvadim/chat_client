@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
-import { contextMenuToggler } from "../../../../../redux/context-menu-reducer"
-import { changeCurrentDialog, deleteDialog, setEditingGroupDialog } from "../../../../../redux/dialogs-reducer"
-import { addParticipantsInProgress } from "../../../../../redux/group-reducer"
+import { contextMenuToggler } from "../../../../redux/context-menu-reducer"
+import { changeCurrentDialog, deleteDialog, setEditingGroupDialog } from "../../../../redux/dialogs-reducer"
+import { addParticipantsInProgress } from "../../../../redux/group-reducer"
 
 import Dialogs from "./Dialogs"
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 // import { NotificationManager } from 'react-notifications'
-import MessageItem from '../Main/Chat/Chat-Area/Current-Dialog/Messages/Message-Item/Message-Item'
+import MessageItem from '../Main/Chat/Current-Dialog/Messages/Message-Item/Message-Item'
 // import NotificationsContainer from './Notifications-Container'
 import style from './Notifications.module.css'
 import NotificationSound from "../../../assets/notification.mp3";

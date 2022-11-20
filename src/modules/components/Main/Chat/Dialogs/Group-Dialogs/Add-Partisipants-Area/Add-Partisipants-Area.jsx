@@ -1,5 +1,5 @@
-import Preloader from '../../../../../../common/Preloader/Preloader'
-import UsersContainer from '../../../../../Users/Users-Container'
+import Preloader from '../../../../../common/Preloader/Preloader'
+import UsersContainer from '../../../../Users/Users-Container'
 import style from './Add-Partisipants-Area.module.css'
 import Participants from './Participants/Participants'
 import PartisipantsButtonsContainer from './Partisipants-Buttons/Partisipants-Buttons-Container'

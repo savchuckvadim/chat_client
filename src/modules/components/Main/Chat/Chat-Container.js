@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { Navigate, useParams } from "react-router-dom"
-import { getDialogs, setNewMessage } from "../../../../redux/dialogs-reducer"
+import { getDialogs, setNewMessage } from "../../../redux/dialogs-reducer"
 import Chat from "./Chat"
-import { echo } from '../../../../services/websocket/socket'
-import Preloader from "../../../common/Preloader/Preloader"
+import { echo } from '../../../services/websocket/socket'
+import Preloader from "../../common/Preloader/Preloader"
 
 
 

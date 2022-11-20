@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { sendEditMessage, sendMessage } from "../../../../../../../redux/dialogs-reducer"
+import { sendEditMessage, sendMessage } from "../../../../../../redux/dialogs-reducer"
 import SendMessageForm from "./Send-Message-Form"
 
 
