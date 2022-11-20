@@ -60,7 +60,7 @@ p{
         display: flex;
         flex-direction: row;
         align-items: flex-end;
-        justify-content: end;
+        justify-content: flex-end;
         min-width: 100%;
     }
     /* .myInfo__wrapper{

@@ -38,14 +38,6 @@ export const registration = (name, email, password, passwordConfirmation) =>
             dispatch(inProgress(false))
         }
 
-        // dispatch(inProgress(false))
-        // dispatch(inProgress(false))
-        // dispatch(setRegistrationStatus(true))
-        // await authApi.registration(name, email, password, passwordConfirmation)
-
-        // dispatch(inProgress(true))
-        // dispatch(setRegistrationStatus(false))
-        // dispatch(inProgress(false))
     }
 export const login = (email, password) => async (dispatch) => {
 
@@ -89,6 +81,15 @@ export const logout = () => async (dispatch) => {
     dispatch(inProgress(false))
 
 
+}
+
+export const changeProfileName = (name, userId) => (dispatch) => {
+
+    alert(name)
+}
+export const changePrefencesSound = (value, userId) => (dispatch) => {
+
+    alert(`${value}`)
 }
 const authReduser = (state = initialState, action) => {
 

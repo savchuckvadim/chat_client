@@ -1,10 +1,10 @@
 import style from './Main.module.css'
 import Menu from './Chat/Menu/Menu'
 import { Navigate, Route, Routes } from 'react-router-dom'
-
 import UsersContainer from './Users/Users-Container'
 import ChatContainer from './Chat/Chat-Area/Chat-Container'
-import Prefences from '../Prefences/Prefences'
+import ProfileComtainer from './Profile/Profile-Container'
+import PrefencesContainer from './Prefences/Prefences-Container'
 
 
 const ChatApp = () => {
@@ -16,9 +16,9 @@ const ChatApp = () => {
           <Route path='chat' element={<ChatContainer />}>
             <Route path=':dialogId' element={<ChatContainer />} />
           </Route>
-          <Route path='profile' element={<ChatContainer />} />
+          <Route path='profile' element={<ProfileComtainer />} />
           <Route path='users' element={<UsersContainer />} />
-          <Route path='prefences' element={<Prefences />} />
+          <Route path='prefences' element={<PrefencesContainer />} />
         </Routes>
       </div>
 

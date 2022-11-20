@@ -17,14 +17,14 @@
     min-width: 100%;
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: flex-end;
 }
 .notifications{
     padding: 1px;
-display: flex;
-flex-direction: column-reverse;
-justify-content: center;
-align-items: flex-end;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: flex-end;
 }
 .notification{
     margin: 0;

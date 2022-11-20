@@ -3,7 +3,7 @@
     margin:  2px 0 10px  2px ;
     height: 28px;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     border: 1px solid rgb(49, 166, 255);
     border-radius: 10px;
@@ -12,7 +12,7 @@
 }
 
 .container-participants{
-    width: 96%;
+    width: 99%;
 }
 
 .container-users{

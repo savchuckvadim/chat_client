@@ -9,7 +9,7 @@
     background-color: white;
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     border-radius: 16px;
     border: solid 2px rgb(88, 155, 249);
@@ -55,7 +55,7 @@
     max-height: calc(100%-70vh);
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: flex-end;
 
 }
