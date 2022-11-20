@@ -1,9 +1,9 @@
 .container{
-    margin: 25px 25px 0 25px;
+    margin: 27px 27px 0 27px;
     padding: 15px;
     min-width: 50px;
-    max-width: 119px;
-    width: 20vh;
+    /* max-width: 22%; */
+    /* width: 22vh; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -31,7 +31,7 @@
   @media screen and (max-width: 700px) {
     .container{
       
-        min-width: 44%;
+        width: 44%;
        
       
     

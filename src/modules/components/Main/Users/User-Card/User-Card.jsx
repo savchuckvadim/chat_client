@@ -13,8 +13,8 @@ const UserCard = (props) => {
             style={{
                 height: props.isMessageForwarding || props.addingParticipantsInProgress ? 100 : 200,
               
-                width: props.isMessageForwarding || props.addingParticipantsInProgress ? 60 : 120,
-                margin: props.isMessageForwarding ?  7 : 2,
+                width: props.isMessageForwarding || props.addingParticipantsInProgress ? '12' : '108px',
+                margin: props.isMessageForwarding ?  2 : 2,
                
             }} className={style.container}
             key={`user-card=container-${props.user.id}`}

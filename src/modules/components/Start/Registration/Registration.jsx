@@ -16,7 +16,7 @@ const Registration = (props) => {
 
         <div className={style.form__wrapper}>
             <div className={style.container}>
-                <h1>Registration</h1>
+                <h1 className={style.page__title}>Registration</h1>
                 <Formik
                     initialValues={{ nickname: '', email: '', password: '', passwordRepeat: '' }}
                     validate={values => {

@@ -7,7 +7,7 @@ const Login = (props) => {
         <div className={style.form__wrapper}>
         <div className={style.container}>
             
-            <h1>Login</h1>
+            <h1 className={style.page__title}>Login</h1>
             <Formik
                 initialValues={{ email: '', password: ''}}
                 validate={values => {
@@ -34,7 +34,7 @@ const Login = (props) => {
                     handleBlur,
                     handleSubmit,
                     isSubmitting,
-                    /* and other goodies */
+                   
                 }) => (
                     <form className={style.form} onSubmit={handleSubmit}>
                         

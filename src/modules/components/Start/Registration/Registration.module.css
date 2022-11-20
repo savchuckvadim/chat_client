@@ -62,9 +62,10 @@ color: rgb(255, 255, 255);
 }
 }
 .title{
-    margin-bottom: 2px;
+    margin: 14px 0 7px 0;
 }
 .input{
+   min-height: 30px;
     height: 30px;
     width: 203px;
     padding: 0 7px;
@@ -78,4 +79,9 @@ color: rgb(255, 255, 255);
     margin: 0;
     color: rgb(244, 91, 91);
     font-weight: 600;
+}
+.page__title{
+    margin: 0;
+    height: 20px;
+    min-width: 50%;
 }

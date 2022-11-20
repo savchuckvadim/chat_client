@@ -9,29 +9,31 @@ const Users = (props) => {
   useEffect(() => {
     props.getUsers(1, 10)
   }, [])
-  
+
   if (!props.addingParticipantsInProgress) {
     if (!props.isMessageForwarding) {
       return (
 
         <div className={style.container}>
           <div className={style.title__wrapper}>
-          <h3 className={style.title}>Users</h3>
+            <h3 className={style.title}>Users</h3>
           </div>
-          
+
           <div className={style.users}>
             <SearchContainer />
             {
               !props.inProgress
-                ? props.users.map(user => <UserCard
-                  key={user.id}
-                  user={user}
-                  addingParticipantsInProgress={props.addingParticipantsInProgress}
-                  participant={props.participant}
-                  addDeleteContact={props.addDeleteContact}
-                  setParticipant={props.setParticipant}
-                  isMessageForwarding={props.isMessageForwarding}
-                />)
+                ? <div className={style.cards__wrapper}>
+                  {props.users.map(user => <UserCard
+                    key={user.id}
+                    user={user}
+                    addingParticipantsInProgress={props.addingParticipantsInProgress}
+                    participant={props.participant}
+                    addDeleteContact={props.addDeleteContact}
+                    setParticipant={props.setParticipant}
+                    isMessageForwarding={props.isMessageForwarding}
+                  />)}
+                </div>
                 : <Preloader />
             }
           </div>
@@ -42,25 +44,31 @@ const Users = (props) => {
       return (
         <div className={style.users}>
           <SearchContainer />
+
+
+
           {
             !props.inProgress
-              ? props.dialogs.map(dialog => <UserCard
-                key={dialog.id}
-                user={dialog.dialogsUsers[0]}
-                addingParticipantsInProgress={props.addingParticipantsInProgress}
-                participant={props.participant}
-                isMessageForwarding={props.isMessageForwarding}
+              ? <div className={style.cards__wrapper}>
+                {props.dialogs.map(dialog => <UserCard
+                  key={dialog.id}
+                  user={dialog.dialogsUsers[0]}
+                  addingParticipantsInProgress={props.addingParticipantsInProgress}
+                  participant={props.participant}
+                  isMessageForwarding={props.isMessageForwarding}
 
-                authUser={props.authUser}
-                dialog={dialog}
-                forwardingBody={props.forwardingBody}
-                addDeleteContact={props.addDeleteContact}
-                setParticipant={props.setParticipant}
-                sendMessage={props.sendMessage}
-               
-              />)
+                  authUser={props.authUser}
+                  dialog={dialog}
+                  forwardingBody={props.forwardingBody}
+                  addDeleteContact={props.addDeleteContact}
+                  setParticipant={props.setParticipant}
+                  sendMessage={props.sendMessage}
+
+                />)}
+              </div>
               : <Preloader />
           }
+
         </div>
       )
 
@@ -87,17 +95,19 @@ const Users = (props) => {
         <div className={style.users}>
           {
             !props.inProgress
-              ? contacts.map(user => <UserCard
-                key={user.id}
-                user={user}
-                userId={user.id}
-                name={user.name}
-                isContacted={user.isContacted}
-                addDeleteContact={props.addDeleteContact}
-                // deleteContact={props.deleteContact}
-                addingParticipantsInProgress={props.addingParticipantsInProgress}
-                setParticipant={props.setParticipant}
-              />)
+              ? <div className={style.cards__wrapper}>
+                {contacts.map(user => <UserCard
+                  key={user.id}
+                  user={user}
+                  userId={user.id}
+                  name={user.name}
+                  isContacted={user.isContacted}
+                  addDeleteContact={props.addDeleteContact}
+                  // deleteContact={props.deleteContact}
+                  addingParticipantsInProgress={props.addingParticipantsInProgress}
+                  setParticipant={props.setParticipant}
+                />)}
+              </div>
               : <Preloader />
           }
         </div>
