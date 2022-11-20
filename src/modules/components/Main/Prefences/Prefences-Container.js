@@ -9,9 +9,9 @@ const mapState = (state) => {
     return {
         authUser: state.auth.authUser,
         sectionName: 'Prefences',
-        name: 'Sound notification',
-        value: state.auth.authUser && `state.auth.authUser.isSound`,
-        actionName: 'Off',
+        name: 'Sound',
+        value: state.auth.authUser && 'On', //state.auth.authUser.isSound
+        actionName: 'Change',
     }
 }
 
