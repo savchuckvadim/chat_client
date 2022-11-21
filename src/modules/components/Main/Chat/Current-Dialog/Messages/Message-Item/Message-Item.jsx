@@ -1,3 +1,4 @@
+import Moment from 'react-moment'
 import { onRightClick } from '../../../../../../utils/context-menu-utils'
 import ContextMenu from '../../../../../common/Context-Menu/Context-Menu'
 import style from './Message-Item.module.css'
@@ -19,6 +20,7 @@ const MessageItem = ({
     let messageClass = style.myMessage
     let infoWrapperClass = style.myInfo__wrapper
     let infoItemClass = style.myInfoItem
+    
     if (!message.isAuthorIsAuth) {
         messageClass = style.message
         infoWrapperClass = style.info__wrapper
@@ -55,6 +57,7 @@ const MessageItem = ({
             />
             <div className={style.messageHeader}>
                 <p className={style.author}>{message.author ? message.author.name : null}</p>
+                <p className={style.date}><Moment fromNow >{message.created}</Moment> </p>
             </div>
             <div className={style.body}>
                 <p className={style.body__text}>{

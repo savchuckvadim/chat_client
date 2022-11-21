@@ -107,9 +107,8 @@ export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getS
                     if (state.auth.authUser) {
                         let authUser = state.auth.authUser
                         dispatch(setNewMessage(e.message, authUser.id))
-                        debugger
                         dispatch(setNotification(e.message))
-                        // alert(e.message.body)
+                        
                     }
                 })
         } else {

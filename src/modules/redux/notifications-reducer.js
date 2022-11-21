@@ -8,132 +8,132 @@ const initialState = {
     isActive: true,
     notifications: [
 
-        // {
-        //     author: {
-        //         email: "savchuckvadim@gmail.com",
-        //         id: 1,
-        //         isContacted: false,
-        //         name: "vadim",
-        //     },
-        //     authorId: 1,
-        //     body: "7 ",
-        //     created: "2022-11-18T15:16:39.000000Z",
-        //     dialogId: 51,
-        //     id: 68,
-        //     isAuthorIsAuth: true,
-        //     isEdited: 0,
-        //     isForwarded: 1,
-        //     isGroup: 0,
-        //     recipients: []
-        // },
-        // {
-        //     author: {
-        //         email: "savchuckvadim@gmail.com",
-        //         id: 1,
-        //         isContacted: false,
-        //         name: "chuvak!",
-        //     },
-        //     authorId: 1,
-        //     body: '6',
-        //     created: "2022-11-18T15:16:39.000000Z",
-        //     dialogId: 51,
-        //     id: 68,
-        //     isAuthorIsAuth: true,
-        //     isEdited: 0,
-        //     isForwarded: 1,
-        //     isGroup: 0,
-        //     recipients: []
-        // },
-        // {
-        //     author: {
-        //         email: "savchuckvadim@gmail.com",
-        //         id: 1,
-        //         isContacted: false,
-        //         name: "el chuvachino",
-        //     },
-        //     authorId: 1,
-        //     body: "5",
-        //     created: "2022-11-18T15:16:39.000000Z",
-        //     dialogId: 51,
-        //     id: 68,
-        //     isAuthorIsAuth: true,
-        //     isEdited: 0,
-        //     isForwarded: 1,
-        //     isGroup: 0,
-        //     recipients: []
-        // },
-        // {
-        //     author: {
-        //         email: "savchuckvadim@gmail.com",
-        //         id: 1,
-        //         isContacted: false,
-        //         name: "chuvak!",
-        //     },
-        //     authorId: 1,
-        //     body: '4',
-        //     created: "2022-11-18T15:16:39.000000Z",
-        //     dialogId: 51,
-        //     id: 68,
-        //     isAuthorIsAuth: true,
-        //     isEdited: 0,
-        //     isForwarded: 1,
-        //     isGroup: 0,
-        //     recipients: []
-        // },
-        // {
-        //     author: {
-        //         email: "savchuckvadim@gmail.com",
-        //         id: 1,
-        //         isContacted: false,
-        //         name: "el chuvachino",
-        //     },
-        //     authorId: 1,
-        //     body: "3",
-        //     created: "2022-11-18T15:16:39.000000Z",
-        //     dialogId: 51,
-        //     id: 68,
-        //     isAuthorIsAuth: true,
-        //     isEdited: 0,
-        //     isForwarded: 1,
-        //     isGroup: 0,
-        //     recipients: []
-        // },
-        // {
-        //     author: {
-        //         email: "savchuckvadim@gmail.com",
-        //         id: 1,
-        //         isContacted: false,
-        //         name: "chuvak!",
-        //     },
-        //     authorId: 1,
-        //     body: '2',
-        //     created: "2022-11-18T15:16:39.000000Z",
-        //     dialogId: 51,
-        //     id: 68,
-        //     isAuthorIsAuth: true,
-        //     isEdited: 0,
-        //     isForwarded: 1,
-        //     isGroup: 0,
-        //     recipients: []
-        // },
-        // {
-        //     author: {
-        //         email: "savchuckvadim@gmail.com",
-        //         id: 1,
-        //         isContacted: false,
-        //         name: "el chuvachino",
-        //     },
-        //     authorId: 1,
-        //     body: "1 ",
-        //     created: "2022-11-18T15:16:39.000000Z",
-        //     dialogId: 51,
-        //     id: 68,
-        //     isAuthorIsAuth: true,
-        //     isEdited: 0,
-        //     isForwarded: 1,
-        //     isGroup: 0,
-        //     recipients: []
-        // },
+        {
+            author: {
+                email: "savchuckvadim@gmail.com",
+                id: 1,
+                isContacted: false,
+                name: "vadim",
+            },
+            authorId: 1,
+            body: "7 ",
+            created: "2022-11-18T15:16:39.000000Z",
+            dialogId: 51,
+            id: 68,
+            isAuthorIsAuth: true,
+            isEdited: 0,
+            isForwarded: 1,
+            isGroup: 0,
+            recipients: []
+        },
+        {
+            author: {
+                email: "savchuckvadim@gmail.com",
+                id: 1,
+                isContacted: false,
+                name: "chuvak!",
+            },
+            authorId: 1,
+            body: '6',
+            created: "2022-11-18T15:16:39.000000Z",
+            dialogId: 51,
+            id: 68,
+            isAuthorIsAuth: true,
+            isEdited: 0,
+            isForwarded: 1,
+            isGroup: 0,
+            recipients: []
+        },
+        {
+            author: {
+                email: "savchuckvadim@gmail.com",
+                id: 1,
+                isContacted: false,
+                name: "el chuvachino",
+            },
+            authorId: 1,
+            body: "5",
+            created: "2022-11-18T15:16:39.000000Z",
+            dialogId: 51,
+            id: 68,
+            isAuthorIsAuth: true,
+            isEdited: 0,
+            isForwarded: 1,
+            isGroup: 0,
+            recipients: []
+        },
+        {
+            author: {
+                email: "savchuckvadim@gmail.com",
+                id: 1,
+                isContacted: false,
+                name: "chuvak!",
+            },
+            authorId: 1,
+            body: '4',
+            created: "2022-11-18T15:16:39.000000Z",
+            dialogId: 51,
+            id: 68,
+            isAuthorIsAuth: true,
+            isEdited: 0,
+            isForwarded: 1,
+            isGroup: 0,
+            recipients: []
+        },
+        {
+            author: {
+                email: "savchuckvadim@gmail.com",
+                id: 1,
+                isContacted: false,
+                name: "el chuvachino",
+            },
+            authorId: 1,
+            body: "3",
+            created: "2022-11-18T15:16:39.000000Z",
+            dialogId: 51,
+            id: 68,
+            isAuthorIsAuth: true,
+            isEdited: 0,
+            isForwarded: 1,
+            isGroup: 0,
+            recipients: []
+        },
+        {
+            author: {
+                email: "savchuckvadim@gmail.com",
+                id: 1,
+                isContacted: false,
+                name: "chuvak!",
+            },
+            authorId: 1,
+            body: '2',
+            created: "2022-11-18T15:16:39.000000Z",
+            dialogId: 51,
+            id: 68,
+            isAuthorIsAuth: true,
+            isEdited: 0,
+            isForwarded: 1,
+            isGroup: 0,
+            recipients: []
+        },
+        {
+            author: {
+                email: "savchuckvadim@gmail.com",
+                id: 1,
+                isContacted: false,
+                name: "el chuvachino",
+            },
+            authorId: 1,
+            body: "1 ",
+            created: "2022-11-18T15:16:39.000000Z",
+            dialogId: 51,
+            id: 68,
+            isAuthorIsAuth: true,
+            isEdited: 0,
+            isForwarded: 1,
+            isGroup: 0,
+            recipients: []
+        },
 
     ],
     sound: true,
@@ -166,7 +166,8 @@ const notifications = (state = initialState, action) => {
 
 
         case SET_NOTIFICATION:
-            let checkExist = state.notifications.some(n => n.id === action.message)
+            let checkExist = state.notifications.some(n => n.id === action.message.id)
+            
             if (checkExist) {
                 return state
             } else {

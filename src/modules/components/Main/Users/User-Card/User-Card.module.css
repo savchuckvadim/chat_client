@@ -15,6 +15,7 @@
     outline:1px solid  rgb(88, 155, 249);
     outline-offset:-1px; 
     color: rgb(44, 90, 155);
+    overflow-x: hidden;
   
 
 }

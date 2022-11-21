@@ -12,7 +12,7 @@ const Chat = (props) => {
                 <DialogsContainer />
             </div>
             <div className={style.currentDialog}>
-                <CurrentDialog />
+                <CurrentDialog currentDialog={props.currentDialog} />
             </div>
         </div >
 
