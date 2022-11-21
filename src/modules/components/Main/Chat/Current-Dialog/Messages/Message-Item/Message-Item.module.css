@@ -51,6 +51,7 @@ p{
     }
 
 .messageHeader  {
+    margin-bottom: 3px;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -58,11 +59,11 @@ p{
     min-width: 100%;
 }  
 .left__area{
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: flex-start;
-width: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    /* width: 70px; */
 }
 
 .author{

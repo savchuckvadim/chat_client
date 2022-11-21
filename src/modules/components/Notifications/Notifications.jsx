@@ -12,18 +12,18 @@ const Notification = ({
     audioPlayer,
     deleteNotification,
 }) => {
-    
+
     useEffect(() => {
         audioPlayer.current.play();
 
         setTimeout(() => { deleteNotification(notification.id) }, 20000)
     }, [])
 
-    
+
     return (
 
-        <div style={{ opacity: 1.2/(index+1) }} className={style.notification}>
-            
+        <div style={{ opacity: 1.5 / (index + 0.2) }} className={style.notification}>
+
             <MessageItem
                 key={`notifi-message-${notification.id}`}
                 message={notification}
@@ -45,30 +45,30 @@ const Notification = ({
 const Notifications = (props) => {
     const audioPlayer = useRef(null);
     return props.notificationStatus && props.notifications.length > 0 ? (
-        
-            <div className={style.container}>
-                <audio ref={audioPlayer} src={NotificationSound} style={{display: 'none'}}/>
-                <div className={style.header}>
-                    <div className={style.functions}>
-                        <div onClick={props.resetNotifications} className={style.reset}>
-                            скрыть
-                        </div>
 
+        <div className={style.container}>
+            <audio ref={audioPlayer} src={NotificationSound} style={{ display: 'none' }} />
+            <div className={style.header}>
+                <div className={style.functions}>
+                    <div onClick={props.resetNotifications} className={style.reset}>
+                        скрыть
                     </div>
-                </div>
-                <div className={style.notifications}>
-                    {props.notifications.map((n, i) =>
-                        <Notification
-                            key={`notification-${n.id}- ${i}`}
-                            index={i}
-                            notification={n}
-                            sound={props.sound}
-                            audioPlayer={audioPlayer}
-                            deleteNotification={props.deleteNotification} />)}
-                </div>
 
+                </div>
             </div>
-       
+            <div className={style.notifications}>
+                {props.notifications.map((n, i) =>
+                    <Notification
+                        key={`notification-${n.id}- ${i}`}
+                        index={i}
+                        notification={n}
+                        sound={props.sound}
+                        audioPlayer={audioPlayer}
+                        deleteNotification={props.deleteNotification} />)}
+            </div>
+
+        </div>
+
     )
         : null
 }

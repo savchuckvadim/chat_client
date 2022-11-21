@@ -115,3 +115,7 @@
 /* .action__wrapper{
 
 } */
+
+.action{
+    cursor: pointer;
+}

@@ -1,12 +1,14 @@
 import { authApi } from "../services/api/auth-api"
+import { usersAPI } from "../services/api/users-api"
 import { socket } from "../services/websocket/socket"
 import { inProgress } from "./preloader-reducer"
 
 const LOGIN = 'LOGIN'
-// const REGISTRATION = 'REGISTRATION'
 const LOGOUT = 'LOGOUT'
 const SET_REGISTRATION_STATUS = 'SET_REGISTRATION_STATUS'
-// const SET_REGISTRATION_URL = 'SET_REGISTRATION_URL'
+const SET_NEW_USER_NAME = 'SET_NEW_USER_NAME'
+
+
 
 const initialState = {
     authUser: null,
@@ -25,14 +27,16 @@ const setAuthUser = (user, bool) => ({ type: LOGIN, user, bool })
 const deleteAuthUser = () => ({ type: LOGOUT })
 export const setRegistrationStatus = (bool) => ({ type: SET_REGISTRATION_STATUS, bool })
 // export const setRegistrationUrl = (url) => ({ type: SET_REGISTRATION_URL, url })
+const setNewUserName = (name) => ({ type: SET_NEW_USER_NAME, name })
+
 
 //THUNK
 export const registration = (name, email, password, passwordConfirmation) =>
     async (dispatch) => {
         try {
             dispatch(inProgress(true))
-           await authApi.registration(name, email, password, passwordConfirmation)
-                dispatch(me())
+            await authApi.registration(name, email, password, passwordConfirmation)
+            dispatch(me())
 
         } catch (error) {
             dispatch(inProgress(false))
@@ -74,7 +78,7 @@ export const me = () => async (dispatch) => {
 
 }
 export const logout = () => async (dispatch) => {
-    
+
     dispatch(inProgress(true))
     dispatch(deleteAuthUser())
     await authApi.logout()
@@ -83,9 +87,10 @@ export const logout = () => async (dispatch) => {
 
 }
 
-export const changeProfileName = (name, userId) => (dispatch) => {
-
+export const changeProfileName = (name) => async (dispatch) => {
+    const response = await usersAPI.updateName(name)
     alert(name)
+    
 }
 export const changePrefencesSound = (value, userId) => (dispatch) => {
 
