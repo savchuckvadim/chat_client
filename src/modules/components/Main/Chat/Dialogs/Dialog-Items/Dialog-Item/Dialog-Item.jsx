@@ -1,7 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import { onRightClick } from '../../../../../../utils/context-menu-utils'
+import Avatar from '../../../../../common/Avatar/Avatar'
 import ContextMenu from '../../../../../common/Context-Menu/Context-Menu'
 import style from './Dialog-Item.module.css'
+
+
 
 const DialogItem = ({
     dialog,
@@ -26,27 +29,27 @@ const DialogItem = ({
             entityTypeOfArea = 'group-dialog'
             name = dialog.dialogName
         }
-            
-            contextMenu = <ContextMenu
-                message={null}
-                dialog={dialog}
-                entityId={dialog.dialogId}
-                currentEntityId={currentEntityId} //state.contextMenu.currentEntityId,
-                entityTypeOfArea={entityTypeOfArea}
-                currentTypeOfArea={currentTypeOfArea} //state.contextMenu.typeOfArea
-                isActive={isContextMenuActive} //state.contextMenu.isActive,
-                currentMenu={currentMenu} //state.contextMenu.currentMenu
-                changeForwardingMessageStatus={null}        // = null
-                setEditingStatus={null}        // = null
-                deleteMessage={null}        // = null
-                deleteDialog={deleteDialog}
-                setEditingGroupDialog={setEditingGroupDialog}
-                addParticipantsInProgress={addParticipantsInProgress}
 
-            />
+        contextMenu = <ContextMenu
+            message={null}
+            dialog={dialog}
+            entityId={dialog.dialogId}
+            currentEntityId={currentEntityId} //state.contextMenu.currentEntityId,
+            entityTypeOfArea={entityTypeOfArea}
+            currentTypeOfArea={currentTypeOfArea} //state.contextMenu.typeOfArea
+            isActive={isContextMenuActive} //state.contextMenu.isActive,
+            currentMenu={currentMenu} //state.contextMenu.currentMenu
+            changeForwardingMessageStatus={null}        // = null
+            setEditingStatus={null}        // = null
+            deleteMessage={null}        // = null
+            deleteDialog={deleteDialog}
+            setEditingGroupDialog={setEditingGroupDialog}
+            addParticipantsInProgress={addParticipantsInProgress}
 
-        
-        let initials = `${name[0]}${name[name.length - 1]}`.toUpperCase()
+        />
+
+
+
         let title = <h3 className={style.name}>{name}</h3>
 
 
@@ -62,9 +65,7 @@ const DialogItem = ({
                     onContextMenu={(e) => { onRightClick(e, true, entityTypeOfArea, dialog.dialogId, contextMenuToggler) }}
                     className={style.item}
                 >
-                    <div className={style.avatar}>
-                        <p className={style.initials}>{initials}</p>
-                    </div>
+                    <Avatar name={name} />
                     <div className={style.text__wrapper}>
                         {title}
                         <p className={style.message}>{dialog.dialogsMessages.length > 0 && dialog.dialogsMessages[0].body.length > 0 &&

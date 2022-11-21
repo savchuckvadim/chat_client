@@ -8,7 +8,7 @@ p{
     height: fit-content;
     max-width: 95%;
     margin: 2px;
-    padding: 5px 10px;
+    padding: 6px 6px;
     border-radius: 12px;
     align-items: flex-start;
     display: flex;
@@ -57,13 +57,27 @@ p{
     justify-content: space-between;
     min-width: 100%;
 }  
+.left__area{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: flex-start;
+width: 70px;
+}
+
 .author{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans;
-    font-weight: 600;
+    font-size: small;
+    font-weight: 400;
+    margin-left: 2px;
+    display: block;
+    text-align: end;
+    align-self: flex-end;
 }
+
 .date{
     
-  color: rgb(165, 213, 255);
+  color: rgb(221, 232, 242);
 }
 .body{
     height: fit-content;
@@ -91,15 +105,7 @@ p{
     justify-content: flex-end;
     min-width: 100%;
 }
-/* .myInfo__wrapper{
- 
-    justify-content: flex-end;
-   
-}
-.info__wrapper{
-    justify-content: flex-start;
-     
-} */
+
 .infoItem, .myInfoItem{
     margin: 0;
     padding: 0;
@@ -110,10 +116,9 @@ p{
 }
 .infoItem{
     color: rgb(255, 255, 255);
-    /* opacity: 10%; */
+   
 }
 .myInfoItem{
     color: rgb(156, 245, 246);
-    /* opacity: 10%; */
-   ;
+   
 }
