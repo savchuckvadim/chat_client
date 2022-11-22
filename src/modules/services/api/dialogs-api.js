@@ -28,7 +28,7 @@ export const dialogsAPI = {
             const response = await api.put('message', {
                 messageId, body
             })
-            
+
             return response.data
         } catch (error) {
             alert(error)
@@ -48,7 +48,7 @@ export const dialogsAPI = {
         const response = await api.post('group-dialog', {
             users, dialogsName, dialogId
         })
-        
+
         if (response.data.resultCode === 1) {
             return response.data
         }
@@ -58,9 +58,22 @@ export const dialogsAPI = {
 
     },
 
-    async deleteDialog (dialogId){
+    async sound(dialogId, isSound) {
+        try {
+            const response = await api.put('sound-dialog', {
+                dialogId, isSound
+            })
+
+            return response.data
+        } catch (error) {
+            alert(error.message)
+        }
+
+    },
+
+    async deleteDialog(dialogId) {
         const response = await api.delete(`dialog/${dialogId}`)
-        
+
         return response.data
     }
 

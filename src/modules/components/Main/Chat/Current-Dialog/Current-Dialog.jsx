@@ -1,17 +1,16 @@
+import { useState } from 'react'
 import Moment from 'react-moment'
 import style from './Current-Dialog.module.css'
 import MessagesContainer from './Messages/Messages-Container'
 import SendMessage from './Send-Message/Send-Message'
+import SoundStatusContainer from './Sound/SoundStatus-Container'
 
 
 
 const CurrentDialog = ({ currentDialog }) => {
 
-    // let dialogDate = currentDialog.dialogsUsers[0].isActive
-    //     ? <p className={style.date}>online</p>
-    //     : <Moment className={style.date} fromNow>{currentDialog.dialogsUsers[0].updated}</Moment>
-    debugger
-    
+
+
     return (<div className={style.container}>
         <div className={style.header}>
             {currentDialog && currentDialog.dialogsUsers[0] &&
@@ -22,16 +21,16 @@ const CurrentDialog = ({ currentDialog }) => {
                             (currentDialog.dialogName
                                 || currentDialog.dialogsUsers[0].name)
                         } </p>
-                       
+
                         {
-                            
+
                             currentDialog.dialogsUsers[0].isActive
                                 ? <p className={style.date}>online</p>
                                 : <Moment className={style.date} fromNow>{currentDialog.dialogsUsers[0].update}</Moment>
                         }
                     </div>
 
-                    <p className={style.sound}>OFF</p>
+                    <SoundStatusContainer />
                 </div>
             }
 

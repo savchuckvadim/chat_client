@@ -8,7 +8,7 @@ const LOGIN = 'LOGIN'
 const LOGOUT = 'LOGOUT'
 const SET_REGISTRATION_STATUS = 'SET_REGISTRATION_STATUS'
 const SET_NEW_USER_NAME = 'SET_NEW_USER_NAME'
-
+const SET_SOUND = 'SET_SOUND'
 
 
 const initialState = {
@@ -91,11 +91,10 @@ export const logout = () => async (dispatch) => {
 }
 
 export const changeProfileName = (name) => async (dispatch) => {
-    const response = await usersAPI.updateName(name)
-    alert(name)
-    
+    await usersAPI.updateName(name)
+    dispatch(setNewUserName(name))
 }
-export const changePrefencesSound = (value, userId) => (dispatch) => {
+export const changePrefencesSound = (value) => (dispatch) => {
 
     alert(`${value}`)
 }

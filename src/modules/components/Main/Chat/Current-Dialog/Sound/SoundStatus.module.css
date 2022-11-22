@@ -1,0 +1,17 @@
+.sound{
+    width: 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.sound__on, .sound__off{
+    margin-left: 9px;
+    cursor: pointer;
+}
+.sound__on{
+    color: rgb(78, 167, 255);
+}
+.sound__off{
+    color: grey;
+}

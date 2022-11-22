@@ -1,6 +1,6 @@
 .frame{
     
-    min-height: 100%;
+    min-height: 88vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

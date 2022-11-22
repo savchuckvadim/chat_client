@@ -25,6 +25,7 @@ const DELETE_MESSAGE = 'dialogs/DELETE_MESSAGE'
 const DELETE_DIALOG = 'dialogs/DELETE_DIALOG'
 const SET_EDITING_GROUP_DIALOG = 'dialogs/SET_EDITING_GROUP_DIALOG'
 const SET_EDITED_GROUP_DIALOG = 'dialogs/SET_EDITED_GROUP_DIALOG'
+const SET_SOUND = 'dialogs/SET_SOUND'
 
 
 const initialState = {
@@ -69,7 +70,7 @@ const setSendingStatus = (status) => ({ type: SET_SENDING_STATUS, status }) //st
 export const setParticipant = (participant, bool) => ({ type: PARTICIPANTS_NEW_GROUP_DIALOG, participant, bool })
 const setNewGroupDialog = (groupDialog) => ({ type: SET_NEW_GROUP_DIALOG, groupDialog })
 export const setGroupDialogsName = (value) => ({ type: SET_GROUP_DIALOGS_NAME, value })
-
+export const setSound = (dialogId, isSound) => ({ type: SET_SOUND, dialogId, isSound })
 
 
 //AC for context-menu
@@ -84,7 +85,6 @@ export const setEditingStatus = (status = null, message = null) => ({ type: SET_
 const setDeleteMessage = (messageId) => ({ type: DELETE_MESSAGE, messageId })
 const setDeleteDialog = (dialogId) => ({ type: DELETE_DIALOG, dialogId })
 export const setEditingGroupDialog = (dialog) => ({ type: SET_EDITING_GROUP_DIALOG, dialog })  //for edit exist group dialog
-// const setEditedGroupDialog = (dialog) => ({ type: SET_EDITED_GROUP_DIALOG, dialog })  //for edit exist group dialog
 
 //DELETE_MESSAGE
 
@@ -107,7 +107,6 @@ export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getS
 
                     if (state.auth.authUser) {
                         let authUser = state.auth.authUser
-                        debugger
                         dispatch(setNewMessage(e.message, authUser.id))
                         dispatch(setNotification(e.message))
 
@@ -231,6 +230,11 @@ export const addNewGroupDialog = (users, dialogsName, dialogId = null) => async 
 
     }
 
+}
+
+export const changeDialogSound = (dialogId, isSound) => async (dispatch) => {
+
+    const response = dialogsAPI.sound(dialogId, isSound)
 }
 
 //for context-menu
@@ -445,9 +449,9 @@ const dialogsReducer = (state = initialState, action) => {
 
         case SET_NEW_MESSAGE:
             //TODO isEdited
-            
+
             let message = action.message
-            
+
             let currentDialogs = !message.isGroup ? state.dialogs : state.groupDialogs
 
 
@@ -458,7 +462,7 @@ const dialogsReducer = (state = initialState, action) => {
             } else {
 
                 let messages = []
-                let upgradingCrrentDialog = {...state.currentDialog}
+                let upgradingCrrentDialog = { ...state.currentDialog }
 
 
 
@@ -484,19 +488,18 @@ const dialogsReducer = (state = initialState, action) => {
 
                             upgradingCrrentDialog = { ...dialog, dialogsMessages }
                         }
-debugger
+
                         return { ...dialog, dialogsMessages }
                     } else {
-                        debugger
+
                         return dialog
                     }
-                    debugger
+
                 })
 
                 if (action.message.dialogId === state.currentDialogId) {
                     if (!action.message.isGroup) {
-                        debugger
-                        console.log(upgradingCrrentDialog)
+
                         return {
                             ...state,
                             currentDialog: upgradingCrrentDialog,
@@ -504,7 +507,7 @@ debugger
                             messages
                         }
                     }
-                    debugger
+
                     return {
                         ...state,
                         currentDialog: upgradingCrrentDialog,
@@ -512,16 +515,25 @@ debugger
                         messages
                     }
                 } else {
-                    debugger
+
                     if (!action.message.isGroup) {
-                        debugger
+
                         return { ...state, dialogs }
                     }
                     return { ...state, groupDialogs: dialogs }
                 }
 
             }
-debugger
+        case SET_SOUND:
+
+
+
+
+
+
+
+
+        
 
         case SET_SENDING_STATUS:
             if (state.currentMessage.sendingStatus !== action.status) {
@@ -669,8 +681,8 @@ debugger
 
             const currentUsers = precenseUserUtil(state.currentDialog.dialogsUsers, action.userId, action.status)
             const resultCurrentDialogLeavingUser = { ...state.currentDialog, dialogsUsers: currentUsers }
-            
-            
+
+
             return {
                 ...state, dialogs: resultDialogsLeavingUser,
                 groupDialogs: resultGroupDialogsLeavingUser,
