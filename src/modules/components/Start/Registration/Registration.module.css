@@ -36,10 +36,10 @@
 
 }
 .button:hover{
-    background: rgb(131,58,180);
-    background: -moz-linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgb(69, 252, 246) 100%);
-    background: -webkit-linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
-    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+    background: rgba(205, 104, 220, 0.809);
+    background: -moz-linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(193, 29, 253, 0.797) 50%, rgba(144, 110, 240, 0.837) 100%);
+    background: -webkit-linear-gradient(90deg, rgb(188, 144, 217) 0%, rgb(255, 73, 201) 50%, rgba(212, 39, 235, 0.784) 100%);
+    background: linear-gradient(90deg, rgb(215, 121, 241) 10%, rgba(255, 255, 255, 0.332) 50%, rgba(255, 162, 221, 0.96) 100% );
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#833ab4",endColorstr="#fcb045",GradientType=1);
 
 

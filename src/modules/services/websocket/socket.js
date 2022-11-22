@@ -1,5 +1,6 @@
 import Echo from 'laravel-echo'
 import { api, instance } from '../api/api'
+import { usersAPI } from '../api/users-api'
 
 export let echo
 export const socket = {
@@ -43,30 +44,50 @@ export const socket = {
 
     })
 
-    // echo.join(`chat.${1}`)
-    //   .here((users) => {
-    //     console.log(users)
-    //     users.forEach(user => {
-          
-    //       console.log(user.name)
-    //     });
-
-    //   })
-    //   .joining((user) => {
-    //     alert(user.name);
-    //   })
-    //   .leaving((user) => {
-    //     console.log(user);
-    //   })
-    //   .error((error) => {
-    //     console.error(error);
-    //   });
-
-
-
 
   },
+  async precenseListener(dispatch, setPrecenseUser) {
 
+    if (echo) {
+
+      echo.join(`chat`)
+        .here((users) => {
+          console.log(users)
+
+        })
+        .joining((user) => {
+          //TODO dispatch online user
+          dispatch(setPrecenseUser(user.id, true))
+        })
+        .leaving((user) => {
+
+          dispatch(setPrecenseUser(user.id, false))
+
+        })
+        .error((error) => {
+          console.error(error);
+        });
+    } else {
+
+      setTimeout(async () => {
+        await socket.connection()
+        await socket.precenseListener()
+      }, 20000)
+
+
+    }
+  },
+  async reconnect() {
+    if (echo) {
+      setTimeout(async () => {
+        await socket.reconnect()
+      }, 20000)
+    } else {
+      await socket.connection()
+      await socket.reconnect()
+    }
+  }
+}
   // async newMessageConnection() {
   //   echo.private('new-message')
   //     .listen('.SendMessage', (e) => {
@@ -75,26 +96,5 @@ export const socket = {
   //     })
   // },
 
-  async subscribeToDialogs(user, dialogs) {
-    dialogs.forEach(dialog => {
-      echo.join(`dialog.${dialog.id}`)
-        .here((users) => {
-          users.forEach(user => {
-            // alert(user.name)
-          });
-
-        })
-        .joining((user) => {
-        })
-        .leaving((user) => {
-        })
-        .error((error) => {
-          console.error(error);
-        });
-
-    });
 
 
-  }
-
-}

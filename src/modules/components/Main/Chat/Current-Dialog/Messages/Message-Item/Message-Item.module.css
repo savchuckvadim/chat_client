@@ -21,7 +21,7 @@ p{
     margin: 2px 0 ;
     background: rgb(50, 45, 62);
     background: linear-gradient(45deg, rgb(77, 70, 94) 30%, rgba(81, 75, 96, 0.604) 50%, rgba(116, 75, 131, 0.267) 100%,  rgba(255, 34, 196, 0.204) 100%);
-    animation: gradient 60s ease infinite;
+    animation: gradient 120s ease infinite;
     background-size: 5000% 5000%;
     color: rgb(255, 255, 255);
 

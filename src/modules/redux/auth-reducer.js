@@ -2,6 +2,7 @@ import { authApi } from "../services/api/auth-api"
 import { usersAPI } from "../services/api/users-api"
 import { socket } from "../services/websocket/socket"
 import { inProgress } from "./preloader-reducer"
+import { setPrecenseUser } from "./users-reducer"
 
 const LOGIN = 'LOGIN'
 const LOGOUT = 'LOGOUT'
@@ -66,7 +67,9 @@ export const me = () => async (dispatch) => {
         if (user) {
 
             dispatch(setAuthUser(user, true))
-            await socket.connection()
+            await socket.reconnect()
+            await socket.precenseListener(dispatch, setPrecenseUser)
+
             dispatch(inProgress(false))
         }
         dispatch(inProgress(false))

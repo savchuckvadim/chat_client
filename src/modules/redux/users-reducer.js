@@ -1,10 +1,12 @@
 import { usersAPI } from "../services/api/users-api"
+import { precenseUserUtil } from "../utils/users-utils"
 
 
 const SET_USERS = 'SET_USERS'
 const PRELOADER = 'users/PRELOADER'
 export const NEW_CONTACT = 'users/dialogs/NEW_CONTACT'
 const DELETE_CONTACT = 'users/DELETE_CONTACT'
+export const PRECENSE_USER = 'PRECENSE_USER'
 
 const initialState = {
     users: [],
@@ -16,6 +18,8 @@ const setUsers = (users) => ({ type: SET_USERS, users })
 const inProgress = (bool) => ({ type: PRELOADER, bool })
 const setNewContact = (newContactId) => ({ type: NEW_CONTACT, newContactId })
 const unContacted = (deletedContactId) => ({ type: DELETE_CONTACT, deletedContactId })
+export const setPrecenseUser = (userId, status) => ({ type: PRECENSE_USER, userId, status })
+
 
 //THUNK
 
@@ -48,6 +52,7 @@ export const addDeleteContact = (user, bool) => async (dispatch) => {
 }
 
 
+
 //REDUCER
 
 const usersReducer = (state = initialState, action) => {
@@ -67,14 +72,14 @@ const usersReducer = (state = initialState, action) => {
 
             resultState.users = state.users.map(user => {
                 if (user.id === action.newContactId) {
-                    
+
                     return { ...user, isContacted: true }
                 }
-                
+
                 return user
             })
             // }
-            
+
             return resultState
 
         case DELETE_CONTACT:
@@ -88,6 +93,11 @@ const usersReducer = (state = initialState, action) => {
             })
 
             return resultState
+
+        case PRECENSE_USER:
+            const resultUsers = precenseUserUtil(state.users, action.userId, action.status)
+            return { ...state, users: resultUsers }
+
         default:
             return state;
     }

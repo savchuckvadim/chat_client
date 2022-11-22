@@ -32,10 +32,10 @@ export const usersAPI = {
         const response = await api.put('name', {
             'name': newUserName
         })
-        debugger
-
+        
         return response.data
-    }
+    },
+    
 
 
 }

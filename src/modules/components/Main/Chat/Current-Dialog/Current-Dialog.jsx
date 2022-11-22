@@ -7,9 +7,14 @@ import SendMessage from './Send-Message/Send-Message'
 
 const CurrentDialog = ({ currentDialog }) => {
 
-    return (
-        <div className={style.container}>
-            <div className={style.header}>
+    // let dialogDate = currentDialog.dialogsUsers[0].isActive
+    //     ? <p className={style.date}>online</p>
+    //     : <Moment className={style.date} fromNow>{currentDialog.dialogsUsers[0].updated}</Moment>
+    debugger
+    
+    return (<div className={style.container}>
+        <div className={style.header}>
+            {currentDialog && currentDialog.dialogsUsers[0] &&
                 <div className={style.header__container}>
                     <div className={style.info}>
                         <p className={style.name}>{
@@ -17,22 +22,24 @@ const CurrentDialog = ({ currentDialog }) => {
                             (currentDialog.dialogName
                                 || currentDialog.dialogsUsers[0].name)
                         } </p>
-                        {/* <p className={style.date}>  */}
+                       
                         {
-                            currentDialog &&
-                            currentDialog.dialogsMessages.length > 0 &&
-                            <Moment className={style.date} fromNow>{currentDialog.dialogsMessages[currentDialog.dialogsMessages.length - 1].created}</Moment>
+                            
+                            currentDialog.dialogsUsers[0].isActive
+                                ? <p className={style.date}>online</p>
+                                : <Moment className={style.date} fromNow>{currentDialog.dialogsUsers[0].update}</Moment>
                         }
-                        {/* </p> */}
                     </div>
 
                     <p className={style.sound}>OFF</p>
                 </div>
-            </div>
+            }
 
-            <MessagesContainer />
-            <SendMessage />
         </div>
+
+        <MessagesContainer />
+        <SendMessage />
+    </div>
     )
 }
 

@@ -2,11 +2,12 @@ import { dialogsAPI } from "../services/api/dialogs-api"
 import { searchDialog } from "../utils/dialog-utils"
 import { echo } from "../services/websocket/socket"
 import { addParticipantsInProgress, CANCEL } from "./group-reducer"
-import { NEW_CONTACT } from "./users-reducer"
+import { NEW_CONTACT, PRECENSE_USER } from "./users-reducer"
 import { inProgress } from './preloader-reducer'
 import { changeModalStatus } from "./modal-reducer"
 import { setNotification } from "./notifications-reducer"
 import { socket } from '../services/websocket/socket'
+import { precenseUserUtil } from "../utils/users-utils"
 
 const SET_DIALOGS = 'dialogs/SET_DIALOGS'
 const SET_DIALOG = 'dialogs/SET_DIALOG'
@@ -32,7 +33,7 @@ const initialState = {
 
     currentDialogId: undefined,
     currentDialog: null,
-    messages: [],
+    // messages: [],
 
     currentMessage: {
         //  isSending:  false/sending/sended/
@@ -106,9 +107,10 @@ export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getS
 
                     if (state.auth.authUser) {
                         let authUser = state.auth.authUser
+                        debugger
                         dispatch(setNewMessage(e.message, authUser.id))
                         dispatch(setNotification(e.message))
-                        
+
                     }
                 })
         } else {
@@ -380,7 +382,7 @@ const dialogsReducer = (state = initialState, action) => {
             }
 
             return state
-        //ERROR: id of undefined
+
         case SET_GROUP_DIALOGS_NAME:
             return { ...state, newGroupDialog: { ...state.newGroupDialog, name: action.value } }
 
@@ -443,7 +445,9 @@ const dialogsReducer = (state = initialState, action) => {
 
         case SET_NEW_MESSAGE:
             //TODO isEdited
+            
             let message = action.message
+            
             let currentDialogs = !message.isGroup ? state.dialogs : state.groupDialogs
 
 
@@ -454,7 +458,7 @@ const dialogsReducer = (state = initialState, action) => {
             } else {
 
                 let messages = []
-                let upgradingCrrentDialog = null
+                let upgradingCrrentDialog = {...state.currentDialog}
 
 
 
@@ -480,15 +484,19 @@ const dialogsReducer = (state = initialState, action) => {
 
                             upgradingCrrentDialog = { ...dialog, dialogsMessages }
                         }
-
+debugger
                         return { ...dialog, dialogsMessages }
                     } else {
+                        debugger
                         return dialog
                     }
+                    debugger
                 })
 
                 if (action.message.dialogId === state.currentDialogId) {
                     if (!action.message.isGroup) {
+                        debugger
+                        console.log(upgradingCrrentDialog)
                         return {
                             ...state,
                             currentDialog: upgradingCrrentDialog,
@@ -496,6 +504,7 @@ const dialogsReducer = (state = initialState, action) => {
                             messages
                         }
                     }
+                    debugger
                     return {
                         ...state,
                         currentDialog: upgradingCrrentDialog,
@@ -503,14 +512,16 @@ const dialogsReducer = (state = initialState, action) => {
                         messages
                     }
                 } else {
+                    debugger
                     if (!action.message.isGroup) {
+                        debugger
                         return { ...state, dialogs }
                     }
                     return { ...state, groupDialogs: dialogs }
                 }
 
             }
-
+debugger
 
         case SET_SENDING_STATUS:
             if (state.currentMessage.sendingStatus !== action.status) {
@@ -644,6 +655,27 @@ const dialogsReducer = (state = initialState, action) => {
             let result = isDialogsLikeUser ? { ...state, currentDialog: resultCurrentDialog, dialogs } : state
 
             return result
+
+        case PRECENSE_USER:
+
+            const resultDialogsLeavingUser = state.dialogs.map(dialog => {
+                const users = precenseUserUtil(dialog.dialogsUsers, action.userId, action.status)
+                return { ...dialog, dialogsUsers: users }
+            })
+            const resultGroupDialogsLeavingUser = state.groupDialogs.map(dialog => {
+                const users = precenseUserUtil(dialog.dialogsUsers, action.userId, action.status)
+                return { ...dialog, dialogsUsers: users }
+            })
+
+            const currentUsers = precenseUserUtil(state.currentDialog.dialogsUsers, action.userId, action.status)
+            const resultCurrentDialogLeavingUser = { ...state.currentDialog, dialogsUsers: currentUsers }
+            
+            
+            return {
+                ...state, dialogs: resultDialogsLeavingUser,
+                groupDialogs: resultGroupDialogsLeavingUser,
+                currentDialog: resultCurrentDialogLeavingUser,
+            }
 
         case CANCEL: //for cancel add new group dialog
             return { ...state, newGroupDialog: { ...state.newGroupDialog, name: '', participants: [] } }
