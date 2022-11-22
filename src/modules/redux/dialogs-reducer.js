@@ -70,7 +70,7 @@ const setSendingStatus = (status) => ({ type: SET_SENDING_STATUS, status }) //st
 export const setParticipant = (participant, bool) => ({ type: PARTICIPANTS_NEW_GROUP_DIALOG, participant, bool })
 const setNewGroupDialog = (groupDialog) => ({ type: SET_NEW_GROUP_DIALOG, groupDialog })
 export const setGroupDialogsName = (value) => ({ type: SET_GROUP_DIALOGS_NAME, value })
-export const setSound = (dialogId, isSound) => ({ type: SET_SOUND, dialogId, isSound })
+export const setSound = (dialog) => ({ type: SET_SOUND, dialog })
 
 
 //AC for context-menu
@@ -234,7 +234,9 @@ export const addNewGroupDialog = (users, dialogsName, dialogId = null) => async 
 
 export const changeDialogSound = (dialogId, isSound) => async (dispatch) => {
 
-    const response = dialogsAPI.sound(dialogId, isSound)
+    const response = await dialogsAPI.sound(dialogId, isSound)
+    debugger
+    dispatch(setSound(response.updatingDialog))
 }
 
 //for context-menu
@@ -526,14 +528,36 @@ const dialogsReducer = (state = initialState, action) => {
             }
         case SET_SOUND:
 
+            let dialog = action.dialog
+            let dialogId = dialog.dialogId
+            let isGroup = dialog.isGroup
+            let updatingCrrentDialog = state.currentDialog
+            currentDialogs = !isGroup ? state.dialogs : state.groupDialogs
+            updatingCrrentDialog = state.currentDialog
+                && state.currentDialog.dialogId === dialogId
+                && state.currentDialog.isSound !== dialog.isSound
+                && { ...state.currentDialog, isSound: dialog.isSound } || state.currentDialog
+
+
+
+
+            dialogs = currentDialogs.map(d => {
+
+                if (dialog.dialogId === dialogId) {
+                    return { ...d, isSound: dialog.isSound }
+                } else {
+                    return d
+                }
+            })
+
+            return isGroup
+                ? { ...state, groupDialogs: dialogs, currentDialog: updatingCrrentDialog }
+                : { ...state, dialogs: dialogs, currentDialog: updatingCrrentDialog }
 
 
 
 
 
-
-
-        
 
         case SET_SENDING_STATUS:
             if (state.currentMessage.sendingStatus !== action.status) {
