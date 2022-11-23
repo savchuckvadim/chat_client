@@ -2,12 +2,12 @@ import { dialogsAPI } from "../services/api/dialogs-api"
 import { searchDialog } from "../utils/dialog-utils"
 import { echo } from "../services/websocket/socket"
 import { addParticipantsInProgress, CANCEL } from "./group-reducer"
-import { NEW_CONTACT, PRECENSE_USER } from "./users-reducer"
+import { NEW_CONTACT } from "./users-reducer"
 import { inProgress } from './preloader-reducer'
 import { changeModalStatus } from "./modal-reducer"
 import { setNotification } from "./notifications-reducer"
 import { socket } from '../services/websocket/socket'
-import { precenseUserUtil } from "../utils/users-utils"
+import { precenseUserUtil, setOnlineInAll } from "../utils/users-utils"
 
 const SET_DIALOGS = 'dialogs/SET_DIALOGS'
 const SET_DIALOG = 'dialogs/SET_DIALOG'
@@ -26,7 +26,7 @@ const DELETE_DIALOG = 'dialogs/DELETE_DIALOG'
 const SET_EDITING_GROUP_DIALOG = 'dialogs/SET_EDITING_GROUP_DIALOG'
 const SET_EDITED_GROUP_DIALOG = 'dialogs/SET_EDITED_GROUP_DIALOG'
 const SET_SOUND = 'dialogs/SET_SOUND'
-
+const PRECENSE_USER = 'PRECENSE_USER'
 
 const initialState = {
     dialogs: [],
@@ -71,6 +71,7 @@ export const setParticipant = (participant, bool) => ({ type: PARTICIPANTS_NEW_G
 const setNewGroupDialog = (groupDialog) => ({ type: SET_NEW_GROUP_DIALOG, groupDialog })
 export const setGroupDialogsName = (value) => ({ type: SET_GROUP_DIALOGS_NAME, value })
 export const setSound = (dialog) => ({ type: SET_SOUND, dialog })
+export const setPrecenseUser = (onlineUsersIds) => ({ type: PRECENSE_USER, onlineUsersIds })
 
 
 //AC for context-menu
@@ -235,7 +236,6 @@ export const addNewGroupDialog = (users, dialogsName, dialogId = null) => async 
 export const changeDialogSound = (dialogId, isSound) => async (dispatch) => {
 
     const response = await dialogsAPI.sound(dialogId, isSound)
-    debugger
     dispatch(setSound(response.updatingDialog))
 }
 
@@ -541,7 +541,7 @@ const dialogsReducer = (state = initialState, action) => {
 
 
 
-           let resultDialogsSetSound = searchingDialogs.map(d => {
+            let resultDialogsSetSound = searchingDialogs.map(d => {
 
                 if (dialog.dialogId === dialogId) {
                     return { ...d, isSound: dialog.isSound }
@@ -694,19 +694,26 @@ const dialogsReducer = (state = initialState, action) => {
 
         case PRECENSE_USER:
 
-            const resultDialogsLeavingUser = state.dialogs.map(dialog => {
-                const users = precenseUserUtil(dialog.dialogsUsers, action.userId, action.status)
-                return { ...dialog, dialogsUsers: users }
-            })
-            const resultGroupDialogsLeavingUser = state.groupDialogs.map(dialog => {
-                const users = precenseUserUtil(dialog.dialogsUsers, action.userId, action.status)
-                return { ...dialog, dialogsUsers: users }
-            })
+            const resultDialogsLeavingUser = state.dialogs.length > 0
+                ? state.dialogs.map(dialog => {
+                    const users = setOnlineInAll(dialog.dialogsUsers, action.onlineUsersIds)
+                    return { ...dialog, dialogsUsers: users }
+                })
+                : state.dialogs
 
-            const currentUsers = precenseUserUtil(state.currentDialog.dialogsUsers, action.userId, action.status)
-            const resultCurrentDialogLeavingUser = { ...state.currentDialog, dialogsUsers: currentUsers }
+            const resultGroupDialogsLeavingUser = state.groupDialogs.length > 0
+                ? state.groupDialogs.map(dialog => {
+                    const users = setOnlineInAll(dialog.dialogsUsers, action.onlineUsersIds)
+                    return { ...dialog, dialogsUsers: users }
+                })
+                : state.groupDialogs
 
+            const currentUsers = state.currentDialog && setOnlineInAll(state.currentDialog.dialogsUsers, action.onlineUsersIds)
+            const resultCurrentDialogLeavingUser = state.currentDialog
+                ? { ...state.currentDialog, dialogsUsers: currentUsers }
+                : state.currentDialog
 
+                
             return {
                 ...state, dialogs: resultDialogsLeavingUser,
                 groupDialogs: resultGroupDialogsLeavingUser,

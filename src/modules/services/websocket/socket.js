@@ -1,4 +1,5 @@
 import Echo from 'laravel-echo'
+import { addOnline, deleteOnline, setOnline } from '../../redux/users-reducer'
 import { api, instance } from '../api/api'
 import { usersAPI } from '../api/users-api'
 
@@ -46,24 +47,28 @@ export const socket = {
 
 
   },
-  async precenseListener(dispatch, setPrecenseUser) {
+  async precenseListener(dispatch) {
 
     if (echo) {
 
       echo.join(`chat`)
-        .here((users) => {
-          console.log(users)
+        .here((ids) => {
+          console.log(ids)
+          dispatch(setOnline(ids))
+        })
+        .joining((userId) => {
+         
+          console.log(userId)
+          dispatch(addOnline(userId))
+         
+        })
+        .leaving((userId) => {
+          console.log(`leaving ${userId}`)
+          dispatch(deleteOnline(userId))
+         
 
         })
-        .joining((user) => {
-          //TODO dispatch online user
-          dispatch(setPrecenseUser(user.id, true))
-        })
-        .leaving((user) => {
 
-          dispatch(setPrecenseUser(user.id, false))
-
-        })
         .error((error) => {
           console.error(error);
         });
@@ -72,7 +77,7 @@ export const socket = {
       setTimeout(async () => {
         await socket.connection()
         await socket.precenseListener()
-      }, 20000)
+      }, 2000)
 
 
     }

@@ -1,8 +1,18 @@
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { setPrecenseUser } from '../../../../redux/dialogs-reducer'
 import DialogItems from './Dialog-Items/Dialog-Items'
 import style from './Dialogs.module.css'
 
 
 const Dialogs = (props) => {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        
+       dispatch(setPrecenseUser(props.online))
+    }, [props.online])
+
 
     const allDialogs = [
         {

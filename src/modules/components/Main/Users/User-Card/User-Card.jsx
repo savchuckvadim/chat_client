@@ -20,6 +20,7 @@ const UserCard = (props) => {
             key={`user-card=container-${props.user.id}`}
             >
             <p>{props.user.name}</p>
+            {props.user.isActive && <p>online</p>}
             <UserButton
                 authUser={props.authUser}
                 user={props.user}

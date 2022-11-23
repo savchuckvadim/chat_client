@@ -10,7 +10,7 @@ const SoundStatus = (props) => {
         setValue(props.currentDialog.isSound)
         }
         const submit = () => {
-            debugger
+            
             if (props.currentDialog) {
                 setValue(!props.currentDialog.isSound)
                 props.changeDialogSound(props.currentDialog.dialogId, !props.currentDialog.isSound)

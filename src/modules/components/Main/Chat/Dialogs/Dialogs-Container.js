@@ -14,7 +14,8 @@ const maStateToProps = (state) => {
         isContextMenuActive: state.contextMenu.isActive,
         currentMenu: state.contextMenu.currentMenu,
         currentEntityId: state.contextMenu.currentEntityId,
-        currentTypeOfArea:  state.contextMenu.typeOfArea
+        currentTypeOfArea: state.contextMenu.typeOfArea,
+        online: state.users.online
 
     }
 }
