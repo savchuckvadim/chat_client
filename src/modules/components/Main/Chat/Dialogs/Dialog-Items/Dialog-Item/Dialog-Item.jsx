@@ -22,12 +22,14 @@ const DialogItem = ({
 
     let contextMenu = null
     let entityTypeOfArea = 'dialog'
+    let isOnline = null
     if (dialog.dialogsUsers[0]) {
         let name = dialog.dialogsUsers[0].name
-
+        isOnline = dialog.dialogsUsers[0].isActive
         if (dialog.isGroup) {
             entityTypeOfArea = 'group-dialog'
             name = dialog.dialogName
+            isOnline = null
         }
 
         contextMenu = <ContextMenu
@@ -65,7 +67,12 @@ const DialogItem = ({
                     onContextMenu={(e) => { onRightClick(e, true, entityTypeOfArea, dialog.dialogId, contextMenuToggler) }}
                     className={style.item}
                 >
-                    <Avatar name={name} />
+                   <div className={style.avatar__wrapper}>
+                   <Avatar name={name} isOnline={isOnline} />
+                   </div>
+                       
+                   
+
                     <div className={style.text__wrapper}>
                         {title}
                         <p className={style.message}>{dialog.dialogsMessages.length > 0 && dialog.dialogsMessages[0].body.length > 0 &&

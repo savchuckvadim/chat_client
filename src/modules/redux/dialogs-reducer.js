@@ -532,7 +532,7 @@ const dialogsReducer = (state = initialState, action) => {
             let dialogId = dialog.dialogId
             let isGroup = dialog.isGroup
             let updatingCrrentDialog = state.currentDialog
-            currentDialogs = !isGroup ? state.dialogs : state.groupDialogs
+            let searchingDialogs = !isGroup ? state.dialogs : state.groupDialogs
             updatingCrrentDialog = state.currentDialog
                 && state.currentDialog.dialogId === dialogId
                 && state.currentDialog.isSound !== dialog.isSound
@@ -541,7 +541,7 @@ const dialogsReducer = (state = initialState, action) => {
 
 
 
-            dialogs = currentDialogs.map(d => {
+           let resultDialogsSetSound = searchingDialogs.map(d => {
 
                 if (dialog.dialogId === dialogId) {
                     return { ...d, isSound: dialog.isSound }
@@ -551,8 +551,8 @@ const dialogsReducer = (state = initialState, action) => {
             })
 
             return isGroup
-                ? { ...state, groupDialogs: dialogs, currentDialog: updatingCrrentDialog }
-                : { ...state, dialogs: dialogs, currentDialog: updatingCrrentDialog }
+                ? { ...state, groupDialogs: resultDialogsSetSound, currentDialog: updatingCrrentDialog }
+                : { ...state, dialogs: resultDialogsSetSound, currentDialog: updatingCrrentDialog }
 
 
 

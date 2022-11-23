@@ -8,9 +8,18 @@
    flex-direction: row;
    cursor: pointer;
    margin-bottom: 2px;
-   position: relative;
+   text-decoration: none;
+   
   
 }
+.avatar__wrapper{
+    min-width: 34px;
+    min-height: 34px;
+    width: 34px;
+    height: 34px;
+    position: relative;
+}
+
 .text__wrapper{
     margin: 0 0 0 8px;
     height:100%;

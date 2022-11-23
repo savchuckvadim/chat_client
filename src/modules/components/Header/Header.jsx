@@ -20,15 +20,15 @@ const Header = (props) => {
     <header className={style.header}>
       <div className={style.frame}>
         <div className={style.brand__wrapper} onClick={() => { clickBrand() }}>
-          <img
+          {/* <img
 
-            src={logo} className={logoStyle} alt="logo" />
+            src={logo} className={logoStyle} alt="logo" /> */}
           <div className={style.brand}>
             <h3 className={style.brand__name} key={'brand'} > {`Chat`}</h3>
           </div>
         </div>
         {props.isAuth && <button className={style.logout} onClick={() => { props.logout() }}>logout</button>}
-        {props.isAuth && <button className={style.burger__button} onClick={() => { props.changeModalStatus(true, true) }}>###</button>}
+        {props.isAuth && <button className={style.burger__button} onClick={() => { props.changeModalStatus(true, true) }}>|||</button>}
       </div>
 
     </header>
