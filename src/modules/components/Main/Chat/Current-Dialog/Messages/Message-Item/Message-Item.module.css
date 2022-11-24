@@ -48,14 +48,14 @@ p {
 }
 
 .message {
-    margin-right: 3px;
+   
     justify-self: flex-end;
     background-color: rgb(164, 180, 237);
     color: black;
 }
 
 .myMessage {
-    margin-left: 3px;
+   
     background-color: rgb(77, 70, 94);
     color: rgb(255, 255, 255);
     justify-self: flex-start;
