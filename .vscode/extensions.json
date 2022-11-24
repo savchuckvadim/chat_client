@@ -1,5 +1,7 @@
 {
     "recommendations": [
-        "aeschli.vscode-css-formatter"
+        "aeschli.vscode-css-formatter",
+        "michelemelluso.code-beautifier",
+        "1000ch.clean-css"
     ]
 }

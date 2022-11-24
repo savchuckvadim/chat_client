@@ -1,10 +1,13 @@
-p{
+p {
     margin: 0;
     padding: 0;
     display: inline-block;
 }
-.notification, .message, .myMessage{
-    min-width: 190px;  
+
+.notification,
+.message,
+.myMessage {
+    min-width: 190px;
     height: fit-content;
     max-width: 95%;
     margin: 2px;
@@ -14,53 +17,60 @@ p{
     display: flex;
     flex-direction: column;
     position: relative;
+    overflow:visible
 }
 
-.notification{
+.notification {
+    min-width: 240px;
     justify-self: flex-start;
-    margin: 2px 0 ;
+    margin: 2px 0;
     background: rgb(50, 45, 62);
-    background: linear-gradient(45deg, rgb(77, 70, 94) 30%, rgba(81, 75, 96, 0.604) 50%, rgba(116, 75, 131, 0.267) 100%,  rgba(255, 34, 196, 0.204) 100%);
+    background: linear-gradient(45deg, rgb(77, 70, 94) 30%, rgba(81, 75, 96, 0.604) 50%, rgba(116, 75, 131, 0.267) 100%, rgba(255, 34, 196, 0.204) 100%);
     animation: gradient 120s ease infinite;
     background-size: 5000% 5000%;
     color: rgb(255, 255, 255);
 
 }
 
-@keyframes gradient{
- 
-    0%{
+@keyframes gradient {
+
+    0% {
         background-position: 0 50%;
     }
-    50%{
+
+    50% {
         background-position: 100% 50%;
     }
-    100%{
+
+    100% {
         background-position: 0 50%;
     }
 }
-.message{
-    margin-right: 5px;
+
+.message {
+    margin-right: 3px;
     justify-self: flex-end;
     background-color: rgb(164, 180, 237);
     color: black;
 }
-    .myMessage{
-    margin-left: 5px;
+
+.myMessage {
+    margin-left: 3px;
     background-color: rgb(77, 70, 94);
     color: rgb(255, 255, 255);
     justify-self: flex-start;
-    }
+}
 
-.messageHeader  {
+.messageHeader {
     margin-bottom: 3px;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
     min-width: 100%;
-}  
-.left__area{
+}
+
+.left__area {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -68,7 +78,7 @@ p{
     /* width: 70px; */
 }
 
-.author{
+.author {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans;
     font-size: small;
     font-weight: 400;
@@ -78,34 +88,46 @@ p{
     align-self: flex-end;
 }
 
-.date{
+.date {
     color: rgb(91, 37, 94);
-  
+
 }
-.my__date{
+
+.my__date {
     color: rgb(181, 238, 255);
-    
-  }
-.body{
+
+}
+
+.nodate {
+    display: none;
+}
+
+.body {
     height: fit-content;
     max-width: 100%;
     display: inline-block;
     z-index: 0;
-    word-wrap:break-word;
+    word-wrap: break-word;
     text-align: start;
-    
+
 }
-.body__text{
+
+.body__text {
     margin: 0;
+    max-width: 100%;
     /* width: 100px; */
-    white-space:pre-wrap ;
+    white-space: pre-wrap;
+    /* height: fit-content; */
 }
-.messageFooter{
+
+.messageFooter {
     /* height: 25px; */
     min-width: 100%;
     /* margin-bottom: 12px; */
 }
-.myInfo__wrapper, .info__wrapper{
+
+.myInfo__wrapper,
+.info__wrapper {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -113,7 +135,8 @@ p{
     min-width: 100%;
 }
 
-.infoItem, .myInfoItem{
+.infoItem,
+.myInfoItem {
     margin: 0;
     padding: 0;
     margin: 0 5px;
@@ -121,11 +144,13 @@ p{
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: 600;
 }
-.infoItem{
+
+.infoItem {
     color: rgb(0, 0, 0);
-   
+
 }
-.myInfoItem{
+
+.myInfoItem {
     color: rgb(255, 255, 255);
-   
+
 }

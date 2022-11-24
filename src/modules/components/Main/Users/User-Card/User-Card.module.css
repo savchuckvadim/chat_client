@@ -1,65 +1,57 @@
-.container{
-    margin: 27px 27px 0 27px;
-    padding: 15px;
-    min-width: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgb(255, 255, 255);
-    /* color: black; */
-    border-color: rgb(88, 155, 249);
-    border-radius: 16px;
-    outline:1px solid  rgb(88, 155, 249);
-    outline-offset:-1px; 
-    color: rgb(44, 90, 155);
-    overflow-x: visible;
-  
+.container {
+  margin: 27px 27px 0 27px;
+  padding: 15px;
+  min-width: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  border-color: rgb(88, 155, 249);
+  border-radius: 16px;
+  outline: 1px solid rgb(88, 155, 249);
+  outline-offset: -1px;
+  color: rgb(44, 90, 155);
+  overflow-x: visible;
+
 
 }
+
 @media screen and (max-width: 500px) {
-    .container{
-      
-        min-width: 90%;
-       
-      
-    
-    }
+  .container {
+    min-width: 90%;
   }
+}
 
-  @media screen and (max-width: 700px) {
-    .container{
-      
-        width: 44%;
-       
-      
-    
-    }
+@media screen and (max-width: 700px) {
+  .container {
+    width: 44%;
   }
-  @media screen and (max-width: 900px) {
-    .container{
-      
-        min-width: 28%;
-       
-      
-    
-    }
-  }
+}
 
-  .name, .name__link{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow';
-    font-weight: 500;
+@media screen and (max-width: 900px) {
+  .container {
+    min-width: 28%;
   }
-  .name{
-    color: rgb(63, 11, 84) !important;
-  }
-  .name__link{
-    cursor: pointer;
-    color: rgb(30, 24, 202) !important;
-    text-decoration: none !important;
-  }
+}
 
-.online{
+.name,
+.name__link {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow';
+  font-weight: 500;
+}
+
+.name {
+  color: rgb(63, 11, 84) !important;
+}
+
+.name__link {
+  cursor: pointer;
+  color: rgb(30, 24, 202) !important;
+  text-decoration: none !important;
+}
+
+.online {
   font-size: small;
   font-weight: 600;
   color: rgb(29, 202, 255);

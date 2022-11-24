@@ -33,12 +33,15 @@ const MessageItem = ({
         messageClass = style.notification
         infoWrapperClass = style.info__wrapper
         infoItemClass = style.infoItem
-        body = `${message.body.slice(0, 10)}...`
+        body = message.body.length > 30
+            ? `${message.body.slice(0, 30)}...`
+            : `${message.body}`
+        dateClass = style.nodate
 
     }
     let authorName = message.author.name.length > 15
-    ? `${message.author.name.slice(0, 15)}...`
-    : message.author.name
+        ? `${message.author.name.slice(0, 15)}...`
+        : message.author.name
 
     return (
         <div className={messageClass}
