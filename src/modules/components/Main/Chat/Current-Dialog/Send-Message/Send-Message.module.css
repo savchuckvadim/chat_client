@@ -1,19 +1,7 @@
-.container{
-    /* height: 20%; */
-    /* max-height: 90%; */
-    /* position: absolute; */
-    /* bottom: 5px;
-    height: 50px; */
-    /* min-width: 100%; */
-    
-    /* border-radius: 10px;
-    border: solid 1px white;
-    padding: 5px; */
+.container {
+    max-height: 98%;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    position: sticky;
     bottom: 5px;
-
-   
 }
