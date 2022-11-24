@@ -116,7 +116,7 @@ export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getS
         } else {
 
             setTimeout(async () => {
-                await socket.connection()
+                await socket.connection(dispatch)
                 await activateNewMessageListener()
             }, 20000)
 

@@ -1,7 +1,7 @@
 import Echo from 'laravel-echo'
 import { addOnline, deleteOnline, setOnline } from '../../redux/users-reducer'
 import { api, instance } from '../api/api'
-import { usersAPI } from '../api/users-api'
+
 
 export let echo
 export const socket = {
@@ -55,6 +55,7 @@ export const socket = {
       echo.join(`chat`)
         .here((ids) => {
           console.log(ids)
+        
           dispatch(setOnline(ids))
         })
         .joining((userId) => {
