@@ -6,7 +6,7 @@ import { usersAPI } from '../api/users-api'
 export let echo
 export const socket = {
 
-  async connection() {
+  async connection(dispatch) {
 
     window.Pusher = require('pusher-js')
     await instance.get("/sanctum/csrf-cookie")
@@ -33,7 +33,7 @@ export const socket = {
             })
 
               .then((response) => {
-
+               
                 callback(false, response.data)
               })
               .catch((error) => {
@@ -45,6 +45,7 @@ export const socket = {
 
     })
 
+    await socket.precenseListener(dispatch)  //connect at precense channel
 
   },
   async precenseListener(dispatch) {
@@ -57,15 +58,15 @@ export const socket = {
           dispatch(setOnline(ids))
         })
         .joining((userId) => {
-         
+
           console.log(userId)
           dispatch(addOnline(userId))
-         
+
         })
         .leaving((userId) => {
           console.log(`leaving ${userId}`)
           dispatch(deleteOnline(userId))
-         
+
 
         })
 
@@ -75,21 +76,21 @@ export const socket = {
     } else {
 
       setTimeout(async () => {
-        await socket.connection()
-        await socket.precenseListener()
+        await socket.connection(dispatch)
+        await socket.precenseListener(dispatch)
       }, 2000)
 
 
     }
   },
-  async reconnect() {
+  async reconnect(dispatch) {
     if (echo) {
       setTimeout(async () => {
-        await socket.reconnect()
+        await socket.reconnect(dispatch)
       }, 20000)
     } else {
-      await socket.connection()
-      await socket.reconnect()
+      await socket.connection(dispatch)
+      await socket.reconnect(dispatch)
     }
   }
 }

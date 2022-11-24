@@ -21,20 +21,24 @@ const MessageItem = ({
     let messageClass = style.myMessage
     let infoWrapperClass = style.myInfo__wrapper
     let infoItemClass = style.myInfoItem
-
+    let dateClass = style.my__date
     if (!message.isAuthorIsAuth) {
         messageClass = style.message
         infoWrapperClass = style.info__wrapper
         infoItemClass = style.infoItem
+        dateClass = style.date
 
     }
     if (isNotification) {
         messageClass = style.notification
         infoWrapperClass = style.info__wrapper
         infoItemClass = style.infoItem
-        body = `${message.body.slice(0, 7)}...`
+        body = `${message.body.slice(0, 10)}...`
 
     }
+    let authorName = message.author.name.length > 15
+    ? `${message.author.name.slice(0, 15)}...`
+    : message.author.name
 
     return (
         <div className={messageClass}
@@ -58,10 +62,10 @@ const MessageItem = ({
             />
             <div className={style.messageHeader}>
                 <div className={style.left__area}>
-                    <p className={style.author}>{message.author ? message.author.name : null}</p>
+                    <p className={style.author}>{authorName}</p>
                 </div>
-                
-                <p className={style.date}><Moment fromNow >{message.created}</Moment> </p>
+
+                <p className={dateClass}><Moment fromNow >{message.created}</Moment> </p>
             </div>
             <div className={style.body}>
                 <p className={style.body__text}>{

@@ -1,5 +1,6 @@
 import { usersAPI } from "../services/api/users-api"
 import { isUserActive, precenseUserUtil, setOnlineInAll } from "../utils/users-utils"
+import { PRECENSE_USER, setPrecenseUser } from "./dialogs-reducer"
 
 
 const SET_USERS = 'SET_USERS'
@@ -29,11 +30,12 @@ export const deleteOnline = (userId) => ({ type: DELETE_ONLINE, userId })
 
 //THUNK
 
-export const getUsers = (currentPage, pageSize) => async (dispatch) => {
+export const getUsers = (currentPage, pageSize) => async (dispatch, getState) => {
     dispatch(inProgress(true))
     const users = await usersAPI.getUsers(currentPage, pageSize)
-
+    const online = getState().users.online
     dispatch(setUsers(users))
+    dispatch(setPrecenseUser(online)) //from dialogs-reducer
     dispatch(inProgress(false))
 
 }
@@ -57,17 +59,7 @@ export const addDeleteContact = (user, bool) => async (dispatch) => {
     dispatch(inProgress(false))
 }
 
-// export const precenseUserChanged = (userId, status) => async (dispatch, getState) => {
 
-//     let state = getState()
-//     let users = state.users.users
-//     let isActive = isUserActive(users, userId)
-//     
-//     if (isActive !== status) {
-//         // dispatch(setPrecenseUser(userId, status))
-//         usersAPI.precense(userId, status)
-//     }
-// }
 
 //REDUCER
 
@@ -128,17 +120,30 @@ const usersReducer = (state = initialState, action) => {
             }
 
         case DELETE_ONLINE:
-
-            if (!state.online.some(id => id === action.userId)) {
+            
+            let deleteResultOnline = []
+            let checkExistId = false;
+            state.online.forEach(userId => {
+                if (Number(userId) !== Number(action.userId)) {
+                    deleteResultOnline.push(userId)
+                }else{
+                    checkExistId = true
+                }
+            })
+            if (checkExistId) {
                 
                 usersWifthOnline = precenseUserUtil(state.users, action.userId, false)
-                let resOnlineDelete = [...state.online, action.userId]
                 
-                return { ...state, online: resOnlineDelete, users: usersWifthOnline }
+
+                return { ...state, online: deleteResultOnline, users: usersWifthOnline }
             } else {
                 
                 return state
             }
+
+        case PRECENSE_USER:
+            const users = setOnlineInAll(state.users, action.onlineUsersIds)
+            return { ...state, users: users }
 
         default:
             return state;

@@ -79,9 +79,13 @@ p{
 }
 
 .date{
-    
-  color: rgb(221, 232, 242);
+    color: rgb(91, 37, 94);
+  
 }
+.my__date{
+    color: rgb(181, 238, 255);
+    
+  }
 .body{
     height: fit-content;
     max-width: 100%;
@@ -118,10 +122,10 @@ p{
     font-weight: 600;
 }
 .infoItem{
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
    
 }
 .myInfoItem{
-    color: rgb(156, 245, 246);
+    color: rgb(255, 255, 255);
    
 }

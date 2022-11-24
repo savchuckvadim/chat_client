@@ -7,12 +7,12 @@
   width: 100%;
   min-height: 100%;
   overflow: auto;
-display: flex;
-justify-content: center;
-align-items: center;
-background: rgb(198,176,200);
-background: linear-gradient(45deg, rgba(198,176,200,1) 0%, rgba(138,90,162,1) 50%, rgba(255,98,213,1) 100%);
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(198,176,200);
+  background: linear-gradient(45deg, rgb(255, 39, 176) 0%, rgba(138,90,162,1) 50%, rgba(255,98,213,1) 100%);
+  background-size: 3000% 3000%;
 }
 
 

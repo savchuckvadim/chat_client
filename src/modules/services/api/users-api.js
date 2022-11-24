@@ -35,22 +35,7 @@ export const usersAPI = {
 
         return response.data
     },
-    async precense(userId, status) {
-
-        try {
-            
-            const response = await api.put('user-precense', {
-                userId, status
-            })
-            
-            console.log(response.data)
-            return response.data
-
-        } catch (error) {
-            alert(error.message)
-        }
-
-    }
+   
 
 
 

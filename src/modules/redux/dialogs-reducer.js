@@ -26,7 +26,7 @@ const DELETE_DIALOG = 'dialogs/DELETE_DIALOG'
 const SET_EDITING_GROUP_DIALOG = 'dialogs/SET_EDITING_GROUP_DIALOG'
 const SET_EDITED_GROUP_DIALOG = 'dialogs/SET_EDITED_GROUP_DIALOG'
 const SET_SOUND = 'dialogs/SET_SOUND'
-const PRECENSE_USER = 'PRECENSE_USER'
+export const PRECENSE_USER = 'PRECENSE_USER'
 
 const initialState = {
     dialogs: [],
@@ -95,9 +95,9 @@ export const setEditingGroupDialog = (dialog) => ({ type: SET_EDITING_GROUP_DIAL
 export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getState) => {
     //TODO: dispatch(inProgress)
     const response = await dialogsAPI.getDialogs()
-
+    const online = getState().users.online
     dispatch(setDialogs(response, dialogIdFromUrl))
-
+    dispatch(setPrecenseUser(online))
     let activateNewMessageListener = async () => {
         if (echo) {
 
@@ -700,20 +700,22 @@ const dialogsReducer = (state = initialState, action) => {
                     return { ...dialog, dialogsUsers: users }
                 })
                 : state.dialogs
-
+           
             const resultGroupDialogsLeavingUser = state.groupDialogs.length > 0
                 ? state.groupDialogs.map(dialog => {
                     const users = setOnlineInAll(dialog.dialogsUsers, action.onlineUsersIds)
+                    
                     return { ...dialog, dialogsUsers: users }
                 })
                 : state.groupDialogs
-
+           
             const currentUsers = state.currentDialog && setOnlineInAll(state.currentDialog.dialogsUsers, action.onlineUsersIds)
+            
             const resultCurrentDialogLeavingUser = state.currentDialog
                 ? { ...state.currentDialog, dialogsUsers: currentUsers }
                 : state.currentDialog
+            
 
-                
             return {
                 ...state, dialogs: resultDialogsLeavingUser,
                 groupDialogs: resultGroupDialogsLeavingUser,

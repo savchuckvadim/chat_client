@@ -2,20 +2,18 @@
     margin: 27px 27px 0 27px;
     padding: 15px;
     min-width: 50px;
-    /* max-width: 22%; */
-    /* width: 22vh; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     /* color: black; */
     border-color: rgb(88, 155, 249);
     border-radius: 16px;
     outline:1px solid  rgb(88, 155, 249);
     outline-offset:-1px; 
     color: rgb(44, 90, 155);
-    overflow-x: hidden;
+    overflow-x: visible;
   
 
 }
@@ -48,4 +46,21 @@
     }
   }
 
+  .name, .name__link{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow';
+    font-weight: 500;
+  }
+  .name{
+    color: rgb(63, 11, 84) !important;
+  }
+  .name__link{
+    cursor: pointer;
+    color: rgb(30, 24, 202) !important;
+    text-decoration: none !important;
+  }
 
+.online{
+  font-size: small;
+  font-weight: 600;
+  color: rgb(29, 202, 255);
+}

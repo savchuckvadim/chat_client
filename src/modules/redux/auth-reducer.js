@@ -67,8 +67,8 @@ export const me = () => async (dispatch) => {
         if (user) {
 
             dispatch(setAuthUser(user, true))
-            await socket.reconnect()
-            await socket.precenseListener(dispatch)
+            await socket.reconnect(dispatch)
+            // await socket.precenseListener(dispatch)
          
             dispatch(inProgress(false))
         }
