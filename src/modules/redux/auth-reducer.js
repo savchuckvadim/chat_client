@@ -49,14 +49,13 @@ export const login = (email, password) => async (dispatch) => {
     try {
         dispatch(inProgress(true))
         await authApi.login(email, password)
-        const user = await authApi.getUser()
-
-        if (user) {
-
-            dispatch(setAuthUser(user, true))
-        }
-    } catch (error) {
+        dispatch(me())
+    } catch (e) {
+        // console.log(e)
+        // console.log(e.response.statusText)
+        // setErrors(e.response.statusText)
         dispatch(inProgress(false))
+        throw e
     }
     dispatch(inProgress(false))
 }
@@ -67,13 +66,14 @@ export const me = () => async (dispatch) => {
         if (user) {
 
             dispatch(setAuthUser(user, true))
-            await socket.reconnect(dispatch)
+            await socket.reconnect(user.id, dispatch)
             // await socket.precenseListener(dispatch)
          
             dispatch(inProgress(false))
         }
         dispatch(inProgress(false))
-    } catch (error) {
+    } catch (e) {
+       
         dispatch(setAuthUser(null, false))
         dispatch(inProgress(false))
     }
@@ -98,7 +98,7 @@ export const changePrefencesSound = (value) => (dispatch) => {
 
     alert(`${value}`)
 }
-const authReduser = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case LOGIN:
@@ -131,4 +131,4 @@ const authReduser = (state = initialState, action) => {
             return state;
     }
 }
-export default authReduser
+export default authReducer

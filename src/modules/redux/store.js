@@ -1,5 +1,5 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux'
-import authReduser from './auth-reducer'
+import authReducer from './auth-reducer'
 import ThunkMiddleware from 'redux-thunk'
 import preloaderReducer from './preloader-reducer'
 import usersReducer from './users-reducer'
@@ -12,7 +12,7 @@ import notifications from './notifications-reducer'
 
 
 const rootReducer = combineReducers({
-    auth: authReduser,
+    auth: authReducer,
     preloader: preloaderReducer,
     modal:modalReducer,
     notifications,

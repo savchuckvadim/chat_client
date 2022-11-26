@@ -92,39 +92,39 @@ export const setEditingGroupDialog = (dialog) => ({ type: SET_EDITING_GROUP_DIAL
 
 // THUNKS
 
-export const getDialogs = (authUserId, dialogIdFromUrl) => async (dispatch, getState) => {
+export const getDialogs = (dialogIdFromUrl) => async (dispatch, getState) => {
     //TODO: dispatch(inProgress)
     const response = await dialogsAPI.getDialogs()
     const online = getState().users.online
     dispatch(setDialogs(response, dialogIdFromUrl))
     dispatch(setPrecenseUser(online))
-    let activateNewMessageListener = async () => {
-        if (echo) {
+    // let activateNewMessageListener = async () => {
+    //     if (echo) {
 
-            echo.private(`new-message.${authUserId}`)
+    //         echo.private(`new-message.${authUserId}`)
 
-                .listen('.SendMessage', (e) => {
-                    let state = getState()
+    //             .listen('.SendMessage', (e) => {
+    //                 let state = getState()
 
-                    if (state.auth.authUser) {
-                        let authUser = state.auth.authUser
-                        dispatch(setNewMessage(e.message, authUser.id))
-                        dispatch(setNotification(e.message))
+    //                 if (state.auth.authUser) {
+    //                     let authUser = state.auth.authUser
+    //                     dispatch(setNewMessage(e.message, authUser.id))
+    //                     dispatch(setNotification(e.message))
 
-                    }
-                })
-        } else {
+    //                 }
+    //             })
+    //     } else {
 
-            setTimeout(async () => {
-                await socket.connection(dispatch)
-                await activateNewMessageListener()
-            }, 20000)
+    //         setTimeout(async () => {
+    //             await socket.connection(dispatch)
+    //             await activateNewMessageListener()
+    //         }, 20000)
 
 
-        }
-    }
+    //     }
+    // }
 
-    await activateNewMessageListener()
+    // await activateNewMessageListener()
 
 }
 

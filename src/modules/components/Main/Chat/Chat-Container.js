@@ -45,7 +45,7 @@ const ChatContainer = (props) => {
         if (props.authUserId
             // && !props.currentDialogId
         ) {
-            props.getDialogs(props.authUserId, dialogIdFromUrl)
+            props.getDialogs(dialogIdFromUrl)
         }
 
 

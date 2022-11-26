@@ -1,4 +1,6 @@
 import Echo from 'laravel-echo'
+import { setNewMessage } from '../../redux/dialogs-reducer'
+import { setNotification } from '../../redux/notifications-reducer'
 import { addOnline, deleteOnline, setOnline } from '../../redux/users-reducer'
 import { api, instance } from '../api/api'
 
@@ -6,7 +8,7 @@ import { api, instance } from '../api/api'
 export let echo
 export const socket = {
 
-  async connection(dispatch) {
+  async connection(authUserId, dispatch) {
 
     window.Pusher = require('pusher-js')
     await instance.get("/sanctum/csrf-cookie")
@@ -33,7 +35,7 @@ export const socket = {
             })
 
               .then((response) => {
-               
+
                 callback(false, response.data)
               })
               .catch((error) => {
@@ -46,7 +48,7 @@ export const socket = {
     })
 
     await socket.precenseListener(dispatch)  //connect at precense channel
-
+    await socket.newMessageListener(authUserId, dispatch) //connect at new-message channel
   },
   async precenseListener(dispatch) {
 
@@ -55,7 +57,7 @@ export const socket = {
       echo.join(`chat`)
         .here((ids) => {
           console.log(ids)
-        
+
           dispatch(setOnline(ids))
         })
         .joining((userId) => {
@@ -84,14 +86,34 @@ export const socket = {
 
     }
   },
-  async reconnect(dispatch) {
+  async newMessageListener(authUserId, dispatch) {
+    if (echo) {
+
+      echo.private(`new-message.${authUserId}`)
+
+        .listen('.SendMessage', (e) => {
+          dispatch(setNewMessage(e.message, authUserId))
+          dispatch(setNotification(e.message))
+
+        })
+    } else {
+
+      setTimeout(async () => {
+        await socket.connection(dispatch)
+  
+      }, 2000)
+
+
+    }
+  },
+  async reconnect(authUserId, dispatch) {
     if (echo) {
       setTimeout(async () => {
-        await socket.reconnect(dispatch)
-      }, 20000)
+        await socket.reconnect(authUserId, dispatch)
+      }, 10000)
     } else {
-      await socket.connection(dispatch)
-      await socket.reconnect(dispatch)
+      await socket.connection(authUserId, dispatch)
+      await socket.reconnect(authUserId, dispatch)
     }
   }
 }
