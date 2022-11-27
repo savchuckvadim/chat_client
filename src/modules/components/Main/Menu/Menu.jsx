@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import styleMenu from './Menu.module.css'
 import styleModalMenu from './Modal-Menu.module.css'
 
-const Menu = ({ isModal, logout = null, changeForwardingMessageStatus }) => {
+const Menu = ({ isModal, logout = null, changeForwardingMessageStatus, changeModalStatus }) => {
 
   let style = !isModal ? styleMenu : styleModalMenu
 
@@ -11,9 +11,10 @@ const Menu = ({ isModal, logout = null, changeForwardingMessageStatus }) => {
     logout()
   }
   const forwardingMessage = () => {
-    return  isModal &&  changeForwardingMessageStatus(false, '')
+    return isModal && changeForwardingMessageStatus(false, '')
   }
 
+  
   return (
 
     <div className={style.menu}>
@@ -22,7 +23,7 @@ const Menu = ({ isModal, logout = null, changeForwardingMessageStatus }) => {
       </div>
 
       <div className={style.items}>
-        <NavLink onClick={() => { }} className={style.link} to='chat'>Чат</NavLink>
+        <NavLink onClick={() => { changeModalStatus(false, false) }} className={style.link} to='chat'>Чат</NavLink>
         <NavLink onClick={() => { forwardingMessage() }} className={style.link} to='users'>Пользователи</NavLink>
         <NavLink onClick={() => { forwardingMessage() }} className={style.link} to='profile'>Профиль</NavLink>
         <NavLink onClick={() => { forwardingMessage() }} className={style.link} to='prefences'>Настройки</NavLink>

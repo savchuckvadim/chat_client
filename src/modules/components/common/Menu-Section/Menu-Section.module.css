@@ -12,7 +12,11 @@
     background-size: 15000% 15000%;
     /* color: rgb(255, 255, 255); */
 }
-
+.title{
+    height: 60px;
+    text-align: center;
+    display: block;
+}
 @keyframes gradient{
  
     0%{

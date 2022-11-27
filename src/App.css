@@ -7,12 +7,22 @@
   text-align: center;
 }
 
-h1{
-  font-family: 'Montserrat', sans-serif !important;
-  font-weight: 800;
+h1, h2{
+  margin-top: 5px;
+  font-family: 'Rubik Distressed', cursive !important;
+  
   
 }
-p, h2{
+h1{
+  font-weight: 800;
+  
+} 
+h2{
+  font-weight: 700;
+  font-size: xx-large;
+  
+}
+p, a{
  
   /* font-family: 'Anek Devanagari'; */
   font-weight: 500;
@@ -20,6 +30,16 @@ p, h2{
   text-align: center;
   font-family: 'Montserrat';
   font-size: small;
+ 
+} 
+h3, h4{
+ 
+  /* font-family: 'Anek Devanagari'; */
+  font-weight: 800;
+  margin: 15px 0;
+  text-align: center;
+  font-family: 'Montserrat';
+  font-size: large;
  
 }
 

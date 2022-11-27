@@ -27,7 +27,7 @@ const AppContainer = (props) => {
         if (!props.isAuth) {
             props.me()
         }
-    }, [])
+    }, [props.authUser])
 
     // if (!props.inProgress) {
     return (

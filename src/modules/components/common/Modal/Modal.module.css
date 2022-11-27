@@ -12,7 +12,7 @@
 
 
 .menu {
-    margin-top: 13px;
+    /* margin-top: 13px; */
     width: 524px;
     min-height: 300px;
     position: absolute;
@@ -25,7 +25,7 @@
     color: rgb(88, 155, 249);
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     border-radius: 13px;
     border: solid 2px rgb(88, 155, 249);
@@ -34,7 +34,7 @@
 
 @media screen and (max-width: 900px) {
     .menu {
-        margin-top: 13px;
+        /* margin-top: 13px; */
         width: 300px;
         /* height: 55vh; */
 
@@ -45,7 +45,7 @@
 
 @media screen and (max-width: 550px) {
     .menu {
-        margin-top: 13px;
+        /* margin-top: 13px; */
         width: 270px;
         /* height: 55vh; */
         position: absolute;

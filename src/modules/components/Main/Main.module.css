@@ -23,7 +23,7 @@ main {
 }
 
 .left__area {
-  height: 85vh;
+  max-height: 85vh;
 
 }
 
@@ -45,7 +45,7 @@ main {
 
   .frame {
     width: 97vw;
-
+    
     background-color: #3d424d;
     display: grid;
     grid-template-columns: 100%;
