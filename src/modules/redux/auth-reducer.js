@@ -57,7 +57,7 @@ export const login = (email, password) => async (dispatch) => {
         dispatch(inProgress(false))
         throw e
     }
-    dispatch(inProgress(false))
+    // dispatch(inProgress(false))
 }
 export const me = () => async (dispatch) => {
     dispatch(inProgress(true))

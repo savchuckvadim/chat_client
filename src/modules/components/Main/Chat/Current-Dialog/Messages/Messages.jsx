@@ -42,7 +42,7 @@ const Messages = (props) => {
             {/* <ScrollIntoView selector="#messages"> */}
 
             <div className={style.messages}
-                ref={ref}
+                
             // style={{ scaleX }}
             >
                 
@@ -61,7 +61,9 @@ const Messages = (props) => {
 
                     />))
                     : <NoMessages />
+                    
                 }
+                <div ref={ref}></div>
             </div>
             {/* </ScrollIntoView> */}
         </div>

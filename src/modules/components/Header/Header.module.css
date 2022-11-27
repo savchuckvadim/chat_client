@@ -1,9 +1,10 @@
-.App__logo, .App__logo__stop  {
+
+/* .App__logo, .App__logo__stop  {
     height: 35px;
     pointer-events: none;
     display: block;
-   
-  }
+    */
+/* }
   
   @media (prefers-reduced-motion: no-preference) {
     .App__logo {
@@ -17,115 +18,133 @@
     to {
       transform: rotate(360deg);
     }
-  }
-  
+  } */
+.frame {
+  min-height: 100%;
+}
+
 .header {
-  --header-height:60px;
-    background-color: #282c34;
-    height: var(--header-height);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-   
+  --header-height: 60px;
+  background-color: #282c34;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+
+
+}
+
+.brand {
+  /* font-family: 'Rubik Distressed' !important */
+  ;
+  width: 88px;
+  /* margin-left: 10px; */
+  height: 22px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+}
+
+.brand__name {
+  display: block;
+  margin: 0 auto;
+  font-size: xx-large;
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+  font-weight: 600;
   
-  }
+}
+
+/* h1{
   
-  .brand{
-    width: 88px;
-    /* margin-left: 10px; */
-    height: 22px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3px;
-  }
-  h1{
-    display: block;
-    margin: 0 auto;
-    font-size: xx-large;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 600;
-  }
-  .brand:hover{
-    font-weight: 1900;
- 
-    }
- 
+  } */
 
-  .frame{
-    width: 97%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+.brand:hover {
+  font-weight: 1900;
 
-  .brand__wrapper{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-items: center;
-    cursor: pointer;
-  }
+}
 
-  .logout{
-    height: 31px;
-    width: 70px;
-    border-radius: 10px;
-    border: 0;
-    cursor: pointer;
-    background: rgb(73, 66, 73);
-    color: rgb(255, 255, 255);
-    border: solid 0.5px  rgb(88, 155, 249);
-  }
-  .burger__button{
-    padding-right: 4px;
-    height: 27px;
-    width: 29px;
+
+.frame {
+  width: 97%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logout {
+  height: 31px;
+  width: 70px;
+  border-radius: 10px;
+  border: 0;
+  cursor: pointer;
+  background: rgb(73, 66, 73);
+  color: rgb(255, 255, 255);
+  border: solid 0.5px rgb(88, 155, 249);
+}
+
+.burger__button {
+  padding-right: 4px;
+  height: 27px;
+  width: 29px;
+  display: none;
+  border: solid 0.5px rgb(88, 155, 249);
+  background-color: rgb(73, 66, 73);
+  border-radius: 5px;
+  color: rgb(88, 155, 249);
+  letter-spacing: 2px;
+  /* font-weight: 600; */
+  text-align: center;
+
+}
+
+@media screen and (max-width: 902px) {
+  .logout {
     display: none;
-    border: solid 0.5px rgb(88, 155, 249);
-    background-color: rgb(73, 66, 73);
-    border-radius: 5px;
-    color: rgb(88, 155, 249);
-    letter-spacing: 2px;
-    /* font-weight: 600; */
-    text-align: center;
-
-  }
-  @media screen and (max-width: 902px) {
-    .logout {
-      display: none;
-    }
-    .burger__button{
-      display: block;
-    }
-    
-  }
-  .logout:hover{
-    height: 31px;
-    width: 71px;
-    border-radius: 6px;
-  
-    background: rgb(64, 13, 69);
-    background: linear-gradient(45deg, rgba(198,176,200,1) 0%, rgba(138,90,162,1) 50%, rgba(255,98,213,1) 100%);
-    animation: gradient 3s ease infinite;
-    background-size: 500% 500%;
-    color: white;
-   
   }
 
-  @keyframes gradient{
- 
-    0%{
-        background-position: 0 50%;
-    }
-    50%{
-        background-position: 100% 50%;
-    }
-    100%{
-        background-position: 0 50%;
-    }
+  .burger__button {
+    display: block;
+  }
+
+}
+
+.logout:hover {
+  height: 31px;
+  width: 71px;
+  border-radius: 6px;
+
+  background: rgb(64, 13, 69);
+  background: linear-gradient(45deg, rgba(198, 176, 200, 1) 0%, rgba(138, 90, 162, 1) 50%, rgba(255, 98, 213, 1) 100%);
+  animation: gradient 3s ease infinite;
+  background-size: 500% 500%;
+  color: white;
+
+}
+
+@keyframes gradient {
+
+  0% {
+    background-position: 0 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
 }

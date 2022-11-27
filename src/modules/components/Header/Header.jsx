@@ -24,7 +24,7 @@ const Header = (props) => {
 
             src={logo} className={logoStyle} alt="logo" /> */}
           <div className={style.brand}>
-            <h3 className={style.brand__name} key={'brand'} > {`Chat`}</h3>
+            <h1 className={style.brand__name} key={'brand'} > {`Chat`}</h1>
           </div>
         </div>
         {props.isAuth && <button className={style.logout} onClick={() => { props.logout() }}>logout</button>}

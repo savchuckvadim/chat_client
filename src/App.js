@@ -61,7 +61,7 @@ const App = (props) => {
   return (
     <>
       <ModalContainer />
-      <NotificationsContainer />
+      
       {/* <ForwardMessageContainer /> */}
       {/* <Menu isModal={true} /> */}
 
@@ -74,6 +74,7 @@ const App = (props) => {
           }
         }}
       >
+        <NotificationsContainer />
         <HeaderContainer />
         <div className='page'>
           {page}
