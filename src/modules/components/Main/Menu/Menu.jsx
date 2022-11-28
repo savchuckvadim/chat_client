@@ -24,7 +24,7 @@ const Menu = ({ isModal, logout = null, changeForwardingMessageStatus, changeMod
 
     <div className={style.menu}>
       <div className={style.title__wrapper}>
-        <h3>Menu</h3>
+        <h2>Menu</h2>
       </div>
 
       <div className={style.items}>
