@@ -74,10 +74,11 @@ const App = (props) => {
           }
         }}
       >
-        <NotificationsContainer />
+        
         <HeaderContainer />
         <div className='page'>
           {page}
+          <NotificationsContainer />
         </div>
       </div>
     </>

@@ -6,7 +6,9 @@
 .App {
   text-align: center;
 }
-
+*::-webkit-scrollbar {
+  display: none;
+}
 h1, h2{
   margin-top: 5px;
   font-family: 'Rubik Distressed', cursive !important;
@@ -47,6 +49,7 @@ h3, h4{
 .page {
   width: 100%;
   min-height: 100%;
+  max-height: calc(100vh -60px);
   overflow: auto;
   display: flex;
   justify-content: center;
@@ -54,6 +57,7 @@ h3, h4{
   background: rgb(198, 176, 200);
   background: linear-gradient(45deg, rgb(255, 39, 176) 0%, rgba(138, 90, 162, 1) 50%, rgba(255, 98, 213, 1) 100%);
   background-size: 2500% 2500%;
+  position: relative;
 }
 
 

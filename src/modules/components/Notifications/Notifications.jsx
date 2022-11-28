@@ -13,6 +13,7 @@ const Notification = ({
     deleteNotification,
 }) => {
 
+    console.log(notification)
     useEffect(() => {
         audioPlayer.current.play();
 
@@ -22,7 +23,7 @@ const Notification = ({
 
     return (
 
-        <div style={{ opacity: 1.5 / (index + 0.2) }} className={style.notification}>
+        <div style={{ opacity: 1.5 / (index + 0.7) }} className={style.notification}>
 
             <MessageItem
                 key={`notifi-message-${notification.id}`}

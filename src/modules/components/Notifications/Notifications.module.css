@@ -20,6 +20,7 @@
     justify-content: flex-end;
 }
 .notifications{
+    max-height: 700px;
     padding: 1px;
     display: flex;
     flex-direction: column-reverse;

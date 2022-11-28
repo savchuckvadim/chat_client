@@ -8,7 +8,70 @@ const SOUND = 'notifications/SOUND'
 
 const initialState = {
     isActive: true,
-    notifications: [ ],
+    notifications: [
+       
+        {
+            author: { $user: 'yo', id: 1, email: 'nmbrsdntl@gmail.com', name: 'yo' },
+            authorId: 1,
+            body: "доогщрзш",
+            created: "2022-11-22T06:10:17.000000Z",
+            dialogId: 1,
+            id: 1,
+            isAuthorIsAuth: false,
+            isEdited: 0,
+            isForwarded: 0,
+            isGroup: 0
+        },
+        {
+            author: { $user: 'yo', id: 1, email: 'nmbrsdntl@gmail.com', name: 'yo' },
+            authorId: 1,
+            body: "доогщрзш",
+            created: "2022-11-22T06:10:17.000000Z",
+            dialogId: 1,
+            id: 1,
+            isAuthorIsAuth: false,
+            isEdited: 0,
+            isForwarded: 0,
+            isGroup: 0
+        },
+        {
+            author: { $user: 'yo', id: 1, email: 'nmbrsdntl@gmail.com', name: 'yo' },
+            authorId: 1,
+            body: "доогщрзш",
+            created: "2022-11-22T06:10:17.000000Z",
+            dialogId: 1,
+            id: 1,
+            isAuthorIsAuth: false,
+            isEdited: 0,
+            isForwarded: 0,
+            isGroup: 0
+        },
+        {
+            author: { $user: 'yo', id: 1, email: 'nmbrsdntl@gmail.com', name: 'yo' },
+            authorId: 1,
+            body: "доогщрзш",
+            created: "2022-11-22T06:10:17.000000Z",
+            dialogId: 1,
+            id: 1,
+            isAuthorIsAuth: false,
+            isEdited: 0,
+            isForwarded: 0,
+            isGroup: 0
+        },
+        {
+            author: { $user: 'yo', id: 1, email: 'nmbrsdntl@gmail.com', name: 'yo' },
+            authorId: 1,
+            body: "доогщрзш",
+            created: "2022-11-22T06:10:17.000000Z",
+            dialogId: 1,
+            id: 1,
+            isAuthorIsAuth: false,
+            isEdited: 0,
+            isForwarded: 0,
+            isGroup: 0
+        },
+    
+    ],
     sound: true,
 }
 
@@ -40,7 +103,7 @@ const notifications = (state = initialState, action) => {
 
         case SET_NOTIFICATION:
             let checkExist = state.notifications.some(n => n.id === action.message.id)
-            
+
             if (checkExist) {
                 return state
             } else {
@@ -49,7 +112,7 @@ const notifications = (state = initialState, action) => {
 
                     resultNotifications.unshift(action.message)
                 } else {
-                    resultNotifications.splice(state.notifications.length-1, 1)
+                    resultNotifications.splice(state.notifications.length - 1, 1)
                     resultNotifications.unshift(action.message)
                 }
                 return { ...state, notifications: resultNotifications };

@@ -10,19 +10,25 @@ const Modal = (props) => {
         <div className={style.container}
             onClick={() =>
                 props.changeForwardingMessageStatus(false, '')
-               
+
             }
             onContextMenu={(e) => {
                 e.preventDefault()
                 props.changeForwardingMessageStatus(false, '')
-                
+
             }}
         >
 
         </div>
         <div className={style.menu}>
-            {!props.isMessageForwarding ? <Menu isModal={true} logout={props.logout}  changeForwardingMessageStatus={props.changeForwardingMessageStatus} /> : <ForwardMessageContainer/>}
-          
+            {!props.isMessageForwarding
+                ? <Menu
+                    isModal={true}
+                    logout={props.logout}
+                    changeModalStatus={props.changeModalStatus}
+                    changeForwardingMessageStatus={props.changeForwardingMessageStatus} />
+                : <ForwardMessageContainer />}
+
         </div>
 
 
