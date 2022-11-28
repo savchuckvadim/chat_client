@@ -92,7 +92,7 @@ export const socket = {
       echo.private(`new-message.${authUserId}`)
 
         .listen('.SendMessage', (e) => {
-          
+          debugger
           dispatch(setNewMessage(e.message, authUserId))
           dispatch(setNotification(e.message))
 

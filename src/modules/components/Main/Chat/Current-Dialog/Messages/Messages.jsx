@@ -11,16 +11,16 @@ const Messages = (props) => {
     let containerClass = props.isSending === 'sending' ? style.container__sending : style.container
 
     let ref = useRef(null)
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["end end"],
-        default: ["end end"]
-    })
-    const scaleX = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    });
+    // const { scrollYProgress } = useScroll({
+    //     target: ref,
+    //     offset: ["end end"],
+    //     default: ["end end"]
+    // })
+    // const scaleX = useSpring(scrollYProgress, {
+    //     stiffness: 100,
+    //     damping: 30,
+    //     restDelta: 0.001
+    // });
     useLayoutEffect(() => {
         // scrollYProgress()
         if (ref.current && props.messages.length > 0) {

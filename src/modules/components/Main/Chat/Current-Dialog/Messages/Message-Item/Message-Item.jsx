@@ -29,6 +29,7 @@ const MessageItem = ({
         dateClass = style.date
 
     }
+    
     if (isNotification) {
         messageClass = style.notification
         infoWrapperClass = style.info__wrapper
@@ -39,6 +40,7 @@ const MessageItem = ({
         dateClass = style.nodate
 
     }
+    
     let authorName = message.author.name.length > 15
         ? `${message.author.name.slice(0, 15)}...`
         : message.author.name
@@ -72,7 +74,7 @@ const MessageItem = ({
             </div>
             <div className={style.body}>
                 <p className={style.body__text}>{
-                    body
+                   `${ body}`
                 }</p>
             </div>
             {!isNotification

@@ -12,18 +12,24 @@ const Notification = ({
     audioPlayer,
     deleteNotification,
 }) => {
-
+debugger
     console.log(notification)
     useEffect(() => {
-        audioPlayer.current.play();
+        debugger
+        if(audioPlayer && audioPlayer.current && notification.isSound){
+            debugger
+            audioPlayer.current.play();
+        }
+        
 
         setTimeout(() => { deleteNotification(notification.id) }, 20000)
+        
     }, [])
 
 
     return (
 
-        <div style={{ opacity: 1.5 / (index + 0.7) }} className={style.notification}>
+        <div style={{ opacity: 1.5 / (index + 1) }} className={style.notification}>
 
             <MessageItem
                 key={`notifi-message-${notification.id}`}
@@ -44,6 +50,7 @@ const Notification = ({
 
 
 const Notifications = (props) => {
+    debugger
     const audioPlayer = useRef(null);
     return props.notificationStatus && props.notifications.length > 0 ? (
 

@@ -106,19 +106,22 @@ p {
 .body {
     height: fit-content;
     max-width: 100%;
-    display: inline-block;
+    display: inline;
     z-index: 0;
     word-wrap: break-word;
     text-align: start;
+    text-justify: start;
 
 }
 
 .body__text {
+    display: inline;
     margin: 0;
     max-width: 100%;
-    /* width: 100px; */
+   
     white-space: pre-wrap;
     /* height: fit-content; */
+    text-justify: start;
 }
 
 .messageFooter {
