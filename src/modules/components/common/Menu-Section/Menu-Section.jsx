@@ -1,6 +1,39 @@
 import { useState } from "react"
 import style from "./Menu-Section.module.css"
-import { Formik } from "formik";
+import { Field, Formik } from "formik";
+
+
+const ChangeNameSubmit = ({ actionName, status, setStatus }) => {
+
+    return (
+        <div className={style.action__wrapper}>
+            {
+                status
+                    ? <button type="submit"
+                        className={style.action}>{'send'}</button>
+                    : <h3 onClick={() => {
+                        setStatus(true)
+                    }} className={style.action}>{actionName}</h3>
+            }
+
+        </div>
+    )
+}
+
+const ChangeSoundSubmit = ({ actionName }) => {
+
+    return (
+        <div className={style.action__wrapper}>
+            {
+                <button type='submit' onClick={() => {
+
+                }} className={style.action}>{actionName}</button>
+            }
+
+
+        </div>
+    )
+}
 
 const MenuSection = ({
     authUser,
@@ -11,19 +44,8 @@ const MenuSection = ({
     action = null
 }) => {
 
-
+   
     const [status, setStatus] = useState(false)
-    // const [initialValue, setValue] = useState(value)
-
-    const onAction = (name) => {
-        
-        if (status) {
-            action(name)
-            setStatus(false)
-        } else {
-            setStatus(true)
-        }
-    }
     let initialValues
     let parametersName
     if (name === 'Sound') {
@@ -34,7 +56,7 @@ const MenuSection = ({
         parametersName = 'user-name'
     }
 
-
+  
 
     return authUser
         ? (<Formik
@@ -46,13 +68,23 @@ const MenuSection = ({
             //     return errors;
             // }}
             onSubmit={(values, { setSubmitting }) => {
-                
-                if (status) {
-                    action(values[`${parametersName}`])
-                    setStatus(false)
+                if (name === 'Sound') {
+                    if (value === 'On') {
+                        action(false)
+                    } else {
+                        action(true)
+                    }
+
                 } else {
-                    setStatus(true)
+                    if (status) {
+
+                        action(values[`${parametersName}`])
+                        setStatus(false)
+                    } else {
+                        setStatus(true)
+                    }
                 }
+
 
             }}
         >{({
@@ -73,27 +105,24 @@ const MenuSection = ({
                         <div className={style.item}>
                             <div className={style.status}>
                                 <h3 className={style.name}>{`${name}:  `}</h3>
-                                {status
+                                {status && name !== 'Sound'
                                     ? <input className={style.value}
                                         value={values[`${parametersName}`]}
                                         type={parametersName}
                                         name={parametersName}
                                         onChange={handleChange}
                                         onBlur={handleBlur} />
-                                    : <h3 className={style.value}>{values[`${parametersName}`]}</h3>
+                                    : <h3 className={style.value}>{
+                                        name !== 'Sound'
+                                        ? values[`${parametersName}`]
+                                        : value
+                                    }</h3>
                                 }
+                               
                             </div>
-                            <div className={style.action__wrapper}>
-                                {
-                                    status
-                                        ? <button type="submit"
-                                            className={style.action}>{'send'}</button>
-                                        : <h3 onClick={() => {
-                                            setStatus(true)
-                                        }} className={style.action}>{actionName}</h3>
-                                }
-
-                            </div>
+                            {name !== 'Sound'
+                                ? <ChangeNameSubmit actionName={actionName} status={status} setStatus={setStatus} />
+                                : <ChangeSoundSubmit actionName={actionName} status={status} setStatus={setStatus} values={values} />}
                         </div>
 
                     </div>

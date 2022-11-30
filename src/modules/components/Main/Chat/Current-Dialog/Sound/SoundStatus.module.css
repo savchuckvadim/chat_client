@@ -8,10 +8,14 @@
 .sound__on, .sound__off{
     margin: 0 5px;
     cursor: pointer;
+    /* font-weight: 400; */
+    
 }
 .sound__on{
-    color: rgb(78, 167, 255);
+    color: rgb(104, 172, 255);
+    font-weight: 400;
 }
 .sound__off{
-    color: grey;
+    color: rgba(156, 235, 255, 0.356);
+    font-weight: 700;
 }

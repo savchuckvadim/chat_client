@@ -94,7 +94,7 @@ export const socket = {
         .listen('.SendMessage', (e) => {
           debugger
           dispatch(setNewMessage(e.message, authUserId))
-          dispatch(setNotification(e.message))
+          dispatch(setNotification(e))
 
         })
     } else {

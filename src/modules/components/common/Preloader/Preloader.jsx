@@ -12,7 +12,7 @@ const Preloader = (props) => {
         
     return (
         <div style={styleFromArea} className={style.container}>
-            Loading...
+            <p className={style.title}>Loading...</p>
         </div>
     )
 }

@@ -5,9 +5,7 @@ import { addParticipantsInProgress, CANCEL } from "./group-reducer"
 import { NEW_CONTACT } from "./users-reducer"
 import { inProgress } from './preloader-reducer'
 import { changeModalStatus } from "./modal-reducer"
-import { setNotification } from "./notifications-reducer"
-import { socket } from '../services/websocket/socket'
-import { precenseUserUtil, setOnlineInAll } from "../utils/users-utils"
+import { setOnlineInAll } from "../utils/users-utils"
 
 const SET_DIALOGS = 'dialogs/SET_DIALOGS'
 const SET_DIALOG = 'dialogs/SET_DIALOG'
@@ -87,7 +85,7 @@ const setDeleteMessage = (messageId) => ({ type: DELETE_MESSAGE, messageId })
 const setDeleteDialog = (dialogId) => ({ type: DELETE_DIALOG, dialogId })
 export const setEditingGroupDialog = (dialog) => ({ type: SET_EDITING_GROUP_DIALOG, dialog })  //for edit exist group dialog
 
-//DELETE_MESSAGE
+
 
 
 // THUNKS
@@ -98,33 +96,6 @@ export const getDialogs = (dialogIdFromUrl) => async (dispatch, getState) => {
     const online = getState().users.online
     dispatch(setDialogs(response, dialogIdFromUrl))
     dispatch(setPrecenseUser(online))
-    // let activateNewMessageListener = async () => {
-    //     if (echo) {
-
-    //         echo.private(`new-message.${authUserId}`)
-
-    //             .listen('.SendMessage', (e) => {
-    //                 let state = getState()
-
-    //                 if (state.auth.authUser) {
-    //                     let authUser = state.auth.authUser
-    //                     dispatch(setNewMessage(e.message, authUser.id))
-    //                     dispatch(setNotification(e.message))
-
-    //                 }
-    //             })
-    //     } else {
-
-    //         setTimeout(async () => {
-    //             await socket.connection(dispatch)
-    //             await activateNewMessageListener()
-    //         }, 20000)
-
-
-    //     }
-    // }
-
-    // await activateNewMessageListener()
 
 }
 
@@ -133,7 +104,7 @@ export const sendMessage = (dialogId, body, isForwarded, isEdited) => async (dis
 
     const messageResponse = await dialogsAPI.sendMessage(dialogId, body, isForwarded, isEdited)
 
-    dispatch(setSendingStatus('sended'))
+    dispatch(setSendingStatus(false))
     // setCurrentDialog (dialogId, messages)
 
     let dialogs = [
@@ -233,10 +204,13 @@ export const addNewGroupDialog = (users, dialogsName, dialogId = null) => async 
 
 }
 
-export const changeDialogSound = (dialogId, isSound) => async (dispatch) => {
+export const changeDialogSound = (dialogId, isSound) => async (dispatch, getState) => {
 
     const response = await dialogsAPI.sound(dialogId, isSound)
     dispatch(setSound(response.updatingDialog))
+
+
+
 }
 
 //for context-menu
@@ -700,21 +674,21 @@ const dialogsReducer = (state = initialState, action) => {
                     return { ...dialog, dialogsUsers: users }
                 })
                 : state.dialogs
-           
+
             const resultGroupDialogsLeavingUser = state.groupDialogs.length > 0
                 ? state.groupDialogs.map(dialog => {
                     const users = setOnlineInAll(dialog.dialogsUsers, action.onlineUsersIds)
-                    
+
                     return { ...dialog, dialogsUsers: users }
                 })
                 : state.groupDialogs
-           
+
             const currentUsers = state.currentDialog && setOnlineInAll(state.currentDialog.dialogsUsers, action.onlineUsersIds)
-            
+
             const resultCurrentDialogLeavingUser = state.currentDialog
                 ? { ...state.currentDialog, dialogsUsers: currentUsers }
                 : state.currentDialog
-            
+
 
             return {
                 ...state, dialogs: resultDialogsLeavingUser,

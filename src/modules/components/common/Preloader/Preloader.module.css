@@ -14,7 +14,9 @@
     /* transition-property: width height;
     transition-duration: 10s; */
 }
-
+.title{
+    margin: 0 !important;
+}
 @keyframes gradient{
  
     0%{

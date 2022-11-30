@@ -29,6 +29,8 @@ const deleteAuthUser = () => ({ type: LOGOUT })
 export const setRegistrationStatus = (bool) => ({ type: SET_REGISTRATION_STATUS, bool })
 // export const setRegistrationUrl = (url) => ({ type: SET_REGISTRATION_URL, url })
 const setNewUserName = (name) => ({ type: SET_NEW_USER_NAME, name })
+const setUserIsSound = (isSound) => ({ type: SET_SOUND, isSound })
+
 
 
 //THUNK
@@ -68,12 +70,12 @@ export const me = () => async (dispatch) => {
             dispatch(setAuthUser(user, true))
             await socket.reconnect(user.id, dispatch)
             // await socket.precenseListener(dispatch)
-         
+
             dispatch(inProgress(false))
         }
         dispatch(inProgress(false))
     } catch (e) {
-       
+
         dispatch(setAuthUser(null, false))
         dispatch(inProgress(false))
     }
@@ -91,12 +93,13 @@ export const logout = () => async (dispatch) => {
 }
 
 export const changeProfileName = (name) => async (dispatch) => {
-    await usersAPI.updateName(name)
     dispatch(setNewUserName(name))
-}
-export const changePrefencesSound = (value) => (dispatch) => {
+    await usersAPI.updateName(name)
 
-    alert(`${value}`)
+}
+export const changeSoundUser = (isSound) => async (dispatch) => {
+    dispatch(setUserIsSound(isSound))
+    await authApi.soundUser(isSound)
 }
 const authReducer = (state = initialState, action) => {
 
@@ -117,16 +120,16 @@ const authReducer = (state = initialState, action) => {
             }
             return state
 
+        case SET_SOUND:
 
-        // case SET_REGISTRATION_URL:
-        //     if (state.registration.url !== action.url) {
-        //         return {
-        //             ...state, registration: {
-        //                 ...state.registration, url: action.url
-        //             }
-        //         }
-        //     }
-        //     return state
+            if (state.authUser) {
+                if (state.authUser.isSound !== action.isSound) {
+                    
+                    return { ...state, authUser: { ...state.authUser, isSound: action.isSound } }
+                }
+            }
+            return state
+
         default:
             return state;
     }

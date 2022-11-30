@@ -21,6 +21,7 @@ export const authApi = {
     },
     async logout() {
         const response = await instance.post('logout', {})
+        return response
 
     },
     async login(email, password) {
@@ -31,4 +32,8 @@ export const authApi = {
         })
         return response
     },
+    async soundUser (isSound) {
+        const response = await api.put('sound-user', {isSound})
+        return response.data
+    }
 }

@@ -1,39 +1,37 @@
-import { useEffect, useRef, useState } from 'react'
-// import { NotificationManager } from 'react-notifications'
+import { useEffect, useRef } from 'react'
 import MessageItem from '../Main/Chat/Current-Dialog/Messages/Message-Item/Message-Item'
-// import NotificationsContainer from './Notifications-Container'
 import style from './Notifications.module.css'
 import NotificationSound from "../../../assets/notification.mp3";
 
 const Notification = ({
     index,
     notification,
-    sound,
     audioPlayer,
     deleteNotification,
 }) => {
-debugger
-    console.log(notification)
+
+    const message = notification.message
+    
     useEffect(() => {
-        debugger
-        if(audioPlayer && audioPlayer.current && notification.isSound){
-            debugger
+
+        if (audioPlayer && audioPlayer.current && notification.isSound) {
+
             audioPlayer.current.play();
         }
-        
 
-        setTimeout(() => { deleteNotification(notification.id) }, 20000)
-        
+
+        setTimeout(() => { deleteNotification(message.id) }, 20000)
+
     }, [])
 
-
+    
     return (
 
         <div style={{ opacity: 1.5 / (index + 1) }} className={style.notification}>
 
             <MessageItem
-                key={`notifi-message-${notification.id}`}
-                message={notification}
+                key={`notifi-message-${message.id}`}
+                message={message}
                 isContextMenuActive={false}
                 currentTypeOfArea={'notifications'}
                 currentMenu={[]}
@@ -50,7 +48,7 @@ debugger
 
 
 const Notifications = (props) => {
-    debugger
+
     const audioPlayer = useRef(null);
     return props.notificationStatus && props.notifications.length > 0 ? (
 
@@ -59,7 +57,7 @@ const Notifications = (props) => {
             <div className={style.header}>
                 <div className={style.functions}>
                     <div onClick={props.resetNotifications} className={style.reset}>
-                        скрыть
+                        <p>скрыть</p>
                     </div>
 
                 </div>
@@ -70,7 +68,6 @@ const Notifications = (props) => {
                         key={`notification-${n.id}- ${i}`}
                         index={i}
                         notification={n}
-                        sound={props.sound}
                         audioPlayer={audioPlayer}
                         deleteNotification={props.deleteNotification} />)}
             </div>

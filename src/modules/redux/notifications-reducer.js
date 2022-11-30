@@ -10,76 +10,16 @@ const initialState = {
     isActive: true,
     notifications: [
        
-        {
-            author: { $user: 'yo', id: 1, email: 'nmbrsdntl@gmail.com', name: 'yo' },
-            authorId: 1,
-            body: "доогщрзш",
-            created: "2022-11-22T06:10:17.000000Z",
-            dialogId: 1,
-            id: 1,
-            isAuthorIsAuth: false,
-            isEdited: 0,
-            isForwarded: 0,
-            isGroup: 0
-        },
-        {
-            author: { $user: 'yo', id: 1, email: 'nmbrsdntl@gmail.com', name: 'yo' },
-            authorId: 1,
-            body: "доогщрзш",
-            created: "2022-11-22T06:10:17.000000Z",
-            dialogId: 1,
-            id: 1,
-            isAuthorIsAuth: false,
-            isEdited: 0,
-            isForwarded: 0,
-            isGroup: 0
-        },
-        {
-            author: { $user: 'yo', id: 1, email: 'nmbrsdntl@gmail.com', name: 'yo' },
-            authorId: 1,
-            body: "доогщрзш",
-            created: "2022-11-22T06:10:17.000000Z",
-            dialogId: 1,
-            id: 1,
-            isAuthorIsAuth: false,
-            isEdited: 0,
-            isForwarded: 0,
-            isGroup: 0
-        },
-        {
-            author: { $user: 'yo', id: 1, email: 'nmbrsdntl@gmail.com', name: 'yo' },
-            authorId: 1,
-            body: "доогщрзш",
-            created: "2022-11-22T06:10:17.000000Z",
-            dialogId: 1,
-            id: 1,
-            isAuthorIsAuth: false,
-            isEdited: 0,
-            isForwarded: 0,
-            isGroup: 0
-        },
-        {
-            author: { $user: 'yo', id: 1, email: 'nmbrsdntl@gmail.com', name: 'yo' },
-            authorId: 1,
-            body: "доогщрзш",
-            created: "2022-11-22T06:10:17.000000Z",
-            dialogId: 1,
-            id: 1,
-            isAuthorIsAuth: false,
-            isEdited: 0,
-            isForwarded: 0,
-            isGroup: 0
-        },
     
     ],
-    sound: true,
+ 
 }
 
 
 //AC 
 
 export const changeNotificationStatus = (bool) => ({ type: NOTIFICATIONS_STATUS, bool })
-export const setNotification = (message) => ({ type: SET_NOTIFICATION, message })
+export const setNotification = (notification) => ({ type: SET_NOTIFICATION, notification })
 export const deleteNotification = (notificationId) => ({ type: DELETE_NOTIFICATION, notificationId })
 
 export const resetNotifications = () => ({ type: NOTIFICATIONS_RESET })
@@ -102,7 +42,7 @@ const notifications = (state = initialState, action) => {
 
 
         case SET_NOTIFICATION:
-            let checkExist = state.notifications.some(n => n.id === action.message.id)
+            let checkExist = state.notifications.some(n => n.message.id === action.notification.message.id)
 
             if (checkExist) {
                 return state
@@ -110,10 +50,10 @@ const notifications = (state = initialState, action) => {
                 let resultNotifications = [...state.notifications]
                 if (state.notifications.length < 7) {
 
-                    resultNotifications.unshift(action.message)
+                    resultNotifications.unshift(action.notification)
                 } else {
                     resultNotifications.splice(state.notifications.length - 1, 1)
-                    resultNotifications.unshift(action.message)
+                    resultNotifications.unshift(action.notification)
                 }
                 return { ...state, notifications: resultNotifications };
             }
@@ -123,9 +63,9 @@ const notifications = (state = initialState, action) => {
 
             return { ...state, notifications: [] };
 
-        case DELETE_NOTIFICATION:
-            let resultNotification = state.notifications.filter(n => n.id !== action.notificationId)
-            return { ...state, notifications: resultNotification }
+        // case DELETE_NOTIFICATION:
+        //     let resultNotification = state.notifications.filter(n => n.id !== action.notificationId)
+        //     return { ...state, notifications: resultNotification }
 
         case SOUND:
             if (state.sound !== action.status) {
