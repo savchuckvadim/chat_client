@@ -12,9 +12,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-const AddPartisipantsContainer = connect(mapStateToProps, {
+const AddParticipantsContainer = connect(mapStateToProps, {
     setGroupDialogsName,
     setParticipant,
 })(AddPartisipantsArea)
 
-export default AddPartisipantsContainer
+export default AddParticipantsContainer

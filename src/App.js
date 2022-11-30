@@ -1,87 +1,25 @@
 import './App.css';
-import EmailVerification from './modules/components/common/Email-Verification/Email-Verification';
-import Modal from './modules/components/common/Modal/Modal';
 import ModalContainer from './modules/components/common/Modal/Modal-Container';
-import Preloader from './modules/components/common/Preloader/Preloader';
 import HeaderContainer from './modules/components/Header/Header-Container';
-import ForwardMessage from './modules/components/Main/Chat/Current-Dialog/Messages/Forward-Message/Forward-Message';
-import ForwardMessageContainer from './modules/components/Main/Chat/Current-Dialog/Messages/Forward-Message/Forward-Message-Container';
-import AddPartisipantsContainer from './modules/components/Main/Chat/Dialogs/Group-Dialogs/Add-Partisipants-Area/Add-Partisipants-Container';
-import Menu from './modules/components/Main/Menu/Menu';
-import Main from './modules/components/Main/Main';
-import NotificationsContainer from './modules/components/Notifications/Notifications-Container';
-import Start from './modules/components/Start/Start';
-import SoundContainer from './modules/components/Notifications/Sound/Sound-Container';
+import Page from './modules/components/Page/Page';
 
 //TODO:
-
-
-// ->prefences - отключить/включить все уведомления
-
-// +react context-menu for mouse right click
-//profile->change nickname
-//+dialogs->delete dialog
-
-//dialogs + create group dialog
-
-//group dialogs 
-// + add users popup *only from contacts
-// + users search 
-
-//messages -> edit and delete
-// + forwarding  to contacts only
-// -> sound notification sound/unsound
 
 // -> paginator
 
 const App = (props) => {
 
-  let page = <Preloader />
-  if (!props.inProgress && props.isAuth) {
-    if (props.addingParticipantsInProgress) {
-
-      page = <AddPartisipantsContainer />
-    } else {
-      if (props.authUser.email_verified_at) {
-        page = <Main />
-      } else {
-        page = <EmailVerification authUser={props.authUser} />
-      }
-
-    }
-
-  } else if (!props.inProgress && !props.isAuth) {
-    page = <Start
-      registrationStatus={props.registrationStatus}
-      registrationUrl={props.registrationUrl}
-    />
-  } else {
-    // return <Navigate replace to='../' />
-  }
-
   return (
     <>
       <ModalContainer />
-
-      {/* <ForwardMessageContainer /> */}
-      {/* <Menu isModal={true} /> */}
-
-
-      <div className="App"
-        onClick={() => {
-          if (props.isContextMenuActive) {
-            // console.log('contextMenuToggler')
-            props.contextMenuToggler(false)
-          }
-        }}
-      >
-
+      <div className="App" onClick={() => (props.isContextMenuActive && props.contextMenuToggler(false))}>
         <HeaderContainer />
-        <div className='page'>
-          {page}
-          <SoundContainer />
-          <NotificationsContainer />
-        </div>
+        <Page
+            isAuth={props.isAuth}
+            authUser={props.authUser}
+            inProgress={props.inProgress}
+            addingParticipantsInProgress={props.addingParticipantsInProgress}
+        />
       </div>
     </>
   );

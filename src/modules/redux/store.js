@@ -3,7 +3,7 @@ import authReducer from './auth-reducer'
 import ThunkMiddleware from 'redux-thunk'
 import preloaderReducer from './preloader-reducer'
 import usersReducer from './users-reducer'
-import contactsReducer from './contacts-reducer'
+
 import dialogsReducer from './dialogs-reducer'
 import groupReducer from './group-reducer'
 import contextMenuReducer from './context-menu-reducer'
@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
     modal:modalReducer,
     notifications,
     users: usersReducer,
-    contacts: contactsReducer,
+    // contacts: contactsReducer,
     dialogs: dialogsReducer,
     group: groupReducer,
     contextMenu:contextMenuReducer

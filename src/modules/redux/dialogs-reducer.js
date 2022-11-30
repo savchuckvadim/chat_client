@@ -1,6 +1,5 @@
 import { dialogsAPI } from "../services/api/dialogs-api"
 import { searchDialog } from "../utils/dialog-utils"
-import { echo } from "../services/websocket/socket"
 import { addParticipantsInProgress, CANCEL } from "./group-reducer"
 import { NEW_CONTACT } from "./users-reducer"
 import { inProgress } from './preloader-reducer'

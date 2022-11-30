@@ -3,7 +3,7 @@ import Moment from 'react-moment'
 import style from './Current-Dialog.module.css'
 import MessagesContainer from './Messages/Messages-Container'
 import SendMessage from './Send-Message/Send-Message'
-import SoundStatusContainer from './Sound/SoundStatus-Container'
+import SoundStatusContainer from './Sound-Status/SoundStatus-Container'
 
 
 

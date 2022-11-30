@@ -12,7 +12,9 @@ const Notification = ({
 
     useEffect(() => {
 
-        setTimeout(() => { deleteNotification(message.id) }, 20000)
+        setTimeout(() => { 
+            debugger
+            deleteNotification(message.id) }, 20000)
 
     }, [])
 

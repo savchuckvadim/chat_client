@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { changeNotificationStatus, deleteNotification, deleteNewNotification, resetNotifications } from "../../redux/notifications-reducer"
+import { changeNotificationStatus, deleteNotification, resetNotifications } from "../../redux/notifications-reducer"
 import Notifications from "./Notifications"
 
 

@@ -16,7 +16,6 @@ const initialState = {
     isAuth: false,
     registration: {
         status: false,
-        // url: ''
 
     }
 
@@ -27,7 +26,6 @@ const initialState = {
 const setAuthUser = (user, bool) => ({ type: LOGIN, user, bool })
 const deleteAuthUser = () => ({ type: LOGOUT })
 export const setRegistrationStatus = (bool) => ({ type: SET_REGISTRATION_STATUS, bool })
-// export const setRegistrationUrl = (url) => ({ type: SET_REGISTRATION_URL, url })
 const setNewUserName = (name) => ({ type: SET_NEW_USER_NAME, name })
 const setUserIsSound = (isSound) => ({ type: SET_SOUND, isSound })
 
@@ -53,13 +51,10 @@ export const login = (email, password) => async (dispatch) => {
         await authApi.login(email, password)
         dispatch(me())
     } catch (e) {
-        // console.log(e)
-        // console.log(e.response.statusText)
-        // setErrors(e.response.statusText)
         dispatch(inProgress(false))
         throw e
     }
-    // dispatch(inProgress(false))
+
 }
 export const me = () => async (dispatch) => {
     dispatch(inProgress(true))
@@ -69,8 +64,6 @@ export const me = () => async (dispatch) => {
 
             dispatch(setAuthUser(user, true))
             await socket.reconnect(user.id, dispatch)
-            // await socket.precenseListener(dispatch)
-
             dispatch(inProgress(false))
         }
         dispatch(inProgress(false))
@@ -104,6 +97,7 @@ export const changeSoundUser = (isSound) => async (dispatch) => {
 const authReducer = (state = initialState, action) => {
 
     switch (action.type) {
+
         case LOGIN:
             return { ...state, authUser: action.user, isAuth: action.bool }
 
@@ -124,7 +118,7 @@ const authReducer = (state = initialState, action) => {
 
             if (state.authUser) {
                 if (state.authUser.isSound !== action.isSound) {
-                    
+
                     return { ...state, authUser: { ...state.authUser, isSound: action.isSound } }
                 }
             }
