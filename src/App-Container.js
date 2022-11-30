@@ -1,8 +1,6 @@
 import React, { useEffect } from "react"
 import { connect } from "react-redux"
 import App from "./App"
-import Preloader from "./modules/components/common/Preloader/Preloader"
-import Start from "./modules/components/Start/Start"
 import { me } from "./modules/redux/auth-reducer"
 import { contextMenuToggler } from "./modules/redux/context-menu-reducer"
 
@@ -29,15 +27,11 @@ const AppContainer = (props) => {
         }
     }, [props.authUser])
 
-    // if (!props.inProgress) {
+
     return (
         <App {...props} />
     )
-    // } else {
-    //     return (
-    //         <Preloader/>
-    //     )
-    // }
+
 
 }
 

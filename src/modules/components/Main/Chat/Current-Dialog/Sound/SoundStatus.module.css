@@ -12,10 +12,12 @@
     
 }
 .sound__on{
+    width: 50px;
     color: rgb(104, 172, 255);
     font-weight: 400;
 }
 .sound__off{
+    width: 50px;
     color: rgba(156, 235, 255, 0.356);
     font-weight: 700;
 }

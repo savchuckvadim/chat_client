@@ -1,13 +1,15 @@
 import { connect } from "react-redux"
-import { changeNotificationStatus, deleteNotification, resetNotifications } from "../../redux/notifications-reducer"
+import { changeNotificationStatus, deleteNotification, deleteNewNotification, resetNotifications } from "../../redux/notifications-reducer"
 import Notifications from "./Notifications"
 
 
 const mapState = (state) => {
-    return{
+  
+    return {
+        
         notificationStatus: state.notifications.isActive,
         notifications: state.notifications.notifications,
-        
+       
 
     }
 }
@@ -15,5 +17,6 @@ const mapState = (state) => {
 export default connect(mapState, {
     changeNotificationStatus,
     resetNotifications,
-    deleteNotification
+    deleteNotification,
+   
 })(Notifications)

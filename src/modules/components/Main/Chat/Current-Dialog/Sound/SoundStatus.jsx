@@ -3,7 +3,7 @@ import { useState } from 'react'
 import style from './SoundStatus.module.css'
 
 
-const SoundPreloader = (props) => {
+const SoundPreloader = () => {
     // const [value, setValue] = useState('')
     const [count, setCount] = useState(1)
     const [trigger, setTrigger] = useState(false);

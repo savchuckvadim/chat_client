@@ -11,6 +11,7 @@ import Menu from './modules/components/Main/Menu/Menu';
 import Main from './modules/components/Main/Main';
 import NotificationsContainer from './modules/components/Notifications/Notifications-Container';
 import Start from './modules/components/Start/Start';
+import SoundContainer from './modules/components/Notifications/Sound/Sound-Container';
 
 //TODO:
 
@@ -61,7 +62,7 @@ const App = (props) => {
   return (
     <>
       <ModalContainer />
-      
+
       {/* <ForwardMessageContainer /> */}
       {/* <Menu isModal={true} /> */}
 
@@ -74,10 +75,11 @@ const App = (props) => {
           }
         }}
       >
-        
+
         <HeaderContainer />
         <div className='page'>
           {page}
+          <SoundContainer />
           <NotificationsContainer />
         </div>
       </div>
