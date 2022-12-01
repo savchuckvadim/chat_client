@@ -203,7 +203,7 @@ export const addNewGroupDialog = (users, dialogsName, dialogId = null) => async 
 
 }
 
-export const changeDialogSound = (dialogId, isSound) => async (dispatch, getState) => {
+export const changeDialogSound = (dialogId, isSound) => async (dispatch) => {
 
     const response = await dialogsAPI.sound(dialogId, isSound)
     dispatch(setSound(response.updatingDialog))
@@ -222,7 +222,8 @@ export const deleteDialog = (dialogId) => async (dispatch) => {
 
 }
 
-//TODO sendEditGroupDialog
+
+
 //REDUCER
 const dialogsReducer = (state = initialState, action) => {
 
