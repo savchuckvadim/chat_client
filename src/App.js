@@ -8,6 +8,7 @@ import Page from './modules/components/Page/Page';
 // -> paginator
 
 const App = (props) => {
+  console.log('http://213.139.210.98:8000 is working!')
 
   return (
     <>
@@ -15,10 +16,10 @@ const App = (props) => {
       <div className="App" onClick={() => (props.isContextMenuActive && props.contextMenuToggler(false))}>
         <HeaderContainer />
         <Page
-            isAuth={props.isAuth}
-            authUser={props.authUser}
-            inProgress={props.inProgress}
-            addingParticipantsInProgress={props.addingParticipantsInProgress}
+          isAuth={props.isAuth}
+          authUser={props.authUser}
+          inProgress={props.inProgress}
+          addingParticipantsInProgress={props.addingParticipantsInProgress}
         />
       </div>
     </>
