@@ -88,7 +88,9 @@ p {
     text-align: end;
     align-self: flex-end;
 }
-
+.date, .my__date{
+    font-size: xx-small;
+}
 .date {
     color: rgb(91, 37, 94);
 

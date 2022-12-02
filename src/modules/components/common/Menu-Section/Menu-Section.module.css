@@ -1,6 +1,6 @@
 .frame {
-
-    min-height: 88vh;
+    height: 88vh;
+    max-height: calc(100vh - 75px);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -10,11 +10,12 @@
     font-size: large;
     animation: gradient 60s ease infinite;
     background-size: 15000% 15000%;
-    /* color: rgb(255, 255, 255); */
+    
 }
 
 .title {
-    height: 60px;
+    
+    margin-top: 40px;
     text-align: center;
     display: block;
 }
@@ -48,8 +49,7 @@
 }
 
 .value {
-    /* margin: 10px 0; */
-    /* height: 10px; */
+   
     margin-left: 30px;
     display: inline-block;
     text-align: center;
@@ -91,7 +91,6 @@
 @media screen and (max-width: 927px) {
     .status {
         min-width: 87%;
-
     }
 }
 
@@ -100,7 +99,6 @@
     .status {
         min-width: 84%;
         width: 84%;
-
     }
 
 }
@@ -110,11 +108,9 @@
     .status {
         min-width: 77%;
         width: 77%;
-
     }
 
     .value {
-
         margin-left: 50px;
 
     }
@@ -125,19 +121,13 @@
     .status {
         min-width: 73%;
         width: 73%;
-
     }
 
     .value {
-
         margin-left: 50px;
-
     }
 }
 
-/* .action__wrapper{
-
-} */
 
 .action {
     cursor: pointer;

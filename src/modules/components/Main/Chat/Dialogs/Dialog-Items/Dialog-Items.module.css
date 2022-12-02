@@ -1,7 +1,7 @@
 .items, .outer-container {
     min-width: 100%;
-    /* height: 320px; */
-    /* height: 45%; */
+    max-height: calc((100vh - 75px)/2.1);
+ 
    }
 .outer__container {
     display: flex;
@@ -14,7 +14,6 @@
 .inner__container {
     min-width: 100%;
     height: 250px;
-    /* min-height: 100%; */
     position: absolute;
     left: 0;
     overflow-x: hidden;

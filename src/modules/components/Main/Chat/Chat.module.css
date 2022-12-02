@@ -1,11 +1,17 @@
 .container{
     display: grid;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: 18% 82%;
+    max-height: calc(100vh - 85px);
     height: 100%;
 
 }
 .currentDialog{
     height: 650px;
+    max-height: calc(100vh - 85px) !important;
     border-left: solid 0.5px;
     border-color: rgb(88, 155, 249);
+}
+
+.dialogs{
+    max-height: calc(100vh - 85px) ;
 }

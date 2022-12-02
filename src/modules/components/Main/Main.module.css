@@ -6,7 +6,7 @@ main {
 .frame {
   width: 97vw;
   height: 650px;
-  max-height: 650px;
+  max-height: calc(100vh - 80px);
   
   background-color: #333843;
   display: grid;
@@ -29,11 +29,15 @@ main {
 .menu {
   height: 650px;
   min-height: 330px;
+  max-height: calc(100vh - 83px);
   border-left: solid 0.5px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 
+}
+.left__area{
+  max-height: calc(100vh -  80px);
 }
 
 @media screen and (max-width: 902px) {
