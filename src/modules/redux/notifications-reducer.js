@@ -72,6 +72,7 @@ const notifications = (state = initialState, action) => {
 
         case DELETE_NOTIFICATION:
             let resultNotification = state.notifications.filter(n => n.message.id !== action.notificationId)
+            
             return { ...state, notifications: resultNotification }
 
         case DELETE_NEW_NOTIFICATION:

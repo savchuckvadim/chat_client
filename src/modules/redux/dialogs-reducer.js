@@ -311,11 +311,18 @@ const dialogsReducer = (state = initialState, action) => {
                 let resultDeletingCurrentDialog = state.currentDialog
                 let resultDeletingCurrentMessages = state.messages
 
-                if (state.currentDialogId === action.dialogId) {
-                    let index = state.dialogs[0].dialogId !== action.dialogId ? 0 : 1
-                    resultDeletingCurrentDialogId = state.dialogs[index].dialogId
-                    resultDeletingCurrentDialog = state.dialogs[index]
-                    resultDeletingCurrentMessages = state.dialogs[index].dialogsMessages
+                if (state.currentDialogId === action.dialogId) { //ecли удаляемый диалог - текущий 
+                    let index = state.dialogs[0].dialogId !== action.dialogId ? 0 : 1 //ecли удаляемый диалог - это последний в списке диалогов то индекс текущего выбирает - предпоследний
+                    if((index === 0 && state.dialogs.length > 0) || (index === 1 && state.dialogs.length > 1) ){ //ecли  есть другие диалоги
+                        resultDeletingCurrentDialogId = state.dialogs[index].dialogId
+                        resultDeletingCurrentDialog = state.dialogs[index]
+                        resultDeletingCurrentMessages = state.dialogs[index].dialogsMessages
+                    }else{ //ecли  нет других диалогов
+                        resultDeletingCurrentDialogId = undefined
+                        resultDeletingCurrentDialog = null
+                        resultDeletingCurrentMessages = []
+                    }
+                   
                 }
                 return {
                     ...state, dialogs: resultDeletingDialogs,

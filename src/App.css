@@ -52,9 +52,9 @@ h3, h4{
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(198, 176, 200);
-  background: linear-gradient(45deg, rgb(255, 39, 176) 0%, rgba(138, 90, 162, 1) 50%, rgba(255, 98, 213, 1) 100%);
-  background-size: 2500% 2500%;
+  background: rgb(122, 0, 209);
+  background: linear-gradient(45deg, rgb(255, 39, 176) 0%, rgba(173, 9, 255, 0.564) 50%, rgba(255, 98, 213, 1) 100%);
+  background-size: 500% 500%;
   position: relative;
 }
 

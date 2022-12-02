@@ -59,7 +59,8 @@ export const login = (email, password) => async (dispatch) => {
 export const me = () => async (dispatch) => {
     dispatch(inProgress(true))
     try {
-        const user = await authApi.getUser()
+        const response = await authApi.getUser()
+        const user = response.resultCode === 1 ? response.user : null
         if (user) {
 
             dispatch(setAuthUser(user, true))

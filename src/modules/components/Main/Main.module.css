@@ -7,7 +7,7 @@ main {
   width: 97vw;
   height: 650px;
   max-height: 650px;
-  /* min-height: 86vh; */
+  
   background-color: #333843;
   display: grid;
   grid-template-columns: 85% 15%;
@@ -24,16 +24,12 @@ main {
   display: none;
 }
 
-.left__area {
-  /* max-height: 85vh; */
 
-}
 
 .menu {
   height: 650px;
   min-height: 330px;
   border-left: solid 0.5px;
-  /* border-color: rgb(88, 155, 249); */
   display: flex;
   justify-content: center;
   align-items: flex-start;
