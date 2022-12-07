@@ -20,3 +20,7 @@ app.listen(PORT);
 //[sudo] npm install forever -g
 //213.139.210.98
 //PN8j&Yb*6Hve
+
+//second server!
+//213.139.209.84
+//Vadimsa1988!

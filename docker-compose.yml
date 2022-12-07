@@ -1,0 +1,27 @@
+version: '2.0'
+services:
+
+    #Node Service
+    front:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        
+        container_name: front
+        
+       
+        volumes:
+            - ./:/chat_client
+            - ./chat_client/node_modules
+        networks:
+            - app-network
+
+
+# #Docker Networks
+# networks:
+#     app-network:
+#         driver: bridge
+# #Volumes
+# volumes:
+#     dbdata:
+#         driver: local
