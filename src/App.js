@@ -8,7 +8,7 @@ import Page from './modules/components/Page/Page';
 // -> paginator
 
 const App = (props) => {
-  console.log('http://213.139.210.98:8000 is working!')
+  console.log('http://95.214.63.234 is working!')
 
   return (
     <>

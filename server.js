@@ -18,9 +18,9 @@ app.listen(PORT);
 //TODO on server
 //https://www.npmjs.com/package/forever
 //[sudo] npm install forever -g
-//213.139.210.98
+//213.139.209.84
 //PN8j&Yb*6Hve
 
 //second server!
-//213.139.209.84
+//95.214.63.234
 //Vadimsa1988!
