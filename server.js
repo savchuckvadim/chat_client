@@ -21,5 +21,5 @@ app.listen(PORT);
 
 
 //second server!
-//213.139.209.84
+//185.225.35.207
 //Vadimsa1988!
