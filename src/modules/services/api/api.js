@@ -3,7 +3,7 @@ import axios from "axios"
 
 export const instance = axios.create({
     // baseURL: 'http://localhost:8000',
-    baseURL: 'http://193.168.46.251:80',
+    baseURL: 'http://45.67.57.72:80',
     headers: {
         'content-type': 'application/json',
         'accept': 'application/json',
@@ -13,6 +13,6 @@ export const instance = axios.create({
 });
 export const api = axios.create({
     // baseURL: 'http://localhost:8000/api',
-    baseURL: 'http://193.168.46.251:80/api',
+    baseURL: 'http://45.67.57.72:80/api',
     withCredentials: true
 });
