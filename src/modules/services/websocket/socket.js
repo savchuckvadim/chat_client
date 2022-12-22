@@ -22,7 +22,7 @@ export const socket = {
       cluster: 'mt1',
       forceTLS: false,
       disableStats: true,
-      wsHost: '127.0.0.1',
+      wsHost: '45.67.57.72',
       wsPort: 6001,
       authorizer: (channel, options) => {
         console.log('websocket connection is success')
