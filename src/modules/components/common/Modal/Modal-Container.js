@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
     return {
         isModalActive: state.modal.isActive,
         isMessageForwarding: state.dialogs.forwardingMessage.inProgress,
-        // isSending: state.dialogs.currentMessage.isSending,
+       
     }
 }
 

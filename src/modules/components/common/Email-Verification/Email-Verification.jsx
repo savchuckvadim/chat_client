@@ -1,4 +1,3 @@
-import { Link, NavLink } from 'react-router-dom'
 import style from './Email-Verification.module.css'
 
 const EmailVerification = (props) => {

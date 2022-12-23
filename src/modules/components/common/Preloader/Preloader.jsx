@@ -1,4 +1,3 @@
-import { useLayoutEffect } from 'react';
 import style from './Preloader.module.css'
 
 const Preloader = (props) => {

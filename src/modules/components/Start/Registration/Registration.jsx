@@ -1,17 +1,8 @@
 import { Formik } from "formik"
-import { Navigate } from "react-router-dom";
-// import { useState } from "react"
-// import { Navigate, NavLink } from "react-router-dom"
-// import { authApi } from "../../../services/api/auth-api"
 import style from './Registration.module.css'
 
 const Registration = (props) => {
-    // authApi.logout()
-    // let url = `http://localhost:3000`
-    // const [url, setUrl] = useState('')
-    // const [registrationStatus, setRegistrationStatus] = useState(false)
-
-
+ 
     return (
 
         <div className={style.form__wrapper}>

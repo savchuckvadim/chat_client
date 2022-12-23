@@ -1,5 +1,5 @@
 import { usersAPI } from "../services/api/users-api"
-import { isUserActive, precenseUserUtil, setOnlineInAll } from "../utils/users-utils"
+import { precenseUserUtil, setOnlineInAll } from "../utils/users-utils"
 import { PRECENSE_USER, setPrecenseUser } from "./dialogs-reducer"
 
 
@@ -15,7 +15,6 @@ const DELETE_ONLINE = 'DELETE_ONLINE'
 const initialState = {
     users: [],
     online: [],
-    // contacts: [],
     inProgress: false
 }
 //AC
@@ -40,12 +39,10 @@ export const getUsers = (currentPage, pageSize) => async (dispatch, getState) =>
 
 }
 export const findUser = (userName) => async (dispatch) => {
-    // dispatch(inProgress(true))
     const response = await usersAPI.findUser(userName)
-
     dispatch(setUsers(response.users))
-    // dispatch(inProgress(false))
 }
+
 export const addDeleteContact = (user, bool) => async (dispatch) => {
     dispatch(inProgress(true))
     if (bool) {

@@ -79,7 +79,7 @@ class SendMessageForm extends React.Component {
     };
     saveInputValue = () => {
         const text = this.ref.innerText;
-        // this.props.onChange(text);
+
 
     };
     submit() {
@@ -118,7 +118,7 @@ class SendMessageForm extends React.Component {
                             this.submit()
                         }}
                     >
-                        =>
+                        {'=>'}
                     </button>
                 </div>
             </div>

@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Moment from 'react-moment'
 import style from './Current-Dialog.module.css'
 import MessagesContainer from './Messages/Messages-Container'

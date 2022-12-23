@@ -1,6 +1,5 @@
 import Moment from 'react-moment'
 import { onRightClick } from '../../../../../../utils/context-menu-utils'
-import Avatar from '../../../../../common/Avatar/Avatar'
 import ContextMenu from '../../../../../common/Context-Menu/Context-Menu'
 import style from './Message-Item.module.css'
 
