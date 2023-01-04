@@ -22,11 +22,12 @@ export const socket = {
       cluster: 'mt1',
       forceTLS: false,
       disableStats: true,
-      wsHost: '45.67.57.72',
+      wsHost: '45.130.43.17',
       wsPort: 6001,
       authorizer: (channel, options) => {
         console.log('websocket connection is success')
-
+        console.log(channel)
+        
         return {
           authorize: (socketId, callback) => {
             api.post('broadcasting/auth', {
