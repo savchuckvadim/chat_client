@@ -24,6 +24,8 @@ export const socket = {
       disableStats: true,
       wsHost: '45.130.43.17',
       wsPort: 6001,
+      wssHost: '45.130.43.17',
+      wssPort: 6001,
       authorizer: (channel, options) => {
         console.log('websocket connection is success')
         console.log(channel)
