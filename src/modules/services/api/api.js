@@ -3,7 +3,7 @@ import axios from "axios"
 
 export const instance = axios.create({
     // baseURL: 'http://localhost:8000',
-    baseURL: 'http://45.147.178.168:80',
+    baseURL: 'https://back.nmbrs-chat.store',
     headers: {
         'content-type': 'application/json',
         'accept': 'application/json',
@@ -13,6 +13,6 @@ export const instance = axios.create({
 });
 export const api = axios.create({
     // baseURL: 'http://localhost:8000/api',
-    baseURL: 'http://45.147.178.168:80/api',
+    baseURL: 'https://back.nmbrs-chat.store/api',
     withCredentials: true
 });

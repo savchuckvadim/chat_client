@@ -24,7 +24,7 @@ export const socket = {
       disableStats: true,
       wsHost: '45.147.178.168',
       wsPort: 6001,
-      wssHost: '45.147.178.168',
+      wssHost: 'https://back.nmbrs-chat.store',
       wssPort: 6001,
       authorizer: (channel, options) => {
         console.log('websocket connection is success')
