@@ -22,7 +22,7 @@ export const socket = {
       cluster: 'mt1',
       forceTLS: false,
       disableStats: true,
-      wsHost: '45.147.178.168',
+      wsHost: '45.12.18.182',
       wsPort: 6001,
       wssHost: 'https://back.nmbrs-chat.store',
       wssPort: 6001,
